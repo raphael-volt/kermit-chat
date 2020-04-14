@@ -1,0 +1,16 @@
+:host {
+    flex: 1 0 auto;
+    display        : flex;
+    flex-direction : column;
+    flex-wrap      : nowrap;
+    justify-content: flex-start;
+    align-content  : flex-start;
+    align-items    : center;
+    padding: 15px;
+    table {
+        min-width: 50%;
+        order     : 0;
+        flex      : 0 1 auto;
+        align-self: auto;
+    }
+}

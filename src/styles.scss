@@ -1,0 +1,104 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+//@import "../node_modules/@angular/material/theming";
+@import "theme-variables.scss";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+$dark-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($app-theme);
+
+@mixin content-color($palette) {
+  background: mat-color($palette);
+  color: mat-color($palette, text);
+}
+@mixin dark($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  .dark {
+    box-sizing: border-box;
+
+    background-color: mat-color($background, background);
+    color: mat-color($foreground, text);
+
+    @include mat-list-theme($theme);
+
+    .mat-list-base {
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+  }
+}
+
+@include dark($dark-theme);
+
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+body {
+  position: relative;
+}
+.app-main {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+  display        : flex;
+  flex-direction : column;
+  flex-wrap      : nowrap;
+  justify-content: flex-start;
+  align-content  : flex-start;
+  align-items    : stretch;
+}
+
+.nav-main {
+  order     : 0;
+  flex      : 0 1 auto;
+  align-self: auto;
+}
+
+.app-scroller {
+  order     : 0;
+  flex      : 1 1 auto;
+  align-self: auto;
+  overflow  : auto;
+  display: flex;
+}
+.dialog-container-transparent {
+  background: none;
+  .mat-dialog-container {
+    display: block;
+    padding: 0;
+    border-radius: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    outline: 0;
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    max-height: inherit;
+    box-shadow: none;
+    background: none;
+    color: rgba(0, 0, 0, 0.87);
+  }
+}

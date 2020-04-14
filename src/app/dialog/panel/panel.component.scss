@@ -1,0 +1,110 @@
+@import "../../../theme-variables.scss";
+
+@mixin panel-radius($radius) {
+  $radius: add-px($radius);
+  border-radius: 0;
+  border-top-left-radius: $radius;
+  border-top-right-radius: $radius;
+}
+@function add-px($value) {
+  @return ($value + px);
+}
+@mixin panel-padding($padding: 6) {
+  padding: add-px($padding);
+}
+@mixin panel-color($background, $foreground) {
+  background: $background;
+  color: $foreground;
+}
+@mixin panel-base($background, $foreground, $padding) {
+  @include panel-color($background, $foreground);
+  @include panel-padding($padding);
+  order: 0;
+  flex: 0 0 auto;
+  align-self: auto;
+}
+@mixin dialog-base($background, $foreground, $radius) {
+  @include panel-color($background, $foreground);
+  @include panel-radius($radius);
+  padding: 0;
+  margin: 0;
+}
+@mixin dialog-panel-container($theme, $radius: 6) {
+  $background: mat-color(map-get($theme, background), dialog);
+  $foreground: mat-color(map-get($theme, foreground), text);
+  .mat-dialog-panel {
+    @include dialog-base($background, $foreground, $radius);
+    .mat-dialog-container {
+      display: inline-block;
+      @include _mat-theme-elevation(24, $theme);
+      @include dialog-base($background, $foreground, $radius);
+    }
+  }
+}
+
+@mixin flex-row($gap) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: baseline;
+  > * {
+    margin-right: add-px($gap);
+    order: 0;
+    flex: 0 1 auto;
+    align-self: auto;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+@mixin dialog-panel($theme, $radius: 6, $padding: 6) {
+  $background: map-get($theme, background);
+  $foreground: mat-color(map-get($theme, foreground), text);
+  $b-header: mat-color($background, app-bar);
+  $b-content: mat-color($background, background);
+  $b-footer: mat-color($background, status-bar);
+  $config: mat-typography-config();
+
+  .dialog-panel {
+    display: inline-flex;
+    min-width: 0;
+    max-width: 60vw;
+    width: auto;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: stretch;
+    font-family: mat-font-family($config);
+    .panel-flex-row {
+      @include flex-row($padding);
+    }
+    .panel-header {
+      @include panel-base($b-header, $foreground, $padding);
+      @include panel-radius($radius);
+      font: {
+        size: mat-font-size($config, headline);
+        weight: mat-font-weight($config, title);
+      }
+      line-height: 1.6em;
+    }
+    .panel-content {
+      display: flex;
+      flex-direction: column;
+      @include panel-base($b-content, $foreground, $padding);
+      font-size: mat-font-size($config, body-1);
+    }
+    .panel-footer {
+      @include panel-base($b-footer, $foreground, $padding);
+    }
+
+    .footer-spacer {
+      display: inline-flex;
+      flex: 1 1 auto;
+    }
+  }
+}
+@include dialog-panel-container($app-theme, 6);
+@include dialog-panel($app-theme, 6, 14);

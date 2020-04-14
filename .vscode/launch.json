@@ -1,0 +1,44 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "CHAT Launch",
+            "url": "http://localhost:4200",
+            "runtimeExecutable": "/snap/bin/chromium",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Attach to Chrome",
+            "port": 9222,
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chromium against localhost",
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            // ng test --source-map=true
+            "name": "CHAT Karma",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:9876/debug.html",
+            "sourceMaps": true,
+            "webRoot": "${workspaceFolder}",
+            "runtimeExecutable": "/snap/bin/chromium",
+            // Remote port is set in karma.conf.js 
+            // customLaunchers.ChromeDebug.flags: ['--remote-debugging-port=9333']
+            "port": 9333,
+            // Should fix missing break points
+            "pathMapping": {
+                "/_karma_webpack_": "${workspaceFolder}"
+            }
+        }
+    ]
+}

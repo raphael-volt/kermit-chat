@@ -1,0 +1,43 @@
+/* Theme for the ripple elements.*/
+/* stylelint-disable material/no-prefixes */
+/* stylelint-enable */
+.mat-dialog-panel {
+  background: white;
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 0;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.mat-dialog-panel .mat-dialog-container {
+  box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
+  background: white;
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 0;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.dialog-panel {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.dialog-panel .panel-header {
+  background: whitesmoke;
+  color: rgba(0, 0, 0, 0.87);
+  padding: 8px;
+  border-radius: 0;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  font-size: 24px;
+  font-weight: 500;
+}
+.dialog-panel .panel-content {
+  background: #fafafa;
+  color: rgba(0, 0, 0, 0.87);
+  padding: 8px;
+  font-size: 14px;
+}
+.dialog-panel .panel-footer {
+  background: #e0e0e0;
+  color: rgba(0, 0, 0, 0.87);
+  padding: 8px;
+}

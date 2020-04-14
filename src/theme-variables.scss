@@ -1,0 +1,18 @@
+@import "../node_modules/@angular/material/core/theming/theming";
+@import '../node_modules/@angular/material/core/style/elevation';
+@import '../node_modules/@angular/material/core/typography/typography-utils';
+@import '../node_modules/@angular/material/theming';
+//mat-typography-config => node_modules/@angular/material/_theming.scss
+// mat-palette($base-palette, $default: 500, $lighter: 100, $darker: 700, $text: $default
+
+// @import "~@angular/material/core/theming/theming";
+// @import '~@angular/material/core/style/elevation';
+// @import '~@angular/material/core/typography/typography-utils';
+// @import '~@angular/material/theming';
+// 
+$app-primary: mat-palette($mat-blue-grey, 700, 400, 900);
+$app-accent: mat-palette($mat-blue, 800, A200, 900);
+$app-warn: mat-palette($mat-amber, 700,A200, 900);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);

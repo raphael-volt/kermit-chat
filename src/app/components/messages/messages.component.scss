@@ -1,0 +1,25 @@
+:host {
+    display        : flex;
+    flex-direction : row;
+    flex-wrap      : nowrap;
+    justify-content: flex-start;
+    align-content  : flex-start;
+    align-items    : flex-start;
+
+    >nav {
+        padding: 10px;
+        order     : 0;
+        flex      : 0 1 auto;
+        align-self: stretch;
+        overflow: auto;
+        overflow-x: hidden;
+        min-width: 20vw;
+    }
+    
+    >div {
+        order     : 0;
+        flex      : 1 1 auto;
+        align-self: stretch;
+        overflow: auto;
+    }
+}

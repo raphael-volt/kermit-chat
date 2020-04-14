@@ -1,0 +1,10 @@
+<div class="app-main">
+  <nav class="nav-main" mat-tab-nav-bar>
+    <a mat-tab-link *ngFor="let route of routes" [routerLink]="route.path" [active]="activeLink == route">
+      {{route.title}}
+    </a>
+  </nav>
+  <div class="app-scroller">
+    <router-outlet></router-outlet>
+  </div>
+</div>
