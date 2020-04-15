@@ -1,6 +1,21 @@
-<nav class="">
-    <mat-nav-list>
-        <button mat-list-item *ngFor="let link of links" (click)="openThread(link)" > {{ link }} </button>
-    </mat-nav-list>
-</nav>
-<div></div>
+<div class="flex-fill">
+    <div class="flex-row flex11">
+        <div class="nav-list-column" #navList>
+            <button (click)="createThread()" color="accent" class="flex10" mat-raised-button>Nouveau message</button>
+            <mat-nav-list [disableRipple]="false" class="v-flow">
+                <a *ngFor="let link of links" [routerLink]="[link.id]" routerLinkActive="list-item-active"
+                    mat-list-item>{{ link.subject }}</a>
+            </mat-nav-list>
+        </div>
+        <div class="flex-column align-content-stretch flex11">
+            <router-outlet (activate)='onActivate($event)' (deactivate)='onDeactivate($event)'></router-outlet>
+            <mat-card *ngIf="!threadOpen" class="nav-card  flex-card">
+                <mat-card-header>
+                    <mat-card-title>Selectionner ou créer un message</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

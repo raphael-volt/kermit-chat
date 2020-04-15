@@ -1,0 +1,17 @@
+<ul>
+"people":{emoji:"😃", name:" Smileys &amp; People"},
+"nature":{emoji:"🐻", name:" Animals &amp; Nature"},
+"food-drink":{emoji:"🍔", name:" Food &amp; Drink"},
+"activity":{emoji:"⚽", name:" Activity"},
+"travel-places":{emoji:"🌇", name:" Travel &amp; Places"},
+"objects":{emoji:"💡", name:" Objects"},
+"symbols":{emoji:"🔣", name:" Symbols"},
+"flags":{emoji:"🎌", name:" Flags"},
+</ul>
+
+
+(<li><a href="/)([\w-]+)(/"><span class="emoji">)(.*)(</span>)(.*)(</a></li>)
+{ emoji:"$4", id: "$2", name:"$6" },
+
+
+

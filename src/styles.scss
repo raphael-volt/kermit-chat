@@ -10,21 +10,31 @@
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
-$dark-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
+@mixin list-item-active($theme) {
+  $accent: map-get($theme, accent);
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($app-theme);
+  .list-item-active {
+    background: mat-color($accent);
+    color     : mat-color($accent, default-contrast);
+
+    &:hover,
+    &:focus {
+      background: mat-color($accent) !important;
+      color     : mat-color($accent, default-contrast) !important;
+    }
+  }
+
+}
 
 @mixin content-color($palette) {
   background: mat-color($palette);
-  color: mat-color($palette, text);
+  color     : mat-color($palette, text);
 }
+
 @mixin dark($theme) {
-  $primary: map-get($theme, primary);
-  $accent: map-get($theme, accent);
-  $warn: map-get($theme, warn);
+  $primary   : map-get($theme, primary);
+  $accent    : map-get($theme, accent);
+  $warn      : map-get($theme, warn);
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
 
@@ -32,37 +42,52 @@ $dark-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
     box-sizing: border-box;
 
     background-color: mat-color($background, background);
-    color: mat-color($foreground, text);
+    color           : mat-color($foreground, text);
 
     @include mat-list-theme($theme);
 
     .mat-list-base {
-      padding-top: 0px;
+      padding-top   : 0px;
       padding-bottom: 0px;
     }
+
+    @include list-item-active($theme)
   }
 }
 
+$dark-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($app-theme);
+@include list-item-active($app-theme);
+
+
 @include dark($dark-theme);
+
+$ctn-padding: 16px;
 
 html,
 body {
-  height: 100vh;
-  width: 100vw;
-  margin: 0;
-  padding: 0;
+  height  : 100vh;
+  width   : 100vw;
+  margin  : 0;
+  padding : 0;
   overflow: hidden;
 }
+
 body {
   position: relative;
 }
+
 .app-main {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  overflow: hidden;
+  position       : absolute;
+  left           : 0;
+  right          : 0;
+  top            : 0;
+  bottom         : 0;
+  overflow       : hidden;
   display        : flex;
   flex-direction : column;
   flex-wrap      : nowrap;
@@ -78,27 +103,263 @@ body {
 }
 
 .app-scroller {
-  order     : 0;
-  flex      : 1 1 auto;
-  align-self: auto;
-  overflow  : auto;
-  display: flex;
-}
-.dialog-container-transparent {
-  background: none;
-  .mat-dialog-container {
-    display: block;
-    padding: 0;
-    border-radius: 0;
-    box-sizing: border-box;
-    overflow: hidden;
-    outline: 0;
-    width: 100%;
-    height: 100%;
-    min-height: inherit;
-    max-height: inherit;
-    box-shadow: none;
-    background: none;
-    color: rgba(0, 0, 0, 0.87);
+  order         : 0;
+  flex          : 1 1 auto;
+  align-self    : auto;
+  overflow      : hidden;
+  display       : flex;
+  flex-direction: column;
+
+  >.main-view {
+    flex           : 1 1 auto;
+    display        : flex;
+    flex-direction : column;
+    flex-wrap      : nowrap;
+    justify-content: stretch;
+    align-items    : stretch;
+    padding        : 0;
+    overflow       : hidden;
+
+    .flex-scroller {
+      overflow-y     : hidden;
+      overflow-y     : auto;
+      display        : flex;
+      flex-direction : column;
+      flex-wrap      : nowrap;
+      justify-content: flex-start;
+      align-items    : stretch;
+    }
+
+    .align-items-center {
+      align-items: center
+    }
   }
 }
+
+.dialog-container-transparent {
+  background: none;
+
+  .mat-dialog-container {
+    display      : block;
+    padding      : 0;
+    border-radius: 0;
+    box-sizing   : border-box;
+    overflow     : hidden;
+    outline      : 0;
+    width        : 100%;
+    height       : 100%;
+    min-height   : inherit;
+    max-height   : inherit;
+    box-shadow   : none;
+    background   : none;
+    color        : rgba(0, 0, 0, 0.87);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.flex-row {
+  display       : flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display       : flex;
+  flex-direction: column;
+}
+
+@mixin fx-box($dir, $wrap: nowrap) {
+  display       : flex;
+  flex-direction: $dir;
+  overflow      : hidden;
+  flex-wrap     : $wrap;
+
+}
+
+// flex: flex-grow flex-shrink flex-basis|auto|initial|inherit;
+@mixin fx-item($grow: 0, $shrink: 1, $basis: auto, $order: 0) {
+  flex-grow: $grow;
+  ;
+  flex-shrink: $shrink;
+  flex-basis : $basis;
+  order      : $order;
+}
+
+@mixin fx-box-item($grow: 0, $shrink: 1, $basis: auto, $order: 0) {
+  >* {
+    @include fx-item($grow, $shrink, $basis, $order);
+  }
+}
+
+@mixin fx-gap($gap, $dir: bottom) {
+  >* {
+    $key: margin-#{$dir};
+    $value: $gap+px;
+
+    #{$key}: $value;
+    
+    &:last-child {
+      #{$key}: $value;
+    }
+  }
+}
+
+@mixin flex-card-theme($theme) {
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  @include _mat-theme-overridable-elevation(1, $theme);
+  background: mat-color($background, card);
+  color: mat-color($foreground, text);
+}
+
+.nav-list-column {
+  @include flex-card-theme($app-theme);
+  @include fx-item(1 1);
+  @include fx-box(column);
+  align-items: stretch;
+  justify-content: stretch;
+  margin: $ctn-padding;
+  margin-right: 0;
+}
+
+
+.v-scroller {
+  flex          : 0 1 auto;
+  display       : flex;
+  flex-direction: column;
+  overflow-x    : hidden;
+  overflow-y    : auto;
+}
+
+.align-content-stretch {
+  align-content: stretch;
+}
+
+.flex-fill {
+  flex          : 1 1 auto;
+  display       : flex;
+  flex-direction: column;
+  overflow      : hidden;
+}
+
+.flex01 {
+  overflow: hidden;
+  flex    : 0 1 auto;
+}
+
+.flex11 {
+  overflow: hidden;
+  flex    : 1 1 auto;
+}
+
+.flex10 {
+  overflow: hidden;
+  flex    : 1 0 auto;
+}
+
+.flex00 {
+  overflow: hidden;
+  flex    : 0 0 auto;
+}
+
+div {
+  max-width: unset;
+}
+
+.row-spacer {
+  flex: 1 1 auto;
+}
+
+.pad-16 {
+  padding: 0; //$ctn-padding;
+}
+
+mat-card.nav-card {
+  flex          : 1 1 auto;
+  display       : flex;
+  overflow      : hidden;
+  flex-direction: column;
+
+  >mat-card-content {
+    flex          : 1 1 auto;
+    display       : flex;
+    flex-direction: column;
+    overflow-x    : hidden;
+    overflow-y    : auto;
+    flex-wrap     : nowrap;
+  }
+
+  &.margin-right0 {
+    margin-right: 0;
+  }
+
+  &.flex-card {
+    margin: $ctn-padding;
+  }
+}
+
+.mat-raised-button.flex-row-button {
+  margin     : 0;
+  margin-left: $ctn-padding;
+  margin-top : $ctn-padding;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.v-box, .v-box.tf-fill {
+  @include fx-box(column);
+  @include fx-box-item();
+
+  &.gap4 {
+    @include fx-gap(4);
+  }
+  &.gap8 {
+    @include fx-gap(8);
+  }
+  &.gap12 {
+    @include fx-gap(12);
+  }
+  &.gap16 {
+    @include fx-gap(16);
+  }
+}
+
+.h-box {
+  @include fx-box(row);
+  &.gap4 {
+    @include fx-gap(4, right);
+  }
+  &.gap8 {
+    @include fx-gap(8, right);
+  }
+  &.gap12 {
+    @include fx-gap(12, right);
+  }
+  &.gap16 {
+    @include fx-gap(16, right);
+  }
+}
+
+.v-flow {
+  @include fx-item(1, 1);
+  // @include fx-box(column);
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+// @import '~@ctrl/ngx-emoji-mart/picker';

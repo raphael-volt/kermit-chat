@@ -20,3 +20,8 @@ export interface User extends IVO
     email?: string
     name?: string
 }
+
+export interface ThreadTree {
+    thread: Thread,
+    parts: ThreadPart[]
+}

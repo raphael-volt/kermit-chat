@@ -1,0 +1,18 @@
+
+
+mat-card.thread-part {
+    max-width  : 50vw;
+    margin-left: 32px;
+    margin-bottom: 16px;
+    mat-card-content {
+        padding-left: 56px;
+    }
+    &.thread-owner {
+        mat-card-header {
+            display: none;
+        }
+        mat-card-content {
+            padding-left: 0;
+        }
+    }
+}

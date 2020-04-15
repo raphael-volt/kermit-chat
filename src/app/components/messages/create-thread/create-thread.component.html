@@ -1,0 +1,47 @@
+<mat-card class="nav-card flex-card">
+    <mat-card-header>
+        <mat-card-title>Nouveau message</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="form" class="v-box gap12 flex11">
+            <mat-form-field>
+                <mat-label>Objet</mat-label>
+                <input matInput formControlName="subject" required>
+                <mat-error
+                    *ngIf="form.controls.subject.invalid && (form.controls.subject.dirty || form.controls.subject.touched)">
+                    <span *ngIf="form.controls.subject.errors.required">
+                        Objet est requis.
+                    </span>
+                    <span *ngIf="form.controls.subject.errors.minlength">
+                        Objet trop court (4 caractères au mois).
+                    </span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field #tfField class="flex11">
+                <mat-label>Message</mat-label>
+                <textarea matInput 
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="2"
+                cdkAutosizeMaxRows="5"
+                #cfcAutosize="cdkTextareaAutosize"
+                formControlName="content" required></textarea>
+                
+                <mat-error
+                    *ngIf="form.controls.content.invalid && (form.controls.content.dirty || form.controls.content.touched)">
+                    <span *ngIf="form.controls.content.errors.required">
+                        Message est requis.
+                    </span>
+                    <span *ngIf="form.controls.content.errors.minlength">
+                        Message trop court (4 caractères au mois).
+                    </span>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-footer>
+        <mat-toolbar class="h-box gap16">
+            <button (click)="cancel()" mat-raised-button color="warn">Annuller</button>
+            <button (click)="send()" [disabled]="!form.valid" mat-raised-button color="accent">Envoyer</button>
+        </mat-toolbar>
+    </mat-card-footer>
+</mat-card>

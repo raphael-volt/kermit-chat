@@ -32,7 +32,10 @@ export class AuthService {
 
   constructor(
     private apiService: ApiService,
-    private cookieService: CookieService) { }
+    private cookieService: CookieService) { 
+      this.jpData = {email: "fionnvolt@gmail.com"}
+      this.saveCookie()
+    }
 
 
 
@@ -96,9 +99,7 @@ export class AuthService {
   }
 
   private saveCookie() {
-    let data = JSON.stringify(this.jpData);
-    this.cookieService.set(this.cookieKey, data)
-    data = this.cookieService.get(this.cookieKey)
+    this.cookieService.set(this.cookieKey, JSON.stringify(this.jpData))
   }
 
 }

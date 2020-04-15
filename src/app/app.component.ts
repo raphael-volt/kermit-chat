@@ -9,12 +9,16 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent {
 
-  routes: Routes = routes
+  routes: Routes 
   activeLink: Route
 
   private routerSub: Subscription
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) { 
+    this.routes = routes.filter(route=>{
+      return route.path != ''
+    })
+  }
 
   ngOnInit(): void {
     this.routerSub = this.router.events.subscribe(this.handleRouteActivation)

@@ -1,0 +1,4 @@
+<div #trigger class="fx-row gap4">
+    <button class="emoji-button" *ngFor="let c of categories" (click)="showCategory(c)"
+        mat-stroked-button>{{c?.emoji}}</button>
+</div>

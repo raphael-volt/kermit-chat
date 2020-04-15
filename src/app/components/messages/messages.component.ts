@@ -1,26 +1,63 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { DialogService } from 'src/app/dialog/dialog.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.scss']
+  styleUrls: ['./messages.component.scss'],
+  host: {
+    class:"main-view"
+  }
 })
 export class MessagesComponent implements OnInit {
 
-  links: string[]
-  constructor() { 
-    const links: string[] = []
+  threadOpen: boolean = false
+  links: any[]
+  constructor(private dialog: DialogService) {
+    const links: any[] = []
     for (let i = 1; i < 31; i++) {
-      links.push("Message " + (i))
+      links.push({ id: i, subject: "Message de jp-user " + (i) })
     }
     this.links = links
   }
+  ngOnInit(): void {
+    
+  }
+  @ViewChild("navList")
+  private _navList: ElementRef
 
-  openThread(thread) {
-    console.log(`open thread '${thread}'`)
+  /*
+element {
+  transition: transform 0.5s linear;
+}
+element:hover {
+  transform: translateX(15px);
+  transform: translateY(50px);
+  transform: translate(15px, -40px);
+}
+  */
+  hideNav(){
+  }
+  showNav(){
+  }
+  onDeactivate($event){
+    this.threadOpen = false
+  }
+  
+  onActivate($event){
+    this.threadOpen = true
+
   }
 
-  ngOnInit(): void {
+  createThread() {
+    this.dialog.openThreadEditor().pipe(first()).subscribe(tree=>{
+      if(tree) {
+        console.log(tree.thread.subject)
+        console.log(tree.parts[0].content)
+      }
+    })
   }
 
 }

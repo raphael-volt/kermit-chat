@@ -1,0 +1,10 @@
+mat-card {
+    width: 50vw;
+}
+
+mat-form-filed > textarea.tf-fill.mat-input-element {
+    resize: none!important;
+    flex: 1 1 auto!important;
+    overflow-x: hidden!important;
+    overflow-y: auto!important;
+}

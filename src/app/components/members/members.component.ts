@@ -6,7 +6,10 @@ import { User } from 'src/app/vo/vo';
 @Component({
   selector: 'app-members',
   templateUrl: './members.component.html',
-  styleUrls: ['./members.component.scss']
+  styleUrls: ['./members.component.scss'],
+  host: {
+    class:"main-view"
+  }
 })
 export class MembersComponent implements OnInit, OnDestroy {
 
