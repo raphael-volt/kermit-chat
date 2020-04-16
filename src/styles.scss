@@ -306,21 +306,9 @@ mat-card.nav-card {
   margin-left: $ctn-padding;
   margin-top : $ctn-padding;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.fx-coll {
+  @include fx-box(column);
+}
 .v-box, .v-box.tf-fill {
   @include fx-box(column);
   @include fx-box-item();
@@ -361,5 +349,17 @@ mat-card.nav-card {
   overflow: auto;
   overflow-x: hidden;
 }
-
+* {
+  box-sizing: border-box;
+}
 // @import '~@ctrl/ngx-emoji-mart/picker';
+
+quill-editor.editor-bottom > div.ql-toolbar {
+  order: 1;
+  flex : 0 1 auto;
+}
+
+quill-editor > div.ql-container {
+  order: 0;
+  flex : 1 1 auto;
+}

@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewChecked, AfterViewInit, OnDestroy } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { Thread, ThreadPart, ThreadTree } from 'src/app/vo/vo';
-import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { ThreadTree } from 'src/app/vo/vo';
 
 @Component({
   selector: 'app-create-thread',
@@ -20,21 +19,11 @@ export class CreateThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     })
   }
   ngOnDestroy(): void {
-    window.removeEventListener("resize", this.resizeHandler)
+    
   }
   ngAfterViewInit(): void {
-    window.addEventListener("resize", this.resizeHandler)
-    this.resizeHandler(event)
+    
   }
-
-  private resizeHandler = (event: Event): void => {
-    const h = Math.floor(window.innerHeight * .50 / 15);
-    this.cfcAutosize.maxRows = h
-    this.cfcAutosize.minRows = h
-    //this.cfcAutosize.reset()
-  }
-  @ViewChild(CdkTextareaAutosize)
-  cfcAutosize: CdkTextareaAutosize;
 
   ngOnInit(): void {
 

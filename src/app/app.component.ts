@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { routes } from "./app-routing.module";
 import { Routes, Route, Router, ActivationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

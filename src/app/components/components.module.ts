@@ -6,13 +6,15 @@ import { MaterialModule } from '../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessagesModule } from './messages/messages.module';
 
-
+import { FxTextEditorModule } from "../fx-text-editor/fx-text-ediror.module";
+import { EditorComponent } from './editor/editor.component';
 
 @NgModule({
-  declarations: [MembersComponent, AccountComponent],
+  declarations: [MembersComponent, AccountComponent, EditorComponent],
   imports: [
     MessagesModule,
-    CommonModule, MaterialModule, FormsModule, ReactiveFormsModule
+    CommonModule, MaterialModule, FormsModule, ReactiveFormsModule,
+    FxTextEditorModule
   ],
   exports: [
     MessagesModule, MembersComponent, AccountComponent

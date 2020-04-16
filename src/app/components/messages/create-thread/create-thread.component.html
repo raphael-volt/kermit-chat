@@ -17,16 +17,19 @@
                     </span>
                 </mat-error>
             </mat-form-field>
-            <mat-form-field #tfField class="flex11">
-                <mat-label>Message</mat-label>
-                <textarea matInput 
-                cdkTextareaAutosize
-                cdkAutosizeMinRows="2"
-                cdkAutosizeMaxRows="5"
-                #cfcAutosize="cdkTextareaAutosize"
-                formControlName="content" required></textarea>
-                
-                <mat-error
+            <fx-editor class="flex11" (contentChange)="form.controls.content.setValue($event)"></fx-editor>
+            <!--
+
+                <mat-form-field #tfField class="flex11">
+                    <mat-label>Message</mat-label>
+                    <textarea matInput 
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="2"
+                    cdkAutosizeMaxRows="5"
+                    #cfcAutosize="cdkTextareaAutosize"
+                    formControlName="content" required></textarea>
+                    
+                    <mat-error
                     *ngIf="form.controls.content.invalid && (form.controls.content.dirty || form.controls.content.touched)">
                     <span *ngIf="form.controls.content.errors.required">
                         Message est requis.
@@ -36,6 +39,7 @@
                     </span>
                 </mat-error>
             </mat-form-field>
+            -->
         </form>
     </mat-card-content>
     <mat-card-footer>

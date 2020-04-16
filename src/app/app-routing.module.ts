@@ -5,6 +5,7 @@ import { AccountComponent } from './components/account/account.component';
 import { MembersComponent } from './components/members/members.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ThreadComponent } from './components/messages/thread/thread.component';
+import { EditorComponent } from './components/editor/editor.component';
 
 export interface NamedRoute extends Route {
   title: string
@@ -42,6 +43,12 @@ const routes: NamedRoute[] = [
     title: "Liste des membres",
     canActivate: [AuthGuard],
     component: MembersComponent
+  },
+  {
+    path: "editor",
+    title: "Éditeur",
+    canActivate: [AuthGuard],
+    component: EditorComponent
   }
 ]
 @NgModule({

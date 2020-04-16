@@ -11,6 +11,7 @@ import { ApiModule } from './api/api.module';
 import { MaterialModule } from './material/material.module';
 import { DialogModule } from './dialog/dialog.module';
 import { ComponentsModule } from './components/components.module';
+import { FxTextEditorModule } from "./fx-text-editor/fx-text-ediror.module";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ComponentsModule } from './components/components.module';
     ApiModule,
     DialogModule,
     ComponentsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FxTextEditorModule
   ],
   exports: [
     MaterialModule,
