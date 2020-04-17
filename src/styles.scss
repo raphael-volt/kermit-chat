@@ -180,11 +180,10 @@ body {
 
 // flex: flex-grow flex-shrink flex-basis|auto|initial|inherit;
 @mixin fx-item($grow: 0, $shrink: 1, $basis: auto, $order: 0) {
-  flex-grow: $grow;
-  ;
-  flex-shrink: $shrink;
-  flex-basis : $basis;
-  order      : $order;
+  flex-grow: $grow!important;
+  flex-shrink: $shrink!important;
+  flex-basis : $basis!important;
+  order      : $order!important;
 }
 
 @mixin fx-box-item($grow: 0, $shrink: 1, $basis: auto, $order: 0) {
@@ -306,13 +305,24 @@ mat-card.nav-card {
   margin-left: $ctn-padding;
   margin-top : $ctn-padding;
 }
-.fx-coll {
+.fx-col {
   @include fx-box(column);
+  > .flex01 {
+    @include fx-item(0, 1)
+  }
+  > .flex11 {
+    @include fx-item(1, 1)
+  }
+  > .flex00 {
+    @include fx-item(0, 0)
+  }
+  > .flex10 {
+    @include fx-item(1, 0)
+  }
 }
-.v-box, .v-box.tf-fill {
+.v-box {
   @include fx-box(column);
-  @include fx-box-item();
-
+  
   &.gap4 {
     @include fx-gap(4);
   }
@@ -324,6 +334,18 @@ mat-card.nav-card {
   }
   &.gap16 {
     @include fx-gap(16);
+  }
+  > .flex01 {
+    @include fx-item(0, 1)
+  }
+  > .flex11 {
+    @include fx-item(1, 1)
+  }
+  > .flex00 {
+    @include fx-item(0, 0)
+  }
+  > .flex10 {
+    @include fx-item(1, 0)
   }
 }
 
@@ -341,6 +363,18 @@ mat-card.nav-card {
   &.gap16 {
     @include fx-gap(16, right);
   }
+  > .flex01 {
+    @include fx-item(0, 1)
+  }
+  > .flex11 {
+    @include fx-item(1, 1)
+  }
+  > .flex00 {
+    @include fx-item(0, 0)
+  }
+  > .flex10 {
+    @include fx-item(1, 0)
+  }
 }
 
 .v-flow {
@@ -349,17 +383,25 @@ mat-card.nav-card {
   overflow: auto;
   overflow-x: hidden;
 }
-* {
+div {
   box-sizing: border-box;
 }
-// @import '~@ctrl/ngx-emoji-mart/picker';
 
-quill-editor.editor-bottom > div.ql-toolbar {
-  order: 1;
-  flex : 0 1 auto;
-}
+$config: mat-typography-config();
 
-quill-editor > div.ql-container {
-  order: 0;
-  flex : 1 1 auto;
+quill-editor {
+  $font-family: mat-font-family($config);
+  @include fx-box(column);
+  font-family: $font-family;
+  overflow: hidden;
+  flex-wrap: wrap;
+  > div.ql-toolbar {
+    @include fx-box-item(0, 1)
+  }
+  > div.ql-container {
+    @include fx-box-item(1, 1)
+  }
+  &.editor-bottom {
+    flex-wrap: wrap-reverse;
+  } 
 }
