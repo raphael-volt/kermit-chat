@@ -175,15 +175,14 @@ body {
   flex-direction: $dir;
   overflow      : hidden;
   flex-wrap     : $wrap;
-
 }
 
 // flex: flex-grow flex-shrink flex-basis|auto|initial|inherit;
 @mixin fx-item($grow: 0, $shrink: 1, $basis: auto, $order: 0) {
-  flex-grow: $grow!important;
-  flex-shrink: $shrink!important;
-  flex-basis : $basis!important;
-  order      : $order!important;
+  flex-grow: $grow;
+  flex-shrink: $shrink;
+  flex-basis : $basis;
+  order      : $order;
 }
 
 @mixin fx-box-item($grow: 0, $shrink: 1, $basis: auto, $order: 0) {
@@ -389,19 +388,5 @@ div {
 
 $config: mat-typography-config();
 
-quill-editor {
-  $font-family: mat-font-family($config);
-  @include fx-box(column);
-  font-family: $font-family;
-  overflow: hidden;
-  flex-wrap: wrap;
-  > div.ql-toolbar {
-    @include fx-box-item(0, 1)
-  }
-  > div.ql-container {
-    @include fx-box-item(1, 1)
-  }
-  &.editor-bottom {
-    flex-wrap: wrap-reverse;
-  } 
-}
+@import "./quill.scss";
+@include quill-theme(mat-font-family($config));
