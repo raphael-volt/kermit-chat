@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { DialogService } from 'src/app/dialog/dialog.service';
 import { first } from 'rxjs/operators';
 
@@ -28,27 +27,12 @@ export class MessagesComponent implements OnInit {
   @ViewChild("navList")
   private _navList: ElementRef
 
-  /*
-element {
-  transition: transform 0.5s linear;
-}
-element:hover {
-  transform: translateX(15px);
-  transform: translateY(50px);
-  transform: translate(15px, -40px);
-}
-  */
-  hideNav(){
-  }
-  showNav(){
-  }
   onDeactivate($event){
     this.threadOpen = false
   }
   
   onActivate($event){
     this.threadOpen = true
-
   }
 
   createThread() {

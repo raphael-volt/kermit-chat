@@ -4,20 +4,20 @@ import { MembersComponent } from './members/members.component';
 import { AccountComponent } from './account/account.component';
 import { MaterialModule } from '../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { MessagesModule } from './messages/messages.module';
 
-import { FxTextEditorModule } from "../fx-text-editor/fx-text-ediror.module";
 import { EditorComponent } from './editor/editor.component';
+import { RteModule } from './rte/rte.module';
 
 @NgModule({
   declarations: [MembersComponent, AccountComponent, EditorComponent],
   imports: [
-    MessagesModule,
-    CommonModule, MaterialModule, FormsModule, ReactiveFormsModule,
-    FxTextEditorModule
+    MessagesModule, RteModule,
+    CommonModule, MaterialModule, FormsModule, ReactiveFormsModule
   ],
   exports: [
-    MessagesModule, MembersComponent, AccountComponent
+    MessagesModule, MembersComponent, AccountComponent, EditorComponent
   ]
 })
 export class ComponentsModule { }

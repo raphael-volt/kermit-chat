@@ -4,6 +4,7 @@
     </mat-card-header>
     <mat-card-content>
         <form [formGroup]="form" class="v-box gap12 flex11">
+
             <mat-form-field>
                 <mat-label>Objet</mat-label>
                 <input matInput formControlName="subject" required>
@@ -13,33 +14,23 @@
                         Objet est requis.
                     </span>
                     <span *ngIf="form.controls.subject.errors.minlength">
-                        Objet trop court (4 caractères au mois).
+                        Objet trop court ({{minLength}} caractères au mois).
                     </span>
                 </mat-error>
             </mat-form-field>
-            <fx-editor class="flex11" (contentChange)="form.controls.content.setValue($event)"></fx-editor>
-            <!--
-
-                <mat-form-field #tfField class="flex11">
-                    <mat-label>Message</mat-label>
-                    <textarea matInput 
-                    cdkTextareaAutosize
-                    cdkAutosizeMinRows="2"
-                    cdkAutosizeMaxRows="5"
-                    #cfcAutosize="cdkTextareaAutosize"
-                    formControlName="content" required></textarea>
-                    
-                    <mat-error
-                    *ngIf="form.controls.content.invalid && (form.controls.content.dirty || form.controls.content.touched)">
+            
+            <mat-form-field>
+                <mat-rte style="height: 50vh;" formControlName="content" placeholder="Message" required></mat-rte>
+                <mat-error *ngIf="form.controls.content.invalid && (form.controls.content.dirty || form.controls.content.touched)">
                     <span *ngIf="form.controls.content.errors.required">
                         Message est requis.
                     </span>
-                    <span *ngIf="form.controls.content.errors.minlength">
-                        Message trop court (4 caractères au mois).
+                    <span *ngIf="!form.controls.content.errors.required && form.controls.content.errors.min">
+                        Message trop court ({{minLength}} caractères au mois).
                     </span>
                 </mat-error>
             </mat-form-field>
-            -->
+            
         </form>
     </mat-card-content>
     <mat-card-footer>
