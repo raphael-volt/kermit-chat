@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { FlexLayoutModule } from "@angular/flex-layout";
-
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { ApiModule } from './api/api.module';
-import { MaterialModule } from './material/material.module';
-import { DialogModule } from './dialog/dialog.module';
 import { ComponentsModule } from './components/components.module';
-import { FxTextEditorModule } from "./fx-text-editor/fx-text-ediror.module";
+import { RouterModule } from '@angular/router';
+import { DialogModule } from './dialog/dialog.module';
+import { MaterialModule } from './material/material.module';
+import { ApiModule } from './api/api.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -19,21 +17,14 @@ import { FxTextEditorModule } from "./fx-text-editor/fx-text-ediror.module";
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
-    ApiModule,
-    DialogModule,
     ComponentsModule,
-    FlexLayoutModule,
-    FxTextEditorModule
-  ],
-  exports: [
+    DialogModule,
     MaterialModule,
     ApiModule,
-    FormsModule,
-    ReactiveFormsModule,
-    FlexLayoutModule
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
