@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Delta, DeltaOperation } from 'quill';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'rte-view',
@@ -7,20 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewComponent implements OnInit {
 
-  constructor() { }
-  content = [
-    { insert: 'Hello ' },
-    { insert: 'World!', attributes: { bold: true } },
-    { insert: '\n' },
-    { insert: {
-        image:"https://avatars1.githubusercontent.com/u/14826665?s=460&u=84c5b8bfa41a17ade2f3ede0fc12c4a40918676e&v=4",
+  modules = {}
+  @Input()
+  content: any
+  @Input()
+  set inserts(value: any[]) {
+    let current = this.content
+    if (current)
+      current.ops = value
+    else
+      current = { ops: value }
+    //this.content.next(current)
+  }
 
-      },
-      attributes: { width: 100 }
-    }
-  ]
+  constructor() { }
+
   ngOnInit(): void {
-    
+
   }
 
 }

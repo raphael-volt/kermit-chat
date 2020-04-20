@@ -294,11 +294,34 @@ mat-card.nav-card {
     margin-right: 0;
   }
 
-  &.flex-card {
-    margin: $ctn-padding;
+}
+
+mat-card.thread-card {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: $ctn-padding;
+  padding-bottom: 0;
+  mat-card-header {
+    margin-left: $ctn-padding;
+    margin-right: $ctn-padding;
+  }
+  > mat-card-content.divider {
+    margin: 0;
+    z-index: 999;
+  }
+  > mat-card-content.thread-scroller {
+    padding: $ctn-padding;
   }
 }
 
+.nav-card {
+  &.flex-card {
+    margin: $ctn-padding;
+    &.top0 {
+      margin-top: 0;
+    }
+  }
+}
 .mat-raised-button.flex-row-button {
   margin     : 0;
   margin-left: $ctn-padding;
@@ -386,7 +409,20 @@ div {
   box-sizing: border-box;
 }
 
+
 $config: mat-typography-config();
 
 @import "./quill.scss";
 @include quill-theme(mat-font-family($config));
+
+.thread-panel div.mat-expansion-panel-body {
+  padding: 0!important;
+  margin: 0;
+  .ql-container.ql-snow {
+    border: none!important;
+  }
+  .ql-toolbar.ql-snow {
+    border-left: none!important;
+    border-right: none!important;
+  }
+}

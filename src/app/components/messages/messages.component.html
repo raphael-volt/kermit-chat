@@ -3,8 +3,8 @@
         <div class="nav-list-column" #navList>
             <button (click)="createThread()" color="accent" class="flex10" mat-raised-button>Nouveau message</button>
             <mat-nav-list [disableRipple]="false" class="v-flow">
-                <a *ngFor="let link of links" [routerLink]="[link.id]" routerLinkActive="list-item-active"
-                    mat-list-item>{{ link.subject }}</a>
+                <a *ngFor="let thread of api.threadList | async" [routerLink]="[thread.id]" routerLinkActive="list-item-active"
+                    mat-list-item>{{ thread.subject }}</a>
             </mat-nav-list>
         </div>
         <div class="flex-column align-content-stretch flex11">

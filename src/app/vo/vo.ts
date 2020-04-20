@@ -1,3 +1,5 @@
+import { DeltaOperation } from 'quill';
+
 export interface IVO {
     id?:number
 }
@@ -19,9 +21,20 @@ export interface User extends IVO
 {
     email?: string
     name?: string
+    picto?
 }
 
 export interface ThreadTree {
     thread: Thread,
     parts: ThreadPart[]
 }
+
+export interface ThreadDataItem {
+    user_id: number
+    user?: User
+    inserts: DeltaOperation[]
+}
+export interface ThreadData extends ThreadDataItem {
+    thread: Thread
+    contents:ThreadDataItem[]
+  }

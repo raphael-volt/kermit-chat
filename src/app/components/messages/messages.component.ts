@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { DialogService } from 'src/app/dialog/dialog.service';
 import { first } from 'rxjs/operators';
+import { ApiService } from 'src/app/api/api.service';
 
 @Component({
   selector: 'app-messages',
@@ -13,14 +14,8 @@ import { first } from 'rxjs/operators';
 export class MessagesComponent implements OnInit {
 
   threadOpen: boolean = false
-  links: any[]
-  constructor(private dialog: DialogService) {
-    const links: any[] = []
-    for (let i = 1; i < 31; i++) {
-      links.push({ id: i, subject: "Message de jp-user " + (i) })
-    }
-    this.links = links
-  }
+  
+  constructor(private dialog: DialogService, public api: ApiService) { }
   ngOnInit(): void {
     
   }
