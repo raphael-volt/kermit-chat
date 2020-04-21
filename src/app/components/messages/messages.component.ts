@@ -17,7 +17,7 @@ export class MessagesComponent implements OnInit {
   
   constructor(private dialog: DialogService, public api: ApiService) { }
   ngOnInit(): void {
-    
+    this.createThread()
   }
   @ViewChild("navList")
   private _navList: ElementRef

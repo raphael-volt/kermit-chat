@@ -148,6 +148,9 @@ export class RteComponent implements OnInit, OnDestroy, AfterViewInit, ControlVa
       this.focused = false
       this._ngDoCheck()
     })
+
+    if(this._value)
+      this.setEditorContent(this._value.content)
   }
 
 

@@ -14,12 +14,7 @@ export class ViewComponent implements OnInit {
   content: any
   @Input()
   set inserts(value: any[]) {
-    let current = this.content
-    if (current)
-      current.ops = value
-    else
-      current = { ops: value }
-    //this.content.next(current)
+    this.content = { ops: value }
   }
 
   constructor() { }

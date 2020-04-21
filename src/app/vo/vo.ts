@@ -9,12 +9,14 @@ export interface Thread extends IVO
     subject?:number
     user_id?:number   
 }
-
+export interface ThreadPartDeltaOperation {
+    
+}
 export interface ThreadPart extends IVO
 {
     thread_id?:number
     user_id?:number
-    content?:string
+    content?:string | DeltaOperation
 }
 
 export interface User extends IVO
