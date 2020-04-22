@@ -55,6 +55,47 @@
   }
 }
 
+@mixin border-divider($theme) {
+  border-width: 1px;
+  border-style: solid;
+  ;
+  border-color: mat-color(map-get($theme, foreground), divider);
+}
+
+@mixin avatar-theme($theme) {
+  $foreground   : map-get($theme, foreground);
+  $background   : map-get($theme, background);
+  $divider-color: mat-color($foreground, divider);
+
+  .avatar-list .avatar-renderer {
+    box-shadow: none;
+
+    &.elevation {
+      @include _mat-theme-elevation(1, $theme);
+    }
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: mat-color($foreground, divider);
+
+    color     : mat-color($foreground, hint-text);
+    background: mat-color($background, card);
+
+    &.focus-overlay {
+      background-color: mat-color($background, focused-button);
+    }
+
+    &.toggle-hovered {
+      background: mat-color($background, hover); //, 0.12);
+    }
+
+    &.toggle-checked {
+      background-color: mat-color($background, selected-button);
+      color           : mat-color($foreground, secondary-text);
+    }
+  }
+}
+
 $dark-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
 
 // Include theme styles for core and each component used in your app.
@@ -62,9 +103,13 @@ $dark-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
 // that you are using.
 @include angular-material-theme($app-theme);
 @include list-item-active($app-theme);
-
+@include avatar-theme($app-theme);
 
 @include dark($dark-theme);
+
+.mat-border {
+  @include border-divider($app-theme)
+}
 
 $ctn-padding: 16px;
 
@@ -179,7 +224,7 @@ body {
 
 // flex: flex-grow flex-shrink flex-basis|auto|initial|inherit;
 @mixin fx-item($grow: 0, $shrink: 1, $basis: auto, $order: 0) {
-  flex-grow: $grow;
+  flex-grow  : $grow;
   flex-shrink: $shrink;
   flex-basis : $basis;
   order      : $order;
@@ -193,11 +238,11 @@ body {
 
 @mixin fx-gap($gap, $dir: bottom) {
   >* {
-    $key: margin-#{$dir};
+    $key  : margin-#{$dir};
     $value: $gap+px;
 
     #{$key}: $value;
-    
+
     &:last-child {
       #{$key}: $value;
     }
@@ -210,17 +255,17 @@ body {
 
   @include _mat-theme-overridable-elevation(1, $theme);
   background: mat-color($background, card);
-  color: mat-color($foreground, text);
+  color     : mat-color($foreground, text);
 }
 
 .nav-list-column {
   @include flex-card-theme($app-theme);
   @include fx-item(1 1);
   @include fx-box(column);
-  align-items: stretch;
+  align-items    : stretch;
   justify-content: stretch;
-  margin: $ctn-padding;
-  margin-right: 0;
+  margin         : $ctn-padding;
+  margin-right   : 0;
 }
 
 
@@ -297,19 +342,22 @@ mat-card.nav-card {
 }
 
 mat-card.thread-card {
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: $ctn-padding;
+  padding-left  : 0;
+  padding-right : 0;
+  padding-top   : $ctn-padding;
   padding-bottom: 0;
+
   mat-card-header {
-    margin-left: $ctn-padding;
+    margin-left : $ctn-padding;
     margin-right: $ctn-padding;
   }
-  > mat-card-content.divider {
-    margin: 0;
+
+  >mat-card-content.divider {
+    margin : 0;
     z-index: 999;
   }
-  > mat-card-content.thread-scroller {
+
+  >mat-card-content.thread-scroller {
     padding: $ctn-padding;
   }
 }
@@ -317,84 +365,111 @@ mat-card.thread-card {
 .nav-card {
   &.flex-card {
     margin: $ctn-padding;
+
     &.top0 {
       margin-top: 0;
     }
   }
 }
+
 .mat-raised-button.flex-row-button {
   margin     : 0;
   margin-left: $ctn-padding;
   margin-top : $ctn-padding;
 }
+
 .fx-col {
   @include fx-box(column);
-  > .flex01 {
+
+  >.flex01 {
     @include fx-item(0, 1)
   }
-  > .flex11 {
+
+  >.flex11 {
     @include fx-item(1, 1)
   }
-  > .flex00 {
+
+  >.flex00 {
     @include fx-item(0, 0)
   }
-  > .flex10 {
+
+  >.flex10 {
     @include fx-item(1, 0)
   }
 }
+
 .v-box {
   @include fx-box(column);
-  
+
+  &.a-i-start {
+    align-items: flex-start;
+  }
+
   &.gap4 {
     @include fx-gap(4);
   }
+
   &.gap8 {
     @include fx-gap(8);
   }
+
   &.gap12 {
     @include fx-gap(12);
   }
+
   &.gap16 {
     @include fx-gap(16);
   }
-  > .flex01 {
+
+  >.flex01 {
     @include fx-item(0, 1)
   }
-  > .flex11 {
+
+  >.flex11 {
     @include fx-item(1, 1)
   }
-  > .flex00 {
+
+  >.flex00 {
     @include fx-item(0, 0)
   }
-  > .flex10 {
+
+  >.flex10 {
     @include fx-item(1, 0)
   }
 }
 
 .h-box {
   @include fx-box(row);
+
   &.gap4 {
     @include fx-gap(4, right);
   }
+
   &.gap8 {
     @include fx-gap(8, right);
   }
+
   &.gap12 {
     @include fx-gap(12, right);
   }
+
   &.gap16 {
     @include fx-gap(16, right);
   }
-  > .flex01 {
+
+  >.flex01 {
     @include fx-item(0, 1)
   }
-  > .flex11 {
+
+  >.flex11 {
     @include fx-item(1, 1)
   }
-  > .flex00 {
+
+  >.flex00 {
     @include fx-item(0, 0)
   }
-  > .flex10 {
+
+  >.flex10 {
     @include fx-item(1, 0)
   }
 }
@@ -402,9 +477,10 @@ mat-card.thread-card {
 .v-flow {
   @include fx-item(1, 1);
   // @include fx-box(column);
-  overflow: auto;
+  overflow  : auto;
   overflow-x: hidden;
 }
+
 div {
   box-sizing: border-box;
 }
@@ -416,13 +492,15 @@ $config: mat-typography-config();
 @include quill-theme(mat-font-family($config));
 
 .thread-panel div.mat-expansion-panel-body {
-  padding: 0!important;
-  margin: 0;
+  padding: 0 !important;
+  margin : 0;
+
   .ql-container.ql-snow {
-    border: none!important;
+    border: none !important;
   }
+
   .ql-toolbar.ql-snow {
-    border-left: none!important;
-    border-right: none!important;
+    border-left : none !important;
+    border-right: none !important;
   }
 }
