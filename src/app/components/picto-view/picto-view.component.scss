@@ -1,0 +1,45 @@
+$pico-size: 200px;
+$margin   : 16px;
+
+.picto-view {
+    display        : flex;
+    flex-direction : column;
+    flex-wrap      : nowrap;
+    justify-content: flex-start;
+    align-content  : center;
+    align-items    : center;
+
+    .picto-display,
+    .picto-view-title {
+        margin: $margin $margin $margin $margin;
+    }
+
+    .picto-display {
+        width     : $pico-size;
+        height    : $pico-size;
+        order     : 0;
+        flex      : 0 0 auto;
+        align-self: auto;
+        &.mat-icon {
+            font-size: $pico-size;
+        }
+    }
+
+    .mat-divider {
+        position: unset;
+    }
+    mat-divider,
+    .picto-toolbar,
+    .picto-view-title {
+        order     : 0;
+        flex      : 0 1 auto;
+        align-self: stretch;
+    }
+    .picto-toolbar {
+        padding: 16px;
+        justify-content: space-between;
+        > :last-child {
+            margin-right: 0;
+        }
+    }
+}
