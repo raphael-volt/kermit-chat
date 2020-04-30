@@ -3,12 +3,11 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, Observer, Subscription, BehaviorSubject, of } from 'rxjs';
 import { User, Thread, ThreadPart, ThreadData } from '../vo/vo';
 import { map, first } from 'rxjs/operators';
+import { UrlService } from './url.service';
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-
-  private readonly apiUrl = "http://localhost:4201/api"
 
   public threadList: BehaviorSubject<Thread[]> = new BehaviorSubject([])
   private _user: User;
@@ -16,12 +15,14 @@ export class ApiService {
     return this._user
   }
   constructor(
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private url: UrlService) { }
 
   signin() {
     return new Observable<boolean>((observer: Observer<boolean>) => {
       this._user = null
-      this.http.get<User>(this.getPath("auth")).pipe(first()).subscribe(
+      const url = this.getPath("auth")
+      this.http.get<User>(url).pipe(first()).subscribe(
         user => {
           this._user = user
           observer.next(true)
@@ -37,7 +38,7 @@ export class ApiService {
   }
 
   private getPath(...parts) {
-    return [this.apiUrl, ...parts].join("/")
+    return this.url.api(...parts)
   }
 
   members: BehaviorSubject<User[]> = new BehaviorSubject(null)

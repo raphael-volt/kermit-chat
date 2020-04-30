@@ -10,7 +10,7 @@ import { PictoEditorComponent } from '../picto-editor/picto-editor.component';
   templateUrl: './picto-view.component.html',
   styleUrls: ['./picto-view.component.scss'],
   host: {
-    class: "mat-border picto-view"
+    class: "picto-view"
   },
 
   encapsulation: ViewEncapsulation.None,
@@ -59,6 +59,8 @@ export class PictoViewComponent implements OnInit {
   }
 
   setImgData = (data: string) => {
+    if(! data)
+      return
     this.imgSrc = false
     this.imgData = data
     this.imgChange.emit(data)

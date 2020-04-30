@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
-import Canvg, {
-  presets
-} from 'canvg';
 
 import Avatars from '@dicebear/avatars';
-
 import avataaars from '@dicebear/avatars-avataaars-sprites';
 import bottts from '@dicebear/avatars-bottts-sprites';
 import female from '@dicebear/avatars-female-sprites';
@@ -12,6 +8,7 @@ import gridy from '@dicebear/avatars-gridy-sprites';
 import male from '@dicebear/avatars-male-sprites';
 
 import { Observable } from 'rxjs';
+import { ImageService } from '../image/image.service';
 
 const getSprites = (type: AvatarType): any => {
   switch (type) {
@@ -45,7 +42,7 @@ export class AvatarService {
 
   private uid = Date.now()
 
-  constructor() { }
+  constructor(private imgService: ImageService) { }
 
   private avatarFactory: { [key: string]: { create: (id: string) => string } } = {}
 
@@ -73,30 +70,6 @@ export class AvatarService {
   }
 
   encode(svg: string, size: number = 200) {
-    return new Observable<string>(obs => {
-      const canvas = new OffscreenCanvas(size, size);
-      const ctx = canvas.getContext('2d');
-      Canvg.from(ctx, svg, presets.offscreen()).then(v => {
-        v.resize(size, size, 'xMidYMid meet');
-        v.render().then(done => {
-          canvas.convertToBlob().then(blob => {
-            const fr = new FileReader()
-            fr.onload = () => {
-              obs.next(String(fr.result))
-            }
-            fr.onerror = (ev)=>{
-              obs.error(ev)
-            }
-            fr.readAsDataURL(blob)
-          }).catch(reason => {
-            obs.error(reason)
-          })
-        }).catch(reason => {
-          obs.error(reason)
-        })
-      }).catch(reason => {
-        obs.error(reason)
-      })
-    })
+    return this.imgService.svg2png(svg, size, size)
   }
 }

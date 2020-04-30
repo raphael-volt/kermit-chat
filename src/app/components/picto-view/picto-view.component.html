@@ -1,12 +1,17 @@
-<ng-content select="[picto-view-title]"></ng-content>
-<mat-divider></mat-divider>
-
-<img *ngIf="imgSrc" [src]="user | userPicto" class="picto-display mat-elevation-z2"/>
-<img *ngIf="imgData" [src]="imgData" class="picto-display mat-elevation-z2"/>
-
-<mat-icon color="primary" class="picto-display mat-elevation-z2" *ngIf="!imgSrc && !imgData">portrait</mat-icon>
-<div class="picto-toolbar h-box gap16">
-    <input #fileInput hidden (change)="selectFile($event)" accept="image/png,image/gif,image/jpeg,image/jpg" type="file">
-    <button mat-raised-button color="primary" (click)="fileInput.click()">Image</button>
-    <button mat-raised-button color="primary" (click)="selectAvatar()">Avatar</button>
+<div class="v-box stretch gap16">
+    <div class="picto-box  mat-elevation-z2">
+        <svg-icon *ngIf="!imgSrc && !imgData" class="picto-display" iconName="portrait"></svg-icon>
+        <img *ngIf="imgSrc" [src]="user | userPicto" class="picto-display mat-elevation-z2" />
+        <img *ngIf="imgData" [src]="imgData" class="picto-display mat-elevation-z2" />
+    </div>
+    <button class="flex11" mat-raised-button color="primary" (click)="fileInput.click()">
+        Sélectionner une image
+        <svg-icon iconName="cam_2"></svg-icon>
+    </button>
+    <button class="flex11" mat-raised-button color="primary" (click)="selectAvatar()">
+        Choisir un avatar
+        <svg-icon iconName="mood"></svg-icon>
+    </button>
 </div>
+<input #fileInput hidden (change)="selectFile($event)" accept="image/png,image/gif,image/jpeg,image/jpg"
+    type="file">

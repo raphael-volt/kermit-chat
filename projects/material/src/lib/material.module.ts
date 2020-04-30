@@ -14,8 +14,10 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatRippleModule } from '@angular/material/core';
-import { MatIconModule } from '@angular/material/icon';
+
 import { IconService } from './icon.service';
+import { SvgIconDirective } from './svg-icon.directive';
+import { SvgIconComponent } from './svg-icon/svg-icon.component';
 
 @NgModule({
 
@@ -33,11 +35,9 @@ import { IconService } from './icon.service';
         MatProgressBarModule,
         MatExpansionModule,
         MatButtonToggleModule,
-        MatRippleModule,
-        MatIconModule
+        MatRippleModule
     ],
     exports: [
-        MatIconModule,
         MatListModule,
         MatToolbarModule,
         MatCardModule,
@@ -51,9 +51,11 @@ import { IconService } from './icon.service';
         MatProgressBarModule,
         MatExpansionModule,
         MatButtonToggleModule,
-        MatRippleModule
+        MatRippleModule,
+        SvgIconComponent
 
     ],
-    providers: [IconService]
+    providers: [IconService],
+    declarations: [SvgIconComponent, SvgIconDirective]
 })
 export class MaterialModule { }

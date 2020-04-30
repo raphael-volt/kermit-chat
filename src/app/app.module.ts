@@ -7,10 +7,11 @@ import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { RouterModule } from '@angular/router';
 import { DialogModule } from './dialog/dialog.module';
-import { MaterialModule } from './material/material.module';
+import { MaterialModule } from 'material';
 import { ApiModule } from './api/api.module';
 import { AuthModule } from './auth/auth.module';
-
+import { AvatarModule } from './avatar/avatar.module';
+import { ImgScrollerModule } from "./img-scroller/img-scroller.module";
 @NgModule({
   declarations: [
     AppComponent
@@ -24,7 +25,9 @@ import { AuthModule } from './auth/auth.module';
     DialogModule,
     MaterialModule,
     ApiModule,
-    AuthModule
+    AuthModule,
+    AvatarModule,
+    ImgScrollerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

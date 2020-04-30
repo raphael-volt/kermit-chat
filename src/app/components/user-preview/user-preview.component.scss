@@ -1,0 +1,21 @@
+$size: 44px;
+:host {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+mat-icon, img {
+    height: $size;
+    width: $size;
+    flex: 0 1 auto;
+}
+mat-icon {
+    font-size: $size;
+}
+img {
+    clip-path: circle(50% at center);
+}
+h3 {
+    margin: 0 16px;
+}

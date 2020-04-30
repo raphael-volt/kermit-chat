@@ -106,6 +106,26 @@ $dark-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
 @include avatar-theme($app-theme);
 
 @include dark($dark-theme);
+@mixin svg-icon($theme) {
+  $primary   : map-get($theme, primary);
+  $accent    : map-get($theme, accent);
+  $warn      : map-get($theme, warn);
+  
+  &.primary {
+    color     : mat-color($primary, text);
+  }
+  
+  &.accent {
+    color     : mat-color($accent, text);
+  }
+  
+  &.warn {
+    color     : mat-color($warn, text);
+  }
+}
+.svg-icon {
+  @include svg-icon($app-theme)
+}
 
 .mat-border {
   @include border-divider($app-theme)
@@ -244,7 +264,7 @@ body {
     #{$key}: $value;
 
     &:last-child {
-      #{$key}: $value;
+      #{$key}: 0;
     }
   }
 }
@@ -401,6 +421,9 @@ mat-card.thread-card {
 .v-box {
   @include fx-box(column);
 
+  &.stretch {
+    align-items: stretch;
+  }
   &.a-i-start {
     align-items: flex-start;
   }
@@ -503,4 +526,22 @@ $config: mat-typography-config();
     border-left : none !important;
     border-right: none !important;
   }
+}
+
+.mat-card {
+  .mat-form-field {
+    .ql-container.ql-snow {
+      border-bottom: none !important;
+    }
+    .mat-form-field-flex .mat-form-field-infix {
+      padding-bottom: 0!important;
+  }}
+}
+
+html.cdk-global-scrollblock {
+  position: initial !important;
+}
+
+html.cdk-global-scrollblock body {
+  position: fixed;
 }

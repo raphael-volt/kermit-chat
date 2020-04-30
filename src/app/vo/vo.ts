@@ -19,6 +19,12 @@ export interface ThreadPart extends IVO
     content?:string | DeltaOperation
 }
 
+const isUser = (user: any): user is User => {
+    if("email" in user && "name" in user && "picto" in user && "id" in user)
+        return true
+
+    return false
+}
 export interface User extends IVO
 {
     email?: string
@@ -40,3 +46,5 @@ export interface ThreadData extends ThreadDataItem {
     thread: Thread
     contents:ThreadDataItem[]
   }
+
+  export {isUser}

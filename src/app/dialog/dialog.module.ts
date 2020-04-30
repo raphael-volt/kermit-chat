@@ -7,18 +7,24 @@ import {
 } from './panel/panel.component';
 import { SigninComponent } from './signin/signin.component';
 import { DialogService } from './dialog.service';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from 'material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AvatarModule } from '../avatar/avatar.module';
+import { DialogCardComponent } from './dialog-card/dialog-card.component';
+import { ImgScrollerModule } from '../img-scroller/img-scroller.module';
 @NgModule({
   declarations: [
     PanelComponent, PanelContentDirective,
     PanelFooterDirective, PanelHeaderDirective,
-    FooterSpacer, PanelCloseButton, SigninComponent],
+    FooterSpacer, PanelCloseButton, SigninComponent, DialogCardComponent,
+    ],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AvatarModule,
+    ImgScrollerModule
   ],
   exports: [
     PanelComponent, PanelContentDirective,

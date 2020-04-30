@@ -1,8 +1,9 @@
-import { Component, Input, ViewChild, Output, EventEmitter, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, ViewChild, Output, EventEmitter, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Optional } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { ImageService } from 'src/app/image/image.service';
 import { first } from 'rxjs/operators';
 import { ImgScrollerComponent } from '../../img-scroller/img-scroller.component';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 
 @Component({
@@ -23,6 +24,8 @@ export class PictoEditorComponent {
   @Output()
   cropDone: EventEmitter<string> = new EventEmitter()
 
+  @Input()
+  showHelp = true
   private _picto: any
   @Input()
   set picto(value: any) {
@@ -36,23 +39,20 @@ export class PictoEditorComponent {
 
   imgData: string | File
 
+  isDialog = false
   constructor(
     private cdr: ChangeDetectorRef,
     private imgService: ImageService,
-    private dialogRef: MatDialogRef<PictoEditorComponent>) {
+    @Optional() private dialogRef: MatDialogRef<PictoEditorComponent>) {
+      this.isDialog = coerceBooleanProperty(dialogRef)
   }
+
 
   close() {
     this.doCrop().subscribe(result => {
-      let i = new Image()
-      i.src = result
-      i.style.zIndex = "9999";
-      i.style.position = "fixed"
-      document.body.appendChild(i)
-      i.onclick= ()=>{
-        document.body.removeChild(i)
-      }
-      this.dialogRef.close(result)
+      if(this.dialogRef)
+        return this.dialogRef.close(result)
+      this.cropDone.next(result)
     })
   }
 

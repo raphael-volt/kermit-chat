@@ -3,7 +3,13 @@
         <mat-card-subtitle>Recadrer une image</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-        <div img-scroller [imgSource]="imgData"></div>
+        <div class="h-box gap16">
+            <div img-scroller [imgSource]="imgData"></div>
+            <div class="editor-help" *ngIf="showHelp">
+                <p>Cliquer-glisser pour positionner l'image</p>
+                <p>Molette ou défilement pour zoomer</p>
+            </div>
+        </div>
     </mat-card-content>
     <mat-card-footer>
         <mat-toolbar class="h-box gap16">
