@@ -1,0 +1,6 @@
+<canvas #cnv
+    [attr.width]="viewport[0]" 
+    [attr.height]="viewport[1]" 
+    [style.height]="viewport[0]+'px'" 
+    [style.width]="viewport[1]+'px'"></canvas>
+<img draggable="false" [imgSource]="src" [imgTransform]="imgTransform" (load)="imgLoaded($event)">

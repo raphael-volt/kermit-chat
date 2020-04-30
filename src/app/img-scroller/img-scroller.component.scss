@@ -1,0 +1,22 @@
+:host {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid gray;
+}
+
+img {
+    pointer-events: none;
+    user-select     : none;
+    position        : absolute;
+    transform-origin: 0 0;
+    z-index: 998;
+    &.loading {
+        display: none;
+    }
+}
+
+canvas {
+    position      : absolute;
+    opacity       : 0;
+    pointer-events: none;
+}
