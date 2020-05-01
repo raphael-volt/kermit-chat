@@ -1,2 +1,5 @@
-<picto-editor style="align-self: flex-start;" class="flex00" picto="assets/landscape.jpg"></picto-editor>
-<mat-rte class="flex11"></mat-rte>
+<div class="v-box gap16 editor-ctn">
+    <picto-editor style="align-self: flex-start;" class="flex00" picto="assets/landscape.jpg"></picto-editor>
+    <button mat-button color="primary" [disabled]="control.invalid">Send</button>
+    <mat-rte style="height: 300;" [formControl]="control" class="flex11"></mat-rte>
+</div>

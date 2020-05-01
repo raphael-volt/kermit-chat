@@ -13,21 +13,19 @@ import { RteModule } from './rte/rte.module';
 import { ApiModule } from '../api/api.module';
 import { PictoEditorComponent } from './picto-editor/picto-editor.component';
 import { PictoViewComponent } from './picto-view/picto-view.component';
-import { UserPreviewComponent } from './user-preview/user-preview.component';
-import { UserPictoPipe } from './user-preview/user-picto.pipe';
 import { ImgScrollerModule } from '../img-scroller/img-scroller.module';
-
+import { UserPreviewModule } from "./user-preview/user-preview.module";
 @NgModule({
-  declarations: [MembersComponent, AccountComponent, EditorComponent, PictoEditorComponent, PictoViewComponent, UserPreviewComponent, UserPictoPipe],
+  declarations: [MembersComponent, AccountComponent, EditorComponent, PictoEditorComponent, PictoViewComponent],
   imports: [
     ApiModule, AvatarModule, 
     MessagesModule, RteModule,
+    UserPreviewModule,
     CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, ImgScrollerModule,
   ],
   exports: [
     MessagesModule, MembersComponent, AccountComponent, EditorComponent, 
-    PictoViewComponent, PictoEditorComponent,
-    UserPreviewComponent
+    PictoViewComponent, PictoEditorComponent
   ]
 })
 export class ComponentsModule { }

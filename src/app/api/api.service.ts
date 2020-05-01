@@ -9,7 +9,7 @@ import { UrlService } from './url.service';
 })
 export class ApiService {
 
-  public threadList: BehaviorSubject<Thread[]> = new BehaviorSubject([])
+  public threadList: BehaviorSubject<Thread[]> = new BehaviorSubject(null)
   private _user: User;
   get user(): User {
     return this._user
@@ -26,10 +26,6 @@ export class ApiService {
         user => {
           this._user = user
           observer.next(true)
-          this.getThreadCollection().subscribe(value => {
-            observer.next(true)
-          })
-
         },
         error => {
           observer.next(false)
@@ -43,18 +39,17 @@ export class ApiService {
 
   members: BehaviorSubject<User[]> = new BehaviorSubject(null)
 
+  private _getMembersFlag = false
   getMembers() {
-    const members = this.members.getValue()
-    if(members === null) {
-      return this.http.get<User[]>(
+    if(! this._getMembersFlag) {
+      this._getMembersFlag = true
+      this.http.get<User[]>(
         this.getPath("user")
-      ).pipe(map(users=>{
+      ).pipe(first()).subscribe(users=>{
         this.members.next(users)
-        return users
-      }))
+      })
     }
-    else
-      return of(members)
+    return this.members
   }
 
   getThreadData(id) {
@@ -123,7 +118,7 @@ export class ApiService {
       }))
   }
 
-  private getThreadCollection() {
+  getThreadCollection() {
     return this.http.get<Thread[]>(this.getPath("thread")).pipe(map(collection => {
       this.threadList.next(collection)
       return collection

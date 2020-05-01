@@ -106,29 +106,35 @@ $dark-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
 @include avatar-theme($app-theme);
 
 @include dark($dark-theme);
-@mixin svg-icon($theme) {
-  $primary   : map-get($theme, primary);
-  $accent    : map-get($theme, accent);
-  $warn      : map-get($theme, warn);
-  
+
+@mixin theme-color($theme) {
+  $primary: map-get($theme, primary);
+  $accent : map-get($theme, accent);
+  $warn   : map-get($theme, warn);
+
   &.primary {
-    color     : mat-color($primary, text);
+    color: mat-color($primary, text);
   }
-  
+
   &.accent {
-    color     : mat-color($accent, text);
+    color: mat-color($accent, text);
   }
-  
+
   &.warn {
-    color     : mat-color($warn, text);
+    color: mat-color($warn, text);
   }
 }
-.svg-icon {
-  @include svg-icon($app-theme)
+
+.svg-icon, .user-preview {
+  @include theme-color($app-theme)
 }
 
 .mat-border {
   @include border-divider($app-theme)
+}
+
+.fx-clr {
+  @include theme-color($app-theme)
 }
 
 $ctn-padding: 16px;
@@ -228,17 +234,19 @@ body {
 .flex-row {
   display       : flex;
   flex-direction: row;
+  overflow: hidden;
 }
 
 .flex-column {
   display       : flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
-@mixin fx-box($dir, $wrap: nowrap) {
+@mixin fx-box($dir, $wrap: nowrap, $overflow:hidden) {
   display       : flex;
   flex-direction: $dir;
-  overflow      : hidden;
+  overflow      : $overflow;
   flex-wrap     : $wrap;
 }
 
@@ -280,15 +288,33 @@ body {
 
 .nav-list-column {
   @include flex-card-theme($app-theme);
-  @include fx-item(1 1);
+  @include fx-item(0, 1);
   @include fx-box(column);
-  align-items    : stretch;
-  justify-content: stretch;
+  /*align-items    : stretch;
+  justify-content: stretch;*/
   margin         : $ctn-padding;
   margin-right   : 0;
 }
-
-
+.thread-component {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+  
+}
+.mat-drawer.mat-sidenav.mat-drawer-side.mat-drawer-opened {
+  border: none;
+}
+.mat-drawer-container  {
+  background: none;
+  padding: 0;
+  margin: 0;
+} 
+.mat-drawer-inner-container {
+  display: flex;
+  flex-direction: column;
+}
 .v-scroller {
   flex          : 0 1 auto;
   display       : flex;
@@ -309,22 +335,18 @@ body {
 }
 
 .flex01 {
-  overflow: hidden;
   flex    : 0 1 auto;
 }
 
 .flex11 {
-  overflow: hidden;
   flex    : 1 1 auto;
 }
 
 .flex10 {
-  overflow: hidden;
   flex    : 1 0 auto;
 }
 
 .flex00 {
-  overflow: hidden;
   flex    : 0 0 auto;
 }
 
@@ -336,8 +358,8 @@ div {
   flex: 1 1 auto;
 }
 
-.pad-16 {
-  padding: 0; //$ctn-padding;
+.ctn-padding {
+  padding: $ctn-padding;
 }
 
 mat-card.nav-card {
@@ -355,6 +377,9 @@ mat-card.nav-card {
     flex-wrap     : nowrap;
   }
 
+  &.flex10 {
+    flex: 1 0 auto;
+  }
   &.margin-right0 {
     margin-right: 0;
   }
@@ -362,16 +387,13 @@ mat-card.nav-card {
 }
 
 mat-card.thread-card {
-  padding-left  : 0;
   padding-right : 0;
-  padding-top   : $ctn-padding;
   padding-bottom: 0;
-
+  padding-left  : 0;
   mat-card-header {
     margin-left : $ctn-padding;
     margin-right: $ctn-padding;
   }
-
   >mat-card-content.divider {
     margin : 0;
     z-index: 999;
@@ -419,13 +441,22 @@ mat-card.thread-card {
 }
 
 .v-box {
-  @include fx-box(column);
+  @include fx-box(column, nowrap, inherit);
 
+  &.fit {
+    overflow: hidden;
+  }
   &.stretch {
     align-items: stretch;
   }
+
   &.a-i-start {
     align-items: flex-start;
+  }
+
+  &.scroller {
+    overflow: hidden;
+    overflow-y: auto;
   }
 
   &.gap4 {
@@ -464,6 +495,9 @@ mat-card.thread-card {
 .h-box {
   @include fx-box(row);
 
+  &.align-center {
+    align-items: center;
+  }
   &.gap4 {
     @include fx-gap(4, right);
   }
@@ -533,9 +567,11 @@ $config: mat-typography-config();
     .ql-container.ql-snow {
       border-bottom: none !important;
     }
+
     .mat-form-field-flex .mat-form-field-infix {
-      padding-bottom: 0!important;
-  }}
+      padding-bottom: 0 !important;
+    }
+  }
 }
 
 html.cdk-global-scrollblock {

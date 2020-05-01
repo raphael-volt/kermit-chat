@@ -1,19 +1,20 @@
-<div class="flex-fill">
-    <div class="flex-row flex11">
-        <div class="nav-list-column" #navList>
-            <button (click)="createThread()" color="accent" class="flex10" mat-raised-button>Nouveau message</button>
-            <mat-nav-list [disableRipple]="false" class="v-flow">
-                <a *ngFor="let thread of api.threadList | async" [routerLink]="[thread.id]" routerLinkActive="list-item-active"
-                    mat-list-item>{{ thread.subject }}</a>
-            </mat-nav-list>
+<mat-sidenav-container class="flex11">
+    <mat-sidenav #sideNav mode="side">
+        <div class="v-box ctn-padding gap16 main">
+            <button (click)="createThread()" color="accent" class="message-btn" mat-raised-button>Nouveau message
+                <svg-icon iconName="send"></svg-icon></button>
+            <div class="v-box scroller ctn-padding flex01 gap16 mat-elevation-z2">
+                <div *ngFor="let thread of api.threadList | async" (click)="openThread(thread.id)" matRipple
+                    class="flex10 h-box align-center thread-preview fx-clr primary mat-elevation-z2">
+                    <user-preview [showName]="false" class="flex01" [userId]="thread.user_id"></user-preview>
+                    <h3 class="flex11">
+                        <span style="font-style: italic;">{{getUserName(thread.user_id)}}</span> | {{ thread.subject }}
+                    </h3>
+                </div>
+            </div>
         </div>
-        <div class="flex-column align-content-stretch flex11">
-            <router-outlet (activate)='onActivate($event)' (deactivate)='onDeactivate($event)'></router-outlet>
-            <mat-card *ngIf="!threadOpen" class="nav-card  flex-card">
-                <mat-card-header>
-                    <mat-card-title>Selectionner ou créer un message</mat-card-title>
-                </mat-card-header>
-            </mat-card>
-        </div>
-    </div>
-</div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet (activate)='onActivate($event)' (deactivate)='onDeactivate($event)'></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

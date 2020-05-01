@@ -19,7 +19,12 @@ $margin   : 16px;
         justify-content: center;
         align-content: center;
         align-items: center;
+        .picto-img {
+            max-width: $pico-size;
+            max-height: $pico-size;
+        }
         .picto-display {
+
             flex: 0 1 auto;
             order     : 0;
             align-self: auto;

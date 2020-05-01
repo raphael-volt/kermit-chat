@@ -1,3 +1,18 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: flex-start;
+    align-items: stretch;
+
+    > .main {
+        max-width: 1000px;
+        order: 0;
+        flex: 1 1 auto;
+        align-self: auto;
+    }
+}
 .list-header {
     align-items: baseline;
     align-content: flex-start;
@@ -8,5 +23,28 @@
 
     > button {
         margin-left: 16px;
+    }
+}
+.thread-preview {
+    user-select: none;
+    cursor: pointer;
+    outline: none;
+    padding: 8px;
+    background-color: white;
+    &:focus {
+        outline: none;
+    }
+    h3 {
+        margin: 0 0 0 8px;
+    }
+    &.active {
+        background-color: dodgerblue;
+        color: white;
+    }
+}
+.message-btn {
+    align-self: flex-start;
+    svg-icon {
+        margin-left: .5em;
     }
 }

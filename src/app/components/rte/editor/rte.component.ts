@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, AfterViewInit, Input, ElementRef, OnDestroy, forwardRef, Injector, HostBinding, Optional, Self } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, 
+  Input, ElementRef, OnDestroy, HostBinding, Optional, Self } from '@angular/core';
 import { QuillEditorComponent, ContentChange, Focus, Blur } from 'ngx-quill';
 import { Subscription, Subject } from 'rxjs';
 import { ControlValueAccessor, NgControl } from '@angular/forms';

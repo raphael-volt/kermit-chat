@@ -1,29 +1,25 @@
-<mat-card class="thread-card nav-card flex-card" *ngIf="threadData | async">
+<div class="main v-box gap16">
 
-    <mat-card-header>
-        <div *ngIf="thread.user.picto" mat-card-avatar><img width="40px" height="40px" src="thread.user.picto" />
-        </div>
-        <mat-card-title>{{thread.thread.subject}}</mat-card-title>
-        <mat-card-subtitle>{{thread.user.name}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content class="divider">
-        <mat-divider></mat-divider>
-    </mat-card-content>
-    <mat-card-content class="thread-scroller">
-        <mat-card class="thread-part thread-owner">
-            <mat-card-content>
-                <rte-view [content]="thread.inserts"></rte-view>
-            </mat-card-content>
-        </mat-card>
-        <mat-card class="thread-part" *ngFor="let content of thread.contents"
+    <mat-card class="thread-card nav-card flex-card" *ngIf="threadData | async">
+        
+        <mat-card-header>
+            <user-preview mat-card-avatar [user]="thread.user"></user-preview>
+            <mat-card-title>{{thread.thread.subject}}</mat-card-title>
+            <mat-card-subtitle>{{thread.user.name}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="divider">
+            <mat-divider></mat-divider>
+        </mat-card-content>
+        <mat-card-content class="thread-scroller">
+            <mat-card class="thread-part thread-owner">
+                <mat-card-content>
+                    <rte-view [content]="thread.inserts"></rte-view>
+                </mat-card-content>
+            </mat-card>
+            <mat-card class="thread-part" *ngFor="let content of thread.contents"
             [class.thread-owner]="content.user_id == thread.user_id">
-            <mat-card-header *ngIf="content.user_id != thread.user_id">
-                <div *ngIf="content.user.picto" mat-card-avatar><img width="40px" height="40px"
-                        src="content.user.picto" />
-                </div>
-                <mat-card-subtitle>{{content.user.name}}</mat-card-subtitle>
-            </mat-card-header>
             <mat-card-content>
+                <user-preview class="primary" *ngIf="content.user_id != thread.user_id" showName="true" pictoSize="small" [userId]="content.user_id"></user-preview>
                 <rte-view [content]="content.inserts"></rte-view>
             </mat-card-content>
         </mat-card>
@@ -31,13 +27,14 @@
 </mat-card>
 <mat-expansion-panel *ngIf="threadData | async" class="flex10 thread-panel nav-card flex-card top0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
-        <mat-panel-title *ngIf="!panelOpenState">
+        <mat-panel-title class="fx-clr accent" *ngIf="!panelOpenState">
             Répondre
         </mat-panel-title>
         <mat-panel-title *ngIf="panelOpenState">
-            <button mat-raised-button color="accent">Envoyer</button>
+            <button mat-raised-button [disabled]="messageControl.invalid" (click)="sendMessage($event)" color="accent">Envoyer</button>
         </mat-panel-title>
-
+        
     </mat-expansion-panel-header>
-    <mat-rte mat-toolbar-row style="height: 25vh; background-color: white;"></mat-rte>
+    <mat-rte [formControl]="messageControl" mat-toolbar-row style="height: 25vh; background-color: white;"></mat-rte>
 </mat-expansion-panel>
+</div>

@@ -1,21 +1,35 @@
 $size: 44px;
+@mixin picto-size($size, $font-size, $img-padding) {
+    img {
+        max-width: $size;
+        max-height: $size;
+        margin-left: $img-padding;
+        margin-right: $img-padding;
+    }
+    svg-icon, h3 {
+        font-size: $font-size;
+    }
+}
 :host {
     display: inline-flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+
+    &.small {
+        @include picto-size(22px, 16px, 2px);
+    }
+    &.large {
+        @include picto-size(44px, 32px, 4px);
+    }
 }
 mat-icon, img {
-    height: $size;
-    width: $size;
     flex: 0 1 auto;
-}
-mat-icon {
-    font-size: $size;
 }
 img {
     clip-path: circle(50% at center);
 }
 h3 {
-    margin: 0 16px;
+    margin: 0;
+    margin-left: .3em;
 }

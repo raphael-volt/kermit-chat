@@ -1,8 +1,8 @@
 <div class="v-box stretch gap16">
     <div class="picto-box  mat-elevation-z2">
         <svg-icon *ngIf="!imgSrc && !imgData" class="picto-display" iconName="portrait"></svg-icon>
-        <img *ngIf="imgSrc" [src]="user | userPicto" class="picto-display mat-elevation-z2" />
-        <img *ngIf="imgData" [src]="imgData" class="picto-display mat-elevation-z2" />
+        <img *ngIf="imgSrc" [src]="user | userPicto" class="picto-img mat-elevation-z2" />
+        <img *ngIf="imgData" [src]="imgData" class="picto-img mat-elevation-z2" />
     </div>
     <button class="flex11" mat-raised-button color="primary" (click)="fileInput.click()">
         Sélectionner une image

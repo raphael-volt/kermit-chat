@@ -14,6 +14,7 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatRippleModule } from '@angular/material/core';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { IconService } from './icon.service';
 import { SvgIconDirective } from './svg-icon.directive';
@@ -35,7 +36,8 @@ import { SvgIconComponent } from './svg-icon/svg-icon.component';
         MatProgressBarModule,
         MatExpansionModule,
         MatButtonToggleModule,
-        MatRippleModule
+        MatRippleModule,
+        MatSidenavModule
     ],
     exports: [
         MatListModule,
@@ -52,7 +54,8 @@ import { SvgIconComponent } from './svg-icon/svg-icon.component';
         MatExpansionModule,
         MatButtonToggleModule,
         MatRippleModule,
-        SvgIconComponent
+        SvgIconComponent,
+        MatSidenavModule
 
     ],
     providers: [IconService],

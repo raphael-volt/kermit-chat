@@ -9,7 +9,9 @@ import { RteModule } from '../rte/rte.module';
 
 import { MessagesComponent } from './messages.component';
 import { CreateThreadComponent } from './create-thread/create-thread.component';
-
+import { UserPreviewModule } from '../user-preview/user-preview.module';
+// import { CdkVirtualForOf } from '@angular/cdk/scrolling';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,7 +19,9 @@ import { CreateThreadComponent } from './create-thread/create-thread.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    RteModule
+    RteModule,
+    UserPreviewModule,
+    ScrollingModule,
   ],
   declarations: [MessagesComponent, ThreadComponent, CreateThreadComponent],
   exports: [MessagesComponent]

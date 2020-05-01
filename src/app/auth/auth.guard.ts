@@ -3,6 +3,7 @@ import { Observable, Observer, Subscription } from 'rxjs';
 import { AuthService } from './auth.service';
 import { DialogService } from '../dialog/dialog.service';
 import { Injectable } from '@angular/core';
+import { MessagesComponent } from '../components/messages/messages.component';
 
 @Injectable({
     providedIn: 'root'
@@ -15,6 +16,9 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         const e = "" + "zz"
     }
     canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+        if(childRoute.parent) {
+            //const c : MessagesComponent = childRoute.parent.component as MessagesComponent
+        }
         return this.canActivate(childRoute, state)
     }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
