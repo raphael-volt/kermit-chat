@@ -7,7 +7,7 @@ import { BusyService } from './busy.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddHeaderInterceptor } from './add-header.interceptor';
 import { HttpClientModule } from "@angular/common/http";
-import { DEFAULT_API_CONFIG, ApiConfig } from './api-config';
+import { DEFAULT_API_CONFIG } from './api-config';
 import { ImagePipe } from './image.pipe';
 const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: AddHeaderInterceptor, multi: true }
@@ -21,7 +21,10 @@ const httpInterceptorProviders = [
     HttpClientModule
   ],
   exports: [ImagePipe],
-  providers: [ApiService, BusyService, httpInterceptorProviders,
+  providers: [
+    ApiService, 
+    BusyService,
+    httpInterceptorProviders,
   {
     provide: UrlService,
     useFactory: () => {

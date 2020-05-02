@@ -1,6 +1,5 @@
 import { Component, Input, ViewChild, Output, EventEmitter, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Optional } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ImageService } from 'src/app/image/image.service';
 import { first } from 'rxjs/operators';
 import { ImgScrollerComponent } from '../../img-scroller/img-scroller.component';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
@@ -42,7 +41,6 @@ export class PictoEditorComponent {
   isDialog = false
   constructor(
     private cdr: ChangeDetectorRef,
-    private imgService: ImageService,
     @Optional() private dialogRef: MatDialogRef<PictoEditorComponent>) {
       this.isDialog = coerceBooleanProperty(dialogRef)
   }

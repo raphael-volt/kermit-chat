@@ -6,7 +6,10 @@ $padding    : 10px;
     display       : flex;
     flex-direction: row;
 }
-
+canvas.drawer {
+    position: fixed;
+    display: none;
+}
 .avatar-card {
     width          : 90vw;
     height         : 90vh;

@@ -6,9 +6,7 @@ import bottts from '@dicebear/avatars-bottts-sprites';
 import female from '@dicebear/avatars-female-sprites';
 import gridy from '@dicebear/avatars-gridy-sprites';
 import male from '@dicebear/avatars-male-sprites';
-
 import { Observable } from 'rxjs';
-import { ImageService } from '../image/image.service';
 
 const getSprites = (type: AvatarType): any => {
   switch (type) {
@@ -42,7 +40,7 @@ export class AvatarService {
 
   private uid = Date.now()
 
-  constructor(private imgService: ImageService) { }
+  constructor() { }
 
   private avatarFactory: { [key: string]: { create: (id: string) => string } } = {}
 
@@ -69,7 +67,36 @@ export class AvatarService {
     return result
   }
 
-  encode(svg: string, size: number = 200) {
-    return this.imgService.svg2png(svg, size, size)
+  encode(drawer: HTMLCanvasElement, svg: string, size: number = 200) {
+    return new Observable<string>(obs => {
+      drawer.width = size
+      drawer.height = size
+      drawer.style.width = size + "px"
+      drawer.style.height = size + "px"
+      const _ctx = drawer.getContext('2d')
+
+      const img = new Image()
+      const done = (error?) => {
+        _ctx.clearRect(0, 0, size, size)
+        if (error)
+          obs.error(error)
+        else
+          obs.complete()
+      }
+      img.onload = () => {
+        window.requestAnimationFrame(() => {
+          _ctx.drawImage(img, 0, 0, size, size)
+          URL.revokeObjectURL(img.src)
+          obs.next(drawer.toDataURL("image/png"))
+          done()
+
+        })
+      }
+      img.onerror = done
+      img.src = this.svgToObjectURL(svg)
+    })
+  }
+  svgToObjectURL(svg: string) {
+    return URL.createObjectURL(new Blob([svg], { type: "image/svg+xml" }))
   }
 }

@@ -11,6 +11,7 @@ type AvatarOptions = AvatarOption[]
 const AVATAR_SIZE: number = 140
 const AVATAR_MARGIN: number = 10
 
+
 @Component({
   selector: 'avatar-list',
   templateUrl: './avatar-list.component.html',
@@ -20,6 +21,9 @@ export class AvatarListComponent implements OnInit, OnDestroy, AfterViewInit, Af
 
   @ViewChild("listRef")
   listRef: ElementRef<HTMLElement>
+
+  @ViewChild('drawer')
+  drawerRef: ElementRef<HTMLCanvasElement>
 
   toolbarOptions: AvatarOptions = [
     { type: "avataaars", name: "Humain" },
@@ -48,7 +52,8 @@ export class AvatarListComponent implements OnInit, OnDestroy, AfterViewInit, Af
   }
   close() {
     const svg = this.avatars.getValue()[this.selectedAvatar]
-    this.avatar.encode(svg, 400).pipe(first()).subscribe(value => {
+    const cnv = this.drawerRef.nativeElement
+    this.avatar.encode(cnv, svg, 400).pipe(first()).subscribe(value => {
       this.dialogRef.close(value)
     }, err => {
       this.cancel()
