@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable, Observer, Subscription, BehaviorSubject, of } from 'rxjs';
-import { User, Thread, ThreadPart, ThreadData } from '../vo/vo';
+import { BehaviorSubject } from 'rxjs';
+import { Thread, ThreadPart, ThreadData } from '../vo/vo';
 import { map, first } from 'rxjs/operators';
 import { UrlService } from './url.service';
 @Injectable({
@@ -10,46 +10,13 @@ import { UrlService } from './url.service';
 export class ApiService {
 
   public threadList: BehaviorSubject<Thread[]> = new BehaviorSubject(null)
-  private _user: User;
-  get user(): User {
-    return this._user
-  }
+
   constructor(
     private http: HttpClient,
     private url: UrlService) { }
 
-  signin() {
-    return new Observable<boolean>((observer: Observer<boolean>) => {
-      this._user = null
-      const url = this.getPath("auth")
-      this.http.get<User>(url).pipe(first()).subscribe(
-        user => {
-          this._user = user
-          observer.next(true)
-        },
-        error => {
-          observer.next(false)
-        })
-    })
-  }
-
   private getPath(...parts) {
     return this.url.api(...parts)
-  }
-
-  members: BehaviorSubject<User[]> = new BehaviorSubject(null)
-
-  private _getMembersFlag = false
-  getMembers() {
-    if(! this._getMembersFlag) {
-      this._getMembersFlag = true
-      this.http.get<User[]>(
-        this.getPath("user")
-      ).pipe(first()).subscribe(users=>{
-        this.members.next(users)
-      })
-    }
-    return this.members
   }
 
   getThreadData(id) {
@@ -63,7 +30,6 @@ export class ApiService {
 
   }
   addTread(value: Thread, content: ThreadPart) {
-    value.user_id = this.user.id
     return this.http.post(
       this.getPath("thread"),
       { thread: value, content: content }

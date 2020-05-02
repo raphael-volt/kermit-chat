@@ -5,6 +5,7 @@ import { User, ThreadData } from 'src/app/vo/vo';
 import { ApiService } from 'src/app/api/api.service';
 import { first } from 'rxjs/operators';
 import { FormControl, Validators } from '@angular/forms';
+import { UserService } from 'src/app/api/user.service';
 
 
 
@@ -31,25 +32,16 @@ export class ThreadComponent implements OnInit, OnDestroy {
 
   messageControl: FormControl
   messageInvalid = true
-  constructor(route: ActivatedRoute, private api: ApiService, private cdr: ChangeDetectorRef) {
+  constructor(route: ActivatedRoute, 
+    private api: ApiService, 
+    private userService: UserService,
+    private cdr: ChangeDetectorRef) {
 
     this.messageControl = new FormControl(null, Validators.required)
     this.sub = this.messageControl.statusChanges.subscribe(value => {
       cdr.detectChanges()
     })
 
-    const users = api.members.getValue()
-    if (users)
-      this._users = users
-    else
-      this.sub = api.members.subscribe(members => {
-        if (members) {
-          this._users = members
-          if (this.tread_id != 0)
-            this.loadThread(this.tread_id)
-        }
-
-      })
     this.sub = route.paramMap.subscribe(map => {
       if (map.has('id')) {
         this.setupThread(+map.get('id'))
@@ -61,34 +53,29 @@ export class ThreadComponent implements OnInit, OnDestroy {
 
   private tread_id = 0
   private setupThread(id: number) {
-    this.tread_id = id
-    if (this._users) {
-      this.loadThread(id)
+    const userService = this.userService
+    if (! userService.busy) {
+      return this.loadThread(id)
     }
-  }
 
-  /**
-   * 
-   */
-  private getUserMap(): { [key: number]: User } {
-    const map = {}
-    for (const user of this._users) {
-      map[user.id] = user
-    }
-    return map;
+    userService.getUsers().pipe(first()).subscribe(users=>{
+      this._users = users
+      this.loadThread(id)
+    })
   }
 
   private loadThread(id: number) {
     this.api.getThreadData(id).pipe(first()).subscribe(data => {
+      const userService = this.userService
       if (data.contents.length > 10)
         data.contents.splice(10, data.contents.length - 10)
-      const users = this.getUserMap()
-      data.user = users[data.user_id]
+      data.user = userService.findById(data.user_id)
       for (const item of data.contents) {
-        item.user = users[item.user_id]
+        item.user = userService.findById(item.user_id)
       }
       this.thread = data
       this.threadData.next(data)
+      this.cdr.detectChanges()
     })
 
   }

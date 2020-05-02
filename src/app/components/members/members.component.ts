@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from 'src/app/api/api.service';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { User } from 'src/app/vo/vo';
+import { UserService } from 'src/app/api/user.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-members',
@@ -17,12 +19,17 @@ export class MembersComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'email']
   private usersSub: Subscription
   
-  constructor(private api: ApiService) { }
+  constructor(private userService: UserService) { }
   
   ngOnInit(): void {
-    this.usersSub = this.api.getMembers().subscribe(users => {
-      this.members.next(users)
-    })
+
+    if(this.userService.busy) {
+      this.userService.getUsers().pipe(first()).subscribe(users=>{
+        this.members.next(users)
+      })
+      return
+    }
+    this.members.next(this.userService.users)
   }
 
   ngOnDestroy() {
