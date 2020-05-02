@@ -2,8 +2,8 @@ import { EventEmitter, Component, OnInit, ViewEncapsulation, ChangeDetectionStra
 import { DialogService } from 'src/app/dialog/dialog.service';
 import { first } from 'rxjs/operators';
 import { User, isUser } from 'src/app/vo/vo';
-import { ApiService } from 'src/app/api/api.service';
 import { PictoEditorComponent } from '../picto-editor/picto-editor.component';
+import { UserService } from 'src/app/api/user.service';
 
 @Component({
   selector: 'picto-view',
@@ -23,9 +23,9 @@ export class PictoViewComponent implements OnInit {
 
   constructor(
     private dialog: DialogService,
-    private api: ApiService,
+    userService: UserService,
     private cdr: ChangeDetectorRef) {
-    this.user = api.user
+    this.user = userService.user
     this.checkImgSrc(this.user)
   }
 

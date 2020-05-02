@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { User } from '../vo/vo';
 import { CookieService } from "ngx-cookie-service";
-import { ApiService } from '../api/api.service';
 import { map } from "rxjs/operators";
 import { Observable, of } from 'rxjs';
+import { UserService } from '../api/user.service';
 interface JPData {
   email?: string
   threadRequest?: number
@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   constructor(
-    private apiService: ApiService,
+    private userService: UserService,
     private cookieService: CookieService) { 
       this.jpData = {email: "raphael@ketmie.com"}
       this.saveCookie()
@@ -74,11 +74,11 @@ export class AuthService {
   }
 
   init(): Observable<boolean> {
-    return this.apiService.signin().pipe(
+    return this.userService.signin().pipe(
       map(success => {
         this._authorized = success
         if(success)
-          console.log(`Hello ${this.apiService.user.name}`)
+          console.log(`Hello ${this.userService.user.name}`)
         return success
       })
     )
@@ -88,12 +88,12 @@ export class AuthService {
     if (!this.jpData)
       this.jpData = {}
     this.jpData.email = email
-    return this.apiService.signin().pipe(
+    return this.userService.signin().pipe(
       map(success => {
           this._authorized = success
         if(success)
           this.saveCookie()
-        console.log(`Welcome ${this.apiService.user.name}`)
+        console.log(`Welcome ${this.userService.user.name}`)
       })
     )
   }

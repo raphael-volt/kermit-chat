@@ -1,9 +1,9 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { User } from 'src/app/vo/vo';
-import { ApiService } from 'src/app/api/api.service';
 import { AvatarService, AvatarType } from 'src/app/avatar/avatar.service';
 import { DialogService } from 'src/app/dialog/dialog.service';
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { UserService } from 'src/app/api/user.service';
 
 @Component({
   selector: 'app-account',
@@ -31,7 +31,7 @@ export class AccountComponent implements OnInit, AfterViewInit {
     { type: "gridy", name: "Gridy" }
   ]
   constructor(
-    private api: ApiService,
+    private api: UserService,
     private avatar: AvatarService,
     private dialog: DialogService,
     formBuilder: FormBuilder) {

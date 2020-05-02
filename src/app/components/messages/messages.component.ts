@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { DialogService } from 'src/app/dialog/dialog.service';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { ApiService } from 'src/app/api/api.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/api/user.service';
 
 @Component({
   selector: 'app-messages',
@@ -25,6 +26,7 @@ export class MessagesComponent implements OnInit, AfterViewInit {
   constructor(
     private dialog: DialogService,
     public api: ApiService,
+    public userService: UserService,
     private cdr: ChangeDetectorRef,
     private router: Router,
     private route: ActivatedRoute) { }
@@ -39,24 +41,26 @@ export class MessagesComponent implements OnInit, AfterViewInit {
 
     if (!this.threadOpen) {
       this.showNavOnIntit = true
-      if(this.sideNav) {
+      if (this.sideNav) {
         this.ngAfterViewInit()
       }
     }
   }
   ngAfterViewInit(): void {
-    if(this.showNavOnIntit) {
+    if (this.showNavOnIntit) {
       this.showNavOnIntit = false
       this.sideNav.open()
     }
   }
   ngOnInit(): void {
-    if (!this.api.members.getValue())
-      this.api.getMembers().pipe(first()).subscribe(value => {
+    const service = this.userService
+    if (service.busy) {
+      service.getUsers().pipe(first()).subscribe(users => {
         this.getThreadList()
       })
-    else
-      this.getThreadList()
+      return
+    }
+    this.getThreadList()
   }
   @ViewChild("navList")
   private _navList: ElementRef
@@ -79,7 +83,7 @@ export class MessagesComponent implements OnInit, AfterViewInit {
   onActivate($event) {
     this.threadOpen = true
     this.navOpen = false
-    if(this.sideNav && this.sideNav.opened) {
+    if (this.sideNav && this.sideNav.opened) {
       this.sideNav.close()
     }
     this.cdr.detectChanges()
@@ -94,11 +98,8 @@ export class MessagesComponent implements OnInit, AfterViewInit {
     })
   }
   getUserName(id) {
-
-    const user = this.api.members.getValue().find(user => user.id == id)
-    if (user)
-      return user.name
-    return ''
+    const user = this.userService.findById(id)
+    return user ? user.name : ''
   }
 
 }

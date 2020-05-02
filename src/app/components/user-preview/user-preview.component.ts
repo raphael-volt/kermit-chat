@@ -3,6 +3,7 @@ import { User, isUser } from 'src/app/vo/vo';
 import { ApiService } from 'src/app/api/api.service';
 import { first } from 'rxjs/operators';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { UserService } from 'src/app/api/user.service';
 
 @Component({
   selector: 'user-preview',
@@ -35,7 +36,7 @@ export class UserPreviewComponent implements OnInit, OnChanges, OnDestroy {
   @Input()
   showName = false
 
-  constructor(private cdr: ChangeDetectorRef, private api: ApiService) { }
+  constructor(private cdr: ChangeDetectorRef, private userService: UserService) { }
   ngOnDestroy(): void {
     //throw new Error("Method not implemented.");
   }
@@ -43,34 +44,19 @@ export class UserPreviewComponent implements OnInit, OnChanges, OnDestroy {
   private getUserFlag = false
   private getUser(id: number) {
 
-    const members = this.api.members.getValue()
-    if (members) {
-      if(this.findUser(members, id))
-        return
-    }
-    this.api.getMembers().pipe(first()).subscribe(value=>{
-      this.findUser(value, id)
-    })
-    /*
-    this.api.getMembers().pipe(first()).subscribe(value=>{
-      this.findUser(value, id)
-    })
-    */
+    this.userService.getUser(id).pipe(first()).subscribe(this.setUser)
   }
-  private findUser(users: User[], id: number) {
-    const user = users.find(user => user.id == id)
-    if(user) {
-      this.user = user
-      this.hasPicto = user.picto !== null
-      this.cdr.detectChanges()
-      return true
-    }
-    return false
+
+  private setUser = (user: User) => {
+    this.user = user
+    this.hasPicto = user.picto !== null
+    this.cdr.detectChanges()
   }
+  
   ngOnInit(): void {
   }
   ngOnChanges(changes: SimpleChanges): void {
-    
+
     if (changes.user) {
       const user = changes.user.currentValue as User
       console.log('PICTO ', user?.email)
