@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, ValidatorFn, AbstractControl, Validators } from '@angular/forms';
-import { RteData } from '../rte/editor/rte.component';
+import { FormControl, Validators } from '@angular/forms';
+import { ImageService } from '../../api/image.service';
 
 @Component({
   selector: 'app-editor',
@@ -12,16 +12,9 @@ import { RteData } from '../rte/editor/rte.component';
 })
 export class EditorComponent implements OnInit {
 
-  constructor() {
-    /*
-    this.control = new FormControl(null, (control: AbstractControl) => {
-      const data: RteData = control.value
-      if (data && data.length)
-        return null
-      return { require: { value: true } }
-    })
-    */
-   this.control = new FormControl(null, Validators.required)
+  constructor(imgService: ImageService) {
+    
+    this.control = new FormControl(null, Validators.required)
     this.control.valueChanges.subscribe(value => {
       console.log('this.control.valueChanges', value)
     })
@@ -30,19 +23,11 @@ export class EditorComponent implements OnInit {
 
   control: FormControl
 
-  private _rteData
-  set rteData(value) {
-    console.log('rteData', value)
-    this._rteData = value
-  }
-  get rteData() {
-    return this._rteData
-  }
   ngOnInit(): void {
   }
 
-  rteChange(event) {
-    console.log(event)
+  cropDone(data) {
+    console.log('cropDone')
   }
 
 }
