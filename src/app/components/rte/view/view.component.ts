@@ -5,7 +5,12 @@ import { BehaviorSubject } from 'rxjs';
 @Component({
   selector: 'rte-view',
   templateUrl: './view.component.html',
-  styleUrls: ['./view.component.scss']
+  styleUrls: ['./view.component.scss'],
+  host: {
+    "class": "rte view",
+    '[id]': 'id',
+    '[attr.aria-describedby]': 'describedBy'
+  }
 })
 export class ViewComponent implements OnInit {
 

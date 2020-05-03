@@ -17,7 +17,7 @@ export type RteData = {
   templateUrl: './rte.component.html',
   styleUrls: ['./rte.component.scss'],
   host: {
-    class: 'v-box',
+    "class": "rte editor",
     '[id]': 'id',
     '[attr.aria-describedby]': 'describedBy'
   },

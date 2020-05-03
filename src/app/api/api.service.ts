@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject } from 'rxjs';
-import { Thread, ThreadPart, ThreadData } from '../vo/vo';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Thread, ThreadPart, ThreadData, ThreadTree } from '../vo/vo';
 import { map, first } from 'rxjs/operators';
 import { UrlService } from './url.service';
+import { DeltaOperation } from 'quill';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,26 +23,37 @@ export class ApiService {
   getThreadData(id) {
     return this.http.get<ThreadData>(
       this.getPath("thread", id)
-    )
+    ).pipe(map(result => {
+      const ops: DeltaOperation[] = result.inserts.slice()
+      const url = this.url
+      for (const i of result.contents) {
+        ops.push(...i.inserts)
+      }
+      for(const op of ops) {
+        if(typeof op.insert == "object" && "image" in op.insert) {
+          op.insert.image = url.image(op.insert.image)
+        }
+      }
+      return result
+    }))
   }
 
 
   addThreadPart(value: ThreadPart) {
 
   }
-  addTread(value: Thread, content: ThreadPart) {
-    return this.http.post(
+  addTread(value: ThreadTree): Observable<Thread> {
+    return this.http.post<ThreadTree>(
       this.getPath("thread"),
-      { thread: value, content: content }
+      value
     ).pipe(map((data: any) => {
-      Object.assign(value, data.thread)
-      Object.assign(content, data.content)
+      const thread = data.thread
 
       const l = this.threadList.getValue()
-      this.lastThreadUpdate = value.id
-      this.lastThreadPartUpdate = content.id
-      l.push(value)
+      this.lastThreadUpdate = thread.id
+      l.push(thread)
       this.threadList.next(l)
+      return thread
     }))
   }
 

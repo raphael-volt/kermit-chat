@@ -33,8 +33,9 @@ export interface User extends IVO
 }
 
 export interface ThreadTree {
-    thread: Thread,
-    parts: ThreadPart[]
+    thread: Thread
+
+    inserts: DeltaOperation[]
 }
 
 export interface ThreadDataItem {

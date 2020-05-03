@@ -14,6 +14,15 @@
     </mat-card-header>
     <mat-card-content class="flex11 avatar-content">
         <div #listRef class="avatar-list">
+            <img *ngFor="let svg of avatars | async; ; let i = index" 
+                [avatarSvg]="svg" 
+                avatarItem 
+                [avatarItemSelected]="i == selectedAvatar"
+                matRipple 
+                (click)="selectAvatar(i, svg)"
+                class="avatar-renderer">
+
+            <!-- 
             <div *ngFor="let svg of avatars | async; ; let i = index" 
                 [avatarSvg]="svg" 
                 avatarItem 
@@ -22,6 +31,7 @@
                 (click)="selectAvatar(i, svg)"
                 class="avatar-renderer">
             </div>
+             -->
         </div>
     </mat-card-content>
     <mat-card-footer class="flex01">

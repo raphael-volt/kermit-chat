@@ -1,7 +1,8 @@
-import { 
-  Component, OnInit, AfterViewInit, 
-  OnDestroy, Input, ChangeDetectionStrategy, 
-  ChangeDetectorRef } from '@angular/core';
+import {
+  Component, OnInit, AfterViewInit,
+  OnDestroy, Input, ChangeDetectionStrategy,
+  ChangeDetectorRef
+} from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { ThreadTree } from 'src/app/vo/vo';
@@ -23,7 +24,7 @@ export class CreateThreadComponent implements OnInit, OnDestroy, AfterViewInit {
   setMinLength(value: number, detect = true) {
     this.contentValidator.setValidators([this.requireValiator, Validators.minLength(value)])
     this.subjectValidator.setValidators([this.requireValiator, Validators.minLength(value)])
-    if(detect) {
+    if (detect) {
       this.contentValidator.updateValueAndValidity()
       this.subjectValidator.updateValueAndValidity()
       this.cdr.detectChanges()
@@ -40,7 +41,7 @@ export class CreateThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     private cdr: ChangeDetectorRef,
     private dialogRef: MatDialogRef<CreateThreadComponent>,
     private formBuilder: FormBuilder) {
-    
+
     this.contentValidator = new FormControl(null)
     this.subjectValidator = new FormControl(null)
     this.setMinLength(4, false)
@@ -48,7 +49,7 @@ export class CreateThreadComponent implements OnInit, OnDestroy, AfterViewInit {
       subject: this.subjectValidator,
       content: this.contentValidator
     })
-    this.formSub = this.form.valueChanges.subscribe(value=>{
+    this.formSub = this.form.valueChanges.subscribe(value => {
       this.cdr.detectChanges()
     })
   }
@@ -62,9 +63,9 @@ export class CreateThreadComponent implements OnInit, OnDestroy, AfterViewInit {
 
   contentValidatorError() {
     const error = this.contentValidator.errors
-    if(error.required)
+    if (error.required)
       return 'Message est requis.'
-    if(error.minlength)
+    if (error.minlength)
       return `Message trop court (${error.minlength.actualLength}/${error.minlength.requiredLength})`
     return 'VALID'
   }
@@ -82,9 +83,7 @@ export class CreateThreadComponent implements OnInit, OnDestroy, AfterViewInit {
       thread: {
         subject: this.subjectValidator.value
       },
-      parts: [{
-        content: this.contentValidator.value.content
-      }]
+      inserts: this.contentValidator.value.content.ops
     }
     this.dialogRef.close(tree)
   }

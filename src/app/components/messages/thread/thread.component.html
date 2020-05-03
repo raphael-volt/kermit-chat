@@ -1,8 +1,6 @@
-<div class="main v-box gap16">
-
-    <mat-card class="thread-card nav-card flex-card" *ngIf="threadData | async">
-        
-        <mat-card-header>
+<div class="main" *ngIf="threadData | async">
+    <mat-card class="thread-card" >
+        <mat-card-header class="thread-card-header">
             <user-preview mat-card-avatar [user]="thread.user"></user-preview>
             <mat-card-title>{{thread.thread.subject}}</mat-card-title>
             <mat-card-subtitle>{{thread.user.name}}</mat-card-subtitle>
@@ -17,24 +15,27 @@
                 </mat-card-content>
             </mat-card>
             <mat-card class="thread-part" *ngFor="let content of thread.contents"
-            [class.thread-owner]="content.user_id == thread.user_id">
-            <mat-card-content>
-                <user-preview class="primary" *ngIf="content.user_id != thread.user_id" showName="true" pictoSize="small" [userId]="content.user_id"></user-preview>
-                <rte-view [content]="content.inserts"></rte-view>
-            </mat-card-content>
-        </mat-card>
-    </mat-card-content>
-</mat-card>
-<mat-expansion-panel *ngIf="threadData | async" class="flex10 thread-panel nav-card flex-card top0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
-        <mat-panel-title class="fx-clr accent" *ngIf="!panelOpenState">
-            Répondre
-        </mat-panel-title>
-        <mat-panel-title *ngIf="panelOpenState">
-            <button mat-raised-button [disabled]="messageControl.invalid" (click)="sendMessage($event)" color="accent">Envoyer</button>
-        </mat-panel-title>
-        
-    </mat-expansion-panel-header>
-    <mat-rte [formControl]="messageControl" mat-toolbar-row style="height: 25vh; background-color: white;"></mat-rte>
-</mat-expansion-panel>
+                [class.thread-owner]="content.user_id == thread.user_id">
+                <mat-card-content>
+                    <user-preview class="primary" *ngIf="content.user_id != thread.user_id" showName="true"
+                        pictoSize="small" [userId]="content.user_id"></user-preview>
+                    <rte-view [content]="content.inserts"></rte-view>
+                </mat-card-content>
+            </mat-card>
+        </mat-card-content>
+    </mat-card>                      <!--  thread-panel nav-card flex-card -->
+    <mat-expansion-panel class="thread-panel"
+        (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title class="fx-clr accent" *ngIf="!panelOpenState">
+                Répondre
+            </mat-panel-title>
+            <mat-panel-title *ngIf="panelOpenState">
+                <button mat-raised-button [disabled]="messageControl.invalid" (click)="sendMessage($event)"
+                    color="accent">Envoyer</button>
+            </mat-panel-title>
+
+        </mat-expansion-panel-header>
+        <mat-rte [formControl]="messageControl"></mat-rte>
+    </mat-expansion-panel>
 </div>

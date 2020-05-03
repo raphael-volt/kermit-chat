@@ -13,7 +13,7 @@ import { AvatarItemDirective } from './avatar-item.directive';
   imports: [
     CommonModule, MaterialModule
   ],
-  exports: [RefreshListDirective, AvatarListComponent],
+  exports: [RefreshListDirective, AvatarListComponent, AvatarSvgDirective],
   providers: [AvatarService]
 })
 export class AvatarModule { }

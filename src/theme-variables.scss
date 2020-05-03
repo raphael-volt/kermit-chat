@@ -16,3 +16,5 @@ $app-warn: mat-palette($mat-amber, 700,A200, 900);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+$ctn-padding: 16px;
+$ctn-max-width :1080px;

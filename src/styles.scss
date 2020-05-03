@@ -108,7 +108,7 @@ $dark-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
 @include dark($dark-theme);
 
 @mixin theme-color($theme) {
-  $primary: map-get($theme, primary);
+    $primary: map-get($theme, primary);
   $accent : map-get($theme, accent);
   $warn   : map-get($theme, warn);
 
@@ -125,7 +125,8 @@ $dark-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
   }
 }
 
-.svg-icon, .user-preview {
+.svg-icon,
+.user-preview {
   @include theme-color($app-theme)
 }
 
@@ -137,7 +138,6 @@ $dark-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
   @include theme-color($app-theme)
 }
 
-$ctn-padding: 16px;
 
 html,
 body {
@@ -234,13 +234,13 @@ body {
 .flex-row {
   display       : flex;
   flex-direction: row;
-  overflow: hidden;
+  overflow      : hidden;
 }
 
 .flex-column {
   display       : flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow      : hidden;
 }
 
 @mixin fx-box($dir, $wrap: nowrap, $overflow:hidden) {
@@ -292,29 +292,38 @@ body {
   @include fx-box(column);
   /*align-items    : stretch;
   justify-content: stretch;*/
-  margin         : $ctn-padding;
-  margin-right   : 0;
+  margin      : $ctn-padding;
+  margin-right: 0;
 }
-.thread-component {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-  
-}
+
 .mat-drawer.mat-sidenav.mat-drawer-side.mat-drawer-opened {
   border: none;
 }
-.mat-drawer-container  {
+
+.mat-drawer-container {
   background: none;
-  padding: 0;
-  margin: 0;
-} 
-.mat-drawer-inner-container {
-  display: flex;
-  flex-direction: column;
+  padding   : 0;
+  margin    : 0;
 }
+
+.ms-nav {
+  .mat-drawer-inner-container {
+    display       : flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width          : 100vw;
+    div.main {
+      order          : 0;
+      flex           : 1 1 auto;
+      display        : flex;
+      flex-direction : column;
+      max-width : $ctn-max-width;
+    }
+  }
+}
+
+
+
 .v-scroller {
   flex          : 0 1 auto;
   display       : flex;
@@ -335,19 +344,19 @@ body {
 }
 
 .flex01 {
-  flex    : 0 1 auto;
+  flex: 0 1 auto;
 }
 
 .flex11 {
-  flex    : 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .flex10 {
-  flex    : 1 0 auto;
+  flex: 1 0 auto;
 }
 
 .flex00 {
-  flex    : 0 0 auto;
+  flex: 0 0 auto;
 }
 
 div {
@@ -380,29 +389,13 @@ mat-card.nav-card {
   &.flex10 {
     flex: 1 0 auto;
   }
+
   &.margin-right0 {
     margin-right: 0;
   }
 
 }
 
-mat-card.thread-card {
-  padding-right : 0;
-  padding-bottom: 0;
-  padding-left  : 0;
-  mat-card-header {
-    margin-left : $ctn-padding;
-    margin-right: $ctn-padding;
-  }
-  >mat-card-content.divider {
-    margin : 0;
-    z-index: 999;
-  }
-
-  >mat-card-content.thread-scroller {
-    padding: $ctn-padding;
-  }
-}
 
 .nav-card {
   &.flex-card {
@@ -446,6 +439,7 @@ mat-card.thread-card {
   &.fit {
     overflow: hidden;
   }
+
   &.stretch {
     align-items: stretch;
   }
@@ -455,7 +449,7 @@ mat-card.thread-card {
   }
 
   &.scroller {
-    overflow: hidden;
+    overflow  : hidden;
     overflow-y: auto;
   }
 
@@ -498,6 +492,7 @@ mat-card.thread-card {
   &.align-center {
     align-items: center;
   }
+
   &.gap4 {
     @include fx-gap(4, right);
   }
@@ -548,19 +543,7 @@ $config: mat-typography-config();
 @import "./quill.scss";
 @include quill-theme(mat-font-family($config));
 
-.thread-panel div.mat-expansion-panel-body {
-  padding: 0 !important;
-  margin : 0;
 
-  .ql-container.ql-snow {
-    border: none !important;
-  }
-
-  .ql-toolbar.ql-snow {
-    border-left : none !important;
-    border-right: none !important;
-  }
-}
 
 .mat-card {
   .mat-form-field {
@@ -580,4 +563,103 @@ html.cdk-global-scrollblock {
 
 html.cdk-global-scrollblock body {
   position: fixed;
+}
+
+.thread-component {
+  position       : absolute;
+  left           : 0;
+  right          : 0;
+  top            : 0;
+  bottom         : 0;
+  display        : flex;
+  flex-direction : row;
+  flex-wrap      : nowrap;
+  justify-content: center;
+  align-content  : flex-start;
+  align-items    : stretch;
+  padding        : $ctn-padding;
+
+  >div.main {
+    max-width      : $ctn-max-width;
+    order          : 0;
+    flex           : 1 1 auto;
+    align-self     : auto;
+    display        : flex;
+    flex-direction : column;
+    flex-wrap      : nowrap;
+    justify-content: stretch;
+    align-content  : flex-start;
+    align-items    : stretch;
+
+    mat-card.thread-card {
+      padding        : 0;
+      flex           : 1 1 auto;
+      display        : flex;
+      flex-direction : column;
+      flex-wrap      : nowrap;
+      justify-content: flex-start;
+      align-content  : flex-start;
+      align-items    : stretch;
+      overflow       : hidden;
+      margin-bottom  : $ctn-padding;
+
+      >mat-card-header {
+        padding-top : $ctn-padding;
+        flex        : 0 1 auto !important;
+        margin-left : $ctn-padding;
+        margin-right: $ctn-padding;
+      }
+
+      >mat-card-content.divider {
+        flex   : 0 1 auto !important;
+        margin : 0;
+        z-index: 999;
+      }
+
+
+      >mat-card-content.thread-scroller {
+        flex      : 1 1 auto;
+        padding   : $ctn-padding;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        mat-card.thread-part {
+          margin-left  : 44px;
+          margin-right : 0;
+          margin-bottom: $ctn-padding;
+
+          &.thread-owner {
+            margin-left : 0px;
+            margin-right: 44px;
+
+            mat-card-header {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    >mat-expansion-panel.thread-panel {
+      mat-rte {
+        height: 35vh;
+      }
+
+      flex : 0 0 auto;
+
+      div.mat-expansion-panel-body {
+        padding: 0 !important;
+        margin : 0;
+
+        .ql-container.ql-snow {
+          border: none !important;
+        }
+
+        .ql-toolbar.ql-snow {
+          border-left : none !important;
+          border-right: none !important;
+        }
+      }
+    }
+  }
 }

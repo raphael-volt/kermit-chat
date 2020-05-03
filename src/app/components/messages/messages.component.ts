@@ -74,7 +74,7 @@ export class MessagesComponent implements OnInit, AfterViewInit {
     //this.sideNav.open()
     this.router.navigate([".."], { relativeTo: this.route, skipLocationChange: false })
   }
-  onDeactivate($event) {
+  onDeactivate(event) {
     this.sideNav.open()
     this.threadOpen = false
     this.cdr.detectChanges()
@@ -92,8 +92,15 @@ export class MessagesComponent implements OnInit, AfterViewInit {
   createThread() {
     this.dialog.openThreadEditor().pipe(first()).subscribe(tree => {
       if (tree) {
-        console.log(tree.thread.subject)
-        console.log(tree.parts[0].content)
+        tree.thread.user_id = this.userService.user.id
+        this.api.addTread(tree).pipe(first()).subscribe(
+          result => {
+            this.router.navigate([result.id], { relativeTo: this.route })
+          },
+          error => {
+            console.log(error)
+          }
+        )
       }
     })
   }

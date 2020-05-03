@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { UrlService } from './url.service';
 import { User } from '../vo/vo';
 import { Subject, Observable, of, Observer } from 'rxjs';
-import { first } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class UserService {
   get busy() {
     return this._busy
   }
-  private _requestFlag= false
+  private _requestFlag = false
   constructor(
     private http: HttpClient,
     private url: UrlService
@@ -25,7 +25,7 @@ export class UserService {
 
   getUsers() {
     if (this._busy) {
-      if(! this._requestFlag) {
+      if (!this._requestFlag) {
         this._requestFlag = true
         this.http.get<User[]>(this.url.api("user")).pipe(first()).subscribe(users => {
           this._requestFlag = true
@@ -48,7 +48,7 @@ export class UserService {
   get user(): User {
     return this._user
   }
-  
+
   signin() {
     return new Observable<boolean>((observer: Observer<boolean>) => {
       this._user = null
@@ -63,7 +63,7 @@ export class UserService {
         })
     })
   }
-  
+
   getUser(id): Observable<User> {
     if (this._busy) {
       return this.getObservableUser(id)
@@ -81,8 +81,17 @@ export class UserService {
   }
 
   findById(id: number): User | undefined {
-    if(this._busy)
+    if (this._busy)
       return undefined
     return this.users.find(user => user.id == id)
+  }
+
+  updatePicto(data: string) {
+    return this.http.put<User>(this.url.api("user", this._user.id), {
+      picto: data
+    }).pipe(map(result => {
+      this._user.picto = result.picto
+      return true
+    }))
   }
 }

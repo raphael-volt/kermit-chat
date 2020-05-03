@@ -33,7 +33,7 @@ export class AuthService {
   constructor(
     private userService: UserService,
     private cookieService: CookieService) { 
-      this.jpData = {email: "raphael@ketmie.com"}
+      this.jpData = {email: "fionnvolt@gmail.com"}
       this.saveCookie()
     }
 
