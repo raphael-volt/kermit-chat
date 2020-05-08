@@ -25,12 +25,19 @@ export class PictoViewComponent implements OnInit {
     private dialog: DialogService,
     userService: UserService,
     private cdr: ChangeDetectorRef) {
-    this.user = userService.user
-    this.checkImgSrc(this.user)
+    this._user = userService.user
+    this.checkImgSrc(this._user, false)
   }
 
+  private _user: User
   @Input()
-  user: User
+  set user(value: User) {
+    this._user = value
+    this.checkImgSrc(value)
+  }
+  get user(): User {
+    return this._user
+  }
 
   _imgSrc: boolean = false
   get imgSrc(): boolean {
@@ -42,7 +49,7 @@ export class PictoViewComponent implements OnInit {
 
   imgData: string
 
-  private checkImgSrc(user: User) {
+  checkImgSrc(user: User, detectChange = true) {
     if (!user || !isUser(user))
       this.imgSrc = false
     else
@@ -52,14 +59,16 @@ export class PictoViewComponent implements OnInit {
       else {
         this.imgSrc = true
       }
-
+    this.imgData = null
+    if(detectChange)
+      this.cdr.detectChanges()
   }
   ngOnInit(): void {
 
   }
 
   setImgData = (data: string) => {
-    if(! data)
+    if (!data)
       return
     this.imgSrc = false
     this.imgData = data

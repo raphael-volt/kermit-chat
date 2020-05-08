@@ -1,4 +1,4 @@
-@import "../../../theme-variables.scss";
+@import "../../../scss/theme-variables.scss";
 
 @mixin panel-radius($radius) {
   $radius: add-px($radius);

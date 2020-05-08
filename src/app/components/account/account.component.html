@@ -1,9 +1,29 @@
-<mat-card>
-    <mat-card-content>
+<mat-card class="v-box">
+    <!--    <mat-card-header class="thread-card-header h-box fx-cl primary" style="align-items: baseline;">
+        <user-preview mat-card-avatar [user]="user"></user-preview>
+        <mat-card-title>
+            {{user.name}}
+        </mat-card-title>
+    </mat-card-header>
+-->
+
+
+<div>
+    <div class="h-box fx-clr primary" style="align-items: baseline; padding-bottom: 16px;">
+        <user-preview [showName]="true" pictoSize="large" [user]="user"></user-preview>
+        <span class="flex11"></span>
+        <button class="flex00" mat-raised-button (click)="logout()" color="accent">
+            Me déconnecter
+        </button>
+
+        </div>
+        <mat-divider></mat-divider>
+    </div>
+    <mat-card-content class="ctn-marginY">
         <div class="h-box gap16">
-            <picto-view></picto-view>
+            <picto-view [user]="user" (imgChange)="imgChange($event)"></picto-view>
             <form [formGroup]="formGroup" class="h-box gap16">
-                <div class="v-box gap16">
+                <div class="v-box gap16 form-ctn">
                     <mat-form-field>
                         <mat-label>Nom</mat-label>
                         <input matInput formControlName="name" required>
@@ -24,14 +44,19 @@
                             Cet email n'est pas valide
                         </mat-error>
                     </mat-form-field>
+
                 </div>
             </form>
         </div>
     </mat-card-content>
+    <mat-divider></mat-divider>
     <mat-card-footer>
-        <mat-toolbar class="h-box gap16">
+        <div class="h-box ctn-padding">
             <button (click)="save()" [disabled]="!changed || !formGroup.valid" mat-raised-button
                 color="accent">Enregistrer</button>
-        </mat-toolbar>
+            <span class="flex11"></span>
+            <button [disabled]="!changed" mat-raised-button (click)="clearChanges()" color="warn">Annuller les
+                changements</button>
+        </div>
     </mat-card-footer>
 </mat-card>

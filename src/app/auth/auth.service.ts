@@ -33,8 +33,9 @@ export class AuthService {
   constructor(
     private userService: UserService,
     private cookieService: CookieService) { 
-      this.jpData = {email: "fionnvolt@gmail.com"}
-      this.saveCookie()
+      // this.jpData = {email: "fionnvolt@gmail.com"}
+      // frank.cavailles@yahoo.fr
+      // this.saveCookie()
     }
 
 
@@ -62,7 +63,7 @@ export class AuthService {
       }
     }
   }
-  ;
+  
   saveUser(user: User) {
     this.jpData.email = user.email
     this.saveCookie()
@@ -96,6 +97,11 @@ export class AuthService {
         console.log(`Welcome ${this.userService.user.name}`)
       })
     )
+  }
+
+  logout() {
+    this.cookieService.delete(this.cookieKey)
+    location.reload()
   }
 
   private saveCookie() {

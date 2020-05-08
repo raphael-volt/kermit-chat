@@ -3,18 +3,26 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QuillModule, QuillModules } from 'ngx-quill';
 import { RteComponent } from './editor/rte.component';
+import { EmojiBlot } from "./quill/emoji-blot";
+import { EmojiToolbar } from "./quill/emoji-toolbar";
 import Quill from 'quill';
 import ImageResize from 'quill-image-resize-module'
 
 import 'quill-emoji/dist/quill-emoji.js';
 import { ViewComponent } from './view/view.component'
+import { EmojiPanelComponent } from './quill/emoji/emoji-panel.component';
+import { EmojiDecDdirective } from './quill/emoji/emoji-dec.directive';
 
 Quill.register('modules/imageResize', ImageResize)
-
+/** Fix  */
+Quill.register({ 
+  'formats/emoji': EmojiBlot,
+  'modules/emoji-toolbar': EmojiToolbar
+ }, true);
 
 const quillModules: QuillModules = {
   imageResize: {},
-  'emoji-shortname': true,
+  'emoji-shortname': false,
   'emoji-textarea': false,
   'emoji-toolbar': true,
 
@@ -61,8 +69,8 @@ const quillModules: QuillModules = {
       modules: quillModules
     })
   ],
-  declarations: [RteComponent, ViewComponent],
-  exports: [RteComponent, ViewComponent],
+  declarations: [RteComponent, ViewComponent, EmojiPanelComponent, EmojiDecDdirective],
+  exports: [RteComponent, ViewComponent, EmojiPanelComponent],
   providers: []
 })
 export class RteModule { }

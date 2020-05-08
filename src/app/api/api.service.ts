@@ -25,22 +25,34 @@ export class ApiService {
       this.getPath("thread", id)
     ).pipe(map(result => {
       const ops: DeltaOperation[] = result.inserts.slice()
-      const url = this.url
       for (const i of result.contents) {
         ops.push(...i.inserts)
       }
-      for(const op of ops) {
-        if(typeof op.insert == "object" && "image" in op.insert) {
-          op.insert.image = url.image(op.insert.image)
-        }
-      }
+      this.replaceImage(...ops)
+      
       return result
     }))
   }
 
+  private replaceImage(...ops: DeltaOperation[]) {
+    const url = this.url
+    for (const op of ops) {
+      if (typeof op.insert == "object" && "image" in op.insert) {
+        op.insert.image = url.image(op.insert.image)
+      }
+    }
+    return ops
+  }
 
-  addThreadPart(value: ThreadPart) {
-
+  reply(value: ThreadPart) {
+    return this.http.post<ThreadPart>(
+      this.url.api("thread_part"),
+      value
+    ).pipe(map(result => {
+      value.id = result.id
+      value.content = this.replaceImage(...result.content as DeltaOperation[])
+      return value
+    }))
   }
   addTread(value: ThreadTree): Observable<Thread> {
     return this.http.post<ThreadTree>(

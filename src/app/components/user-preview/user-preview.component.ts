@@ -11,7 +11,7 @@ import { UserService } from 'src/app/api/user.service';
   styleUrls: ['./user-preview.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'user-preview',
+    'class': 'user-preview fx-clr',
     '[class.large]': 'pictoSize == "large"',
     '[class.small]': 'pictoSize == "small"',
   }
@@ -59,7 +59,6 @@ export class UserPreviewComponent implements OnInit, OnChanges, OnDestroy {
 
     if (changes.user) {
       const user = changes.user.currentValue as User
-      console.log('PICTO ', user?.email)
       if (!user || !user.picto)
         this.hasPicto = false
       else {

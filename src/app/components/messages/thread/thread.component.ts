@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs';
-import { User, ThreadData } from 'src/app/vo/vo';
+import { User, ThreadData, ThreadPart } from 'src/app/vo/vo';
 import { ApiService } from 'src/app/api/api.service';
 import { first } from 'rxjs/operators';
 import { FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/api/user.service';
+import { Delta, DeltaOperation } from 'quill';
 
 
 
@@ -20,8 +21,11 @@ import { UserService } from 'src/app/api/user.service';
 })
 export class ThreadComponent implements OnInit, OnDestroy {
 
-  threadData: BehaviorSubject<ThreadData> = new BehaviorSubject<ThreadData>(null)
-  thread: ThreadData
+  asyncThreadData: BehaviorSubject<ThreadData> = new BehaviorSubject<ThreadData>(null)
+  threadData: ThreadData
+  get thread() {
+    return this.threadData.thread
+  }
   panelOpenState
 
   public set sub(v: Subscription) {
@@ -32,8 +36,8 @@ export class ThreadComponent implements OnInit, OnDestroy {
 
   messageControl: FormControl
   messageInvalid = true
-  constructor(route: ActivatedRoute, 
-    private api: ApiService, 
+  constructor(route: ActivatedRoute,
+    private api: ApiService,
     private userService: UserService,
     private cdr: ChangeDetectorRef) {
 
@@ -49,17 +53,13 @@ export class ThreadComponent implements OnInit, OnDestroy {
     })
   }
 
-  private _users: User[]
-
-  private tread_id = 0
   private setupThread(id: number) {
     const userService = this.userService
-    if (! userService.busy) {
+    if (!userService.busy) {
       return this.loadThread(id)
     }
 
-    userService.getUsers().pipe(first()).subscribe(users=>{
-      this._users = users
+    userService.getUsers().pipe(first()).subscribe(users => {
       this.loadThread(id)
     })
   }
@@ -73,17 +73,31 @@ export class ThreadComponent implements OnInit, OnDestroy {
       for (const item of data.contents) {
         item.user = userService.findById(item.user_id)
       }
-      this.thread = data
-      this.threadData.next(data)
+      this.threadData = data
+      this.asyncThreadData.next(data)
       this.cdr.detectChanges()
     })
 
   }
 
-  sendMessage(event: MouseEvent) {
+  reply(event: MouseEvent) {
     event.stopImmediatePropagation()
     event.preventDefault()
     const data = this.messageControl.value
+    const ops = (data.content as Delta).ops
+    const tp: ThreadPart = {
+      thread_id: this.thread.id,
+      user_id: this.thread.user_id,
+      content: ops
+    }
+    this.api.reply(tp).pipe(first()).subscribe(tp=>{
+      this.threadData.contents.push({
+        user_id: this.thread.user_id,
+        user: this.userService.user,
+        inserts: tp.content as DeltaOperation[]
+      })
+      this.cdr.detectChanges()
+    })
     this.messageControl.setValue(null)
   }
 

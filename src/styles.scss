@@ -32,6 +32,7 @@
 }
 
 @mixin dark($theme) {
+  /*
   $primary   : map-get($theme, primary);
   $accent    : map-get($theme, accent);
   $warn      : map-get($theme, warn);
@@ -53,6 +54,7 @@
 
     @include list-item-active($theme)
   }
+  */
 }
 
 @mixin border-divider($theme) {
@@ -96,19 +98,25 @@
   }
 }
 
-$dark-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
+$dark-theme: $app-theme;//mat-dark-theme($app-primary, $app-accent, $app-warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($app-theme);
-@include list-item-active($app-theme);
-@include avatar-theme($app-theme);
+@include angular-material-theme($dark-theme);
 
-@include dark($dark-theme);
+$config: mat-typography-config();
+
+@import "./quill.scss";
+@include quill-theme(mat-font-family($config), $dark-theme);
+
+@include list-item-active($dark-theme);
+@include avatar-theme($dark-theme);
+
+//@include dark($dark-theme);
 
 @mixin theme-color($theme) {
-    $primary: map-get($theme, primary);
+  $primary: map-get($theme, primary);
   $accent : map-get($theme, accent);
   $warn   : map-get($theme, warn);
 
@@ -125,17 +133,82 @@ $dark-theme: mat-dark-theme($app-primary, $app-accent, $app-warn);
   }
 }
 
-.svg-icon,
-.user-preview {
-  @include theme-color($app-theme)
+@mixin fx-box($dir, $wrap: nowrap, $overflow:hidden) {
+  display       : flex;
+  flex-direction: $dir;
+  overflow      : $overflow;
+  flex-wrap     : $wrap;
 }
 
-.mat-border {
-  @include border-divider($app-theme)
+// flex: flex-grow flex-shrink flex-basis|auto|initial|inherit;
+@mixin fx-item($grow: 0, $shrink: 1, $basis: auto, $order: 0) {
+  flex-grow  : $grow;
+  flex-shrink: $shrink;
+  flex-basis : $basis;
+  order      : $order;
 }
 
-.fx-clr {
-  @include theme-color($app-theme)
+@mixin fx-box-item($grow: 0, $shrink: 1, $basis: auto, $order: 0) {
+  >* {
+    @include fx-item($grow, $shrink, $basis, $order);
+  }
+}
+
+@mixin fx-gap($gap, $dir: bottom) {
+  >* {
+    $key  : margin-#{$dir};
+    $value: $gap+px;
+
+    #{$key}: $value !important;
+
+    &:last-child {
+      #{$key}: 0 !important;
+    }
+  }
+}
+
+@mixin flex-card-theme($theme) {
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  @include _mat-theme-overridable-elevation(1, $theme);
+  background: mat-color($background, card);
+  color     : mat-color($foreground, text);
+}
+
+@mixin chat-theme ($theme) {
+
+  .svg-icon,
+  .user-preview {
+    @include theme-color($theme)
+  }
+
+  .mat-border {
+    @include border-divider($theme)
+  }
+
+  .fx-clr {
+    @include theme-color($theme)
+  }
+
+  .nav-list-column {
+    @include flex-card-theme($theme);
+  }
+
+}
+@include chat-theme($app-theme);
+
+.dark {
+  @include angular-material-theme($dark-theme);
+  @include chat-theme($dark-theme);
+}
+
+
+.nav-list-column {
+  @include fx-item(0, 1);
+  @include fx-box(column);
+  margin      : $ctn-padding;
+  margin-right: 0;
 }
 
 
@@ -243,58 +316,6 @@ body {
   overflow      : hidden;
 }
 
-@mixin fx-box($dir, $wrap: nowrap, $overflow:hidden) {
-  display       : flex;
-  flex-direction: $dir;
-  overflow      : $overflow;
-  flex-wrap     : $wrap;
-}
-
-// flex: flex-grow flex-shrink flex-basis|auto|initial|inherit;
-@mixin fx-item($grow: 0, $shrink: 1, $basis: auto, $order: 0) {
-  flex-grow  : $grow;
-  flex-shrink: $shrink;
-  flex-basis : $basis;
-  order      : $order;
-}
-
-@mixin fx-box-item($grow: 0, $shrink: 1, $basis: auto, $order: 0) {
-  >* {
-    @include fx-item($grow, $shrink, $basis, $order);
-  }
-}
-
-@mixin fx-gap($gap, $dir: bottom) {
-  >* {
-    $key  : margin-#{$dir};
-    $value: $gap+px;
-
-    #{$key}: $value;
-
-    &:last-child {
-      #{$key}: 0;
-    }
-  }
-}
-
-@mixin flex-card-theme($theme) {
-  $background: map-get($theme, background);
-  $foreground: map-get($theme, foreground);
-
-  @include _mat-theme-overridable-elevation(1, $theme);
-  background: mat-color($background, card);
-  color     : mat-color($foreground, text);
-}
-
-.nav-list-column {
-  @include flex-card-theme($app-theme);
-  @include fx-item(0, 1);
-  @include fx-box(column);
-  /*align-items    : stretch;
-  justify-content: stretch;*/
-  margin      : $ctn-padding;
-  margin-right: 0;
-}
 
 .mat-drawer.mat-sidenav.mat-drawer-side.mat-drawer-opened {
   border: none;
@@ -308,16 +329,17 @@ body {
 
 .ms-nav {
   .mat-drawer-inner-container {
-    display       : flex;
-    flex-direction: row;
+    display        : flex;
+    flex-direction : row;
     justify-content: space-around;
     width          : 100vw;
+
     div.main {
-      order          : 0;
-      flex           : 1 1 auto;
-      display        : flex;
-      flex-direction : column;
-      max-width : $ctn-max-width;
+      order         : 0;
+      flex          : 1 1 auto;
+      display       : flex;
+      flex-direction: column;
+      max-width     : $ctn-max-width;
     }
   }
 }
@@ -369,6 +391,19 @@ div {
 
 .ctn-padding {
   padding: $ctn-padding;
+}
+
+.ctn-margin {
+  margin: $ctn-padding;
+}
+
+.ctn-marginY {
+  margin: $ctn-padding 0;
+  ;
+}
+
+.ctn-margin-top {
+  margin-top: $ctn-padding;
 }
 
 mat-card.nav-card {
@@ -538,13 +573,6 @@ div {
 }
 
 
-$config: mat-typography-config();
-
-@import "./quill.scss";
-@include quill-theme(mat-font-family($config));
-
-
-
 .mat-card {
   .mat-form-field {
     .ql-container.ql-snow {
@@ -661,5 +689,21 @@ html.cdk-global-scrollblock body {
         }
       }
     }
+  }
+}
+
+.icon-ctn svg-icon {
+  $m    : 1em;
+  margin: 0 $m;
+
+  &.end {
+    margin-left : $m;
+    margin-right: 0;
+  }
+
+  &.start {
+    margin-right: $m;
+    margin-left : 0;
+
   }
 }
