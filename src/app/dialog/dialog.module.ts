@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AvatarModule } from '../avatar/avatar.module';
 import { DialogCardComponent } from './dialog-card/dialog-card.component';
 import { ImgScrollerModule } from '../img-scroller/img-scroller.module';
+
 @NgModule({
   declarations: [
     PanelComponent, PanelContentDirective,

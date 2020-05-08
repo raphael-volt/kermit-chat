@@ -14,7 +14,7 @@ export class ApiConfig implements IApiConfig {
     routes: IApiConfigRoutes
 }
 
-const DEFAULT_API_CONFIG: ApiConfig = {
+const DEV_API_CONFIG: ApiConfig = {
     key: '22317bca3371399e',
     url: 'http://localhost:4201',
     routes: {
@@ -24,4 +24,6 @@ const DEFAULT_API_CONFIG: ApiConfig = {
     }
 }
 
-export { DEFAULT_API_CONFIG }
+const PROD_API_CONFIG: ApiConfig = Object.assign({}, DEV_API_CONFIG)
+PROD_API_CONFIG.url = "https://jp.ketmie.com"
+export { DEV_API_CONFIG, PROD_API_CONFIG }

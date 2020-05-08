@@ -30,7 +30,8 @@ export class AvatarListComponent implements OnInit, OnDestroy, AfterViewInit, Af
     { type: "female", name: "Féminin" },
     { type: "male", name: "Masculin" },
     { type: "bottts", name: "Robot" },
-    { type: "gridy", name: "Forme" }
+    { type: "gridy", name: "Masque" },
+    { type: "jdenticon", name: "Formes" }
   ]
 
   @ViewChild(MatButtonToggleGroup)

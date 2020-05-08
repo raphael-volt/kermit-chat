@@ -5,7 +5,7 @@ import { AccountComponent } from './components/account/account.component';
 import { MembersComponent } from './components/members/members.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ThreadComponent } from './components/messages/thread/thread.component';
-import { EditorComponent } from './components/editor/editor.component';
+import { DebugEmojiComponent } from './components/debug-emoji/debug-emoji.component';
 
 export interface NamedRoute extends Route {
   title: string
@@ -45,10 +45,10 @@ const routes: NamedRoute[] = [
     component: MembersComponent
   },
   {
-    path: "editor",
-    title: "Éditeur",
+    path: "emoji",
+    title: "RTE debug",
     canActivate: [AuthGuard],
-    component: EditorComponent
+    component: DebugEmojiComponent
   }
 ]
 @NgModule({

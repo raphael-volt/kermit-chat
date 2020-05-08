@@ -28,7 +28,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/quill-emoji/dist/quill-emoji.css",
               "src/styles.scss"
             ],
             "scripts": [
@@ -160,46 +159,6 @@
             "tsConfig": [
               "projects/material/tsconfig.lib.json",
               "projects/material/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "qrte": {
-      "projectType": "library",
-      "root": "projects/qrte",
-      "sourceRoot": "projects/qrte/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/qrte/tsconfig.lib.json",
-            "project": "projects/qrte/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/qrte/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/qrte/src/test.ts",
-            "tsConfig": "projects/qrte/tsconfig.spec.json",
-            "karmaConfig": "projects/qrte/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/qrte/tsconfig.lib.json",
-              "projects/qrte/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
