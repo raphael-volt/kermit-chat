@@ -3,28 +3,31 @@
     <div class="flex00 h-box gap16">
         <img *ngFor="let src of avatars" [avatarSvg]="src">
     </div>
+    <qrte></qrte>
+    <!--
 
-    <mat-expansion-panel class="flex00">
-        <mat-expansion-panel-header>
-            <mat-panel-title class="fx-clr accent">
-                <user-preview [user]="userService.user" pictoSize="small" showName='true'></user-preview>
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-        <picto-editor class="flex00" (cropDone)="cropDone($event)" style="align-self: flex-start;"
-        picto="assets/landscape.jpg"></picto-editor>
-    </mat-expansion-panel>
-    <mat-expansion-panel class="flex00">
-        <mat-expansion-panel-header>
-            <mat-panel-title class="fx-clr accent">
-                <user-preview [user]="userService.user" pictoSize="small" showName='true'></user-preview>
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-rte style="height: 33vh;" [formControl]="control"></mat-rte>
+        <mat-expansion-panel class="flex00">
+            <mat-expansion-panel-header>
+                <mat-panel-title class="fx-clr accent">
+                    <user-preview [user]="userService.user" pictoSize="small" showName='true'></user-preview>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <picto-editor class="flex00" (cropDone)="cropDone($event)" style="align-self: flex-start;"
+            picto="assets/landscape.jpg"></picto-editor>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="flex00">
+            <mat-expansion-panel-header>
+                <mat-panel-title class="fx-clr accent">
+                    <user-preview [user]="userService.user" pictoSize="small" showName='true'></user-preview>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-rte style="height: 33vh;" [formControl]="control"></mat-rte>
+            
+        </mat-expansion-panel>
+        <div class="flex00">
+            <button mat-raised-button color="primary" [disabled]="control.invalid" (click)="sendMessage()">Send</button>
+        </div>
         
-    </mat-expansion-panel>
-    <div class="flex00">
-        <button mat-raised-button color="primary" [disabled]="control.invalid" (click)="sendMessage()">Send</button>
-    </div>
-
-    <mat-rte class="flex11" [formControl]="control"></mat-rte>
+        <mat-rte class="flex11" [formControl]="control"></mat-rte>
+    -->
 </div>

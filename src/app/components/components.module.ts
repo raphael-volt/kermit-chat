@@ -15,12 +15,14 @@ import { PictoEditorComponent } from './picto-editor/picto-editor.component';
 import { PictoViewComponent } from './picto-view/picto-view.component';
 import { ImgScrollerModule } from '../img-scroller/img-scroller.module';
 import { UserPreviewModule } from "./user-preview/user-preview.module";
+import { QrteModule } from 'qrte';
 @NgModule({
   declarations: [MembersComponent, AccountComponent, EditorComponent, PictoEditorComponent, PictoViewComponent],
   imports: [
     ApiModule, AvatarModule, 
     MessagesModule, RteModule,
     UserPreviewModule,
+    QrteModule,
     CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, ImgScrollerModule,
   ],
   exports: [

@@ -29,6 +29,8 @@
     "@dicebear/avatars-gridy-sprites": "^4.0.8",
     "@dicebear/avatars-male-sprites": "^4.0.8",
     "core-js": "^3.6.5",
+    "g": "^2.0.1",
+    "http-server": "^0.12.3",
     "katex": "^0.11.1",
     "ngx-cookie-service": "^3.0.4",
     "ngx-quill": "^8.1.3",

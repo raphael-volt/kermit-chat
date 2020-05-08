@@ -16,7 +16,7 @@ export interface ThreadPart extends IVO
 {
     thread_id?:number
     user_id?:number
-    content?:string | DeltaOperation
+    content?:string | DeltaOperation[]
 }
 
 const isUser = (user: any): user is User => {

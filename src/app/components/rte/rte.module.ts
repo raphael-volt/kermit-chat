@@ -16,7 +16,7 @@ const quillModules: QuillModules = {
   imageResize: {},
   'emoji-shortname': true,
   'emoji-textarea': false,
-  'emoji-toolbar': true,
+  'emoji-toolbar': false,
 
   toolbar: {
     handlers: {

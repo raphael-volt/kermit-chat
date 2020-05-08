@@ -13,7 +13,7 @@ export class UserPictoPipe implements PipeTransform {
   transform(value: any, ...args: unknown[]): string {
     let picto = NaN
     if (value) {
-      if (isUser(value) || 'picto' in value) {
+      if(typeof value == "object" && 'picto' in value) {
         picto = value.picto
       }
       else {
@@ -25,6 +25,7 @@ export class UserPictoPipe implements PipeTransform {
         }
       }
     }
+    console.log(`userPicto => ${picto} | ${value}`)
     if (!isNaN(picto))
       return this.url.image(picto)
     return "";

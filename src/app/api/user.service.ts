@@ -86,6 +86,9 @@ export class UserService {
     return this.users.find(user => user.id == id)
   }
 
+  updateUser(user: User) {
+    return this.http.put<User>(this.url.api("user", user.id), user)
+  }
   updatePicto(data: string) {
     return this.http.put<User>(this.url.api("user", this._user.id), {
       picto: data

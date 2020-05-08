@@ -1,3 +1,4 @@
-<img *ngIf="hasPicto" [src]="user | userPicto"/>
+<img *ngIf="hasPicto" [src]="user.picto | userPicto"/>
 <svg-icon iconName="account_circle" color="primary" *ngIf="!hasPicto"></svg-icon>
 <h3 *ngIf="showName && user">{{user.name}}</h3>
+<ng-content></ng-content>
