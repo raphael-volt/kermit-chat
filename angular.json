@@ -28,7 +28,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/quill-emoji/dist/quill-emoji.css",
               "src/styles.scss"
             ],
             "scripts": [

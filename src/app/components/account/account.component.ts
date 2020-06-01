@@ -1,8 +1,7 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { User } from 'src/app/vo/vo';
-import { AvatarService, AvatarType } from 'src/app/avatar/avatar.service';
-import { DialogService } from 'src/app/dialog/dialog.service';
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
+import { AvatarType } from 'src/app/avatar/avatar.service';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { UserService } from 'src/app/api/user.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Subscription } from 'rxjs';
@@ -18,7 +17,7 @@ import { first } from 'rxjs/operators';
   },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AccountComponent implements OnInit, AfterViewInit, OnDestroy {
+export class AccountComponent implements OnDestroy {
 
   user: User
 
@@ -92,15 +91,6 @@ export class AccountComponent implements OnInit, AfterViewInit, OnDestroy {
     })
 
     this.formGroup = g
-  }
-
-  ngOnInit(): void {
-
-  }
-
-  ngAfterViewInit(): void {
-    console.log(this.pictoView)
-
   }
 
   imgChange(value) {

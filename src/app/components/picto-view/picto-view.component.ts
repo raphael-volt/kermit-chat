@@ -1,4 +1,4 @@
-import { EventEmitter, Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy, Input, Output, ChangeDetectorRef } from '@angular/core';
+import { EventEmitter, Component, ViewEncapsulation, ChangeDetectionStrategy, Input, Output, ChangeDetectorRef } from '@angular/core';
 import { DialogService } from 'src/app/dialog/dialog.service';
 import { first } from 'rxjs/operators';
 import { User, isUser } from 'src/app/vo/vo';
@@ -16,7 +16,7 @@ import { UserService } from 'src/app/api/user.service';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PictoViewComponent implements OnInit {
+export class PictoViewComponent {
 
   @Output()
   imgChange: EventEmitter<string> = new EventEmitter<string>()
@@ -62,9 +62,6 @@ export class PictoViewComponent implements OnInit {
     this.imgData = null
     if(detectChange)
       this.cdr.detectChanges()
-  }
-  ngOnInit(): void {
-
   }
 
   setImgData = (data: string) => {

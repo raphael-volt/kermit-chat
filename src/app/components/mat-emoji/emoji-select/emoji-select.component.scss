@@ -1,0 +1,124 @@
+$e-size   : 1em;
+$e-margin : 4px;
+$font-size: 36px;
+$duration : 380ms;
+$ease     : 'cubic-bezier(0, 0, 0.2, 1)';
+:host {
+    display: inline-block;
+    background-color: white;
+    border-radius:4px ;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.emoji-selector {
+    font-size: $font-size;
+
+    .mat-tab-link:focus, .mat-tab-label-active {
+        opacity: 1;
+    }
+
+    .mat-tab-link {
+        font-size  : $font-size;
+        display    : inline-block;
+        min-height : 0 !important;
+        padding    : $e-margin !important;
+        margin     : 0 0 $e-margin 0 !important;
+        min-width  : 0 !important;
+        height     : $font-size;
+        box-sizing : content-box;
+        line-height: $e-size;
+        overflow   : visible;
+        width      : $font-size;
+        text-align : center;
+
+        &:before {
+            box-sizing  : border-box;
+            font-size   : 85%;
+            line-height : $font-size;
+        }
+    }
+}
+
+@keyframes showleft {
+    100% {
+        transform: translateX(0%)
+    }
+}
+
+@keyframes showRight {
+    100% {
+        transform: translateX(0%)
+    }
+}
+
+@keyframes hideleft {
+    100% {
+        transform: translateX(-100%);
+
+    }
+}
+
+@keyframes hideRight {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.list-scroller {
+    padding         : 0;
+    margin          : 0;
+    overflow-x      : hidden;
+    overflow-y      : scroll;
+}
+
+.list-container {
+    overflow: visible;
+    padding : 0;
+    margin  : 0;
+    position: relative;
+    overflow: hidden;
+
+    .list-slider {
+        font-size: $font-size;
+        position : absolute;
+        top      : 0;
+        left     : 0;
+
+        animation-duration       : $duration;
+        animation-timing-function: $ease;
+        visibility               : hidden;
+        z-index                  : 1;
+
+        &.active {
+            visibility: visible;
+
+            &.show {
+                z-index: 2;
+
+                &.left {
+                    transform     : translateX(-100%);
+                    animation-name: showleft;
+                }
+
+                &.right {
+                    transform     : translateX(100%);
+                    animation-name: showRight;
+                }
+            }
+
+            &.hide {
+                z-index: 1;
+
+                &.left {
+                    transform     : translateX(0%);
+                    animation-name: hideleft;
+                }
+
+                &.right {
+                    transform     : translateX(0%);
+                    animation-name: hideRight;
+                }
+            }
+        }
+    }
+}

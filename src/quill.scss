@@ -18,16 +18,26 @@ $mat-light-theme-foreground: (
   slider-off-active: rgba(black, 0.38),
 );
 */
+@mixin quill-font_size($size, $name) {
+  .ql-snow .ql-picker.ql-size .ql-picker-item[data-value="#{$size}"]::before {
+    content  : $name;
+    font-size: $size !important;
+  }
+  .ql-snow .ql-size.ql-picker .ql-picker-label[data-value="#{$size}"]::before {
+    content  : $name;
+  }
+}
 @mixin quill-theme($fontname, $theme) {
 
-  $fg: map-get($theme, foreground);
-  $bg: map-get($theme, background);
-  $foreground   : mat-color($fg, divider);
-  $background   : mat-color($bg, card);
-  $divider-color: mat-color($fg, divider);
-  $accent    : map-get($theme, accent);
-  $selected-clr: mat-color($accent, card);
+  $fg            : map-get($theme, foreground);
+  $bg            : map-get($theme, background);
+  $foreground    : mat-color($fg, text);
+  $background    : mat-color($bg, card);
+  $divider-color : mat-color($fg, divider);
+  $accent        : map-get($theme, accent);
+  $selected-clr  : mat-color($accent, card);
   $secondary-text: mat-color($fg, secondary-text);
+
   quill-editor {
     display        : flex;
     flex-direction : column;
@@ -498,7 +508,7 @@ $mat-light-theme-foreground: (
   }
 
   .ql-editor .ql-color-white {
-    color: $background;
+    color: white;
   }
 
   .ql-editor .ql-color-red {
@@ -692,21 +702,21 @@ $mat-light-theme-foreground: (
 
     .ql-snow.ql-toolbar button:hover:not(.ql-active),
     .ql-snow .ql-toolbar button:hover:not(.ql-active) {
-      color: red;// $foreground;
+      color: $foreground;
     }
 
     .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-fill,
     .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-fill,
     .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke.ql-fill,
     .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke.ql-fill {
-      fill: blue;//$foreground;
+      fill: $foreground;
     }
 
     .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke,
     .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke,
     .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke-miter,
     .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke-miter {
-      stroke: green;//$foreground;
+      stroke: $foreground;
     }
   }
 
@@ -762,14 +772,14 @@ $mat-light-theme-foreground: (
 
   .ql-snow .ql-stroke-miter {
     fill             : none;
-    stroke           : red;//$foreground;
+    stroke           : $foreground;
     stroke-miterlimit: 10;
     stroke-width     : 2;
   }
 
   .ql-snow .ql-fill,
   .ql-snow .ql-stroke.ql-fill {
-    fill: green;//$foreground;
+    fill: $foreground;
   }
 
   .ql-snow .ql-empty {
@@ -1045,6 +1055,8 @@ $mat-light-theme-foreground: (
     font-size: 0.67em;
   }
 
+
+
   .ql-snow .ql-picker.ql-font {
     width: 108px;
   }
@@ -1108,6 +1120,12 @@ $mat-light-theme-foreground: (
     font-size: 32px;
   }
 
+  @include quill-font_size(10px, 'Petit');
+  @include quill-font_size(14px, 'Normal');
+  @include quill-font_size(18px, 'Moyen');
+  @include quill-font_size(24px, 'Grand');
+  @include quill-font_size(32px, 'Plus grand');
+
   .ql-snow .ql-color-picker.ql-background .ql-picker-item {
     background-color: $background;
   }
@@ -1152,21 +1170,21 @@ $mat-light-theme-foreground: (
   }
 
   .ql-snow .ql-tooltip::before {
-    content     : "Visit URL:";
+    content     : "Visiter le lien:";
     line-height : 26px;
     margin-right: 8px;
   }
 
   .ql-snow .ql-tooltip input[type=text] {
-    display  : none;
-    border   : 1px solid $divider-color;
-    font-size: 13px;
-    height   : 26px;
-    margin   : 0px;
-    padding  : 3px 5px;
-    width    : 170px;
+    display   : none;
+    border    : 1px solid $divider-color;
+    font-size : 13px;
+    height    : 26px;
+    margin    : 0px;
+    padding   : 3px 5px;
+    width     : 170px;
     background: none;
-    color: currentColor;
+    color     : currentColor;
   }
 
   .ql-snow .ql-tooltip a.ql-preview {
@@ -1179,13 +1197,13 @@ $mat-light-theme-foreground: (
 
   .ql-snow .ql-tooltip a.ql-action::after {
     border-right : 1px solid $divider-color;
-    content      : 'Edit';
+    content      : 'Éditer';
     margin-left  : 16px;
     padding-right: 8px;
   }
 
   .ql-snow .ql-tooltip a.ql-remove::before {
-    content    : 'Remove';
+    content    : 'Supprimer';
     margin-left: 8px;
   }
 
@@ -1204,12 +1222,12 @@ $mat-light-theme-foreground: (
 
   .ql-snow .ql-tooltip.ql-editing a.ql-action::after {
     border-right : 0px;
-    content      : 'Save';
+    content      : 'Enregistrer';
     padding-right: 0px;
   }
 
   .ql-snow .ql-tooltip[data-mode=link]::before {
-    content: "Enter link:";
+    content: "Lien:";
   }
 
   .ql-snow .ql-tooltip[data-mode=formula]::before {

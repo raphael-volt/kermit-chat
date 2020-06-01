@@ -17,6 +17,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "outDir": "./dist/out-tsc",
+    "esModuleInterop": true,
     "paths": {
       "material": [
         "projects/material/./src/public-api"

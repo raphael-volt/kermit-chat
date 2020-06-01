@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from './api.service';
 import { UrlService } from "./url.service";
@@ -7,7 +7,7 @@ import { BusyService } from './busy.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AddHeaderInterceptor } from './add-header.interceptor';
 import { HttpClientModule } from "@angular/common/http";
-import { DEFAULT_API_CONFIG } from './api-config';
+import { DEV_API_CONFIG, PROD_API_CONFIG } from './api-config';
 import { ImagePipe } from './image.pipe';
 import { UserService } from './user.service';
 const httpInterceptorProviders = [
@@ -23,15 +23,16 @@ const httpInterceptorProviders = [
   ],
   exports: [ImagePipe],
   providers: [
-    ApiService, 
+    ApiService,
     BusyService,
-    UserService, 
+    UserService,
     httpInterceptorProviders,
-  {
-    provide: UrlService,
-    useFactory: () => {
-      return new UrlService(DEFAULT_API_CONFIG)
-    }
-  }]
+    {
+      provide: UrlService,
+      useFactory: () => {
+        const config = isDevMode() ? DEV_API_CONFIG : PROD_API_CONFIG
+        return new UrlService(config)
+      }
+    }]
 })
 export class ApiModule { }

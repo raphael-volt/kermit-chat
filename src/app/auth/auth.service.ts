@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 import { User } from '../vo/vo';
 import { CookieService } from "ngx-cookie-service";
 import { map } from "rxjs/operators";
@@ -32,11 +32,12 @@ export class AuthService {
 
   constructor(
     private userService: UserService,
-    private cookieService: CookieService) { 
-      // this.jpData = {email: "fionnvolt@gmail.com"}
-      // frank.cavailles@yahoo.fr
-      // this.saveCookie()
-    }
+    private cookieService: CookieService) {
+      if(isDevMode()) {
+        this.jpData = { email: "fionnvolt@gmail.com" }
+        this.saveCookie()
+      }
+  }
 
 
 
@@ -63,7 +64,6 @@ export class AuthService {
       }
     }
   }
-  
   saveUser(user: User) {
     this.jpData.email = user.email
     this.saveCookie()
@@ -78,7 +78,7 @@ export class AuthService {
     return this.userService.signin().pipe(
       map(success => {
         this._authorized = success
-        if(success)
+        if (success)
           console.log(`Hello ${this.userService.user.name}`)
         return success
       })
@@ -91,8 +91,8 @@ export class AuthService {
     this.jpData.email = email
     return this.userService.signin().pipe(
       map(success => {
-          this._authorized = success
-        if(success)
+        this._authorized = success
+        if (success)
           this.saveCookie()
         console.log(`Welcome ${this.userService.user.name}`)
       })

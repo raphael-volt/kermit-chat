@@ -1,14 +1,22 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import "~@angular/material/theming";
-//@import "../node_modules/@angular/material/theming";
-@import "theme-variables.scss";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat-core();
+
+$app-primary: mat-palette($mat-blue-grey, 700, 400, 900);
+$app-accent: mat-palette($mat-blue, 800, A200, 900);
+$app-warn: mat-palette($mat-amber, 700,A200, 900);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+@include angular-material-theme($app-theme);
+$ctn-padding: 16px;
+$ctn-max-width :1080px;
 
 @mixin list-item-active($theme) {
   $accent: map-get($theme, accent);
@@ -60,7 +68,6 @@
 @mixin border-divider($theme) {
   border-width: 1px;
   border-style: solid;
-  ;
   border-color: mat-color(map-get($theme, foreground), divider);
 }
 
@@ -98,22 +105,14 @@
   }
 }
 
-$dark-theme: $app-theme;//mat-dark-theme($app-primary, $app-accent, $app-warn);
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($dark-theme);
 
 $config: mat-typography-config();
 
 @import "./quill.scss";
-@include quill-theme(mat-font-family($config), $dark-theme);
+@include quill-theme(mat-font-family($config), $app-theme);
 
-@include list-item-active($dark-theme);
-@include avatar-theme($dark-theme);
-
-//@include dark($dark-theme);
+@include list-item-active($app-theme);
+@include avatar-theme($app-theme);
 
 @mixin theme-color($theme) {
   $primary: map-get($theme, primary);
@@ -176,6 +175,7 @@ $config: mat-typography-config();
   color     : mat-color($foreground, text);
 }
 
+
 @mixin chat-theme ($theme) {
 
   .svg-icon,
@@ -196,13 +196,8 @@ $config: mat-typography-config();
   }
 
 }
+
 @include chat-theme($app-theme);
-
-.dark {
-  @include angular-material-theme($dark-theme);
-  @include chat-theme($dark-theme);
-}
-
 
 .nav-list-column {
   @include fx-item(0, 1);
@@ -280,6 +275,13 @@ body {
   }
 }
 
+.rte-backdrop {
+  background-color: rgba(0, 0, 0, 0.12);
+  z-index: 10000;
+}
+.backdrop-transparent {
+  background-color: rgba(0, 0, 0, 0);
+}
 .dialog-container-transparent {
   background: none;
 
@@ -705,5 +707,26 @@ html.cdk-global-scrollblock body {
     margin-right: $m;
     margin-left : 0;
 
+  }
+}
+
+
+@import 'styles/theme.scss';
+
+@include icon-theme();
+@include emoji-theme();
+
+.emoji-overlay-backdrop {
+  opacity: 0;
+}
+.emoji-selector {
+  font-size: 24px;
+  .mat-tab-label {
+    font-size: inherit;
+    padding  : 0;
+    margin   : 0 $emoji-margin;
+    min-width: 0;
+    height   : 1.4em;
+    width    : $emoji-size;
   }
 }

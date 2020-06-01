@@ -8,26 +8,30 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessagesModule } from './messages/messages.module';
 import { AvatarModule } from "../avatar/avatar.module";
 
-import { EditorComponent } from './editor/editor.component';
 import { RteModule } from './rte/rte.module';
 import { ApiModule } from '../api/api.module';
 import { PictoEditorComponent } from './picto-editor/picto-editor.component';
 import { PictoViewComponent } from './picto-view/picto-view.component';
 import { ImgScrollerModule } from '../img-scroller/img-scroller.module';
 import { UserPreviewModule } from "./user-preview/user-preview.module";
-import { QrteModule } from 'qrte';
+import { MatEmojiModule } from './mat-emoji/mat-emoji.module';
+import { DebugEmojiComponent } from "./debug-emoji/debug-emoji.component";
 @NgModule({
-  declarations: [MembersComponent, AccountComponent, EditorComponent, PictoEditorComponent, PictoViewComponent],
+  declarations: [
+    MembersComponent,
+    AccountComponent,
+    PictoEditorComponent,
+    PictoViewComponent,
+    DebugEmojiComponent],
   imports: [
-    ApiModule, AvatarModule, 
+    ApiModule, AvatarModule,
     MessagesModule, RteModule,
-    UserPreviewModule,
-    QrteModule,
+    UserPreviewModule, MatEmojiModule,
     CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, ImgScrollerModule,
   ],
   exports: [
-    MessagesModule, MembersComponent, AccountComponent, EditorComponent, 
-    PictoViewComponent, PictoEditorComponent
+    MessagesModule, MembersComponent, AccountComponent,
+    PictoViewComponent, PictoEditorComponent, DebugEmojiComponent
   ]
 })
 export class ComponentsModule { }

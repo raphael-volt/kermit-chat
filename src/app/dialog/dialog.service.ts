@@ -58,6 +58,4 @@ export class DialogService {
     const ref = this.dialog.open(component, cfg)
     return ref
   }
-
-
 }

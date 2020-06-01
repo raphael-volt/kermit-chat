@@ -1,12 +1,16 @@
-import { Component, OnInit, ViewChild, AfterViewInit, 
-  Input, ElementRef, OnDestroy, HostBinding, Optional, Self } from '@angular/core';
+import {
+  Component, OnInit, ViewChild, AfterViewInit,
+  Input, ElementRef, OnDestroy, HostBinding, Optional, Self
+} from '@angular/core';
 import { QuillEditorComponent, ContentChange, Focus, Blur } from 'ngx-quill';
 import { Subscription, Subject } from 'rxjs';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { FocusMonitor } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-
+import Quill from 'quill';
+import { RTEEmojiToolbar } from "../../mat-emoji/quill/emoji-toolbar";
+import { MatDialog } from '@angular/material/dialog';
 export type RteData = {
   length: number
   content: any
@@ -115,6 +119,7 @@ export class RteComponent implements OnInit, OnDestroy, AfterViewInit, ControlVa
   private _touched = false
 
   constructor(
+    dialog: MatDialog,
     public elementRef: ElementRef,
     private fm: FocusMonitor,
     @Optional() @Self() public ngControl: NgControl) {
@@ -127,6 +132,8 @@ export class RteComponent implements OnInit, OnDestroy, AfterViewInit, ControlVa
 
     if (ngControl != null)
       ngControl.valueAccessor = this
+
+    RTEEmojiToolbar.dialog = dialog
   }
 
   ngAfterViewInit(): void {
@@ -150,8 +157,15 @@ export class RteComponent implements OnInit, OnDestroy, AfterViewInit, ControlVa
       this._ngDoCheck()
     })
 
-    if(this._value)
+    if (this._value)
       this.setEditorContent(this._value.content)
+  }
+
+  private quill: Quill
+
+  onEditorCreated(quill: Quill) {
+    this.quill = quill
+    const toolbar = quill.getModule('toolbar');
   }
 
 
