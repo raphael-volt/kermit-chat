@@ -8,7 +8,7 @@
         <mat-card-content class="divider">
             <mat-divider></mat-divider>
         </mat-card-content>
-        <mat-card-content class="thread-scroller">
+        <mat-card-content class="thread-scroller" (scroll)="scrolled($event)" #scrollframe>
             <mat-card class="thread-part thread-owner">
                 <!--owner message -->
                 <mat-card-content>
@@ -27,7 +27,7 @@
         </mat-card-content>
     </mat-card>
     <mat-expansion-panel class="thread-panel"
-        (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        (opened)="panelOpenState = true" (closed)="panelCloseHandler()">
         <mat-expansion-panel-header>
             <mat-panel-title class="fx-clr accent" *ngIf="!panelOpenState">
                 Répondre

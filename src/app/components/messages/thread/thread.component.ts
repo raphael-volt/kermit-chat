@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { User, ThreadData, ThreadPart } from 'src/app/vo/vo';
@@ -19,7 +19,10 @@ import { Delta, DeltaOperation } from 'quill';
   },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ThreadComponent implements OnInit, OnDestroy {
+export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
+
+  @ViewChild('scrollframe', { static: false }) scrollFrame: ElementRef;
+  @ViewChildren('thread-part') itemElements: QueryList<any>;
 
   asyncThreadData: BehaviorSubject<ThreadData> = new BehaviorSubject<ThreadData>(null)
   threadData: ThreadData
@@ -53,6 +56,17 @@ export class ThreadComponent implements OnInit, OnDestroy {
     })
   }
 
+  ngAfterViewInit(): void {
+    this.checkScrollHandler()
+  }
+
+  private checkScrollHandler() {
+    if (this.scrollFrame && !this.scrollContainer) {
+      this.scrollContainer = this.scrollFrame.nativeElement;
+      this.itemElements.changes.subscribe(_ => this.onItemElementsChanged())
+    }
+  }
+
   private setupThread(id: number) {
     const userService = this.userService
     if (!userService.busy) {
@@ -67,8 +81,6 @@ export class ThreadComponent implements OnInit, OnDestroy {
   private loadThread(id: number) {
     this.api.getThreadData(id).pipe(first()).subscribe(data => {
       const userService = this.userService
-      if (data.contents.length > 10)
-        data.contents.splice(10, data.contents.length - 10)
       data.user = userService.findById(data.user_id)
       for (const item of data.contents) {
         item.user = userService.findById(item.user_id)
@@ -76,29 +88,43 @@ export class ThreadComponent implements OnInit, OnDestroy {
       this.threadData = data
       this.asyncThreadData.next(data)
       this.cdr.detectChanges()
+      this.checkScrollHandler()
     })
 
   }
 
-  reply(event: MouseEvent) {
-    event.stopImmediatePropagation()
-    event.preventDefault()
-    const data = this.messageControl.value
-    const ops = (data.content as Delta).ops
-    const tp: ThreadPart = {
-      thread_id: this.thread.id,
-      user_id: this.thread.user_id,
-      content: ops
-    }
-    this.api.reply(tp).pipe(first()).subscribe(tp=>{
-      this.threadData.contents.push({
+  panelCloseHandler() {
+    this.panelOpenState = false
+    this.cdr.detectChanges()
+    if (this.replyFlag) {
+      this.replyFlag = false
+      this.scrollToBottom()
+      const data = this.messageControl.value
+      const ops = (data.content as Delta).ops
+      const tp: ThreadPart = {
+        thread_id: this.thread.id,
         user_id: this.thread.user_id,
-        user: this.userService.user,
-        inserts: tp.content as DeltaOperation[]
+        content: ops
+      }
+      this.api.reply(tp).pipe(first()).subscribe(tp => {
+        this.threadData.contents.push({
+          user_id: this.thread.user_id,
+          user: this.userService.user,
+          inserts: tp.content as DeltaOperation[]
+        })
+        this.cdr.detectChanges()
       })
-      this.cdr.detectChanges()
-    })
-    this.messageControl.setValue(null)
+      this.messageControl.setValue(null)
+    }
+  }
+
+  private replyFlag = false
+
+  reply(event: MouseEvent) {
+    //event.stopImmediatePropagation()
+    //event.preventDefault()
+    this.replyFlag = true
+
   }
 
   ngOnInit(): void {
@@ -108,6 +134,35 @@ export class ThreadComponent implements OnInit, OnDestroy {
     for (let sub of this.subs)
       sub.unsubscribe()
     this.subs = null
+  }
+
+  private scrollContainer: any;
+  private isNearBottom = true;
+
+
+  private onItemElementsChanged(): void {
+    if (this.isNearBottom) {
+      this.scrollToBottom();
+    }
+  }
+
+  private scrollToBottom(): void {
+    this.scrollContainer.scroll({
+      top: this.scrollContainer.scrollHeight,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  private isUserNearBottom(): boolean {
+    const threshold = 150;
+    const position = this.scrollContainer.scrollTop + this.scrollContainer.offsetHeight;
+    const height = this.scrollContainer.scrollHeight;
+    return position > height - threshold;
+  }
+
+  scrolled(event: any): void {
+    this.isNearBottom = this.isUserNearBottom();
   }
 
 }
