@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription, BehaviorSubject } from 'rxjs';
-import { User, ThreadData, ThreadPart } from 'src/app/vo/vo';
+import { Subscription, BehaviorSubject, Observable } from 'rxjs';
+import { User, ThreadData, ThreadPart, ThreadDataItem } from 'src/app/vo/vo';
 import { ApiService } from 'src/app/api/api.service';
 import { first } from 'rxjs/operators';
 import { FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/api/user.service';
 import { Delta, DeltaOperation } from 'quill';
+import { BusyService } from 'src/app/api/busy.service';
 
 
 
@@ -43,8 +44,11 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(route: ActivatedRoute,
     private api: ApiService,
     private userService: UserService,
+    private busy: BusyService,
     private cdr: ChangeDetectorRef) {
 
+
+    busy.open()
     this.messageControl = new FormControl(null, Validators.required)
     this.sub = this.messageControl.statusChanges.subscribe(value => {
       cdr.detectChanges()
@@ -59,7 +63,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.checkScrollHandler()
+    //this.checkScrollHandler()
   }
 
   private checkScrollHandler() {
@@ -80,17 +84,43 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     })
   }
 
+  private appendThreadPartAsync(contents: ThreadDataItem[], service: UserService) {
+    return new Observable<boolean>(obs => {
+      contents = contents.slice()
+      const cdr = this.cdr
+      const next = () => {
+        if (contents.length) {
+          window.requestAnimationFrame(() => {
+            const data = contents.shift()
+            data.user = service.findById(data.user_id)
+            this.replies.push(data)
+            cdr.detectChanges()
+            next()
+          })
+        }
+        else {
+          obs.next(true)
+          obs.complete()
+        }
+      }
+      next()
+    })
+  }
+
+  replies: ThreadDataItem[] = []
+
   private loadThread(id: number) {
     this.api.getThreadData(id).pipe(first()).subscribe(data => {
       const userService = this.userService
       data.user = userService.findById(data.user_id)
-      for (const item of data.contents) {
-        item.user = userService.findById(item.user_id)
-      }
       this.threadData = data
       this.asyncThreadData.next(data)
       this.cdr.detectChanges()
-      this.checkScrollHandler()
+      this.appendThreadPartAsync(data.contents, userService).pipe(first()).subscribe(done => {
+        this.busy.close()
+        this.checkScrollHandler()
+        this.cdr.detectChanges()
+      })
     })
 
   }
@@ -109,7 +139,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
         content: ops
       }
       this.api.reply(tp).pipe(first()).subscribe(tp => {
-        this.threadData.contents.push({
+        this.replies.push({
           user_id: this.currentUser.id,
           user: this.currentUser,
           inserts: tp.content as DeltaOperation[]
@@ -139,10 +169,11 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private scrollContainer: any;
-  private isNearBottom = true;
+  private isNearBottom = false;
 
 
   private onItemElementsChanged(): void {
+    if (this.busy.busy) return
     if (this.isNearBottom) {
       this.scrollToBottom();
     }
@@ -164,7 +195,10 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   scrolled(event: any): void {
-    this.isNearBottom = this.isUserNearBottom();
+    if (this.busy.busy) return
+    window.requestAnimationFrame(()=>{
+      this.isNearBottom = this.isUserNearBottom()
+    })
   }
 
 }

@@ -3,7 +3,7 @@
     .user-preview {
         display        : flex;
         flex-direction : row;
-        flex-wrap      : wrap;
+        flex-wrap      : nowrap;
         justify-content: flex-start;
         align-content  : flex-start;
         align-items    : center;
@@ -19,7 +19,7 @@
     .content-wrapper {
         display        : flex;
         flex-direction : row;
-        flex-wrap      : nowrap;
+        flex-wrap      : wrap;
         justify-content: flex-start;
         align-content  : flex-start;
         align-items    : baseline;
@@ -33,7 +33,7 @@
         max-height: 44px;
     }
     svg-icon {
-        font-size: 34px;
+        font-size: 27px;
     }
 
     h3 {

@@ -16,7 +16,7 @@
                 </mat-card-content>
             </mat-card>
             <!--message replies -->
-            <mat-card class="thread-part" *ngFor="let content of threadData.contents"
+            <mat-card class="thread-part" *ngFor="let content of replies"
                 [class.thread-owner]="content.user_id == thread.user_id">
                 <mat-card-content>
                     <user-preview class="primary" *ngIf="content.user_id != thread.user_id" showName="true"

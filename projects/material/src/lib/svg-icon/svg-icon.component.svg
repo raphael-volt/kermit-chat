@@ -1,3 +1,3 @@
 <svg viewBox='0 0 24 24' height='1.6em' width='1.6em' preserveAspectRatio='xMidYMid meet'>
-<use width="24" height="24" [useHref]="iconName"></use>
+<use x="0" y="0" width="24" height="24" [useHref]="iconName"></use>
 </svg>

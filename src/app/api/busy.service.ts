@@ -9,12 +9,20 @@ export class BusyService {
 
   constructor(private dialog: MatDialog) { }
 
-  private dialogRef: MatDialogRef<MatProgressSpinner>
+  private dialogRef: MatDialogRef<MatProgressSpinner> = null
+
+  private _busy: boolean = false
+  get busy() {
+    return this._busy
+  }
   open() {
-    if (this.dialogRef) return
+    if (this._busy) return
+    this._busy = true
     this.dialogRef = this.dialog.open(MatProgressSpinner, {
       panelClass: "dialog-container-transparent",
-      hasBackdrop: true
+      hasBackdrop: true,
+      disableClose: true,
+      backdropClass: 'backdrop-transparent'
     })
     const instance = this.dialogRef.componentInstance
     instance.diameter = 50
@@ -24,8 +32,9 @@ export class BusyService {
   }
 
   close() {
-    if (!this.dialogRef) return
+    if (!this._busy) return
     this.dialogRef.close()
     this.dialogRef = null
+    this._busy = false
   }
 }

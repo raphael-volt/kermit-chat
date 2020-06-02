@@ -7,7 +7,7 @@
 <div class="user-preview">
     <div class="picto-wrapper mat-elevation-z2">
         <img *ngIf="hasPicto" [src]="user.picto | userPicto" />
-        <svg-icon iconName="account_circle" color="primary" *ngIf="!hasPicto"></svg-icon>
+        <svg-icon iconName="person" color="primary" *ngIf="!hasPicto"></svg-icon>
     </div>
     <div class="content-wrapper">
         <h3 *ngIf="showName && user">{{user.name}}</h3>
