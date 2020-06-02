@@ -10,6 +10,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { DEV_API_CONFIG, PROD_API_CONFIG } from './api-config';
 import { ImagePipe } from './image.pipe';
 import { UserService } from './user.service';
+import { WatchService } from './watch.service';
 const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: AddHeaderInterceptor, multi: true }
 ]
@@ -26,6 +27,7 @@ const httpInterceptorProviders = [
     ApiService,
     BusyService,
     UserService,
+    WatchService,
     httpInterceptorProviders,
     {
       provide: UrlService,

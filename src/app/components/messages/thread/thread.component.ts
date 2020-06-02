@@ -144,6 +144,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
           user: this.currentUser,
           inserts: tp.content as DeltaOperation[]
         })
+        this.thread.last_part = tp.id
         this.cdr.detectChanges()
       })
       this.messageControl.setValue(null)

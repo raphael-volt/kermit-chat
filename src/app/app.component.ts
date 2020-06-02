@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { routes } from "./app-routing.module";
 import { Routes, Route, Router, ActivationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { IconService } from 'material';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +15,7 @@ export class AppComponent {
 
   private routerSub: Subscription
 
-  constructor(private router: Router, icon: IconService) { 
+  constructor(private router: Router) { 
     this.routes = routes.filter(route=>{
       return route.path != ''
     })

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Thread, ThreadPart, ThreadData, ThreadTree } from '../vo/vo';
+import { Thread, ThreadPart, ThreadData, ThreadTree, WatchDiff } from '../vo/vo';
 import { map, first } from 'rxjs/operators';
 import { UrlService } from './url.service';
 import { DeltaOperation } from 'quill';
@@ -67,6 +67,13 @@ export class ApiService {
       this.threadList.next(l)
       return thread
     }))
+  }
+
+  watch(diff: WatchDiff) {
+    return this.http.post<WatchDiff>(
+      this.getPath('watch'),
+      diff
+    )
   }
 
   private watchTimer: any = null;

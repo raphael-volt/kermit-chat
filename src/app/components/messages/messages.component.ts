@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { DialogService } from 'src/app/dialog/dialog.service';
-import { first, map } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import { ApiService } from 'src/app/api/api.service';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/api/user.service';
+import { WatchService } from 'src/app/api/watch.service';
 
 @Component({
   selector: 'app-messages',
@@ -29,7 +30,8 @@ export class MessagesComponent implements OnInit, AfterViewInit {
     public userService: UserService,
     private cdr: ChangeDetectorRef,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private watch: WatchService) { }
   getThreadList() {
     if (!this.api.threadList.getValue())
       return this.api.getThreadCollection().pipe(first()).subscribe(this.checkNavOpened)

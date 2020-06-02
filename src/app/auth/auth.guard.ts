@@ -4,6 +4,8 @@ import { AuthService } from './auth.service';
 import { DialogService } from '../dialog/dialog.service';
 import { Injectable } from '@angular/core';
 import { MessagesComponent } from '../components/messages/messages.component';
+import { WatchService } from '../api/watch.service';
+import { UserService } from '../api/user.service';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +14,9 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
     constructor(
         private authService: AuthService,
-        private dialogService: DialogService) {
+        private dialogService: DialogService,
+        private user: UserService,
+        private watch: WatchService) {
         const e = "" + "zz"
     }
     canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
@@ -26,10 +30,15 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         if (service.authorized)
             return true
         return new Observable<boolean>((observer: Observer<boolean>) => {
+            const signin = () => {
+                observer.next(true)
+                this.watch.setUserId(this.user.user.id)
+                this.watch.run()
+            }
             const openDialog = () => {
                 const sub = this.dialogService.openSignin().subscribe(user => {
                     sub.unsubscribe()
-                    observer.next(true)
+                    signin()
                 })
             }
             if (!service.hasCookie) {
@@ -46,7 +55,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
                     success => {
                         done()
                         if (success)
-                            observer.next(true)
+                            signin()
                         else
                             openDialog()
                     },

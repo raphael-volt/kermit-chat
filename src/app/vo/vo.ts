@@ -1,5 +1,16 @@
 import { DeltaOperation } from 'quill';
-
+export type WatchStatus = 'on' | 'off' | ''
+export type UserStatus = {
+  status: WatchStatus
+  id: number
+}
+export type WatchDiff = {
+  user_id?: number
+  status: WatchStatus
+  thread: number
+  thread_part: number
+  users: number[]
+}
 export interface IVO {
     id?:number
 }
@@ -8,6 +19,7 @@ export interface Thread extends IVO
 {
     subject?:number
     user_id?:number   
+    last_part?:number
 }
 export interface ThreadPartDeltaOperation {
     
@@ -30,6 +42,7 @@ export interface User extends IVO
     email?: string
     name?: string
     picto?
+    status?: WatchStatus
 }
 
 export interface ThreadTree {
