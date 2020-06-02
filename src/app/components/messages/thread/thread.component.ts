@@ -39,6 +39,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
 
   messageControl: FormControl
   messageInvalid = true
+  currentUser: User
   constructor(route: ActivatedRoute,
     private api: ApiService,
     private userService: UserService,
@@ -54,6 +55,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
         this.setupThread(+map.get('id'))
       }
     })
+    this.currentUser = userService.user
   }
 
   ngAfterViewInit(): void {
@@ -103,13 +105,13 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
       const ops = (data.content as Delta).ops
       const tp: ThreadPart = {
         thread_id: this.thread.id,
-        user_id: this.thread.user_id,
+        user_id: this.currentUser.id,
         content: ops
       }
       this.api.reply(tp).pipe(first()).subscribe(tp => {
         this.threadData.contents.push({
-          user_id: this.thread.user_id,
-          user: this.userService.user,
+          user_id: this.currentUser.id,
+          user: this.currentUser,
           inserts: tp.content as DeltaOperation[]
         })
         this.cdr.detectChanges()

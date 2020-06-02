@@ -25,7 +25,6 @@ export class UserPictoPipe implements PipeTransform {
         }
       }
     }
-    console.log(`userPicto => ${picto} | ${value}`)
     if (!isNaN(picto))
       return this.url.image(picto)
     return "";

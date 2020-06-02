@@ -33,10 +33,12 @@ export class AuthService {
   constructor(
     private userService: UserService,
     private cookieService: CookieService) {
+      /*
       if(isDevMode()) {
         this.jpData = { email: "fionnvolt@gmail.com" }
         this.saveCookie()
       }
+      */
   }
 
 
