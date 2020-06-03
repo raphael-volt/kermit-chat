@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, BehaviorSubject, Observable } from 'rxjs';
 import { User, ThreadData, ThreadPart, ThreadDataItem } from 'src/app/vo/vo';
@@ -8,6 +8,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/api/user.service';
 import { Delta, DeltaOperation } from 'quill';
 import { BusyService } from 'src/app/api/busy.service';
+import { WatchService } from 'src/app/api/watch.service';
+
 
 
 
@@ -41,12 +43,13 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
   messageControl: FormControl
   messageInvalid = true
   currentUser: User
-  constructor(route: ActivatedRoute,
+  constructor(
+    route: ActivatedRoute,
+    watch: WatchService,
     private api: ApiService,
     private userService: UserService,
     private busy: BusyService,
     private cdr: ChangeDetectorRef) {
-
 
     busy.open()
     this.messageControl = new FormControl(null, Validators.required)
@@ -60,6 +63,37 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     })
     this.currentUser = userService.user
+    this.sub = watch.$threadPart.subscribe(id => {
+      const data = this.threadData
+      if(! data)
+        return
+      const tid = data.thread.id
+      if(tid == watch.thread)
+        this.updateReplies()
+    })
+  }
+
+  private updateReplies() {
+    const replies =  this.replies
+    this.api.getThreadData(this.threadData.thread.id).pipe(first()).subscribe(data => {
+      const newContents = data.contents
+      const currentContents = this.threadData.contents
+      const k = newContents.length
+      let _id: number
+      const findPart = (part: ThreadDataItem) => part.id == _id 
+      for (let i = 0; i < k; i++) {
+        const reply = newContents[i]
+        _id = reply.id
+        const r = replies.find(findPart)
+        if(! r) {
+          console.log("new reply")
+          reply.user = this.userService.findById(reply.user_id)
+          currentContents.push(reply)
+          replies.push(reply)
+          this.cdr.detectChanges()
+        }
+      }
+    })
   }
 
   ngAfterViewInit(): void {
@@ -142,6 +176,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
         this.replies.push({
           user_id: this.currentUser.id,
           user: this.currentUser,
+          id: tp.id,
           inserts: tp.content as DeltaOperation[]
         })
         this.thread.last_part = tp.id
@@ -197,7 +232,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
 
   scrolled(event: any): void {
     if (this.busy.busy) return
-    window.requestAnimationFrame(()=>{
+    window.requestAnimationFrame(() => {
       this.isNearBottom = this.isUserNearBottom()
     })
   }

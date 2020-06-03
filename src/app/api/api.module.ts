@@ -11,23 +11,27 @@ import { DEV_API_CONFIG, PROD_API_CONFIG } from './api-config';
 import { ImagePipe } from './image.pipe';
 import { UserService } from './user.service';
 import { WatchService } from './watch.service';
+import { WatchNotificationDirective } from './watch-notification.directive';
+import { WatchNotificationService } from './watch-notification.service';
+
 const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: AddHeaderInterceptor, multi: true }
 ]
 
 @NgModule({
-  declarations: [ImagePipe],
+  declarations: [ImagePipe, WatchNotificationDirective],
   imports: [
     CommonModule,
     AuthModule,
     HttpClientModule
   ],
-  exports: [ImagePipe],
+  exports: [ImagePipe, WatchNotificationDirective],
   providers: [
     ApiService,
     BusyService,
     UserService,
     WatchService,
+    WatchNotificationService,
     httpInterceptorProviders,
     {
       provide: UrlService,

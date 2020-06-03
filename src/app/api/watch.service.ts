@@ -3,6 +3,7 @@ import { ApiService } from './api.service';
 import { first } from 'rxjs/operators';
 import { WatchDiff, UserStatus, User, WatchStatus } from '../vo/vo';
 import { BehaviorSubject } from 'rxjs';
+import { WatchNotificationService } from './watch-notification.service';
 
 
 @Injectable({
@@ -15,14 +16,17 @@ export class WatchService {
 
   private dif: WatchDiff = {
     user_id: 0,
-    status:"on",
+    status: "on",
+    thread_user: 0,
     thread: 0,
     thread_part: 0,
     users: []
   }
   private _members: BehaviorSubject<User[]>
 
-  constructor(private api: ApiService) { }
+  constructor(
+    private api: ApiService,
+    private notifier: WatchNotificationService) { }
 
   setUserId(id) {
     this.dif.user_id = id
@@ -48,17 +52,18 @@ export class WatchService {
     const findUser = id => id == _findId
     const s = this._members
     let change = false
-    if(s) {
+    if (s) {
       const l = s.getValue()
-      if(l) {
+      if (l) {
         for (const m of l) {
           _findId = m.id
           const _on = users.find(findUser)
-          const ns: WatchStatus = _on ? "on":"off"
-          const cs: WatchStatus = m.status == "on" ? "on":"off"
-          if(ns != cs) {
+          const ns: WatchStatus = _on ? "on" : "off"
+          const cs: WatchStatus = m.status == "on" ? "on" : "off"
+          if (ns != cs) {
             change = true
             m.status = ns
+            this.notifier.user(m, ns)
           }
         }
       }
@@ -74,35 +79,35 @@ export class WatchService {
     for (const _currentStatus of current) {
       _findId = _currentStatus.id
       const _status = _usersOn.find(findUser)
-      if(_status) {
+      if (_status) {
         const i = _usersOn.indexOf(_status)
-        if(_currentStatus.status == "off") {
+        if (_currentStatus.status == "off") {
           _usersOn.splice(i, 1)
           _usersOnChange = true
         }
         else {
-          if(i != -1)
+          if (i != -1)
             _usersOn.push(_currentStatus)
-            _usersOnChange = true
+          _usersOnChange = true
         }
       }
     }
     const _members = this._members
-    if(_members) {
+    if (_members) {
       let notify = false
       const l = _members.getValue()
       for (const _m of l) {
         _findId = _m.id
         const _on = _usersOn.find(findUser)
-        const _ns: WatchStatus = _on ? "on":"off"
-        const _cs: WatchStatus = _m.status == "on" ? "on":"off"
-        if(_ns != _cs) {
+        const _ns: WatchStatus = _on ? "on" : "off"
+        const _cs: WatchStatus = _m.status == "on" ? "on" : "off"
+        if (_ns != _cs) {
           notify = true
         }
         _m.status = _ns
       }
-      if(notify)
-        _members.next(l)      
+      if (notify)
+        _members.next(l)
     }
     if (_usersOnChange || previous.length != n)
       return true
@@ -110,8 +115,8 @@ export class WatchService {
       const status = current[i];
       _findId = status.id
       const old = previous.find(findUser)
-      if(old) {
-        if(old.status != status.status)
+      if (old) {
+        if (old.status != status.status)
           return true
       }
       else
@@ -121,8 +126,8 @@ export class WatchService {
       const old = previous[i];
       _findId = old.id
       const status = current.find(findUser)
-      if(status) {
-        if(old.status != status.status)
+      if (status) {
+        if (old.status != status.status)
           return true
       }
       else
@@ -134,21 +139,41 @@ export class WatchService {
   private timerHandler = () => {
     this.timer = setTimeout(() => {
       const diff: WatchDiff = this.dif
+      const notifier = this.notifier
       this.api.watch(diff).pipe(first()).subscribe(result => {
 
-        if (result.thread != diff.thread)
-          this.$thread.emit(result.thread)
+        let threadChange = false
+        let threadPartChange = false
+        let old = this.dif.thread
+        if (result.thread != diff.thread) {
+          this.thread = result.thread
+          threadChange = true
+          if(old !== 0)
+            notifier.message(result.thread_user)
+        }
 
-        if (result.thread_part != diff.thread_part)
+        old = diff.thread_part
+        if (result.thread_part != diff.thread_part) {
+          this.threadPart = result.thread_part
+          threadPartChange = true
+          if(old !== 0)
+            notifier.reply(result.thread_user)
+        }
+
+        if (threadPartChange) {
           this.$threadPart.emit(result.thread_part)
-
-        if(! this.checkUsersDiff(result.users))
-          this.$users.emit(diff.users)
+        }
+        if (threadChange) {
+          this.$thread.emit(result.thread)
+        }
         
+        if (!this.checkUsersDiff(result.users))
+          this.$users.emit(diff.users)
+
         diff.thread = result.thread
         diff.thread_part = result.thread_part
 
-        if(diff.status == "on") {
+        if (diff.status == "on") {
           diff.status = ""
         }
         this.timerHandler()

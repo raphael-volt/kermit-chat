@@ -5,7 +5,8 @@ export type UserStatus = {
   id: number
 }
 export type WatchDiff = {
-  user_id?: number
+  user_id?: number,
+  thread_user?:number
   status: WatchStatus
   thread: number
   thread_part: number
@@ -51,7 +52,7 @@ export interface ThreadTree {
     inserts: DeltaOperation[]
 }
 
-export interface ThreadDataItem {
+export interface ThreadDataItem extends IVO {
     user_id: number
     user?: User
     inserts: DeltaOperation[]

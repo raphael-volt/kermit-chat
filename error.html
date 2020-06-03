@@ -1,24 +1,43 @@
 <br />
 <font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
-<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: file_put_contents(): Filename cannot be empty in /var/www/html/src/services/WatchService.php on line <i>161</i></th></tr>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: array_filter() expects parameter 1 to be array, object given in /var/www/html/src/services/WatchService.php on line <i>64</i></th></tr>
 <tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
 <tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
-<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0051</td><td bgcolor='#eeeeec' align='right'>392424</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/api/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0054</td><td bgcolor='#eeeeec' align='right'>396248</td><td bgcolor='#eeeeec'>src\services\RequestService->handle(  )</td><td title='/var/www/html/api/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>9</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0079</td><td bgcolor='#eeeeec' align='right'>431896</td><td bgcolor='#eeeeec'>src\services\RequestService->watchRequest( ??? )</td><td title='/var/www/html/src/services/RequestService.php' bgcolor='#eeeeec'>.../RequestService.php<b>:</b>119</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0082</td><td bgcolor='#eeeeec' align='right'>436856</td><td bgcolor='#eeeeec'>src\services\WatchService->save(  )</td><td title='/var/www/html/src/services/RequestService.php' bgcolor='#eeeeec'>.../RequestService.php<b>:</b>144</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>5</td><td bgcolor='#eeeeec' align='center'>0.0083</td><td bgcolor='#eeeeec' align='right'>437112</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.file-put-contents' target='_new'>file_put_contents</a>
-( ???, ??? )</td><td title='/var/www/html/src/services/WatchService.php' bgcolor='#eeeeec'>.../WatchService.php<b>:</b>161</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0067</td><td bgcolor='#eeeeec' align='right'>393624</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/api/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0069</td><td bgcolor='#eeeeec' align='right'>397448</td><td bgcolor='#eeeeec'>src\services\RequestService->handle(  )</td><td title='/var/www/html/api/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>9</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0102</td><td bgcolor='#eeeeec' align='right'>432960</td><td bgcolor='#eeeeec'>src\services\RequestService->watchRequest( ??? )</td><td title='/var/www/html/src/services/RequestService.php' bgcolor='#eeeeec'>.../RequestService.php<b>:</b>119</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0103</td><td bgcolor='#eeeeec' align='right'>434304</td><td bgcolor='#eeeeec'>src\services\WatchService::instance(  )</td><td title='/var/www/html/src/services/RequestService.php' bgcolor='#eeeeec'>.../RequestService.php<b>:</b>142</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>5</td><td bgcolor='#eeeeec' align='center'>0.0103</td><td bgcolor='#eeeeec' align='right'>434400</td><td bgcolor='#eeeeec'>src\services\WatchService->__construct(  )</td><td title='/var/www/html/src/services/WatchService.php' bgcolor='#eeeeec'>.../WatchService.php<b>:</b>12</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>6</td><td bgcolor='#eeeeec' align='center'>0.0106</td><td bgcolor='#eeeeec' align='right'>438504</td><td bgcolor='#eeeeec'>src\services\WatchService->checkUsersTime(  )</td><td title='/var/www/html/src/services/WatchService.php' bgcolor='#eeeeec'>.../WatchService.php<b>:</b>44</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>7</td><td bgcolor='#eeeeec' align='center'>0.0106</td><td bgcolor='#eeeeec' align='right'>438824</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.array-filter' target='_new'>array_filter</a>
+( ???, ??? )</td><td title='/var/www/html/src/services/WatchService.php' bgcolor='#eeeeec'>.../WatchService.php<b>:</b>64</td></tr>
 </table></font>
 <br />
 <font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
-<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: Cannot modify header information - headers already sent by (output started at /var/www/html/src/services/WatchService.php:161) in /var/www/html/src/core/http/HTTPMethods.php on line <i>53</i></th></tr>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: Invalid argument supplied for foreach() in /var/www/html/src/services/WatchService.php on line <i>161</i></th></tr>
 <tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
 <tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
-<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0051</td><td bgcolor='#eeeeec' align='right'>392424</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/api/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0084</td><td bgcolor='#eeeeec' align='right'>434728</td><td bgcolor='#eeeeec'>src\services\RequestService->getResponse(  )</td><td title='/var/www/html/api/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>10</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0085</td><td bgcolor='#eeeeec' align='right'>434728</td><td bgcolor='#eeeeec'>src\services\RequestService->setResponseCode( ??? )</td><td title='/var/www/html/src/services/RequestService.php' bgcolor='#eeeeec'>.../RequestService.php<b>:</b>398</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0085</td><td bgcolor='#eeeeec' align='right'>434728</td><td bgcolor='#eeeeec'>src\core\http\HTTPMethods::setResponseCode( ???, ??? )</td><td title='/var/www/html/src/services/RequestService.php' bgcolor='#eeeeec'>.../RequestService.php<b>:</b>383</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>5</td><td bgcolor='#eeeeec' align='center'>0.0085</td><td bgcolor='#eeeeec' align='right'>434784</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.header' target='_new'>header</a>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0067</td><td bgcolor='#eeeeec' align='right'>393624</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/api/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0069</td><td bgcolor='#eeeeec' align='right'>397448</td><td bgcolor='#eeeeec'>src\services\RequestService->handle(  )</td><td title='/var/www/html/api/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>9</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0102</td><td bgcolor='#eeeeec' align='right'>432960</td><td bgcolor='#eeeeec'>src\services\RequestService->watchRequest( ??? )</td><td title='/var/www/html/src/services/RequestService.php' bgcolor='#eeeeec'>.../RequestService.php<b>:</b>119</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0108</td><td bgcolor='#eeeeec' align='right'>436960</td><td bgcolor='#eeeeec'>src\services\WatchService->check( ??? )</td><td title='/var/www/html/src/services/RequestService.php' bgcolor='#eeeeec'>.../RequestService.php<b>:</b>143</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: Cannot modify header information - headers already sent by (output started at /var/www/html/src/services/WatchService.php:64) in /var/www/html/src/core/http/HTTPMethods.php on line <i>53</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0067</td><td bgcolor='#eeeeec' align='right'>393624</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/api/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0113</td><td bgcolor='#eeeeec' align='right'>435672</td><td bgcolor='#eeeeec'>src\services\RequestService->getResponse(  )</td><td title='/var/www/html/api/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>10</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0113</td><td bgcolor='#eeeeec' align='right'>435672</td><td bgcolor='#eeeeec'>src\services\RequestService->setResponseCode( ??? )</td><td title='/var/www/html/src/services/RequestService.php' bgcolor='#eeeeec'>.../RequestService.php<b>:</b>400</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0113</td><td bgcolor='#eeeeec' align='right'>435672</td><td bgcolor='#eeeeec'>src\core\http\HTTPMethods::setResponseCode( ???, ??? )</td><td title='/var/www/html/src/services/RequestService.php' bgcolor='#eeeeec'>.../RequestService.php<b>:</b>385</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>5</td><td bgcolor='#eeeeec' align='center'>0.0113</td><td bgcolor='#eeeeec' align='right'>435712</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.header' target='_new'>header</a>
 ( ??? )</td><td title='/var/www/html/src/core/http/HTTPMethods.php' bgcolor='#eeeeec'>.../HTTPMethods.php<b>:</b>53</td></tr>
 </table></font>
+{
+    "thread": 49,
+    "thread_part": 3326,
+    "users": [
+        66
+    ]
+}

@@ -15,6 +15,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatRippleModule } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule} from '@angular/material/snack-bar'
 
 import { IconService } from './icon.service';
 import { SvgIconDirective } from './svg-icon.directive';
@@ -37,7 +38,8 @@ import { SvgIconComponent } from './svg-icon/svg-icon.component';
         MatExpansionModule,
         MatButtonToggleModule,
         MatRippleModule,
-        MatSidenavModule
+        MatSidenavModule,
+        MatSnackBarModule
     ],
     exports: [
         MatListModule,
@@ -55,8 +57,8 @@ import { SvgIconComponent } from './svg-icon/svg-icon.component';
         MatButtonToggleModule,
         MatRippleModule,
         SvgIconComponent,
-        MatSidenavModule
-
+        MatSidenavModule,
+        MatSnackBarModule
     ],
     providers: [IconService],
     declarations: [SvgIconComponent, SvgIconDirective]
