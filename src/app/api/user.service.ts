@@ -4,6 +4,7 @@ import { UrlService } from './url.service';
 import { User } from '../vo/vo';
 import { Subject, Observable, of, Observer } from 'rxjs';
 import { first, map } from 'rxjs/operators';
+import { WatchService } from './watch.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +21,13 @@ export class UserService {
   private _requestFlag = false
   constructor(
     private http: HttpClient,
-    private url: UrlService
+    private url: UrlService,
+    private watch: WatchService
   ) { }
 
+  signout() {
+    return this.watch.stop()
+  }
   getUsers() {
     if (this._busy) {
       if (!this._requestFlag) {
@@ -30,6 +35,9 @@ export class UserService {
         this.http.get<User[]>(this.url.api("user")).pipe(first()).subscribe(users => {
           this._requestFlag = true
           this.users = users
+          this.watch.setMembers(users)
+          this.watch.currentUser = this._user
+          this.watch.run()
           this._busy = false
           this.busyChange.next(false)
         })

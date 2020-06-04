@@ -18,9 +18,8 @@ export class MembersComponent implements OnInit, OnDestroy {
   members: BehaviorSubject<User[]> = new BehaviorSubject(null)
   displayedColumns: string[] = ['name', 'email', 'status']
   private usersSub: Subscription
-  private watchSub: Subscription
 
-  constructor(private userService: UserService, private watch: WatchService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
 
@@ -33,17 +32,12 @@ export class MembersComponent implements OnInit, OnDestroy {
 
   private initMembers = (users) => {
     this.members.next(users)
-    this.watch.setMembers(this.members)
   }
 
   ngOnDestroy() {
     if (this.usersSub && !this.usersSub.closed) {
       this.usersSub.unsubscribe()
       this.usersSub = null
-    }
-    if (this.watchSub) {
-      this.watchSub.unsubscribe()
-      this.watchSub = null
     }
   }
 

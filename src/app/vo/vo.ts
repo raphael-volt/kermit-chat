@@ -6,8 +6,8 @@ export type UserStatus = {
 }
 export type WatchDiff = {
   user_id?: number,
-  thread_user?:number
   status: WatchStatus
+  thread_user?:number
   thread: number
   thread_part: number
   users: number[]
@@ -18,7 +18,7 @@ export interface IVO {
 
 export interface Thread extends IVO
 {
-    subject?:number
+    subject?:string
     user_id?:number   
     last_part?:number
 }

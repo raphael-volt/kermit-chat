@@ -1,17 +1,55 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EmojiSelectComponent } from '../mat-emoji/emoji-select/emoji-select.component';
-
+import { FormGroup, FormBuilder, ValidatorFn, AbstractControl, ValidationErrors, Validators, FormControl } from '@angular/forms';
+import { RteData } from "../rte/editor/rte.component";
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-debug-emoji',
   templateUrl: './debug-emoji.component.html',
-  styleUrls: ['./debug-emoji.component.scss']
+  styleUrls: ['./debug-emoji.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DebugEmojiComponent implements OnInit {
+export class DebugEmojiComponent implements OnInit, OnDestroy {
 
-  constructor(private dialog: MatDialog) { }
 
+  minLength: number = 3
+  contentLength: number = 0
+  private validateDataLength: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    if(! control.value) return null
+    let value = control.value.length
+    console.log('validateDataLength', value)
+    return value < this.minLength ? { 'contentLength': { 'min': this.minLength, 'actual': value } } : null
+  }
+  private formSub: Subscription
+  form: FormGroup
+  contentControl: FormControl
+  constructor(private dialog: MatDialog,
+    private cdr: ChangeDetectorRef,
+    private formBuilder: FormBuilder) {
+
+    this.contentControl = new FormControl()
+    this.contentControl.setValidators([this.validateDataLength])
+    this.form = this.formBuilder.group({
+      content: this.contentControl,
+      subject: [null, [Validators.required]]
+    })
+    this.formSub = this.form.valueChanges.subscribe(value => {
+      this.cdr.detectChanges()
+    })
+  }
+
+  contentChange(data: RteData) {
+    this.contentLength = data.length
+    this.form.updateValueAndValidity()
+    this.cdr.detectChanges()
+  }
   ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+
+    this.formSub.unsubscribe()
   }
 
   showEmojiSelector() {

@@ -1,9 +1,9 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { ApiService } from './api.service';
 import { first } from 'rxjs/operators';
-import { WatchDiff, UserStatus, User, WatchStatus } from '../vo/vo';
-import { BehaviorSubject } from 'rxjs';
+import { WatchDiff, User, WatchStatus } from '../vo/vo';
 import { WatchNotificationService } from './watch-notification.service';
+import { Subscription } from 'rxjs';
 
 
 @Injectable({
@@ -14,7 +14,7 @@ export class WatchService {
 
   private timer = null
 
-  private dif: WatchDiff = {
+  private diff: WatchDiff = {
     user_id: 0,
     status: "on",
     thread_user: 0,
@@ -22,167 +22,173 @@ export class WatchService {
     thread_part: 0,
     users: []
   }
-  private _members: BehaviorSubject<User[]>
+  private _members: User[]
+
+  findById(id: number): User | undefined {
+    return this._members.find(user => user.id == id)
+  }
 
   constructor(
     private api: ApiService,
     private notifier: WatchNotificationService) { }
 
-  setUserId(id) {
-    this.dif.user_id = id
-  }
-  setMembers(members: BehaviorSubject<User[]>) {
+  public currentUser: User
+
+  setMembers(members: User[]) {
     this._members = members
   }
   run() {
     if (this.timer === null) {
-      this.timer = 0
-      this.timerHandler()
+      this.notifier.open(`Bonjour ${this.currentUser.name}`)
+      const threadList = this.api.threadList
+      if (threadList.getValue())
+        return this.initWatch()
+      const s: Subscription = threadList.subscribe(value => {
+        if (value) {
+          s.unsubscribe()
+          this.initWatch()
+        }
+      })
     }
   }
   stop() {
-    if (this.timer !== null) {
-      clearTimeout(this.timer)
-      this.timer = null
-    }
+    return new Promise<void>((res, rej) => {
+      if (this.timer !== null) {
+        this.firstUserCheck = false
+        clearTimeout(this.timer)
+        this.timer = null
+        const diff = this.diff
+        diff.status = "off"
+        diff.users = []
+        this.api.watch(diff).pipe(first()).subscribe(result => {
+          res()
+        })
+      }
+      else
+        rej("not watching")
+    })
   }
 
+  private firstUserCheck = false
+
+  private initWatch() {
+    const diff: WatchDiff = this.diff
+    diff.user_id = this.currentUser.id
+    diff.status = 'on'
+    this.api.watch(diff).pipe(first()).subscribe(result => {
+      diff.thread_user = result.thread_user
+      diff.thread = result.thread
+      diff.thread_part = result.thread_part
+      diff.status = ""
+      if (!this.checkUsersDiff(result.users))
+        this.$users.emit(diff.users)
+      this.timerHandler()
+    })
+  }
   private checkUsersDiff(users: number[]) {
     let _findId: number
     const findUser = id => id == _findId
-    const s = this._members
+    const _members = this._members
     let change = false
-    if (s) {
-      const l = s.getValue()
-      if (l) {
-        for (const m of l) {
-          _findId = m.id
-          const _on = users.find(findUser)
-          const ns: WatchStatus = _on ? "on" : "off"
-          const cs: WatchStatus = m.status == "on" ? "on" : "off"
-          if (ns != cs) {
-            change = true
-            m.status = ns
-            this.notifier.user(m, ns)
+    const current = this.currentUser.id
+
+    const newOn = []
+    const newOff = []
+    for (const m of _members) {
+
+      _findId = m.id
+      const _on = users.find(findUser)
+      const ns: WatchStatus = _on ? "on" : "off"
+      const cs: WatchStatus = m.status == "on" ? "on" : "off"
+      if (ns != cs) {
+        change = true
+        m.status = ns
+        if (current != m.id) {
+          switch (ns) {
+            case "on":
+              newOn.push(m)
+              break;
+            case "off":
+              newOff.push(m)
+              break;
+
+            default:
+              break;
           }
         }
       }
+      if (change) {
+
+      }
+    }
+    if (!this.firstUserCheck) {
+      if (newOn.length) {
+        this.notifier.usersOn(newOn)
+      }
+      this.firstUserCheck = true
+      return true
+    }
+    if (newOn.length || newOff.length) {
+      this.notifier.usersOn([...newOn, ...newOff])
+
     }
     return change
-  }
-  private _checkUsersDiff(previous: any[], current: any[]) {
-    const n = current.length
-    const _usersOn = this.users
-    let _findId: number
-    const findUser = status => status == _findId
-    let _usersOnChange = false
-    for (const _currentStatus of current) {
-      _findId = _currentStatus.id
-      const _status = _usersOn.find(findUser)
-      if (_status) {
-        const i = _usersOn.indexOf(_status)
-        if (_currentStatus.status == "off") {
-          _usersOn.splice(i, 1)
-          _usersOnChange = true
-        }
-        else {
-          if (i != -1)
-            _usersOn.push(_currentStatus)
-          _usersOnChange = true
-        }
-      }
-    }
-    const _members = this._members
-    if (_members) {
-      let notify = false
-      const l = _members.getValue()
-      for (const _m of l) {
-        _findId = _m.id
-        const _on = _usersOn.find(findUser)
-        const _ns: WatchStatus = _on ? "on" : "off"
-        const _cs: WatchStatus = _m.status == "on" ? "on" : "off"
-        if (_ns != _cs) {
-          notify = true
-        }
-        _m.status = _ns
-      }
-      if (notify)
-        _members.next(l)
-    }
-    if (_usersOnChange || previous.length != n)
-      return true
-    for (let i = 0; i < n; i++) {
-      const status = current[i];
-      _findId = status.id
-      const old = previous.find(findUser)
-      if (old) {
-        if (old.status != status.status)
-          return true
-      }
-      else
-        return true
-    }
-    for (let i = 0; i < n; i++) {
-      const old = previous[i];
-      _findId = old.id
-      const status = current.find(findUser)
-      if (status) {
-        if (old.status != status.status)
-          return true
-      }
-      else
-        return true
-    }
-    return false
   }
 
   private timerHandler = () => {
     this.timer = setTimeout(() => {
-      const diff: WatchDiff = this.dif
-      const notifier = this.notifier
-      this.api.watch(diff).pipe(first()).subscribe(result => {
 
+      const diff: WatchDiff = this.diff
+      this.api.watch(diff).pipe(first()).subscribe(result => {
+        const notifier = this.notifier
+        const current_user = this.currentUser.id
+        const newThreadPartId = result.thread_part
+        const thread_user = result.thread_user
+        const newThreadId = result.thread
         let threadChange = false
         let threadPartChange = false
-        let old = this.dif.thread
-        if (result.thread != diff.thread) {
-          this.thread = result.thread
+        if (diff.thread != newThreadId) {
+          diff.thread = newThreadId
           threadChange = true
-          if(old !== 0)
-            notifier.message(result.thread_user)
         }
 
-        old = diff.thread_part
-        if (result.thread_part != diff.thread_part) {
-          this.threadPart = result.thread_part
+        if (diff.thread_part != newThreadPartId) {
+          diff.thread_part = newThreadPartId
           threadPartChange = true
-          if(old !== 0)
-            notifier.reply(result.thread_user)
+        }
+        if (diff.thread_user != thread_user) {
+          diff.thread_user = thread_user
         }
 
-        if (threadPartChange) {
-          this.$threadPart.emit(result.thread_part)
-        }
         if (threadChange) {
-          this.$thread.emit(result.thread)
+          if (thread_user != current_user)
+            notifier.message(this.findById(thread_user))
+          this.$thread.emit(diff.thread)
         }
-        
+        else {
+          if (threadPartChange) {
+            if (thread_user != current_user)
+              notifier.reply(this.findById(thread_user))
+            this.$threadPart.emit(newThreadPartId)
+          }
+        }
+
         if (!this.checkUsersDiff(result.users))
           this.$users.emit(diff.users)
 
-        diff.thread = result.thread
-        diff.thread_part = result.thread_part
-
-        if (diff.status == "on") {
-          diff.status = ""
-        }
         this.timerHandler()
       })
     }, 3000)
   }
+  get thread() {
+    return this.diff.thread
+  }
+
+  get threadPart() {
+    return this.diff.thread_part
+  }
+
   users: number[] = []
-  thread: number = NaN
-  threadPart: number = NaN
   $thread: EventEmitter<number> = new EventEmitter()
   $threadPart: EventEmitter<number> = new EventEmitter()
   $users: EventEmitter<number[]> = new EventEmitter()

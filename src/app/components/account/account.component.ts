@@ -118,6 +118,8 @@ export class AccountComponent implements OnDestroy {
   }
 
   logout() {
-    this.auth.logout()
+    this.userService.signout().then(_=>{
+      this.auth.logout()
+    })
   }
 }

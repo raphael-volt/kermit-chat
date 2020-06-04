@@ -52,7 +52,8 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     private cdr: ChangeDetectorRef) {
 
     busy.open()
-    this.messageControl = new FormControl(null, Validators.required)
+    this.currentUser = userService.user
+    this.messageControl = new FormControl(null, Validators.minLength(1))
     this.sub = this.messageControl.statusChanges.subscribe(value => {
       cdr.detectChanges()
     })
@@ -62,7 +63,6 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
         this.setupThread(+map.get('id'))
       }
     })
-    this.currentUser = userService.user
     this.sub = watch.$threadPart.subscribe(id => {
       const data = this.threadData
       if(! data)
@@ -173,13 +173,13 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
         content: ops
       }
       this.api.reply(tp).pipe(first()).subscribe(tp => {
+        this.messageControl.setValue(null)
         this.replies.push({
           user_id: this.currentUser.id,
           user: this.currentUser,
           id: tp.id,
           inserts: tp.content as DeltaOperation[]
         })
-        this.thread.last_part = tp.id
         this.cdr.detectChanges()
       })
       this.messageControl.setValue(null)

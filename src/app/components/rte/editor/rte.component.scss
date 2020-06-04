@@ -1,14 +1,5 @@
-.mat-form-field-type-mat-rte.mat-form-field-can-float .mat-form-field-label-wrapper,
-.mat-form-field-type-file.mat-form-field-can-float .mat-form-field-label-wrapper {
-    top: -22px;
-}
-
-.mat-form-field-type-mat-rte.mat-form-field-should-float .mat-form-field-label-wrapper,
-.mat-form-field-type-file.mat-form-field-should-float .mat-form-field-label-wrapper {
-    top: -8px;
-}
-
 :host {
+
     padding        : 0;
     margin         : 0;
     display        : flex;

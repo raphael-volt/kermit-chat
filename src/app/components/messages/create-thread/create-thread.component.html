@@ -19,7 +19,7 @@
             </mat-form-field>
 
             <mat-form-field>
-                <mat-rte style="height: 50vh;" formControlName="content" placeholder="Message" required></mat-rte>
+                <mat-rte style="height: 50vh;" (contentChange)="contentChange()" formControlName="content" required></mat-rte>
                 <mat-error *ngIf="contentValidator.invalid">
                     <span *ngIf="contentValidator.errors?.required">
                         Message est requis.

@@ -16,13 +16,15 @@ import { ImgScrollerModule } from '../img-scroller/img-scroller.module';
 import { UserPreviewModule } from "./user-preview/user-preview.module";
 import { MatEmojiModule } from './mat-emoji/mat-emoji.module';
 import { DebugEmojiComponent } from "./debug-emoji/debug-emoji.component";
+import { SnackBarUserOnComponent } from './snack-bar-user-on/snack-bar-user-on.component';
 @NgModule({
   declarations: [
     MembersComponent,
     AccountComponent,
     PictoEditorComponent,
     PictoViewComponent,
-    DebugEmojiComponent],
+    DebugEmojiComponent,
+    SnackBarUserOnComponent],
   imports: [
     ApiModule, AvatarModule,
     MessagesModule, RteModule,
@@ -31,7 +33,7 @@ import { DebugEmojiComponent } from "./debug-emoji/debug-emoji.component";
   ],
   exports: [
     MessagesModule, MembersComponent, AccountComponent,
-    PictoViewComponent, PictoEditorComponent, DebugEmojiComponent
+    PictoViewComponent, PictoEditorComponent, DebugEmojiComponent, SnackBarUserOnComponent
   ]
 })
 export class ComponentsModule { }

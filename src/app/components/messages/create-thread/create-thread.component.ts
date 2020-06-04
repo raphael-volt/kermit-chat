@@ -58,9 +58,27 @@ export class CreateThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     this.formSub.unsubscribe()
   }
   ngAfterViewInit(): void {
-
+    /*
+    const d = new Date()
+    const t = d.getHours() + ":" + d.getMinutes() +':'+ d.getSeconds()
+    const tree: ThreadTree = {
+      thread: { 
+        subject: `Hook[${t}]` 
+      }, 
+      inserts: [
+        { "insert": "Contents\n" }
+      ]
+    }
+    setTimeout(()=>{
+      this.dialogRef.close(tree)
+    }, 1000)
+    */
   }
 
+  contentChange() {
+    this.form.updateValueAndValidity()
+    this.cdr.detectChanges()
+  }
   contentValidatorError() {
     const error = this.contentValidator.errors
     if (error.required)

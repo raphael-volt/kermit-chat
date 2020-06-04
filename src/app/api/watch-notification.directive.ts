@@ -20,11 +20,9 @@ export class WatchNotificationDirective implements OnDestroy {
     notifier: WatchNotificationService) {
     this.audio = ref.nativeElement
     this.sub = notifier.opening.subscribe(this.openingHandler)
-    console.log('WatchNotificationDirective')
   }
 
   private openingHandler = (_type: NotificationType) => {
-    console.log('openingHandler', _type, this._type)
     if(_type == this._type) {
       this.audio.play()
     }

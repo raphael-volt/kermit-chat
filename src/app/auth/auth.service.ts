@@ -80,8 +80,6 @@ export class AuthService {
     return this.userService.signin().pipe(
       map(success => {
         this._authorized = success
-        if (success)
-          console.log(`Hello ${this.userService.user.name}`)
         return success
       })
     )
@@ -107,7 +105,7 @@ export class AuthService {
   }
 
   private saveCookie() {
-    this.cookieService.set(this.cookieKey, JSON.stringify(this.jpData))
+    this.cookieService.set(this.cookieKey, JSON.stringify(this.jpData), 60)
   }
 
 }

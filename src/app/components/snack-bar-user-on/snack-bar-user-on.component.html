@@ -1,0 +1,7 @@
+<p>En ligne:</p>
+<ul>
+    <li *ngFor="let user of users">
+        <span *ngIf="user.status == 'on'" class="cell-span fem emoji-heavy_check_mark"></span>
+        <span *ngIf="user.status != 'on'" class="cell-span fem emoji-x"></span>
+        {{user.name}}</li>
+</ul>

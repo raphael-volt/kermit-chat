@@ -1,4 +1,16 @@
-<mat-rte style="flex: 1 1 auto;"></mat-rte>
+<div [formGroup]="form">
+    <button [disabled]="form.invalid" color="accent" mat-raised-button>Send</button>
+    <mat-form-field style="width: 100%;">
+        <mat-label>Objet</mat-label>
+        <input matInput required formControlName="subject">
+    </mat-form-field>
+    <mat-form-field style="width: 100%;" class="rte-mff">
+        <mat-label class="rte-label">Message</mat-label>
+        <mat-rte [minLength]="minLength" (contentChange)="contentChange($event)"
+            formControlName="content" style="height: 50vh;" [required]="true"></mat-rte>
+        <mat-error *ngIf="!form.controls.content.valid">error</mat-error>
+    </mat-form-field>
+</div>
 <!--
     <div>
         <emoji-select></emoji-select>

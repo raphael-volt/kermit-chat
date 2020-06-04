@@ -52,6 +52,7 @@ export class MessagesComponent implements OnInit, AfterViewInit {
     if (this.showNavOnIntit) {
       this.showNavOnIntit = false
       this.sideNav.open()
+      //this.createThread()
     }
   }
   ngOnInit(): void {
@@ -109,6 +110,12 @@ export class MessagesComponent implements OnInit, AfterViewInit {
   getUserName(id) {
     const user = this.userService.findById(id)
     return user ? user.name : ''
+  }
+
+  private sortDesc = true
+  sortThread() {
+    this.api.refreshThreads(this.sortDesc)
+    this.sortDesc = !this.sortDesc
   }
 
 }
