@@ -708,10 +708,14 @@ html.cdk-global-scrollblock body {
 
 
 @import 'styles/theme.scss';
+@import 'styles/svg-icons.scss';
 
 @include icon-theme();
 @include emoji-theme();
-
+@include svg-icons-theme();
+button .svg-icons {
+  font-size: 1.5em;
+}
 .emoji-overlay-backdrop {
   opacity: 0;
 }

@@ -1,3 +1,5 @@
+$size: 44px;
+$size-small: 28px;
 :host {
     padding: 0;
     .user-preview {
@@ -15,6 +17,7 @@
         display      : inline-flex;
         padding      : 0;
         margin       : 0 4px;
+        font-size: $size;
     }
     .content-wrapper {
         display        : flex;
@@ -24,16 +27,16 @@
         align-content  : flex-start;
         align-items    : baseline;
     }
-    svg-icon,
+    .svg-icons,
     img {
         clip-path: circle(50% at center);
     }
     img {
-        max-width : 44px;
-        max-height: 44px;
+        max-width : $size;
+        max-height: $size;
     }
-    svg-icon {
-        font-size: 27px;
+    .svg-icons {
+        font-size: 80%;
     }
 
     h3 {
@@ -43,15 +46,15 @@
     }
 
     &.small {
+        .content-wrapper {
+            font-size: $size-small;
+        }
         img {
-            max-width : 28px;
-            max-height: 28px;
+            max-width : $size-small;
+            max-height: $size-small;
         }
         h3{
             font-size: 16px;
-        }
-        svg-icon {
-            font-size: 18px;
         }
     }
 }

@@ -17,10 +17,6 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule} from '@angular/material/snack-bar'
 
-import { IconService } from './icon.service';
-import { SvgIconDirective } from './svg-icon.directive';
-import { SvgIconComponent } from './svg-icon/svg-icon.component';
-
 @NgModule({
 
     imports: [
@@ -56,11 +52,8 @@ import { SvgIconComponent } from './svg-icon/svg-icon.component';
         MatExpansionModule,
         MatButtonToggleModule,
         MatRippleModule,
-        SvgIconComponent,
         MatSidenavModule,
         MatSnackBarModule
-    ],
-    providers: [IconService],
-    declarations: [SvgIconComponent, SvgIconDirective]
+    ]
 })
 export class MaterialModule { }

@@ -8,9 +8,9 @@ $margin   : 16px;
     justify-content: flex-start;
     align-content  : center;
     align-items    : center;
-
+    font-size: $pico-size;
     .picto-box {
-        font-size: 118px;
+        font-size: 80%;
         width     : $pico-size;
         height    : $pico-size;
         display: flex;

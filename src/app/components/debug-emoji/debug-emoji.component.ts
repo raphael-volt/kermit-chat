@@ -13,10 +13,38 @@ import { Subscription } from 'rxjs';
 export class DebugEmojiComponent implements OnInit, OnDestroy {
 
 
+  svgIcons = [
+    "hash",
+    "path",
+    "error",
+    "warning",
+    "loop",
+    "volume_off",
+    "volume_up",
+    "email",
+    "add_circle",
+    "remove_circle",
+    "reply",
+    "send",
+    "insert_photo",
+    "attachment",
+    "camera_alt",
+    "filter_vintage",
+    "panorama",
+    "location_history",
+    "cancel",
+    "refresh",
+    "person",
+    "account_circle",
+    "autorenew",
+    "cached",
+    "settings",
+    "replay_circle_filled"
+  ]
   minLength: number = 3
   contentLength: number = 0
   private validateDataLength: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    if(! control.value) return null
+    if (!control.value) return null
     let value = control.value.length
     console.log('validateDataLength', value)
     return value < this.minLength ? { 'contentLength': { 'min': this.minLength, 'actual': value } } : null

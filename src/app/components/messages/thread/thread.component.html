@@ -33,7 +33,7 @@
                 Répondre
             </mat-panel-title>
             <mat-panel-title *ngIf="panelOpenState">
-                <button color="accent" class="icon-ctn" mat-raised-button [disabled]="messageControl.invalid" (click)="reply($event)">Envoyer<svg-icon class="end" iconName="send"></svg-icon></button>
+                <button color="accent" class="icon-ctn" mat-raised-button [disabled]="messageControl.invalid" (click)="reply($event)">Envoyer <span class="svg-icons reply"></span></button>
             </mat-panel-title>
 
         </mat-expansion-panel-header>

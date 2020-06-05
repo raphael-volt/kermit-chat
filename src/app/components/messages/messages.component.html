@@ -1,10 +1,7 @@
 <mat-sidenav-container class="flex11">
     <mat-sidenav class="ms-nav" #sideNav mode="side">
         <div class="v-box ctn-padding gap16 main">
-            
-            <button (click)="sortThread()" color="accent" mat-raised-button>SORT</button>
-            <button (click)="createThread()" color="accent" class="message-btn icon-ctn" mat-raised-button>Nouveau message
-                <svg-icon class="end" iconName="send"></svg-icon></button>
+            <button (click)="createThread()" color="accent" class="message-btn icon-ctn" mat-raised-button>Nouveau message <span class="svg-icons send"></span></button>
             <div class="v-box scroller ctn-padding flex01 gap16 mat-elevation-z2">
                 <div *ngFor="let thread of api.threadList | async" (click)="openThread(thread.id)" matRipple
                     class="flex10 h-box thread-preview fx-clr primary mat-elevation-z2"

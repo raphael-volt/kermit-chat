@@ -18,8 +18,11 @@ export class RefreshListDirective implements OnDestroy {
   }
   
   constructor(private ref: ElementRef<HTMLElement>) {
-    ref.nativeElement.addEventListener('transitionend', this.transitionHandler)
-    this.handleTarget(ref.nativeElement)
+    const e = ref.nativeElement
+    e.addEventListener('transitionend', this.transitionHandler)
+    this.handleTarget(e)
+    e.style.display = "inline-block"
+    //e.style.transformOrigin= "50% 50%"
   }
   
   ngOnDestroy(): void {
@@ -48,6 +51,7 @@ export class RefreshListDirective implements OnDestroy {
   }
 
   private clickHandler = () => {
+    console.log('refresh clickHandler')
     if (this.transitionFlag) return
     this.transitionFlag = true
 

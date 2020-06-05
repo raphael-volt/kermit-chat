@@ -1,3 +1,14 @@
+<div #btn style="padding: 20px; color: dodgerblue;">
+    <svg class="mat-elevation-z2" style="border-radius: 50%;" [refreshList]="btn" version="1.1" xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" viewBox="0 0 768 768">
+        <path fill="currentColor"
+            d="M614.761 384q0-95.549-67.606-163.155t-163.155-67.606v-115.38l-153.239 153.239 153.239 155.042v-115.38q63.098 0 108.169 45.070t45.070 108.169-45.070 108.169-108.169 45.071-108.169-45.071-45.070-108.169h-77.522q0 95.549 67.606 163.155t163.155 67.606 163.155-67.606 67.606-163.155zM384 0q158.648 0 271.324 112.676t112.676 271.324-112.676 271.324-271.324 112.676-271.324-112.676-112.676-271.324 112.676-271.324 271.324-112.676z">
+        </path>
+    </svg>
+</div>
+<p>
+    <span *ngFor="let c of svgIcons" class="svg-icons {{c}}"></span>
+</p>
+
 <div [formGroup]="form">
     <button [disabled]="form.invalid" color="accent" mat-raised-button>Send</button>
     <mat-form-field style="width: 100%;">
@@ -6,8 +17,8 @@
     </mat-form-field>
     <mat-form-field style="width: 100%;" class="rte-mff">
         <mat-label class="rte-label">Message</mat-label>
-        <mat-rte [minLength]="minLength" (contentChange)="contentChange($event)"
-            formControlName="content" style="height: 50vh;" [required]="true"></mat-rte>
+        <mat-rte [minLength]="minLength" (contentChange)="contentChange($event)" formControlName="content"
+            style="height: 50vh;" [required]="true"></mat-rte>
         <mat-error *ngIf="!form.controls.content.valid">error</mat-error>
     </mat-form-field>
 </div>
