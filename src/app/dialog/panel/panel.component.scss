@@ -1,4 +1,5 @@
-/*
+@import '../../../styles/variables.scss';
+
 @mixin panel-radius($radius) {
   $radius: add-px($radius);
   border-radius: 0;
@@ -107,4 +108,3 @@
 }
 @include dialog-panel-container($app-theme, 6);
 @include dialog-panel($app-theme, 6, 14);
-*/

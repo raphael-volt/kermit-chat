@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Thread, ThreadPart, ThreadData, ThreadTree, WatchDiff } from '../vo/vo';
 import { map, first } from 'rxjs/operators';
 import { UrlService } from './url.service';
+import { BusyService } from "./busy.service";
 import { DeltaOperation } from 'quill';
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class ApiService {
 
   constructor(
     private http: HttpClient,
-    private url: UrlService) { }
+    private url: UrlService,
+    private buzy: BusyService) { }
 
   private getPath(...parts) {
     return this.url.api(...parts)
@@ -68,7 +70,7 @@ export class ApiService {
     ).pipe(map((data: any) => {
       const thread = data.thread
       const l = this.threadList.getValue()
-      l.push(thread)
+      l.unshift(thread)
       this.threadList.next(l)
       return thread
     }))

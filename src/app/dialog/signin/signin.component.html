@@ -1,10 +1,10 @@
 <dialog-panel>
-    <panel-header>Se connecter</panel-header>
+    <panel-header>Me connecter</panel-header>
     <panel-content>
         <form [formGroup]="form" fxLayoutGap="12" fxLayout="column" fxLayoutAlign="start start">
             <mat-form-field>
                 <mat-label>Mon email</mat-label>
-                <input matInput formControlName="email" required value='fionnvolt@gmail.com'>
+                <input matInput formControlName="email" required>
                 <mat-error *ngIf="!form.controls.email?.valid">Cet email n'est pas valide</mat-error>
             </mat-form-field>
         </form>

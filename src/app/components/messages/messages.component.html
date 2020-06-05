@@ -6,7 +6,7 @@
                 <div *ngFor="let thread of api.threadList | async" (click)="openThread(thread.id)" matRipple
                     class="flex10 h-box thread-preview fx-clr primary mat-elevation-z2"
                     style="align-items: baseline;">
-                    [{{thread.last_part}}]<user-preview [showName]="true" class="flex01" [userId]="thread.user_id"><h3> | {{ thread.subject }}</h3></user-preview>
+                    <user-preview [showName]="true" class="flex01" [userId]="thread.user_id"><h3> | {{ thread.subject }}</h3></user-preview>
                 </div>
             </div>
         </div>

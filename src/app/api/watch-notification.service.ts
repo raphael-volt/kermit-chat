@@ -63,7 +63,6 @@ export class WatchNotificationService {
   }
 
   open(message, action = '', config = null) {
-    console.log('SB open', message)
     if (!config)
       config = this.config
     this.snackBar.open(message, action, config)

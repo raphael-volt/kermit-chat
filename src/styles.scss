@@ -1,19 +1,5 @@
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
-@import "~@angular/material/theming";
-// Plus imports for other components in your app.
+@import './styles/variables.scss';
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat-core();
-
-$app-primary: mat-palette($mat-blue-grey, 700, 400, 900);
-$app-accent: mat-palette($mat-blue, 800, A200, 900);
-$app-warn: mat-palette($mat-amber, 700,A200, 900);
-
-// Create the theme object (a Sass map containing all of the palettes).
-$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 @include angular-material-theme($app-theme);
 $ctn-padding: 16px;
 $ctn-max-width :1080px;

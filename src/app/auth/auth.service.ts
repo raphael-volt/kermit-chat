@@ -2,7 +2,7 @@ import { Injectable, isDevMode } from '@angular/core';
 import { User } from '../vo/vo';
 import { CookieService } from "ngx-cookie-service";
 import { map } from "rxjs/operators";
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { UserService } from '../api/user.service';
 interface JPData {
   email?: string
@@ -33,12 +33,7 @@ export class AuthService {
   constructor(
     private userService: UserService,
     private cookieService: CookieService) {
-      /*
-      if(isDevMode()) {
-        this.jpData = { email: "fionnvolt@gmail.com" }
-        this.saveCookie()
-      }
-      */
+      
   }
 
 
@@ -66,6 +61,7 @@ export class AuthService {
       }
     }
   }
+
   saveUser(user: User) {
     this.jpData.email = user.email
     this.saveCookie()
@@ -80,6 +76,8 @@ export class AuthService {
     return this.userService.signin().pipe(
       map(success => {
         this._authorized = success
+        if(success)
+          this.saveCookie()
         return success
       })
     )
@@ -94,7 +92,6 @@ export class AuthService {
         this._authorized = success
         if (success)
           this.saveCookie()
-        console.log(`Welcome ${this.userService.user.name}`)
       })
     )
   }

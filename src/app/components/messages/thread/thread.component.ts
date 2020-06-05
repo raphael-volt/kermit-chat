@@ -10,9 +10,6 @@ import { Delta, DeltaOperation } from 'quill';
 import { BusyService } from 'src/app/api/busy.service';
 import { WatchService } from 'src/app/api/watch.service';
 
-
-
-
 @Component({
   selector: 'app-thread',
   templateUrl: './thread.component.html',
@@ -51,7 +48,6 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     private busy: BusyService,
     private cdr: ChangeDetectorRef) {
 
-    busy.open()
     this.currentUser = userService.user
     this.messageControl = new FormControl(null, Validators.minLength(1))
     this.sub = this.messageControl.statusChanges.subscribe(value => {
