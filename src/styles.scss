@@ -726,3 +726,13 @@ html.cdk-global-scrollblock body {
     width    : $emoji-size;
   }
 }
+
+.rte-mff.mat-form-field-can-float .mat-form-field-label-wrapper{
+  top: 40px!important;
+  left: 15px!important;
+}
+
+.rte-mff.mat-form-field-should-float .mat-form-field-label-wrapper{
+  top : -6px!important;
+  left: 0px!important;
+}
