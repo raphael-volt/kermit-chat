@@ -1,3992 +1,3992 @@
     @mixin emoji-list() {
     	// people
-    	&.emoji-grinning:before {
+    	&.emoji-grinning::before {
     		content: "\1f600"
     	}
 
-    	&.emoji-grin:before {
+    	&.emoji-grin::before {
     		content: "\1f601"
     	}
 
-    	&.emoji-joy:before {
+    	&.emoji-joy::before {
     		content: "\1f602"
     	}
 
-    	&.emoji-smiley:before {
+    	&.emoji-smiley::before {
     		content: "\1f603"
     	}
 
-    	&.emoji-smile:before {
+    	&.emoji-smile::before {
     		content: "\1f604"
     	}
 
-    	&.emoji-sweat_smile:before {
+    	&.emoji-sweat_smile::before {
     		content: "\1f605"
     	}
 
-    	&.emoji-laughing:before {
+    	&.emoji-laughing::before {
     		content: "\1f606"
     	}
 
-    	&.emoji-wink:before {
+    	&.emoji-wink::before {
     		content: "\1f609"
     	}
 
-    	&.emoji-blush:before {
+    	&.emoji-blush::before {
     		content: "\1f60a"
     	}
 
-    	&.emoji-yum:before {
+    	&.emoji-yum::before {
     		content: "\1f60b"
     	}
 
-    	&.emoji-sunglasses:before {
+    	&.emoji-sunglasses::before {
     		content: "\1f60e"
     	}
 
-    	&.emoji-heart_eyes:before {
+    	&.emoji-heart_eyes::before {
     		content: "\1f60d"
     	}
 
-    	&.emoji-kissing_heart:before {
+    	&.emoji-kissing_heart::before {
     		content: "\1f618"
     	}
 
-    	&.emoji-kissing:before {
+    	&.emoji-kissing::before {
     		content: "\1f617"
     	}
 
-    	&.emoji-kissing_smiling_eyes:before {
+    	&.emoji-kissing_smiling_eyes::before {
     		content: "\1f619"
     	}
 
-    	&.emoji-kissing_closed_eyes:before {
+    	&.emoji-kissing_closed_eyes::before {
     		content: "\1f61a"
     	}
 
-    	&.emoji-slightly_smiling_face:before {
+    	&.emoji-slightly_smiling_face::before {
     		content: "\1f642"
     	}
 
-    	&.emoji-hugging_face:before {
+    	&.emoji-hugging_face::before {
     		content: "\1f917"
     	}
 
-    	&.emoji-thinking_face:before {
+    	&.emoji-thinking_face::before {
     		content: "\1f914"
     	}
 
-    	&.emoji-neutral_face:before {
+    	&.emoji-neutral_face::before {
     		content: "\1f610"
     	}
 
-    	&.emoji-expressionless:before {
+    	&.emoji-expressionless::before {
     		content: "\1f611"
     	}
 
-    	&.emoji-no_mouth:before {
+    	&.emoji-no_mouth::before {
     		content: "\1f636"
     	}
 
-    	&.emoji-face_with_rolling_eyes:before {
+    	&.emoji-face_with_rolling_eyes::before {
     		content: "\1f644"
     	}
 
-    	&.emoji-smirk:before {
+    	&.emoji-smirk::before {
     		content: "\1f60f"
     	}
 
-    	&.emoji-persevere:before {
+    	&.emoji-persevere::before {
     		content: "\1f623"
     	}
 
-    	&.emoji-disappointed_relieved:before {
+    	&.emoji-disappointed_relieved::before {
     		content: "\1f625"
     	}
 
-    	&.emoji-open_mouth:before {
+    	&.emoji-open_mouth::before {
     		content: "\1f62e"
     	}
 
-    	&.emoji-zipper_mouth_face:before {
+    	&.emoji-zipper_mouth_face::before {
     		content: "\1f910"
     	}
 
-    	&.emoji-hushed:before {
+    	&.emoji-hushed::before {
     		content: "\1f62f"
     	}
 
-    	&.emoji-sleepy:before {
+    	&.emoji-sleepy::before {
     		content: "\1f62a"
     	}
 
-    	&.emoji-tired_face:before {
+    	&.emoji-tired_face::before {
     		content: "\1f62b"
     	}
 
-    	&.emoji-sleeping:before {
+    	&.emoji-sleeping::before {
     		content: "\1f634"
     	}
 
-    	&.emoji-relieved:before {
+    	&.emoji-relieved::before {
     		content: "\1f60c"
     	}
 
-    	&.emoji-nerd_face:before {
+    	&.emoji-nerd_face::before {
     		content: "\1f913"
     	}
 
-    	&.emoji-stuck_out_tongue:before {
+    	&.emoji-stuck_out_tongue::before {
     		content: "\1f61b"
     	}
 
-    	&.emoji-stuck_out_tongue_winking_eye:before {
+    	&.emoji-stuck_out_tongue_winking_eye::before {
     		content: "\1f61c"
     	}
 
-    	&.emoji-stuck_out_tongue_closed_eyes:before {
+    	&.emoji-stuck_out_tongue_closed_eyes::before {
     		content: "\1f61d"
     	}
 
-    	&.emoji-unamused:before {
+    	&.emoji-unamused::before {
     		content: "\1f612"
     	}
 
-    	&.emoji-sweat:before {
+    	&.emoji-sweat::before {
     		content: "\1f613"
     	}
 
-    	&.emoji-pensive:before {
+    	&.emoji-pensive::before {
     		content: "\1f614"
     	}
 
-    	&.emoji-confused:before {
+    	&.emoji-confused::before {
     		content: "\1f615"
     	}
 
-    	&.emoji-upside_down_face:before {
+    	&.emoji-upside_down_face::before {
     		content: "\1f643"
     	}
 
-    	&.emoji-money_mouth_face:before {
+    	&.emoji-money_mouth_face::before {
     		content: "\1f911"
     	}
 
-    	&.emoji-astonished:before {
+    	&.emoji-astonished::before {
     		content: "\1f632"
     	}
 
-    	&.emoji-slightly_frowning_face:before {
+    	&.emoji-slightly_frowning_face::before {
     		content: "\1f641"
     	}
 
-    	&.emoji-confounded:before {
+    	&.emoji-confounded::before {
     		content: "\1f616"
     	}
 
-    	&.emoji-disappointed:before {
+    	&.emoji-disappointed::before {
     		content: "\1f61e"
     	}
 
-    	&.emoji-worried:before {
+    	&.emoji-worried::before {
     		content: "\1f61f"
     	}
 
-    	&.emoji-triumph:before {
+    	&.emoji-triumph::before {
     		content: "\1f624"
     	}
 
-    	&.emoji-cry:before {
+    	&.emoji-cry::before {
     		content: "\1f622"
     	}
 
-    	&.emoji-sob:before {
+    	&.emoji-sob::before {
     		content: "\1f62d"
     	}
 
-    	&.emoji-frowning:before {
+    	&.emoji-frowning::before {
     		content: "\1f626"
     	}
 
-    	&.emoji-anguished:before {
+    	&.emoji-anguished::before {
     		content: "\1f627"
     	}
 
-    	&.emoji-fearful:before {
+    	&.emoji-fearful::before {
     		content: "\1f628"
     	}
 
-    	&.emoji-weary:before {
+    	&.emoji-weary::before {
     		content: "\1f629"
     	}
 
-    	&.emoji-grimacing:before {
+    	&.emoji-grimacing::before {
     		content: "\1f62c"
     	}
 
-    	&.emoji-cold_sweat:before {
+    	&.emoji-cold_sweat::before {
     		content: "\1f630"
     	}
 
-    	&.emoji-scream:before {
+    	&.emoji-scream::before {
     		content: "\1f631"
     	}
 
-    	&.emoji-flushed:before {
+    	&.emoji-flushed::before {
     		content: "\1f633"
     	}
 
-    	&.emoji-dizzy_face:before {
+    	&.emoji-dizzy_face::before {
     		content: "\1f635"
     	}
 
-    	&.emoji-rage:before {
+    	&.emoji-rage::before {
     		content: "\1f621"
     	}
 
-    	&.emoji-angry:before {
+    	&.emoji-angry::before {
     		content: "\1f620"
     	}
 
-    	&.emoji-innocent:before {
+    	&.emoji-innocent::before {
     		content: "\1f607"
     	}
 
-    	&.emoji-mask:before {
+    	&.emoji-mask::before {
     		content: "\1f637"
     	}
 
-    	&.emoji-face_with_thermometer:before {
+    	&.emoji-face_with_thermometer::before {
     		content: "\1f912"
     	}
 
-    	&.emoji-face_with_head_bandage:before {
+    	&.emoji-face_with_head_bandage::before {
     		content: "\1f915"
     	}
 
-    	&.emoji-smiling_imp:before {
+    	&.emoji-smiling_imp::before {
     		content: "\1f608"
     	}
 
-    	&.emoji-imp:before {
+    	&.emoji-imp::before {
     		content: "\1f47f"
     	}
 
-    	&.emoji-japanese_ogre:before {
+    	&.emoji-japanese_ogre::before {
     		content: "\1f479"
     	}
 
-    	&.emoji-japanese_goblin:before {
+    	&.emoji-japanese_goblin::before {
     		content: "\1f47a"
     	}
 
-    	&.emoji-skull:before {
+    	&.emoji-skull::before {
     		content: "\1f480"
     	}
 
-    	&.emoji-ghost:before {
+    	&.emoji-ghost::before {
     		content: "\1f47b"
     	}
 
-    	&.emoji-alien:before {
+    	&.emoji-alien::before {
     		content: "\1f47d"
     	}
 
-    	&.emoji-robot_face:before {
+    	&.emoji-robot_face::before {
     		content: "\1f916"
     	}
 
-    	&.emoji-hankey:before {
+    	&.emoji-hankey::before {
     		content: "\1f4a9"
     	}
 
-    	&.emoji-smiley_cat:before {
+    	&.emoji-smiley_cat::before {
     		content: "\1f63a"
     	}
 
-    	&.emoji-smile_cat:before {
+    	&.emoji-smile_cat::before {
     		content: "\1f638"
     	}
 
-    	&.emoji-joy_cat:before {
+    	&.emoji-joy_cat::before {
     		content: "\1f639"
     	}
 
-    	&.emoji-heart_eyes_cat:before {
+    	&.emoji-heart_eyes_cat::before {
     		content: "\1f63b"
     	}
 
-    	&.emoji-smirk_cat:before {
+    	&.emoji-smirk_cat::before {
     		content: "\1f63c"
     	}
 
-    	&.emoji-kissing_cat:before {
+    	&.emoji-kissing_cat::before {
     		content: "\1f63d"
     	}
 
-    	&.emoji-scream_cat:before {
+    	&.emoji-scream_cat::before {
     		content: "\1f640"
     	}
 
-    	&.emoji-crying_cat_face:before {
+    	&.emoji-crying_cat_face::before {
     		content: "\1f63f"
     	}
 
-    	&.emoji-pouting_cat:before {
+    	&.emoji-pouting_cat::before {
     		content: "\1f63e"
     	}
 
-    	&.emoji-boy:before {
+    	&.emoji-boy::before {
     		content: "\1f466"
     	}
 
-    	&.emoji-girl:before {
+    	&.emoji-girl::before {
     		content: "\1f467"
     	}
 
-    	&.emoji-man:before {
+    	&.emoji-man::before {
     		content: "\1f468"
     	}
 
-    	&.emoji-woman:before {
+    	&.emoji-woman::before {
     		content: "\1f469"
     	}
 
-    	&.emoji-older_man:before {
+    	&.emoji-older_man::before {
     		content: "\1f474"
     	}
 
-    	&.emoji-older_woman:before {
+    	&.emoji-older_woman::before {
     		content: "\1f475"
     	}
 
-    	&.emoji-baby:before {
+    	&.emoji-baby::before {
     		content: "\1f476"
     	}
 
-    	&.emoji-angel:before {
+    	&.emoji-angel::before {
     		content: "\1f47c"
     	}
 
-    	&.emoji-cop:before {
+    	&.emoji-cop::before {
     		content: "\1f46e"
     	}
 
-    	&.emoji-sleuth_or_spy:before {
+    	&.emoji-sleuth_or_spy::before {
     		content: "\1f575"
     	}
 
-    	&.emoji-guardsman:before {
+    	&.emoji-guardsman::before {
     		content: "\1f482"
     	}
 
-    	&.emoji-construction_worker:before {
+    	&.emoji-construction_worker::before {
     		content: "\1f477"
     	}
 
-    	&.emoji-man_with_turban:before {
+    	&.emoji-man_with_turban::before {
     		content: "\1f473"
     	}
 
-    	&.emoji-person_with_blond_hair:before {
+    	&.emoji-person_with_blond_hair::before {
     		content: "\1f471"
     	}
 
-    	&.emoji-santa:before {
+    	&.emoji-santa::before {
     		content: "\1f385"
     	}
 
-    	&.emoji-princess:before {
+    	&.emoji-princess::before {
     		content: "\1f478"
     	}
 
-    	&.emoji-bride_with_veil:before {
+    	&.emoji-bride_with_veil::before {
     		content: "\1f470"
     	}
 
-    	&.emoji-man_with_gua_pi_mao:before {
+    	&.emoji-man_with_gua_pi_mao::before {
     		content: "\1f472"
     	}
 
-    	&.emoji-person_frowning:before {
+    	&.emoji-person_frowning::before {
     		content: "\1f64d"
     	}
 
-    	&.emoji-person_with_pouting_face:before {
+    	&.emoji-person_with_pouting_face::before {
     		content: "\1f64e"
     	}
 
-    	&.emoji-no_good:before {
+    	&.emoji-no_good::before {
     		content: "\1f645"
     	}
 
-    	&.emoji-ok_woman:before {
+    	&.emoji-ok_woman::before {
     		content: "\1f646"
     	}
 
-    	&.emoji-information_desk_person:before {
+    	&.emoji-information_desk_person::before {
     		content: "\1f481"
     	}
 
-    	&.emoji-raising_hand:before {
+    	&.emoji-raising_hand::before {
     		content: "\1f64b"
     	}
 
-    	&.emoji-bow:before {
+    	&.emoji-bow::before {
     		content: "\1f647"
     	}
 
-    	&.emoji-massage:before {
+    	&.emoji-massage::before {
     		content: "\1f486"
     	}
 
-    	&.emoji-haircut:before {
+    	&.emoji-haircut::before {
     		content: "\1f487"
     	}
 
-    	&.emoji-walking:before {
+    	&.emoji-walking::before {
     		content: "\1f6b6"
     	}
 
-    	&.emoji-runner:before {
+    	&.emoji-runner::before {
     		content: "\1f3c3"
     	}
 
-    	&.emoji-dancer:before {
+    	&.emoji-dancer::before {
     		content: "\1f483"
     	}
 
-    	&.emoji-dancers:before {
+    	&.emoji-dancers::before {
     		content: "\1f46f"
     	}
 
-    	&.emoji-speaking_head_in_silhouette:before {
+    	&.emoji-speaking_head_in_silhouette::before {
     		content: "\1f5e3"
     	}
 
-    	&.emoji-bust_in_silhouette:before {
+    	&.emoji-bust_in_silhouette::before {
     		content: "\1f464"
     	}
 
-    	&.emoji-busts_in_silhouette:before {
+    	&.emoji-busts_in_silhouette::before {
     		content: "\1f465"
     	}
 
-    	&.emoji-couple:before {
+    	&.emoji-couple::before {
     		content: "\1f46b"
     	}
 
-    	&.emoji-two_men_holding_hands:before {
+    	&.emoji-two_men_holding_hands::before {
     		content: "\1f46c"
     	}
 
-    	&.emoji-two_women_holding_hands:before {
+    	&.emoji-two_women_holding_hands::before {
     		content: "\1f46d"
     	}
 
-    	&.emoji-couplekiss:before {
+    	&.emoji-couplekiss::before {
     		content: "\1f48f"
     	}
 
-    	&.emoji-couple_with_heart:before {
+    	&.emoji-couple_with_heart::before {
     		content: "\1f491"
     	}
 
-    	&.emoji-family:before {
+    	&.emoji-family::before {
     		content: "\1f46a"
     	}
 
-    	&.emoji-muscle:before {
+    	&.emoji-muscle::before {
     		content: "\1f4aa"
     	}
 
-    	&.emoji-point_left:before {
+    	&.emoji-point_left::before {
     		content: "\1f448"
     	}
 
-    	&.emoji-point_right:before {
+    	&.emoji-point_right::before {
     		content: "\1f449"
     	}
 
-    	&.emoji-point_up:before {
+    	&.emoji-point_up::before {
     		content: "\261d"
     	}
 
-    	&.emoji-point_up_2:before {
+    	&.emoji-point_up_2::before {
     		content: "\1f446"
     	}
 
-    	&.emoji-middle_finger:before {
+    	&.emoji-middle_finger::before {
     		content: "\1f595"
     	}
 
-    	&.emoji-point_down:before {
+    	&.emoji-point_down::before {
     		content: "\1f447"
     	}
 
-    	&.emoji-v:before {
+    	&.emoji-v::before {
     		content: "\270c"
     	}
 
-    	&.emoji-the_horns:before {
+    	&.emoji-the_horns::before {
     		content: "\1f918"
     	}
 
-    	&.emoji-raised_hand_with_fingers_splayed:before {
+    	&.emoji-raised_hand_with_fingers_splayed::before {
     		content: "\1f590"
     	}
 
-    	&.emoji-ok_hand:before {
+    	&.emoji-ok_hand::before {
     		content: "\1f44c"
     	}
 
-    	&.emoji-thumbsup:before {
+    	&.emoji-thumbsup::before {
     		content: "\1f44d"
     	}
 
-    	&.emoji-thumbsdown:before {
+    	&.emoji-thumbsdown::before {
     		content: "\1f44e"
     	}
 
-    	&.emoji-fist:before {
+    	&.emoji-fist::before {
     		content: "\270a"
     	}
 
-    	&.emoji-facepunch:before {
+    	&.emoji-facepunch::before {
     		content: "\1f44a"
     	}
 
-    	&.emoji-wave:before {
+    	&.emoji-wave::before {
     		content: "\1f44b"
     	}
 
-    	&.emoji-clap:before {
+    	&.emoji-clap::before {
     		content: "\1f44f"
     	}
 
-    	&.emoji-writing_hand:before {
+    	&.emoji-writing_hand::before {
     		content: "\270d"
     	}
 
-    	&.emoji-open_hands:before {
+    	&.emoji-open_hands::before {
     		content: "\1f450"
     	}
 
-    	&.emoji-raised_hands:before {
+    	&.emoji-raised_hands::before {
     		content: "\1f64c"
     	}
 
-    	&.emoji-pray:before {
+    	&.emoji-pray::before {
     		content: "\1f64f"
     	}
 
-    	&.emoji-nail_care:before {
+    	&.emoji-nail_care::before {
     		content: "\1f485"
     	}
 
-    	&.emoji-ear:before {
+    	&.emoji-ear::before {
     		content: "\1f442"
     	}
 
-    	&.emoji-nose:before {
+    	&.emoji-nose::before {
     		content: "\1f443"
     	}
 
-    	&.emoji-footprints:before {
+    	&.emoji-footprints::before {
     		content: "\1f463"
     	}
 
-    	&.emoji-eyes:before {
+    	&.emoji-eyes::before {
     		content: "\1f440"
     	}
 
-    	&.emoji-eye:before {
+    	&.emoji-eye::before {
     		content: "\1f441"
     	}
 
-    	&.emoji-tongue:before {
+    	&.emoji-tongue::before {
     		content: "\1f445"
     	}
 
-    	&.emoji-lips:before {
+    	&.emoji-lips::before {
     		content: "\1f444"
     	}
 
-    	&.emoji-kiss:before {
+    	&.emoji-kiss::before {
     		content: "\1f48b"
     	}
 
-    	&.emoji-zzz:before {
+    	&.emoji-zzz::before {
     		content: "\1f4a4"
     	}
 
-    	&.emoji-eyeglasses:before {
+    	&.emoji-eyeglasses::before {
     		content: "\1f453"
     	}
 
-    	&.emoji-dark_sunglasses:before {
+    	&.emoji-dark_sunglasses::before {
     		content: "\1f576"
     	}
 
-    	&.emoji-necktie:before {
+    	&.emoji-necktie::before {
     		content: "\1f454"
     	}
 
-    	&.emoji-shirt:before {
+    	&.emoji-shirt::before {
     		content: "\1f455"
     	}
 
-    	&.emoji-jeans:before {
+    	&.emoji-jeans::before {
     		content: "\1f456"
     	}
 
-    	&.emoji-dress:before {
+    	&.emoji-dress::before {
     		content: "\1f457"
     	}
 
-    	&.emoji-kimono:before {
+    	&.emoji-kimono::before {
     		content: "\1f458"
     	}
 
-    	&.emoji-bikini:before {
+    	&.emoji-bikini::before {
     		content: "\1f459"
     	}
 
-    	&.emoji-womans_clothes:before {
+    	&.emoji-womans_clothes::before {
     		content: "\1f45a"
     	}
 
-    	&.emoji-purse:before {
+    	&.emoji-purse::before {
     		content: "\1f45b"
     	}
 
-    	&.emoji-handbag:before {
+    	&.emoji-handbag::before {
     		content: "\1f45c"
     	}
 
-    	&.emoji-pouch:before {
+    	&.emoji-pouch::before {
     		content: "\1f45d"
     	}
 
-    	&.emoji-school_satchel:before {
+    	&.emoji-school_satchel::before {
     		content: "\1f392"
     	}
 
-    	&.emoji-mans_shoe:before {
+    	&.emoji-mans_shoe::before {
     		content: "\1f45e"
     	}
 
-    	&.emoji-athletic_shoe:before {
+    	&.emoji-athletic_shoe::before {
     		content: "\1f45f"
     	}
 
-    	&.emoji-high_heel:before {
+    	&.emoji-high_heel::before {
     		content: "\1f460"
     	}
 
-    	&.emoji-sandal:before {
+    	&.emoji-sandal::before {
     		content: "\1f461"
     	}
 
-    	&.emoji-boot:before {
+    	&.emoji-boot::before {
     		content: "\1f462"
     	}
 
-    	&.emoji-crown:before {
+    	&.emoji-crown::before {
     		content: "\1f451"
     	}
 
-    	&.emoji-womans_hat:before {
+    	&.emoji-womans_hat::before {
     		content: "\1f452"
     	}
 
-    	&.emoji-tophat:before {
+    	&.emoji-tophat::before {
     		content: "\1f3a9"
     	}
 
-    	&.emoji-mortar_board:before {
+    	&.emoji-mortar_board::before {
     		content: "\1f393"
     	}
 
-    	&.emoji-helmet_with_white_cross:before {
+    	&.emoji-helmet_with_white_cross::before {
     		content: "\26d1"
     	}
 
-    	&.emoji-lipstick:before {
+    	&.emoji-lipstick::before {
     		content: "\1f484"
     	}
 
-    	&.emoji-ring:before {
+    	&.emoji-ring::before {
     		content: "\1f48d"
     	}
 
-    	&.emoji-closed_umbrella:before {
+    	&.emoji-closed_umbrella::before {
     		content: "\1f302"
     	}
 
-    	&.emoji-briefcase:before {
+    	&.emoji-briefcase::before {
     		content: "\1f4bc"
     	}
 
     	// nature
-    	&.emoji-see_no_evil:before {
+    	&.emoji-see_no_evil::before {
     		content: "\1f648"
     	}
 
-    	&.emoji-hear_no_evil:before {
+    	&.emoji-hear_no_evil::before {
     		content: "\1f649"
     	}
 
-    	&.emoji-speak_no_evil:before {
+    	&.emoji-speak_no_evil::before {
     		content: "\1f64a"
     	}
 
-    	&.emoji-sweat_drops:before {
+    	&.emoji-sweat_drops::before {
     		content: "\1f4a6"
     	}
 
-    	&.emoji-dash:before {
+    	&.emoji-dash::before {
     		content: "\1f4a8"
     	}
 
-    	&.emoji-monkey_face:before {
+    	&.emoji-monkey_face::before {
     		content: "\1f435"
     	}
 
-    	&.emoji-monkey:before {
+    	&.emoji-monkey::before {
     		content: "\1f412"
     	}
 
-    	&.emoji-dog:before {
+    	&.emoji-dog::before {
     		content: "\1f436"
     	}
 
-    	&.emoji-dog2:before {
+    	&.emoji-dog2::before {
     		content: "\1f415"
     	}
 
-    	&.emoji-poodle:before {
+    	&.emoji-poodle::before {
     		content: "\1f429"
     	}
 
-    	&.emoji-wolf:before {
+    	&.emoji-wolf::before {
     		content: "\1f43a"
     	}
 
-    	&.emoji-cat:before {
+    	&.emoji-cat::before {
     		content: "\1f431"
     	}
 
-    	&.emoji-cat2:before {
+    	&.emoji-cat2::before {
     		content: "\1f408"
     	}
 
-    	&.emoji-lion_face:before {
+    	&.emoji-lion_face::before {
     		content: "\1f981"
     	}
 
-    	&.emoji-tiger:before {
+    	&.emoji-tiger::before {
     		content: "\1f42f"
     	}
 
-    	&.emoji-tiger2:before {
+    	&.emoji-tiger2::before {
     		content: "\1f405"
     	}
 
-    	&.emoji-leopard:before {
+    	&.emoji-leopard::before {
     		content: "\1f406"
     	}
 
-    	&.emoji-horse:before {
+    	&.emoji-horse::before {
     		content: "\1f434"
     	}
 
-    	&.emoji-racehorse:before {
+    	&.emoji-racehorse::before {
     		content: "\1f40e"
     	}
 
-    	&.emoji-unicorn_face:before {
+    	&.emoji-unicorn_face::before {
     		content: "\1f984"
     	}
 
-    	&.emoji-cow:before {
+    	&.emoji-cow::before {
     		content: "\1f42e"
     	}
 
-    	&.emoji-ox:before {
+    	&.emoji-ox::before {
     		content: "\1f402"
     	}
 
-    	&.emoji-water_buffalo:before {
+    	&.emoji-water_buffalo::before {
     		content: "\1f403"
     	}
 
-    	&.emoji-cow2:before {
+    	&.emoji-cow2::before {
     		content: "\1f404"
     	}
 
-    	&.emoji-pig:before {
+    	&.emoji-pig::before {
     		content: "\1f437"
     	}
 
-    	&.emoji-pig2:before {
+    	&.emoji-pig2::before {
     		content: "\1f416"
     	}
 
-    	&.emoji-boar:before {
+    	&.emoji-boar::before {
     		content: "\1f417"
     	}
 
-    	&.emoji-pig_nose:before {
+    	&.emoji-pig_nose::before {
     		content: "\1f43d"
     	}
 
-    	&.emoji-ram:before {
+    	&.emoji-ram::before {
     		content: "\1f40f"
     	}
 
-    	&.emoji-sheep:before {
+    	&.emoji-sheep::before {
     		content: "\1f411"
     	}
 
-    	&.emoji-goat:before {
+    	&.emoji-goat::before {
     		content: "\1f410"
     	}
 
-    	&.emoji-dromedary_camel:before {
+    	&.emoji-dromedary_camel::before {
     		content: "\1f42a"
     	}
 
-    	&.emoji-camel:before {
+    	&.emoji-camel::before {
     		content: "\1f42b"
     	}
 
-    	&.emoji-elephant:before {
+    	&.emoji-elephant::before {
     		content: "\1f418"
     	}
 
-    	&.emoji-mouse:before {
+    	&.emoji-mouse::before {
     		content: "\1f42d"
     	}
 
-    	&.emoji-mouse2:before {
+    	&.emoji-mouse2::before {
     		content: "\1f401"
     	}
 
-    	&.emoji-rat:before {
+    	&.emoji-rat::before {
     		content: "\1f400"
     	}
 
-    	&.emoji-hamster:before {
+    	&.emoji-hamster::before {
     		content: "\1f439"
     	}
 
-    	&.emoji-rabbit:before {
+    	&.emoji-rabbit::before {
     		content: "\1f430"
     	}
 
-    	&.emoji-rabbit2:before {
+    	&.emoji-rabbit2::before {
     		content: "\1f407"
     	}
 
-    	&.emoji-chipmunk:before {
+    	&.emoji-chipmunk::before {
     		content: "\1f43f"
     	}
 
-    	&.emoji-bear:before {
+    	&.emoji-bear::before {
     		content: "\1f43b"
     	}
 
-    	&.emoji-koala:before {
+    	&.emoji-koala::before {
     		content: "\1f428"
     	}
 
-    	&.emoji-panda_face:before {
+    	&.emoji-panda_face::before {
     		content: "\1f43c"
     	}
 
-    	&.emoji-feet:before {
+    	&.emoji-feet::before {
     		content: "\1f43e"
     	}
 
-    	&.emoji-turkey:before {
+    	&.emoji-turkey::before {
     		content: "\1f983"
     	}
 
-    	&.emoji-chicken:before {
+    	&.emoji-chicken::before {
     		content: "\1f414"
     	}
 
-    	&.emoji-rooster:before {
+    	&.emoji-rooster::before {
     		content: "\1f413"
     	}
 
-    	&.emoji-hatching_chick:before {
+    	&.emoji-hatching_chick::before {
     		content: "\1f423"
     	}
 
-    	&.emoji-baby_chick:before {
+    	&.emoji-baby_chick::before {
     		content: "\1f424"
     	}
 
-    	&.emoji-hatched_chick:before {
+    	&.emoji-hatched_chick::before {
     		content: "\1f425"
     	}
 
-    	&.emoji-bird:before {
+    	&.emoji-bird::before {
     		content: "\1f426"
     	}
 
-    	&.emoji-penguin:before {
+    	&.emoji-penguin::before {
     		content: "\1f427"
     	}
 
-    	&.emoji-dove_of_peace:before {
+    	&.emoji-dove_of_peace::before {
     		content: "\1f54a"
     	}
 
-    	&.emoji-frog:before {
+    	&.emoji-frog::before {
     		content: "\1f438"
     	}
 
-    	&.emoji-crocodile:before {
+    	&.emoji-crocodile::before {
     		content: "\1f40a"
     	}
 
-    	&.emoji-turtle:before {
+    	&.emoji-turtle::before {
     		content: "\1f422"
     	}
 
-    	&.emoji-snake:before {
+    	&.emoji-snake::before {
     		content: "\1f40d"
     	}
 
-    	&.emoji-dragon_face:before {
+    	&.emoji-dragon_face::before {
     		content: "\1f432"
     	}
 
-    	&.emoji-dragon:before {
+    	&.emoji-dragon::before {
     		content: "\1f409"
     	}
 
-    	&.emoji-whale:before {
+    	&.emoji-whale::before {
     		content: "\1f433"
     	}
 
-    	&.emoji-whale2:before {
+    	&.emoji-whale2::before {
     		content: "\1f40b"
     	}
 
-    	&.emoji-dolphin:before {
+    	&.emoji-dolphin::before {
     		content: "\1f42c"
     	}
 
-    	&.emoji-fish:before {
+    	&.emoji-fish::before {
     		content: "\1f41f"
     	}
 
-    	&.emoji-tropical_fish:before {
+    	&.emoji-tropical_fish::before {
     		content: "\1f420"
     	}
 
-    	&.emoji-blowfish:before {
+    	&.emoji-blowfish::before {
     		content: "\1f421"
     	}
 
-    	&.emoji-octopus:before {
+    	&.emoji-octopus::before {
     		content: "\1f419"
     	}
 
-    	&.emoji-shell:before {
+    	&.emoji-shell::before {
     		content: "\1f41a"
     	}
 
-    	&.emoji-crab:before {
+    	&.emoji-crab::before {
     		content: "\1f980"
     	}
 
-    	&.emoji-snail:before {
+    	&.emoji-snail::before {
     		content: "\1f40c"
     	}
 
-    	&.emoji-bug:before {
+    	&.emoji-bug::before {
     		content: "\1f41b"
     	}
 
-    	&.emoji-ant:before {
+    	&.emoji-ant::before {
     		content: "\1f41c"
     	}
 
-    	&.emoji-bee:before {
+    	&.emoji-bee::before {
     		content: "\1f41d"
     	}
 
-    	&.emoji-beetle:before {
+    	&.emoji-beetle::before {
     		content: "\1f41e"
     	}
 
-    	&.emoji-spider:before {
+    	&.emoji-spider::before {
     		content: "\1f577"
     	}
 
-    	&.emoji-spider_web:before {
+    	&.emoji-spider_web::before {
     		content: "\1f578"
     	}
 
-    	&.emoji-scorpion:before {
+    	&.emoji-scorpion::before {
     		content: "\1f982"
     	}
 
-    	&.emoji-bouquet:before {
+    	&.emoji-bouquet::before {
     		content: "\1f490"
     	}
 
-    	&.emoji-cherry_blossom:before {
+    	&.emoji-cherry_blossom::before {
     		content: "\1f338"
     	}
 
-    	&.emoji-rosette:before {
+    	&.emoji-rosette::before {
     		content: "\1f3f5"
     	}
 
-    	&.emoji-rose:before {
+    	&.emoji-rose::before {
     		content: "\1f339"
     	}
 
-    	&.emoji-hibiscus:before {
+    	&.emoji-hibiscus::before {
     		content: "\1f33a"
     	}
 
-    	&.emoji-sunflower:before {
+    	&.emoji-sunflower::before {
     		content: "\1f33b"
     	}
 
-    	&.emoji-blossom:before {
+    	&.emoji-blossom::before {
     		content: "\1f33c"
     	}
 
-    	&.emoji-tulip:before {
+    	&.emoji-tulip::before {
     		content: "\1f337"
     	}
 
-    	&.emoji-seedling:before {
+    	&.emoji-seedling::before {
     		content: "\1f331"
     	}
 
-    	&.emoji-evergreen_tree:before {
+    	&.emoji-evergreen_tree::before {
     		content: "\1f332"
     	}
 
-    	&.emoji-deciduous_tree:before {
+    	&.emoji-deciduous_tree::before {
     		content: "\1f333"
     	}
 
-    	&.emoji-palm_tree:before {
+    	&.emoji-palm_tree::before {
     		content: "\1f334"
     	}
 
-    	&.emoji-cactus:before {
+    	&.emoji-cactus::before {
     		content: "\1f335"
     	}
 
-    	&.emoji-ear_of_rice:before {
+    	&.emoji-ear_of_rice::before {
     		content: "\1f33e"
     	}
 
-    	&.emoji-herb:before {
+    	&.emoji-herb::before {
     		content: "\1f33f"
     	}
 
-    	&.emoji-shamrock:before {
+    	&.emoji-shamrock::before {
     		content: "\2618"
     	}
 
-    	&.emoji-four_leaf_clover:before {
+    	&.emoji-four_leaf_clover::before {
     		content: "\1f340"
     	}
 
-    	&.emoji-maple_leaf:before {
+    	&.emoji-maple_leaf::before {
     		content: "\1f341"
     	}
 
-    	&.emoji-fallen_leaf:before {
+    	&.emoji-fallen_leaf::before {
     		content: "\1f342"
     	}
 
-    	&.emoji-leaves:before {
+    	&.emoji-leaves::before {
     		content: "\1f343"
     	}
 
-    	&.emoji-mushroom:before {
+    	&.emoji-mushroom::before {
     		content: "\1f344"
     	}
 
-    	&.emoji-chestnut:before {
+    	&.emoji-chestnut::before {
     		content: "\1f330"
     	}
 
-    	&.emoji-earth_africa:before {
+    	&.emoji-earth_africa::before {
     		content: "\1f30d"
     	}
 
-    	&.emoji-earth_americas:before {
+    	&.emoji-earth_americas::before {
     		content: "\1f30e"
     	}
 
-    	&.emoji-earth_asia:before {
+    	&.emoji-earth_asia::before {
     		content: "\1f30f"
     	}
 
-    	&.emoji-new_moon:before {
+    	&.emoji-new_moon::before {
     		content: "\1f311"
     	}
 
-    	&.emoji-waxing_crescent_moon:before {
+    	&.emoji-waxing_crescent_moon::before {
     		content: "\1f312"
     	}
 
-    	&.emoji-first_quarter_moon:before {
+    	&.emoji-first_quarter_moon::before {
     		content: "\1f313"
     	}
 
-    	&.emoji-full_moon:before {
+    	&.emoji-full_moon::before {
     		content: "\1f315"
     	}
 
-    	&.emoji-waning_gibbous_moon:before {
+    	&.emoji-waning_gibbous_moon::before {
     		content: "\1f316"
     	}
 
-    	&.emoji-last_quarter_moon:before {
+    	&.emoji-last_quarter_moon::before {
     		content: "\1f317"
     	}
 
-    	&.emoji-waning_crescent_moon:before {
+    	&.emoji-waning_crescent_moon::before {
     		content: "\1f318"
     	}
 
-    	&.emoji-crescent_moon:before {
+    	&.emoji-crescent_moon::before {
     		content: "\1f319"
     	}
 
-    	&.emoji-new_moon_with_face:before {
+    	&.emoji-new_moon_with_face::before {
     		content: "\1f31a"
     	}
 
-    	&.emoji-first_quarter_moon_with_face:before {
+    	&.emoji-first_quarter_moon_with_face::before {
     		content: "\1f31b"
     	}
 
-    	&.emoji-last_quarter_moon_with_face:before {
+    	&.emoji-last_quarter_moon_with_face::before {
     		content: "\1f31c"
     	}
 
-    	&.emoji-sunny:before {
+    	&.emoji-sunny::before {
     		content: "\2600"
     	}
 
-    	&.emoji-full_moon_with_face:before {
+    	&.emoji-full_moon_with_face::before {
     		content: "\1f31d"
     	}
 
-    	&.emoji-sun_with_face:before {
+    	&.emoji-sun_with_face::before {
     		content: "\1f31e"
     	}
 
-    	&.emoji-star:before {
+    	&.emoji-star::before {
     		content: "\2b50"
     	}
 
-    	&.emoji-star2:before {
+    	&.emoji-star2::before {
     		content: "\1f31f"
     	}
 
-    	&.emoji-cloud:before {
+    	&.emoji-cloud::before {
     		content: "\2601"
     	}
 
-    	&.emoji-partly_sunny:before {
+    	&.emoji-partly_sunny::before {
     		content: "\26c5"
     	}
 
-    	&.emoji-thunder_cloud_and_rain:before {
+    	&.emoji-thunder_cloud_and_rain::before {
     		content: "\26c8"
     	}
 
-    	&.emoji-rain_cloud:before {
+    	&.emoji-rain_cloud::before {
     		content: "\1f327"
     	}
 
-    	&.emoji-snow_cloud:before {
+    	&.emoji-snow_cloud::before {
     		content: "\1f328"
     	}
 
-    	&.emoji-fog:before {
+    	&.emoji-fog::before {
     		content: "\1f32b"
     	}
 
-    	&.emoji-wind_blowing_face:before {
+    	&.emoji-wind_blowing_face::before {
     		content: "\1f32c"
     	}
 
-    	&.emoji-umbrella:before {
+    	&.emoji-umbrella::before {
     		content: "\2602"
     	}
 
-    	&.emoji-umbrella_with_rain_drops:before {
+    	&.emoji-umbrella_with_rain_drops::before {
     		content: "\2614"
     	}
 
-    	&.emoji-zap:before {
+    	&.emoji-zap::before {
     		content: "\26a1"
     	}
 
-    	&.emoji-snowflake:before {
+    	&.emoji-snowflake::before {
     		content: "\2744"
     	}
 
-    	&.emoji-snowman:before {
+    	&.emoji-snowman::before {
     		content: "\2603"
     	}
 
-    	&.emoji-snowman_without_snow:before {
+    	&.emoji-snowman_without_snow::before {
     		content: "\26c4"
     	}
 
-    	&.emoji-comet:before {
+    	&.emoji-comet::before {
     		content: "\2604"
     	}
 
-    	&.emoji-fire:before {
+    	&.emoji-fire::before {
     		content: "\1f525"
     	}
 
-    	&.emoji-droplet:before {
+    	&.emoji-droplet::before {
     		content: "\1f4a7"
     	}
 
-    	&.emoji-ocean:before {
+    	&.emoji-ocean::before {
     		content: "\1f30a"
     	}
 
-    	&.emoji-jack_o_lantern:before {
+    	&.emoji-jack_o_lantern::before {
     		content: "\1f383"
     	}
 
-    	&.emoji-christmas_tree:before {
+    	&.emoji-christmas_tree::before {
     		content: "\1f384"
     	}
 
-    	&.emoji-sparkles:before {
+    	&.emoji-sparkles::before {
     		content: "\2728"
     	}
 
-    	&.emoji-tanabata_tree:before {
+    	&.emoji-tanabata_tree::before {
     		content: "\1f38b"
     	}
 
-    	&.emoji-bamboo:before {
+    	&.emoji-bamboo::before {
     		content: "\1f38d"
     	}
 
     	// food
-    	&.emoji-grapes:before {
+    	&.emoji-grapes::before {
     		content: "\1f347"
     	}
 
-    	&.emoji-melon:before {
+    	&.emoji-melon::before {
     		content: "\1f348"
     	}
 
-    	&.emoji-watermelon:before {
+    	&.emoji-watermelon::before {
     		content: "\1f349"
     	}
 
-    	&.emoji-tangerine:before {
+    	&.emoji-tangerine::before {
     		content: "\1f34a"
     	}
 
-    	&.emoji-lemon:before {
+    	&.emoji-lemon::before {
     		content: "\1f34b"
     	}
 
-    	&.emoji-banana:before {
+    	&.emoji-banana::before {
     		content: "\1f34c"
     	}
 
-    	&.emoji-pineapple:before {
+    	&.emoji-pineapple::before {
     		content: "\1f34d"
     	}
 
-    	&.emoji-apple:before {
+    	&.emoji-apple::before {
     		content: "\1f34e"
     	}
 
-    	&.emoji-green_apple:before {
+    	&.emoji-green_apple::before {
     		content: "\1f34f"
     	}
 
-    	&.emoji-pear:before {
+    	&.emoji-pear::before {
     		content: "\1f350"
     	}
 
-    	&.emoji-peach:before {
+    	&.emoji-peach::before {
     		content: "\1f351"
     	}
 
-    	&.emoji-cherries:before {
+    	&.emoji-cherries::before {
     		content: "\1f352"
     	}
 
-    	&.emoji-strawberry:before {
+    	&.emoji-strawberry::before {
     		content: "\1f353"
     	}
 
-    	&.emoji-tomato:before {
+    	&.emoji-tomato::before {
     		content: "\1f345"
     	}
 
-    	&.emoji-eggplant:before {
+    	&.emoji-eggplant::before {
     		content: "\1f346"
     	}
 
-    	&.emoji-corn:before {
+    	&.emoji-corn::before {
     		content: "\1f33d"
     	}
 
-    	&.emoji-hot_pepper:before {
+    	&.emoji-hot_pepper::before {
     		content: "\1f336"
     	}
 
-    	&.emoji-bread:before {
+    	&.emoji-bread::before {
     		content: "\1f35e"
     	}
 
-    	&.emoji-cheese_wedge:before {
+    	&.emoji-cheese_wedge::before {
     		content: "\1f9c0"
     	}
 
-    	&.emoji-meat_on_bone:before {
+    	&.emoji-meat_on_bone::before {
     		content: "\1f356"
     	}
 
-    	&.emoji-poultry_leg:before {
+    	&.emoji-poultry_leg::before {
     		content: "\1f357"
     	}
 
-    	&.emoji-hamburger:before {
+    	&.emoji-hamburger::before {
     		content: "\1f354"
     	}
 
-    	&.emoji-fries:before {
+    	&.emoji-fries::before {
     		content: "\1f35f"
     	}
 
-    	&.emoji-pizza:before {
+    	&.emoji-pizza::before {
     		content: "\1f355"
     	}
 
-    	&.emoji-hotdog:before {
+    	&.emoji-hotdog::before {
     		content: "\1f32d"
     	}
 
-    	&.emoji-taco:before {
+    	&.emoji-taco::before {
     		content: "\1f32e"
     	}
 
-    	&.emoji-burrito:before {
+    	&.emoji-burrito::before {
     		content: "\1f32f"
     	}
 
-    	&.emoji-egg:before {
+    	&.emoji-egg::before {
     		content: "\1f95a"
     	}
 
-    	&.emoji-stew:before {
+    	&.emoji-stew::before {
     		content: "\1f372"
     	}
 
-    	&.emoji-popcorn:before {
+    	&.emoji-popcorn::before {
     		content: "\1f37f"
     	}
 
-    	&.emoji-bento:before {
+    	&.emoji-bento::before {
     		content: "\1f371"
     	}
 
-    	&.emoji-rice_cracker:before {
+    	&.emoji-rice_cracker::before {
     		content: "\1f358"
     	}
 
-    	&.emoji-rice_ball:before {
+    	&.emoji-rice_ball::before {
     		content: "\1f359"
     	}
 
-    	&.emoji-rice:before {
+    	&.emoji-rice::before {
     		content: "\1f35a"
     	}
 
-    	&.emoji-curry:before {
+    	&.emoji-curry::before {
     		content: "\1f35b"
     	}
 
-    	&.emoji-ramen:before {
+    	&.emoji-ramen::before {
     		content: "\1f35c"
     	}
 
-    	&.emoji-spaghetti:before {
+    	&.emoji-spaghetti::before {
     		content: "\1f35d"
     	}
 
-    	&.emoji-sweet_potato:before {
+    	&.emoji-sweet_potato::before {
     		content: "\1f360"
     	}
 
-    	&.emoji-oden:before {
+    	&.emoji-oden::before {
     		content: "\1f362"
     	}
 
-    	&.emoji-sushi:before {
+    	&.emoji-sushi::before {
     		content: "\1f363"
     	}
 
-    	&.emoji-fried_shrimp:before {
+    	&.emoji-fried_shrimp::before {
     		content: "\1f364"
     	}
 
-    	&.emoji-fish_cake:before {
+    	&.emoji-fish_cake::before {
     		content: "\1f365"
     	}
 
-    	&.emoji-dango:before {
+    	&.emoji-dango::before {
     		content: "\1f361"
     	}
 
-    	&.emoji-icecream:before {
+    	&.emoji-icecream::before {
     		content: "\1f366"
     	}
 
-    	&.emoji-shaved_ice:before {
+    	&.emoji-shaved_ice::before {
     		content: "\1f367"
     	}
 
-    	&.emoji-ice_cream:before {
+    	&.emoji-ice_cream::before {
     		content: "\1f368"
     	}
 
-    	&.emoji-doughnut:before {
+    	&.emoji-doughnut::before {
     		content: "\1f369"
     	}
 
-    	&.emoji-cookie:before {
+    	&.emoji-cookie::before {
     		content: "\1f36a"
     	}
 
-    	&.emoji-birthday:before {
+    	&.emoji-birthday::before {
     		content: "\1f382"
     	}
 
-    	&.emoji-cake:before {
+    	&.emoji-cake::before {
     		content: "\1f370"
     	}
 
-    	&.emoji-chocolate_bar:before {
+    	&.emoji-chocolate_bar::before {
     		content: "\1f36b"
     	}
 
-    	&.emoji-candy:before {
+    	&.emoji-candy::before {
     		content: "\1f36c"
     	}
 
-    	&.emoji-lollipop:before {
+    	&.emoji-lollipop::before {
     		content: "\1f36d"
     	}
 
-    	&.emoji-custard:before {
+    	&.emoji-custard::before {
     		content: "\1f36e"
     	}
 
-    	&.emoji-honey_pot:before {
+    	&.emoji-honey_pot::before {
     		content: "\1f36f"
     	}
 
-    	&.emoji-baby_bottle:before {
+    	&.emoji-baby_bottle::before {
     		content: "\1f37c"
     	}
 
-    	&.emoji-coffee:before {
+    	&.emoji-coffee::before {
     		content: "\2615"
     	}
 
-    	&.emoji-tea:before {
+    	&.emoji-tea::before {
     		content: "\1f375"
     	}
 
-    	&.emoji-sake:before {
+    	&.emoji-sake::before {
     		content: "\1f376"
     	}
 
-    	&.emoji-champagne:before {
+    	&.emoji-champagne::before {
     		content: "\1f37e"
     	}
 
-    	&.emoji-wine_glass:before {
+    	&.emoji-wine_glass::before {
     		content: "\1f377"
     	}
 
-    	&.emoji-cocktail:before {
+    	&.emoji-cocktail::before {
     		content: "\1f378"
     	}
 
-    	&.emoji-tropical_drink:before {
+    	&.emoji-tropical_drink::before {
     		content: "\1f379"
     	}
 
-    	&.emoji-beer:before {
+    	&.emoji-beer::before {
     		content: "\1f37a"
     	}
 
-    	&.emoji-beers:before {
+    	&.emoji-beers::before {
     		content: "\1f37b"
     	}
 
-    	&.emoji-knife_fork_plate:before {
+    	&.emoji-knife_fork_plate::before {
     		content: "\1f37d"
     	}
 
-    	&.emoji-fork_and_knife:before {
+    	&.emoji-fork_and_knife::before {
     		content: "\1f374"
     	}
 
     	// symbols
-    	&.emoji-cupid:before {
+    	&.emoji-cupid::before {
     		content: "\1f498"
     	}
 
-    	&.emoji-heart:before {
+    	&.emoji-heart::before {
     		content: "\2764"
     	}
 
-    	&.emoji-heartbeat:before {
+    	&.emoji-heartbeat::before {
     		content: "\1f493"
     	}
 
-    	&.emoji-broken_heart:before {
+    	&.emoji-broken_heart::before {
     		content: "\1f494"
     	}
 
-    	&.emoji-two_hearts:before {
+    	&.emoji-two_hearts::before {
     		content: "\1f495"
     	}
 
-    	&.emoji-sparkling_heart:before {
+    	&.emoji-sparkling_heart::before {
     		content: "\1f496"
     	}
 
-    	&.emoji-heartpulse:before {
+    	&.emoji-heartpulse::before {
     		content: "\1f497"
     	}
 
-    	&.emoji-blue_heart:before {
+    	&.emoji-blue_heart::before {
     		content: "\1f499"
     	}
 
-    	&.emoji-green_heart:before {
+    	&.emoji-green_heart::before {
     		content: "\1f49a"
     	}
 
-    	&.emoji-yellow_heart:before {
+    	&.emoji-yellow_heart::before {
     		content: "\1f49b"
     	}
 
-    	&.emoji-purple_heart:before {
+    	&.emoji-purple_heart::before {
     		content: "\1f49c"
     	}
 
-    	&.emoji-gift_heart:before {
+    	&.emoji-gift_heart::before {
     		content: "\1f49d"
     	}
 
-    	&.emoji-revolving_hearts:before {
+    	&.emoji-revolving_hearts::before {
     		content: "\1f49e"
     	}
 
-    	&.emoji-heart_decoration:before {
+    	&.emoji-heart_decoration::before {
     		content: "\1f49f"
     	}
 
-    	&.emoji-heart_exclamation:before {
+    	&.emoji-heart_exclamation::before {
     		content: "\2763"
     	}
 
-    	&.emoji-anger:before {
+    	&.emoji-anger::before {
     		content: "\1f4a2"
     	}
 
-    	&.emoji-boom:before {
+    	&.emoji-boom::before {
     		content: "\1f4a5"
     	}
 
-    	&.emoji-dizzy:before {
+    	&.emoji-dizzy::before {
     		content: "\1f4ab"
     	}
 
-    	&.emoji-speech_balloon:before {
+    	&.emoji-speech_balloon::before {
     		content: "\1f4ac"
     	}
 
-    	&.emoji-left_speech_bubble:before {
+    	&.emoji-left_speech_bubble::before {
     		content: "\1f5e8"
     	}
 
-    	&.emoji-right_anger_bubble:before {
+    	&.emoji-right_anger_bubble::before {
     		content: "\1f5ef"
     	}
 
-    	&.emoji-thought_balloon:before {
+    	&.emoji-thought_balloon::before {
     		content: "\1f4ad"
     	}
 
-    	&.emoji-white_flower:before {
+    	&.emoji-white_flower::before {
     		content: "\1f4ae"
     	}
 
-    	&.emoji-globe_with_meridians:before {
+    	&.emoji-globe_with_meridians::before {
     		content: "\1f310"
     	}
 
-    	&.emoji-hotsprings:before {
+    	&.emoji-hotsprings::before {
     		content: "\2668"
     	}
 
-    	&.emoji-octagonal_sign:before {
+    	&.emoji-octagonal_sign::before {
     		content: "\1f6d1"
     	}
 
-    	&.emoji-clock12:before {
+    	&.emoji-clock12::before {
     		content: "\1f55b"
     	}
 
-    	&.emoji-clock1230:before {
+    	&.emoji-clock1230::before {
     		content: "\1f567"
     	}
 
-    	&.emoji-clock1:before {
+    	&.emoji-clock1::before {
     		content: "\1f550"
     	}
 
-    	&.emoji-clock130:before {
+    	&.emoji-clock130::before {
     		content: "\1f55c"
     	}
 
-    	&.emoji-clock2:before {
+    	&.emoji-clock2::before {
     		content: "\1f551"
     	}
 
-    	&.emoji-clock230:before {
+    	&.emoji-clock230::before {
     		content: "\1f55d"
     	}
 
-    	&.emoji-clock3:before {
+    	&.emoji-clock3::before {
     		content: "\1f552"
     	}
 
-    	&.emoji-clock330:before {
+    	&.emoji-clock330::before {
     		content: "\1f55e"
     	}
 
-    	&.emoji-clock4:before {
+    	&.emoji-clock4::before {
     		content: "\1f553"
     	}
 
-    	&.emoji-clock430:before {
+    	&.emoji-clock430::before {
     		content: "\1f55f"
     	}
 
-    	&.emoji-clock5:before {
+    	&.emoji-clock5::before {
     		content: "\1f554"
     	}
 
-    	&.emoji-clock530:before {
+    	&.emoji-clock530::before {
     		content: "\1f560"
     	}
 
-    	&.emoji-clock6:before {
+    	&.emoji-clock6::before {
     		content: "\1f555"
     	}
 
-    	&.emoji-clock630:before {
+    	&.emoji-clock630::before {
     		content: "\1f561"
     	}
 
-    	&.emoji-clock7:before {
+    	&.emoji-clock7::before {
     		content: "\1f556"
     	}
 
-    	&.emoji-clock730:before {
+    	&.emoji-clock730::before {
     		content: "\1f562"
     	}
 
-    	&.emoji-clock8:before {
+    	&.emoji-clock8::before {
     		content: "\1f557"
     	}
 
-    	&.emoji-clock830:before {
+    	&.emoji-clock830::before {
     		content: "\1f563"
     	}
 
-    	&.emoji-clock9:before {
+    	&.emoji-clock9::before {
     		content: "\1f558"
     	}
 
-    	&.emoji-clock930:before {
+    	&.emoji-clock930::before {
     		content: "\1f564"
     	}
 
-    	&.emoji-clock10:before {
+    	&.emoji-clock10::before {
     		content: "\1f559"
     	}
 
-    	&.emoji-clock1030:before {
+    	&.emoji-clock1030::before {
     		content: "\1f565"
     	}
 
-    	&.emoji-clock11:before {
+    	&.emoji-clock11::before {
     		content: "\1f55a"
     	}
 
-    	&.emoji-clock1130:before {
+    	&.emoji-clock1130::before {
     		content: "\1f566"
     	}
 
-    	&.emoji-cyclone:before {
+    	&.emoji-cyclone::before {
     		content: "\1f300"
     	}
 
-    	&.emoji-spades:before {
+    	&.emoji-spades::before {
     		content: "\2660"
     	}
 
-    	&.emoji-hearts:before {
+    	&.emoji-hearts::before {
     		content: "\2665"
     	}
 
-    	&.emoji-diamonds:before {
+    	&.emoji-diamonds::before {
     		content: "\2666"
     	}
 
-    	&.emoji-clubs:before {
+    	&.emoji-clubs::before {
     		content: "\2663"
     	}
 
-    	&.emoji-black_joker:before {
+    	&.emoji-black_joker::before {
     		content: "\1f0cf"
     	}
 
-    	&.emoji-mahjong:before {
+    	&.emoji-mahjong::before {
     		content: "\1f004"
     	}
 
-    	&.emoji-flower_playing_cards:before {
+    	&.emoji-flower_playing_cards::before {
     		content: "\1f3b4"
     	}
 
-    	&.emoji-mute:before {
+    	&.emoji-mute::before {
     		content: "\1f507"
     	}
 
-    	&.emoji-speaker:before {
+    	&.emoji-speaker::before {
     		content: "\1f508"
     	}
 
-    	&.emoji-sound:before {
+    	&.emoji-sound::before {
     		content: "\1f509"
     	}
 
-    	&.emoji-loud_sound:before {
+    	&.emoji-loud_sound::before {
     		content: "\1f50a"
     	}
 
-    	&.emoji-loudspeaker:before {
+    	&.emoji-loudspeaker::before {
     		content: "\1f4e2"
     	}
 
-    	&.emoji-mega:before {
+    	&.emoji-mega::before {
     		content: "\1f4e3"
     	}
 
-    	&.emoji-bell:before {
+    	&.emoji-bell::before {
     		content: "\1f514"
     	}
 
-    	&.emoji-no_bell:before {
+    	&.emoji-no_bell::before {
     		content: "\1f515"
     	}
 
-    	&.emoji-musical_note:before {
+    	&.emoji-musical_note::before {
     		content: "\1f3b5"
     	}
 
-    	&.emoji-notes:before {
+    	&.emoji-notes::before {
     		content: "\1f3b6"
     	}
 
-    	&.emoji-chart:before {
+    	&.emoji-chart::before {
     		content: "\1f4b9"
     	}
 
-    	&.emoji-currency_exchange:before {
+    	&.emoji-currency_exchange::before {
     		content: "\1f4b1"
     	}
 
-    	&.emoji-heavy_dollar_sign:before {
+    	&.emoji-heavy_dollar_sign::before {
     		content: "\1f4b2"
     	}
 
-    	&.emoji-atm:before {
+    	&.emoji-atm::before {
     		content: "\1f3e7"
     	}
 
-    	&.emoji-put_litter_in_its_place:before {
+    	&.emoji-put_litter_in_its_place::before {
     		content: "\1f6ae"
     	}
 
-    	&.emoji-potable_water:before {
+    	&.emoji-potable_water::before {
     		content: "\1f6b0"
     	}
 
-    	&.emoji-wheelchair:before {
+    	&.emoji-wheelchair::before {
     		content: "\267f"
     	}
 
-    	&.emoji-mens:before {
+    	&.emoji-mens::before {
     		content: "\1f6b9"
     	}
 
-    	&.emoji-womens:before {
+    	&.emoji-womens::before {
     		content: "\1f6ba"
     	}
 
-    	&.emoji-restroom:before {
+    	&.emoji-restroom::before {
     		content: "\1f6bb"
     	}
 
-    	&.emoji-baby_symbol:before {
+    	&.emoji-baby_symbol::before {
     		content: "\1f6bc"
     	}
 
-    	&.emoji-wc:before {
+    	&.emoji-wc::before {
     		content: "\1f6be"
     	}
 
-    	&.emoji-passport_control:before {
+    	&.emoji-passport_control::before {
     		content: "\1f6c2"
     	}
 
-    	&.emoji-customs:before {
+    	&.emoji-customs::before {
     		content: "\1f6c3"
     	}
 
-    	&.emoji-baggage_claim:before {
+    	&.emoji-baggage_claim::before {
     		content: "\1f6c4"
     	}
 
-    	&.emoji-left_luggage:before {
+    	&.emoji-left_luggage::before {
     		content: "\1f6c5"
     	}
 
-    	&.emoji-warning:before {
+    	&.emoji-warning::before {
     		content: "\26a0"
     	}
 
-    	&.emoji-children_crossing:before {
+    	&.emoji-children_crossing::before {
     		content: "\1f6b8"
     	}
 
-    	&.emoji-no_entry:before {
+    	&.emoji-no_entry::before {
     		content: "\26d4"
     	}
 
-    	&.emoji-no_entry_sign:before {
+    	&.emoji-no_entry_sign::before {
     		content: "\1f6ab"
     	}
 
-    	&.emoji-no_bicycles:before {
+    	&.emoji-no_bicycles::before {
     		content: "\1f6b3"
     	}
 
-    	&.emoji-no_smoking:before {
+    	&.emoji-no_smoking::before {
     		content: "\1f6ad"
     	}
 
-    	&.emoji-do_not_litter:before {
+    	&.emoji-do_not_litter::before {
     		content: "\1f6af"
     	}
 
-    	&.emoji-non-potable_water:before {
+    	&.emoji-non-potable_water::before {
     		content: "\1f6b1"
     	}
 
-    	&.emoji-no_pedestrians:before {
+    	&.emoji-no_pedestrians::before {
     		content: "\1f6b7"
     	}
 
-    	&.emoji-no_mobile_phones:before {
+    	&.emoji-no_mobile_phones::before {
     		content: "\1f4f5"
     	}
 
-    	&.emoji-underage:before {
+    	&.emoji-underage::before {
     		content: "\1f51e"
     	}
 
-    	&.emoji-radioactive:before {
+    	&.emoji-radioactive::before {
     		content: "\2622"
     	}
 
-    	&.emoji-biohazard:before {
+    	&.emoji-biohazard::before {
     		content: "\2623"
     	}
 
-    	&.emoji-arrow_up:before {
+    	&.emoji-arrow_up::before {
     		content: "\2b06"
     	}
 
-    	&.emoji-arrow_upper_right:before {
+    	&.emoji-arrow_upper_right::before {
     		content: "\2197"
     	}
 
-    	&.emoji-arrow_right:before {
+    	&.emoji-arrow_right::before {
     		content: "\27a1"
     	}
 
-    	&.emoji-arrow_lower_right:before {
+    	&.emoji-arrow_lower_right::before {
     		content: "\2198"
     	}
 
-    	&.emoji-arrow_down:before {
+    	&.emoji-arrow_down::before {
     		content: "\2b07"
     	}
 
-    	&.emoji-arrow_lower_left:before {
+    	&.emoji-arrow_lower_left::before {
     		content: "\2199"
     	}
 
-    	&.emoji-arrow_left:before {
+    	&.emoji-arrow_left::before {
     		content: "\2b05"
     	}
 
-    	&.emoji-arrow_upper_left:before {
+    	&.emoji-arrow_upper_left::before {
     		content: "\2196"
     	}
 
-    	&.emoji-arrow_up_down:before {
+    	&.emoji-arrow_up_down::before {
     		content: "\2195"
     	}
 
-    	&.emoji-left_right_arrow:before {
+    	&.emoji-left_right_arrow::before {
     		content: "\2194"
     	}
 
-    	&.emoji-leftwards_arrow_with_hook:before {
+    	&.emoji-leftwards_arrow_with_hook::before {
     		content: "\21a9"
     	}
 
-    	&.emoji-arrow_right_hook:before {
+    	&.emoji-arrow_right_hook::before {
     		content: "\21aa"
     	}
 
-    	&.emoji-arrow_heading_up:before {
+    	&.emoji-arrow_heading_up::before {
     		content: "\2934"
     	}
 
-    	&.emoji-arrow_heading_down:before {
+    	&.emoji-arrow_heading_down::before {
     		content: "\2935"
     	}
 
-    	&.emoji-arrows_clockwise:before {
+    	&.emoji-arrows_clockwise::before {
     		content: "\1f503"
     	}
 
-    	&.emoji-arrows_counterclockwise:before {
+    	&.emoji-arrows_counterclockwise::before {
     		content: "\1f504"
     	}
 
-    	&.emoji-back:before {
+    	&.emoji-back::before {
     		content: "\1f519"
     	}
 
-    	&.emoji-end:before {
+    	&.emoji-end::before {
     		content: "\1f51a"
     	}
 
-    	&.emoji-on:before {
+    	&.emoji-on::before {
     		content: "\1f51b"
     	}
 
-    	&.emoji-soon:before {
+    	&.emoji-soon::before {
     		content: "\1f51c"
     	}
 
-    	&.emoji-top:before {
+    	&.emoji-top::before {
     		content: "\1f51d"
     	}
 
-    	&.emoji-place_of_worship:before {
+    	&.emoji-place_of_worship::before {
     		content: "\1f6d0"
     	}
 
-    	&.emoji-atom_symbol:before {
+    	&.emoji-atom_symbol::before {
     		content: "\269b"
     	}
 
-    	&.emoji-om_symbol:before {
+    	&.emoji-om_symbol::before {
     		content: "\1f549"
     	}
 
-    	&.emoji-star_of_david:before {
+    	&.emoji-star_of_david::before {
     		content: "\2721"
     	}
 
-    	&.emoji-wheel_of_dharma:before {
+    	&.emoji-wheel_of_dharma::before {
     		content: "\2638"
     	}
 
-    	&.emoji-yin_yang:before {
+    	&.emoji-yin_yang::before {
     		content: "\262f"
     	}
 
-    	&.emoji-latin_cross:before {
+    	&.emoji-latin_cross::before {
     		content: "\271d"
     	}
 
-    	&.emoji-orthodox_cross:before {
+    	&.emoji-orthodox_cross::before {
     		content: "\2626"
     	}
 
-    	&.emoji-star_and_crescent:before {
+    	&.emoji-star_and_crescent::before {
     		content: "\262a"
     	}
 
-    	&.emoji-peace_symbol:before {
+    	&.emoji-peace_symbol::before {
     		content: "\262e"
     	}
 
-    	&.emoji-menorah_with_nine_branches:before {
+    	&.emoji-menorah_with_nine_branches::before {
     		content: "\1f54e"
     	}
 
-    	&.emoji-six_pointed_star:before {
+    	&.emoji-six_pointed_star::before {
     		content: "\1f52f"
     	}
 
-    	&.emoji-aries:before {
+    	&.emoji-aries::before {
     		content: "\2648"
     	}
 
-    	&.emoji-taurus:before {
+    	&.emoji-taurus::before {
     		content: "\2649"
     	}
 
-    	&.emoji-gemini:before {
+    	&.emoji-gemini::before {
     		content: "\264a"
     	}
 
-    	&.emoji-cancer:before {
+    	&.emoji-cancer::before {
     		content: "\264b"
     	}
 
-    	&.emoji-leo:before {
+    	&.emoji-leo::before {
     		content: "\264c"
     	}
 
-    	&.emoji-virgo:before {
+    	&.emoji-virgo::before {
     		content: "\264d"
     	}
 
-    	&.emoji-libra:before {
+    	&.emoji-libra::before {
     		content: "\264e"
     	}
 
-    	&.emoji-scorpius:before {
+    	&.emoji-scorpius::before {
     		content: "\264f"
     	}
 
-    	&.emoji-sagittarius:before {
+    	&.emoji-sagittarius::before {
     		content: "\2650"
     	}
 
-    	&.emoji-capricorn:before {
+    	&.emoji-capricorn::before {
     		content: "\2651"
     	}
 
-    	&.emoji-aquarius:before {
+    	&.emoji-aquarius::before {
     		content: "\2652"
     	}
 
-    	&.emoji-pisces:before {
+    	&.emoji-pisces::before {
     		content: "\2653"
     	}
 
-    	&.emoji-ophiuchus:before {
+    	&.emoji-ophiuchus::before {
     		content: "\26ce"
     	}
 
-    	&.emoji-twisted_rightwards_arrows:before {
+    	&.emoji-twisted_rightwards_arrows::before {
     		content: "\1f500"
     	}
 
-    	&.emoji-repeat:before {
+    	&.emoji-repeat::before {
     		content: "\1f501"
     	}
 
-    	&.emoji-repeat_one:before {
+    	&.emoji-repeat_one::before {
     		content: "\1f502"
     	}
 
-    	&.emoji-arrow_forward:before {
+    	&.emoji-arrow_forward::before {
     		content: "\25b6"
     	}
 
-    	&.emoji-fast_forward:before {
+    	&.emoji-fast_forward::before {
     		content: "\23e9"
     	}
 
-    	&.emoji-black_right_pointing_double_triangle_with_vertical_bar:before {
+    	&.emoji-black_right_pointing_double_triangle_with_vertical_bar::before {
     		content: "\23ed"
     	}
 
-    	&.emoji-black_right_pointing_triangle_with_double_vertical_bar:before {
+    	&.emoji-black_right_pointing_triangle_with_double_vertical_bar::before {
     		content: "\23ef"
     	}
 
-    	&.emoji-arrow_backward:before {
+    	&.emoji-arrow_backward::before {
     		content: "\25c0"
     	}
 
-    	&.emoji-rewind:before {
+    	&.emoji-rewind::before {
     		content: "\23ea"
     	}
 
-    	&.emoji-black_left_pointing_double_triangle_with_vertical_bar:before {
+    	&.emoji-black_left_pointing_double_triangle_with_vertical_bar::before {
     		content: "\23ee"
     	}
 
-    	&.emoji-arrow_up_small:before {
+    	&.emoji-arrow_up_small::before {
     		content: "\1f53c"
     	}
 
-    	&.emoji-arrow_double_up:before {
+    	&.emoji-arrow_double_up::before {
     		content: "\23eb"
     	}
 
-    	&.emoji-arrow_down_small:before {
+    	&.emoji-arrow_down_small::before {
     		content: "\1f53d"
     	}
 
-    	&.emoji-arrow_double_down:before {
+    	&.emoji-arrow_double_down::before {
     		content: "\23ec"
     	}
 
-    	&.emoji-double_vertical_bar:before {
+    	&.emoji-double_vertical_bar::before {
     		content: "\23f8"
     	}
 
-    	&.emoji-black_square_for_stop:before {
+    	&.emoji-black_square_for_stop::before {
     		content: "\23f9"
     	}
 
-    	&.emoji-black_circle_for_record:before {
+    	&.emoji-black_circle_for_record::before {
     		content: "\23fa"
     	}
 
-    	&.emoji-cinema:before {
+    	&.emoji-cinema::before {
     		content: "\1f3a6"
     	}
 
-    	&.emoji-low_brightness:before {
+    	&.emoji-low_brightness::before {
     		content: "\1f505"
     	}
 
-    	&.emoji-high_brightness:before {
+    	&.emoji-high_brightness::before {
     		content: "\1f506"
     	}
 
-    	&.emoji-signal_strength:before {
+    	&.emoji-signal_strength::before {
     		content: "\1f4f6"
     	}
 
-    	&.emoji-vibration_mode:before {
+    	&.emoji-vibration_mode::before {
     		content: "\1f4f3"
     	}
 
-    	&.emoji-mobile_phone_off:before {
+    	&.emoji-mobile_phone_off::before {
     		content: "\1f4f4"
     	}
 
-    	&.emoji-recycle:before {
+    	&.emoji-recycle::before {
     		content: "\267b"
     	}
 
-    	&.emoji-name_badge:before {
+    	&.emoji-name_badge::before {
     		content: "\1f4db"
     	}
 
-    	&.emoji-fleur_de_lis:before {
+    	&.emoji-fleur_de_lis::before {
     		content: "\269c"
     	}
 
-    	&.emoji-beginner:before {
+    	&.emoji-beginner::before {
     		content: "\1f530"
     	}
 
-    	&.emoji-trident:before {
+    	&.emoji-trident::before {
     		content: "\1f531"
     	}
 
-    	&.emoji-o:before {
+    	&.emoji-o::before {
     		content: "\2b55"
     	}
 
-    	&.emoji-white_check_mark:before {
+    	&.emoji-white_check_mark::before {
     		content: "\2705"
     	}
 
-    	&.emoji-ballot_box_with_check:before {
+    	&.emoji-ballot_box_with_check::before {
     		content: "\2611"
     	}
 
-    	&.emoji-heavy_check_mark:before {
+    	&.emoji-heavy_check_mark::before {
     		content: "\2714"
     	}
 
-    	&.emoji-heavy_multiplication_x:before {
+    	&.emoji-heavy_multiplication_x::before {
     		content: "\2716"
     	}
 
-    	&.emoji-x:before {
+    	&.emoji-x::before {
     		content: "\274c"
     	}
 
-    	&.emoji-negative_squared_cross_mark:before {
+    	&.emoji-negative_squared_cross_mark::before {
     		content: "\274e"
     	}
 
-    	&.emoji-heavy_plus_sign:before {
+    	&.emoji-heavy_plus_sign::before {
     		content: "\2795"
     	}
 
-    	&.emoji-heavy_minus_sign:before {
+    	&.emoji-heavy_minus_sign::before {
     		content: "\2796"
     	}
 
-    	&.emoji-heavy_division_sign:before {
+    	&.emoji-heavy_division_sign::before {
     		content: "\2797"
     	}
 
-    	&.emoji-curly_loop:before {
+    	&.emoji-curly_loop::before {
     		content: "\27b0"
     	}
 
-    	&.emoji-loop:before {
+    	&.emoji-loop::before {
     		content: "\27bf"
     	}
 
-    	&.emoji-part_alternation_mark:before {
+    	&.emoji-part_alternation_mark::before {
     		content: "\303d"
     	}
 
-    	&.emoji-eight_spoked_asterisk:before {
+    	&.emoji-eight_spoked_asterisk::before {
     		content: "\2733"
     	}
 
-    	&.emoji-eight_pointed_black_star:before {
+    	&.emoji-eight_pointed_black_star::before {
     		content: "\2734"
     	}
 
-    	&.emoji-sparkle:before {
+    	&.emoji-sparkle::before {
     		content: "\2747"
     	}
 
-    	&.emoji-bangbang:before {
+    	&.emoji-bangbang::before {
     		content: "\203c"
     	}
 
-    	&.emoji-interrobang:before {
+    	&.emoji-interrobang::before {
     		content: "\2049"
     	}
 
-    	&.emoji-question:before {
+    	&.emoji-question::before {
     		content: "\2753"
     	}
 
-    	&.emoji-grey_question:before {
+    	&.emoji-grey_question::before {
     		content: "\2754"
     	}
 
-    	&.emoji-grey_exclamation:before {
+    	&.emoji-grey_exclamation::before {
     		content: "\2755"
     	}
 
-    	&.emoji-exclamation:before {
+    	&.emoji-exclamation::before {
     		content: "\2757"
     	}
 
-    	&.emoji-wavy_dash:before {
+    	&.emoji-wavy_dash::before {
     		content: "\3030"
     	}
 
-    	&.emoji-copyright:before {
+    	&.emoji-copyright::before {
     		content: "\00a9"
     	}
 
-    	&.emoji-registered:before {
+    	&.emoji-registered::before {
     		content: "\00ae"
     	}
 
-    	&.emoji-tm:before {
+    	&.emoji-tm::before {
     		content: "\2122"
     	}
 
-    	&.emoji-hash:before {
+    	&.emoji-hash::before {
     		content: "\0023"
     	}
 
-    	&.emoji-keycap_star:before {
+    	&.emoji-keycap_star::before {
     		content: "\002a"
     	}
 
-    	&.emoji-100:before {
+    	&.emoji-100::before {
     		content: "\1f4af"
     	}
 
-    	&.emoji-capital_abcd:before {
+    	&.emoji-capital_abcd::before {
     		content: "\1f520"
     	}
 
-    	&.emoji-abcd:before {
+    	&.emoji-abcd::before {
     		content: "\1f521"
     	}
 
-    	&.emoji-1234:before {
+    	&.emoji-1234::before {
     		content: "\1f522"
     	}
 
-    	&.emoji-s:before {
+    	&.emoji-s::before {
     		content: "\1f523"
     	}
 
-    	&.emoji-abc:before {
+    	&.emoji-abc::before {
     		content: "\1f524"
     	}
 
-    	&.emoji-a:before {
+    	&.emoji-a::before {
     		content: "\1f170"
     	}
 
-    	&.emoji-ab:before {
+    	&.emoji-ab::before {
     		content: "\1f18e"
     	}
 
-    	&.emoji-b:before {
+    	&.emoji-b::before {
     		content: "\1f171"
     	}
 
-    	&.emoji-cl:before {
+    	&.emoji-cl::before {
     		content: "\1f191"
     	}
 
-    	&.emoji-cool:before {
+    	&.emoji-cool::before {
     		content: "\1f192"
     	}
 
-    	&.emoji-free:before {
+    	&.emoji-free::before {
     		content: "\1f193"
     	}
 
-    	&.emoji-information_source:before {
+    	&.emoji-information_source::before {
     		content: "\2139"
     	}
 
-    	&.emoji-id:before {
+    	&.emoji-id::before {
     		content: "\1f194"
     	}
 
-    	&.emoji-m:before {
+    	&.emoji-m::before {
     		content: "\24c2"
     	}
 
-    	&.emoji-new:before {
+    	&.emoji-new::before {
     		content: "\1f195"
     	}
 
-    	&.emoji-ng:before {
+    	&.emoji-ng::before {
     		content: "\1f196"
     	}
 
-    	&.emoji-o2:before {
+    	&.emoji-o2::before {
     		content: "\1f17e"
     	}
 
-    	&.emoji-ok:before {
+    	&.emoji-ok::before {
     		content: "\1f197"
     	}
 
-    	&.emoji-parking:before {
+    	&.emoji-parking::before {
     		content: "\1f17f"
     	}
 
-    	&.emoji-sos:before {
+    	&.emoji-sos::before {
     		content: "\1f198"
     	}
 
-    	&.emoji-up:before {
+    	&.emoji-up::before {
     		content: "\1f199"
     	}
 
-    	&.emoji-vs:before {
+    	&.emoji-vs::before {
     		content: "\1f19a"
     	}
 
-    	&.emoji-koko:before {
+    	&.emoji-koko::before {
     		content: "\1f201"
     	}
 
-    	&.emoji-sa:before {
+    	&.emoji-sa::before {
     		content: "\1f202"
     	}
 
-    	&.emoji-u6708:before {
+    	&.emoji-u6708::before {
     		content: "\1f237"
     	}
 
-    	&.emoji-u6709:before {
+    	&.emoji-u6709::before {
     		content: "\1f236"
     	}
 
-    	&.emoji-u6307:before {
+    	&.emoji-u6307::before {
     		content: "\1f22f"
     	}
 
-    	&.emoji-ideograph_advantage:before {
+    	&.emoji-ideograph_advantage::before {
     		content: "\1f250"
     	}
 
-    	&.emoji-u5272:before {
+    	&.emoji-u5272::before {
     		content: "\1f239"
     	}
 
-    	&.emoji-u7121:before {
+    	&.emoji-u7121::before {
     		content: "\1f21a"
     	}
 
-    	&.emoji-u7981:before {
+    	&.emoji-u7981::before {
     		content: "\1f232"
     	}
 
-    	&.emoji-accept:before {
+    	&.emoji-accept::before {
     		content: "\1f251"
     	}
 
-    	&.emoji-u7533:before {
+    	&.emoji-u7533::before {
     		content: "\1f238"
     	}
 
-    	&.emoji-u5408:before {
+    	&.emoji-u5408::before {
     		content: "\1f234"
     	}
 
-    	&.emoji-u7a7a:before {
+    	&.emoji-u7a7a::before {
     		content: "\1f233"
     	}
 
-    	&.emoji-congratulations:before {
+    	&.emoji-congratulations::before {
     		content: "\3297"
     	}
 
-    	&.emoji-secret:before {
+    	&.emoji-secret::before {
     		content: "\3299"
     	}
 
-    	&.emoji-u55b6:before {
+    	&.emoji-u55b6::before {
     		content: "\1f23a"
     	}
 
-    	&.emoji-u6e80:before {
+    	&.emoji-u6e80::before {
     		content: "\1f235"
     	}
 
-    	&.emoji-black_small_square:before {
+    	&.emoji-black_small_square::before {
     		content: "\25aa"
     	}
 
-    	&.emoji-white_small_square:before {
+    	&.emoji-white_small_square::before {
     		content: "\25ab"
     	}
 
-    	&.emoji-white_medium_square:before {
+    	&.emoji-white_medium_square::before {
     		content: "\25fb"
     	}
 
-    	&.emoji-black_medium_square:before {
+    	&.emoji-black_medium_square::before {
     		content: "\25fc"
     	}
 
-    	&.emoji-white_medium_small_square:before {
+    	&.emoji-white_medium_small_square::before {
     		content: "\25fd"
     	}
 
-    	&.emoji-black_medium_small_square:before {
+    	&.emoji-black_medium_small_square::before {
     		content: "\25fe"
     	}
 
-    	&.emoji-black_large_square:before {
+    	&.emoji-black_large_square::before {
     		content: "\2b1b"
     	}
 
-    	&.emoji-white_large_square:before {
+    	&.emoji-white_large_square::before {
     		content: "\2b1c"
     	}
 
-    	&.emoji-large_orange_diamond:before {
+    	&.emoji-large_orange_diamond::before {
     		content: "\1f536"
     	}
 
-    	&.emoji-large_blue_diamond:before {
+    	&.emoji-large_blue_diamond::before {
     		content: "\1f537"
     	}
 
-    	&.emoji-small_orange_diamond:before {
+    	&.emoji-small_orange_diamond::before {
     		content: "\1f538"
     	}
 
-    	&.emoji-small_blue_diamond:before {
+    	&.emoji-small_blue_diamond::before {
     		content: "\1f539"
     	}
 
-    	&.emoji-small_red_triangle:before {
+    	&.emoji-small_red_triangle::before {
     		content: "\1f53a"
     	}
 
-    	&.emoji-small_red_triangle_down:before {
+    	&.emoji-small_red_triangle_down::before {
     		content: "\1f53b"
     	}
 
-    	&.emoji-diamond_shape_with_a_dot_inside:before {
+    	&.emoji-diamond_shape_with_a_dot_inside::before {
     		content: "\1f4a0"
     	}
 
-    	&.emoji-radio_button:before {
+    	&.emoji-radio_button::before {
     		content: "\1f518"
     	}
 
-    	&.emoji-black_square_button:before {
+    	&.emoji-black_square_button::before {
     		content: "\1f532"
     	}
 
-    	&.emoji-white_square_button:before {
+    	&.emoji-white_square_button::before {
     		content: "\1f533"
     	}
 
-    	&.emoji-white_circle:before {
+    	&.emoji-white_circle::before {
     		content: "\26aa"
     	}
 
-    	&.emoji-black_circle:before {
+    	&.emoji-black_circle::before {
     		content: "\26ab"
     	}
 
-    	&.emoji-red_circle:before {
+    	&.emoji-red_circle::before {
     		content: "\1f534"
     	}
 
-    	&.emoji-large_blue_circle:before {
+    	&.emoji-large_blue_circle::before {
     		content: "\1f535"
     	}
 
     	// activity
-    	&.emoji-space_invader:before {
+    	&.emoji-space_invader::before {
     		content: "\1f47e"
     	}
 
-    	&.emoji-man_in_business_suit_levitating:before {
+    	&.emoji-man_in_business_suit_levitating::before {
     		content: "\1f574"
     	}
 
-    	&.emoji-horse_racing:before {
+    	&.emoji-horse_racing::before {
     		content: "\1f3c7"
     	}
 
-    	&.emoji-skier:before {
+    	&.emoji-skier::before {
     		content: "\26f7"
     	}
 
-    	&.emoji-snowboarder:before {
+    	&.emoji-snowboarder::before {
     		content: "\1f3c2"
     	}
 
-    	&.emoji-golfer:before {
+    	&.emoji-golfer::before {
     		content: "\1f3cc"
     	}
 
-    	&.emoji-surfer:before {
+    	&.emoji-surfer::before {
     		content: "\1f3c4"
     	}
 
-    	&.emoji-rowboat:before {
+    	&.emoji-rowboat::before {
     		content: "\1f6a3"
     	}
 
-    	&.emoji-swimmer:before {
+    	&.emoji-swimmer::before {
     		content: "\1f3ca"
     	}
 
-    	&.emoji-person_with_ball:before {
+    	&.emoji-person_with_ball::before {
     		content: "\26f9"
     	}
 
-    	&.emoji-weight_lifter:before {
+    	&.emoji-weight_lifter::before {
     		content: "\1f3cb"
     	}
 
-    	&.emoji-bicyclist:before {
+    	&.emoji-bicyclist::before {
     		content: "\1f6b4"
     	}
 
-    	&.emoji-mountain_bicyclist:before {
+    	&.emoji-mountain_bicyclist::before {
     		content: "\1f6b5"
     	}
 
-    	&.emoji-circus_tent:before {
+    	&.emoji-circus_tent::before {
     		content: "\1f3aa"
     	}
 
-    	&.emoji-performing_arts:before {
+    	&.emoji-performing_arts::before {
     		content: "\1f3ad"
     	}
 
-    	&.emoji-art:before {
+    	&.emoji-art::before {
     		content: "\1f3a8"
     	}
 
-    	&.emoji-slot_machine:before {
+    	&.emoji-slot_machine::before {
     		content: "\1f3b0"
     	}
 
-    	&.emoji-bath:before {
+    	&.emoji-bath::before {
     		content: "\1f6c0"
     	}
 
-    	&.emoji-reminder_ribbon:before {
+    	&.emoji-reminder_ribbon::before {
     		content: "\1f397"
     	}
 
-    	&.emoji-admission_tickets:before {
+    	&.emoji-admission_tickets::before {
     		content: "\1f39f"
     	}
 
-    	&.emoji-ticket:before {
+    	&.emoji-ticket::before {
     		content: "\1f3ab"
     	}
 
-    	&.emoji-medal:before {
+    	&.emoji-medal::before {
     		content: "\1f396"
     	}
 
-    	&.emoji-trophy:before {
+    	&.emoji-trophy::before {
     		content: "\1f3c6"
     	}
 
-    	&.emoji-sports_medal:before {
+    	&.emoji-sports_medal::before {
     		content: "\1f3c5"
     	}
 
-    	&.emoji-soccer:before {
+    	&.emoji-soccer::before {
     		content: "\26bd"
     	}
 
-    	&.emoji-baseball:before {
+    	&.emoji-baseball::before {
     		content: "\26be"
     	}
 
-    	&.emoji-basketball:before {
+    	&.emoji-basketball::before {
     		content: "\1f3c0"
     	}
 
-    	&.emoji-volleyball:before {
+    	&.emoji-volleyball::before {
     		content: "\1f3d0"
     	}
 
-    	&.emoji-football:before {
+    	&.emoji-football::before {
     		content: "\1f3c8"
     	}
 
-    	&.emoji-rugby_football:before {
+    	&.emoji-rugby_football::before {
     		content: "\1f3c9"
     	}
 
-    	&.emoji-tennis:before {
+    	&.emoji-tennis::before {
     		content: "\1f3be"
     	}
 
-    	&.emoji-8ball:before {
+    	&.emoji-8ball::before {
     		content: "\1f3b1"
     	}
 
-    	&.emoji-bowling:before {
+    	&.emoji-bowling::before {
     		content: "\1f3b3"
     	}
 
-    	&.emoji-cricket_bat_and_ball:before {
+    	&.emoji-cricket_bat_and_ball::before {
     		content: "\1f3cf"
     	}
 
-    	&.emoji-field_hockey_stick_and_ball:before {
+    	&.emoji-field_hockey_stick_and_ball::before {
     		content: "\1f3d1"
     	}
 
-    	&.emoji-ice_hockey_stick_and_puck:before {
+    	&.emoji-ice_hockey_stick_and_puck::before {
     		content: "\1f3d2"
     	}
 
-    	&.emoji-table_tennis_paddle_and_ball:before {
+    	&.emoji-table_tennis_paddle_and_ball::before {
     		content: "\1f3d3"
     	}
 
-    	&.emoji-badminton_racquet_and_shuttlecock:before {
+    	&.emoji-badminton_racquet_and_shuttlecock::before {
     		content: "\1f3f8"
     	}
 
-    	&.emoji-dart:before {
+    	&.emoji-dart::before {
     		content: "\1f3af"
     	}
 
-    	&.emoji-golf:before {
+    	&.emoji-golf::before {
     		content: "\26f3"
     	}
 
-    	&.emoji-ice_skate:before {
+    	&.emoji-ice_skate::before {
     		content: "\26f8"
     	}
 
-    	&.emoji-fishing_pole_and_fish:before {
+    	&.emoji-fishing_pole_and_fish::before {
     		content: "\1f3a3"
     	}
 
-    	&.emoji-running_shirt_with_sash:before {
+    	&.emoji-running_shirt_with_sash::before {
     		content: "\1f3bd"
     	}
 
-    	&.emoji-ski:before {
+    	&.emoji-ski::before {
     		content: "\1f3bf"
     	}
 
-    	&.emoji-video_game:before {
+    	&.emoji-video_game::before {
     		content: "\1f3ae"
     	}
 
-    	&.emoji-game_die:before {
+    	&.emoji-game_die::before {
     		content: "\1f3b2"
     	}
 
-    	&.emoji-musical_score:before {
+    	&.emoji-musical_score::before {
     		content: "\1f3bc"
     	}
 
-    	&.emoji-microphone:before {
+    	&.emoji-microphone::before {
     		content: "\1f3a4"
     	}
 
-    	&.emoji-headphones:before {
+    	&.emoji-headphones::before {
     		content: "\1f3a7"
     	}
 
-    	&.emoji-saxophone:before {
+    	&.emoji-saxophone::before {
     		content: "\1f3b7"
     	}
 
-    	&.emoji-guitar:before {
+    	&.emoji-guitar::before {
     		content: "\1f3b8"
     	}
 
-    	&.emoji-musical_keyboard:before {
+    	&.emoji-musical_keyboard::before {
     		content: "\1f3b9"
     	}
 
-    	&.emoji-trumpet:before {
+    	&.emoji-trumpet::before {
     		content: "\1f3ba"
     	}
 
-    	&.emoji-violin:before {
+    	&.emoji-violin::before {
     		content: "\1f3bb"
     	}
 
-    	&.emoji-clapper:before {
+    	&.emoji-clapper::before {
     		content: "\1f3ac"
     	}
 
-    	&.emoji-bow_and_arrow:before {
+    	&.emoji-bow_and_arrow::before {
     		content: "\1f3f9"
     	}
 
     	// travel
-    	&.emoji-racing_car:before {
+    	&.emoji-racing_car::before {
     		content: "\1f3ce"
     	}
 
-    	&.emoji-racing_motorcycle:before {
+    	&.emoji-racing_motorcycle::before {
     		content: "\1f3cd"
     	}
 
-    	&.emoji-japan:before {
+    	&.emoji-japan::before {
     		content: "\1f5fe"
     	}
 
-    	&.emoji-snow_capped_mountain:before {
+    	&.emoji-snow_capped_mountain::before {
     		content: "\1f3d4"
     	}
 
-    	&.emoji-mountain:before {
+    	&.emoji-mountain::before {
     		content: "\26f0"
     	}
 
-    	&.emoji-volcano:before {
+    	&.emoji-volcano::before {
     		content: "\1f30b"
     	}
 
-    	&.emoji-mount_fuji:before {
+    	&.emoji-mount_fuji::before {
     		content: "\1f5fb"
     	}
 
-    	&.emoji-camping:before {
+    	&.emoji-camping::before {
     		content: "\1f3d5"
     	}
 
-    	&.emoji-beach_with_umbrella:before {
+    	&.emoji-beach_with_umbrella::before {
     		content: "\1f3d6"
     	}
 
-    	&.emoji-desert:before {
+    	&.emoji-desert::before {
     		content: "\1f3dc"
     	}
 
-    	&.emoji-desert_island:before {
+    	&.emoji-desert_island::before {
     		content: "\1f3dd"
     	}
 
-    	&.emoji-national_park:before {
+    	&.emoji-national_park::before {
     		content: "\1f3de"
     	}
 
-    	&.emoji-stadium:before {
+    	&.emoji-stadium::before {
     		content: "\1f3df"
     	}
 
-    	&.emoji-classical_building:before {
+    	&.emoji-classical_building::before {
     		content: "\1f3db"
     	}
 
-    	&.emoji-building_construction:before {
+    	&.emoji-building_construction::before {
     		content: "\1f3d7"
     	}
 
-    	&.emoji-house_buildings:before {
+    	&.emoji-house_buildings::before {
     		content: "\1f3d8"
     	}
 
-    	&.emoji-cityscape:before {
+    	&.emoji-cityscape::before {
     		content: "\1f3d9"
     	}
 
-    	&.emoji-derelict_house_building:before {
+    	&.emoji-derelict_house_building::before {
     		content: "\1f3da"
     	}
 
-    	&.emoji-house:before {
+    	&.emoji-house::before {
     		content: "\1f3e0"
     	}
 
-    	&.emoji-house_with_garden:before {
+    	&.emoji-house_with_garden::before {
     		content: "\1f3e1"
     	}
 
-    	&.emoji-office:before {
+    	&.emoji-office::before {
     		content: "\1f3e2"
     	}
 
-    	&.emoji-post_office:before {
+    	&.emoji-post_office::before {
     		content: "\1f3e3"
     	}
 
-    	&.emoji-european_post_office:before {
+    	&.emoji-european_post_office::before {
     		content: "\1f3e4"
     	}
 
-    	&.emoji-hospital:before {
+    	&.emoji-hospital::before {
     		content: "\1f3e5"
     	}
 
-    	&.emoji-bank:before {
+    	&.emoji-bank::before {
     		content: "\1f3e6"
     	}
 
-    	&.emoji-hotel:before {
+    	&.emoji-hotel::before {
     		content: "\1f3e8"
     	}
 
-    	&.emoji-love_hotel:before {
+    	&.emoji-love_hotel::before {
     		content: "\1f3e9"
     	}
 
-    	&.emoji-convenience_store:before {
+    	&.emoji-convenience_store::before {
     		content: "\1f3ea"
     	}
 
-    	&.emoji-school:before {
+    	&.emoji-school::before {
     		content: "\1f3eb"
     	}
 
-    	&.emoji-department_store:before {
+    	&.emoji-department_store::before {
     		content: "\1f3ec"
     	}
 
-    	&.emoji-factory:before {
+    	&.emoji-factory::before {
     		content: "\1f3ed"
     	}
 
-    	&.emoji-japanese_castle:before {
+    	&.emoji-japanese_castle::before {
     		content: "\1f3ef"
     	}
 
-    	&.emoji-european_castle:before {
+    	&.emoji-european_castle::before {
     		content: "\1f3f0"
     	}
 
-    	&.emoji-wedding:before {
+    	&.emoji-wedding::before {
     		content: "\1f492"
     	}
 
-    	&.emoji-tokyo_tower:before {
+    	&.emoji-tokyo_tower::before {
     		content: "\1f5fc"
     	}
 
-    	&.emoji-statue_of_liberty:before {
+    	&.emoji-statue_of_liberty::before {
     		content: "\1f5fd"
     	}
 
-    	&.emoji-church:before {
+    	&.emoji-church::before {
     		content: "\26ea"
     	}
 
-    	&.emoji-mosque:before {
+    	&.emoji-mosque::before {
     		content: "\1f54c"
     	}
 
-    	&.emoji-synagogue:before {
+    	&.emoji-synagogue::before {
     		content: "\1f54d"
     	}
 
-    	&.emoji-shinto_shrine:before {
+    	&.emoji-shinto_shrine::before {
     		content: "\26e9"
     	}
 
-    	&.emoji-kaaba:before {
+    	&.emoji-kaaba::before {
     		content: "\1f54b"
     	}
 
-    	&.emoji-fountain:before {
+    	&.emoji-fountain::before {
     		content: "\26f2"
     	}
 
-    	&.emoji-tent:before {
+    	&.emoji-tent::before {
     		content: "\26fa"
     	}
 
-    	&.emoji-foggy:before {
+    	&.emoji-foggy::before {
     		content: "\1f301"
     	}
 
-    	&.emoji-night_with_stars:before {
+    	&.emoji-night_with_stars::before {
     		content: "\1f303"
     	}
 
-    	&.emoji-sunrise_over_mountains:before {
+    	&.emoji-sunrise_over_mountains::before {
     		content: "\1f304"
     	}
 
-    	&.emoji-sunrise:before {
+    	&.emoji-sunrise::before {
     		content: "\1f305"
     	}
 
-    	&.emoji-city_sunset:before {
+    	&.emoji-city_sunset::before {
     		content: "\1f307"
     	}
 
-    	&.emoji-bridge_at_night:before {
+    	&.emoji-bridge_at_night::before {
     		content: "\1f309"
     	}
 
-    	&.emoji-milky_way:before {
+    	&.emoji-milky_way::before {
     		content: "\1f30c"
     	}
 
-    	&.emoji-carousel_horse:before {
+    	&.emoji-carousel_horse::before {
     		content: "\1f3a0"
     	}
 
-    	&.emoji-ferris_wheel:before {
+    	&.emoji-ferris_wheel::before {
     		content: "\1f3a1"
     	}
 
-    	&.emoji-roller_coaster:before {
+    	&.emoji-roller_coaster::before {
     		content: "\1f3a2"
     	}
 
-    	&.emoji-steam_locomotive:before {
+    	&.emoji-steam_locomotive::before {
     		content: "\1f682"
     	}
 
-    	&.emoji-railway_car:before {
+    	&.emoji-railway_car::before {
     		content: "\1f683"
     	}
 
-    	&.emoji-bullettrain_side:before {
+    	&.emoji-bullettrain_side::before {
     		content: "\1f684"
     	}
 
-    	&.emoji-bullettrain_front:before {
+    	&.emoji-bullettrain_front::before {
     		content: "\1f685"
     	}
 
-    	&.emoji-train2:before {
+    	&.emoji-train2::before {
     		content: "\1f686"
     	}
 
-    	&.emoji-metro:before {
+    	&.emoji-metro::before {
     		content: "\1f687"
     	}
 
-    	&.emoji-light_rail:before {
+    	&.emoji-light_rail::before {
     		content: "\1f688"
     	}
 
-    	&.emoji-station:before {
+    	&.emoji-station::before {
     		content: "\1f689"
     	}
 
-    	&.emoji-tram:before {
+    	&.emoji-tram::before {
     		content: "\1f68a"
     	}
 
-    	&.emoji-monorail:before {
+    	&.emoji-monorail::before {
     		content: "\1f69d"
     	}
 
-    	&.emoji-mountain_railway:before {
+    	&.emoji-mountain_railway::before {
     		content: "\1f69e"
     	}
 
-    	&.emoji-train:before {
+    	&.emoji-train::before {
     		content: "\1f68b"
     	}
 
-    	&.emoji-bus:before {
+    	&.emoji-bus::before {
     		content: "\1f68c"
     	}
 
-    	&.emoji-oncoming_bus:before {
+    	&.emoji-oncoming_bus::before {
     		content: "\1f68d"
     	}
 
-    	&.emoji-trolleybus:before {
+    	&.emoji-trolleybus::before {
     		content: "\1f68e"
     	}
 
-    	&.emoji-minibus:before {
+    	&.emoji-minibus::before {
     		content: "\1f690"
     	}
 
-    	&.emoji-ambulance:before {
+    	&.emoji-ambulance::before {
     		content: "\1f691"
     	}
 
-    	&.emoji-fire_engine:before {
+    	&.emoji-fire_engine::before {
     		content: "\1f692"
     	}
 
-    	&.emoji-police_car:before {
+    	&.emoji-police_car::before {
     		content: "\1f693"
     	}
 
-    	&.emoji-oncoming_police_car:before {
+    	&.emoji-oncoming_police_car::before {
     		content: "\1f694"
     	}
 
-    	&.emoji-taxi:before {
+    	&.emoji-taxi::before {
     		content: "\1f695"
     	}
 
-    	&.emoji-oncoming_taxi:before {
+    	&.emoji-oncoming_taxi::before {
     		content: "\1f696"
     	}
 
-    	&.emoji-car:before {
+    	&.emoji-car::before {
     		content: "\1f697"
     	}
 
-    	&.emoji-oncoming_automobile:before {
+    	&.emoji-oncoming_automobile::before {
     		content: "\1f698"
     	}
 
-    	&.emoji-blue_car:before {
+    	&.emoji-blue_car::before {
     		content: "\1f699"
     	}
 
-    	&.emoji-truck:before {
+    	&.emoji-truck::before {
     		content: "\1f69a"
     	}
 
-    	&.emoji-articulated_lorry:before {
+    	&.emoji-articulated_lorry::before {
     		content: "\1f69b"
     	}
 
-    	&.emoji-tractor:before {
+    	&.emoji-tractor::before {
     		content: "\1f69c"
     	}
 
-    	&.emoji-bike:before {
+    	&.emoji-bike::before {
     		content: "\1f6b2"
     	}
 
-    	&.emoji-busstop:before {
+    	&.emoji-busstop::before {
     		content: "\1f68f"
     	}
 
-    	&.emoji-motorway:before {
+    	&.emoji-motorway::before {
     		content: "\1f6e3"
     	}
 
-    	&.emoji-railway_track:before {
+    	&.emoji-railway_track::before {
     		content: "\1f6e4"
     	}
 
-    	&.emoji-fuelpump:before {
+    	&.emoji-fuelpump::before {
     		content: "\26fd"
     	}
 
-    	&.emoji-rotating_light:before {
+    	&.emoji-rotating_light::before {
     		content: "\1f6a8"
     	}
 
-    	&.emoji-traffic_light:before {
+    	&.emoji-traffic_light::before {
     		content: "\1f6a5"
     	}
 
-    	&.emoji-vertical_traffic_light:before {
+    	&.emoji-vertical_traffic_light::before {
     		content: "\1f6a6"
     	}
 
-    	&.emoji-construction:before {
+    	&.emoji-construction::before {
     		content: "\1f6a7"
     	}
 
-    	&.emoji-anchor:before {
+    	&.emoji-anchor::before {
     		content: "\2693"
     	}
 
-    	&.emoji-boat:before {
+    	&.emoji-boat::before {
     		content: "\26f5"
     	}
 
-    	&.emoji-speedboat:before {
+    	&.emoji-speedboat::before {
     		content: "\1f6a4"
     	}
 
-    	&.emoji-passenger_ship:before {
+    	&.emoji-passenger_ship::before {
     		content: "\1f6f3"
     	}
 
-    	&.emoji-ferry:before {
+    	&.emoji-ferry::before {
     		content: "\26f4"
     	}
 
-    	&.emoji-motor_boat:before {
+    	&.emoji-motor_boat::before {
     		content: "\1f6e5"
     	}
 
-    	&.emoji-ship:before {
+    	&.emoji-ship::before {
     		content: "\1f6a2"
     	}
 
-    	&.emoji-airplane:before {
+    	&.emoji-airplane::before {
     		content: "\2708"
     	}
 
-    	&.emoji-small_airplane:before {
+    	&.emoji-small_airplane::before {
     		content: "\1f6e9"
     	}
 
-    	&.emoji-airplane_departure:before {
+    	&.emoji-airplane_departure::before {
     		content: "\1f6eb"
     	}
 
-    	&.emoji-airplane_arriving:before {
+    	&.emoji-airplane_arriving::before {
     		content: "\1f6ec"
     	}
 
-    	&.emoji-seat:before {
+    	&.emoji-seat::before {
     		content: "\1f4ba"
     	}
 
-    	&.emoji-helicopter:before {
+    	&.emoji-helicopter::before {
     		content: "\1f681"
     	}
 
-    	&.emoji-suspension_railway:before {
+    	&.emoji-suspension_railway::before {
     		content: "\1f69f"
     	}
 
-    	&.emoji-mountain_cableway:before {
+    	&.emoji-mountain_cableway::before {
     		content: "\1f6a0"
     	}
 
-    	&.emoji-aerial_tramway:before {
+    	&.emoji-aerial_tramway::before {
     		content: "\1f6a1"
     	}
 
-    	&.emoji-rocket:before {
+    	&.emoji-rocket::before {
     		content: "\1f680"
     	}
 
-    	&.emoji-satellite:before {
+    	&.emoji-satellite::before {
     		content: "\1f6f0"
     	}
 
-    	&.emoji-stars:before {
+    	&.emoji-stars::before {
     		content: "\1f320"
     	}
 
-    	&.emoji-rainbow:before {
+    	&.emoji-rainbow::before {
     		content: "\1f308"
     	}
 
-    	&.emoji-fireworks:before {
+    	&.emoji-fireworks::before {
     		content: "\1f386"
     	}
 
-    	&.emoji-sparkler:before {
+    	&.emoji-sparkler::before {
     		content: "\1f387"
     	}
 
-    	&.emoji-rice_scene:before {
+    	&.emoji-rice_scene::before {
     		content: "\1f391"
     	}
 
-    	&.emoji-checkered_flag:before {
+    	&.emoji-checkered_flag::before {
     		content: "\1f3c1"
     	}
 
     	// objects
-    	&.emoji-skull_and_crossbones:before {
+    	&.emoji-skull_and_crossbones::before {
     		content: "\2620"
     	}
 
-    	&.emoji-love_letter:before {
+    	&.emoji-love_letter::before {
     		content: "\1f48c"
     	}
 
-    	&.emoji-bomb:before {
+    	&.emoji-bomb::before {
     		content: "\1f4a3"
     	}
 
-    	&.emoji-hole:before {
+    	&.emoji-hole::before {
     		content: "\1f573"
     	}
 
-    	&.emoji-shopping_bags:before {
+    	&.emoji-shopping_bags::before {
     		content: "\1f6cd"
     	}
 
-    	&.emoji-prayer_beads:before {
+    	&.emoji-prayer_beads::before {
     		content: "\1f4ff"
     	}
 
-    	&.emoji-gem:before {
+    	&.emoji-gem::before {
     		content: "\1f48e"
     	}
 
-    	&.emoji-amphora:before {
+    	&.emoji-amphora::before {
     		content: "\1f3fa"
     	}
 
-    	&.emoji-world_map:before {
+    	&.emoji-world_map::before {
     		content: "\1f5fa"
     	}
 
-    	&.emoji-barber:before {
+    	&.emoji-barber::before {
     		content: "\1f488"
     	}
 
-    	&.emoji-frame_with_picture:before {
+    	&.emoji-frame_with_picture::before {
     		content: "\1f5bc"
     	}
 
-    	&.emoji-bellhop_bell:before {
+    	&.emoji-bellhop_bell::before {
     		content: "\1f6ce"
     	}
 
-    	&.emoji-door:before {
+    	&.emoji-door::before {
     		content: "\1f6aa"
     	}
 
-    	&.emoji-sleeping_accommodation:before {
+    	&.emoji-sleeping_accommodation::before {
     		content: "\1f6cc"
     	}
 
-    	&.emoji-bed:before {
+    	&.emoji-bed::before {
     		content: "\1f6cf"
     	}
 
-    	&.emoji-couch_and_lamp:before {
+    	&.emoji-couch_and_lamp::before {
     		content: "\1f6cb"
     	}
 
-    	&.emoji-toilet:before {
+    	&.emoji-toilet::before {
     		content: "\1f6bd"
     	}
 
-    	&.emoji-shower:before {
+    	&.emoji-shower::before {
     		content: "\1f6bf"
     	}
 
-    	&.emoji-bathtub:before {
+    	&.emoji-bathtub::before {
     		content: "\1f6c1"
     	}
 
-    	&.emoji-hourglass:before {
+    	&.emoji-hourglass::before {
     		content: "\231b"
     	}
 
-    	&.emoji-hourglass_flowing_sand:before {
+    	&.emoji-hourglass_flowing_sand::before {
     		content: "\23f3"
     	}
 
-    	&.emoji-watch:before {
+    	&.emoji-watch::before {
     		content: "\231a"
     	}
 
-    	&.emoji-alarm_clock:before {
+    	&.emoji-alarm_clock::before {
     		content: "\23f0"
     	}
 
-    	&.emoji-stopwatch:before {
+    	&.emoji-stopwatch::before {
     		content: "\23f1"
     	}
 
-    	&.emoji-timer_clock:before {
+    	&.emoji-timer_clock::before {
     		content: "\23f2"
     	}
 
-    	&.emoji-mantelpiece_clock:before {
+    	&.emoji-mantelpiece_clock::before {
     		content: "\1f570"
     	}
 
-    	&.emoji-thermometer:before {
+    	&.emoji-thermometer::before {
     		content: "\1f321"
     	}
 
-    	&.emoji-beach_umbrella:before {
+    	&.emoji-beach_umbrella::before {
     		content: "\26f1"
     	}
 
-    	&.emoji-balloon:before {
+    	&.emoji-balloon::before {
     		content: "\1f388"
     	}
 
-    	&.emoji-tada:before {
+    	&.emoji-tada::before {
     		content: "\1f389"
     	}
 
-    	&.emoji-confetti_ball:before {
+    	&.emoji-confetti_ball::before {
     		content: "\1f38a"
     	}
 
-    	&.emoji-dolls:before {
+    	&.emoji-dolls::before {
     		content: "\1f38e"
     	}
 
-    	&.emoji-f:before {
+    	&.emoji-f::before {
     		content: "\1f38f"
     	}
 
-    	&.emoji-wind_chime:before {
+    	&.emoji-wind_chime::before {
     		content: "\1f390"
     	}
 
-    	&.emoji-ribbon:before {
+    	&.emoji-ribbon::before {
     		content: "\1f380"
     	}
 
-    	&.emoji-gift:before {
+    	&.emoji-gift::before {
     		content: "\1f381"
     	}
 
-    	&.emoji-joystick:before {
+    	&.emoji-joystick::before {
     		content: "\1f579"
     	}
 
-    	&.emoji-postal_horn:before {
+    	&.emoji-postal_horn::before {
     		content: "\1f4ef"
     	}
 
-    	&.emoji-studio_microphone:before {
+    	&.emoji-studio_microphone::before {
     		content: "\1f399"
     	}
 
-    	&.emoji-level_slider:before {
+    	&.emoji-level_slider::before {
     		content: "\1f39a"
     	}
 
-    	&.emoji-control_knobs:before {
+    	&.emoji-control_knobs::before {
     		content: "\1f39b"
     	}
 
-    	&.emoji-radio:before {
+    	&.emoji-radio::before {
     		content: "\1f4fb"
     	}
 
-    	&.emoji-iphone:before {
+    	&.emoji-iphone::before {
     		content: "\1f4f1"
     	}
 
-    	&.emoji-calling:before {
+    	&.emoji-calling::before {
     		content: "\1f4f2"
     	}
 
-    	&.emoji-telephone:before {
+    	&.emoji-telephone::before {
     		content: "\260e"
     	}
 
-    	&.emoji-telephone_receiver:before {
+    	&.emoji-telephone_receiver::before {
     		content: "\1f4de"
     	}
 
-    	&.emoji-pager:before {
+    	&.emoji-pager::before {
     		content: "\1f4df"
     	}
 
-    	&.emoji-fax:before {
+    	&.emoji-fax::before {
     		content: "\1f4e0"
     	}
 
-    	&.emoji-battery:before {
+    	&.emoji-battery::before {
     		content: "\1f50b"
     	}
 
-    	&.emoji-electric_plug:before {
+    	&.emoji-electric_plug::before {
     		content: "\1f50c"
     	}
 
-    	&.emoji-computer:before {
+    	&.emoji-computer::before {
     		content: "\1f4bb"
     	}
 
-    	&.emoji-desktop_computer:before {
+    	&.emoji-desktop_computer::before {
     		content: "\1f5a5"
     	}
 
-    	&.emoji-printer:before {
+    	&.emoji-printer::before {
     		content: "\1f5a8"
     	}
 
-    	&.emoji-keyboard:before {
+    	&.emoji-keyboard::before {
     		content: "\2328"
     	}
 
-    	&.emoji-three_button_mouse:before {
+    	&.emoji-three_button_mouse::before {
     		content: "\1f5b1"
     	}
 
-    	&.emoji-trackball:before {
+    	&.emoji-trackball::before {
     		content: "\1f5b2"
     	}
 
-    	&.emoji-minidisc:before {
+    	&.emoji-minidisc::before {
     		content: "\1f4bd"
     	}
 
-    	&.emoji-floppy_disk:before {
+    	&.emoji-floppy_disk::before {
     		content: "\1f4be"
     	}
 
-    	&.emoji-cd:before {
+    	&.emoji-cd::before {
     		content: "\1f4bf"
     	}
 
-    	&.emoji-dvd:before {
+    	&.emoji-dvd::before {
     		content: "\1f4c0"
     	}
 
-    	&.emoji-movie_camera:before {
+    	&.emoji-movie_camera::before {
     		content: "\1f3a5"
     	}
 
-    	&.emoji-film_frames:before {
+    	&.emoji-film_frames::before {
     		content: "\1f39e"
     	}
 
-    	&.emoji-film_projector:before {
+    	&.emoji-film_projector::before {
     		content: "\1f4fd"
     	}
 
-    	&.emoji-tv:before {
+    	&.emoji-tv::before {
     		content: "\1f4fa"
     	}
 
-    	&.emoji-camera:before {
+    	&.emoji-camera::before {
     		content: "\1f4f7"
     	}
 
-    	&.emoji-camera_with_flash:before {
+    	&.emoji-camera_with_flash::before {
     		content: "\1f4f8"
     	}
 
-    	&.emoji-video_camera:before {
+    	&.emoji-video_camera::before {
     		content: "\1f4f9"
     	}
 
-    	&.emoji-vhs:before {
+    	&.emoji-vhs::before {
     		content: "\1f4fc"
     	}
 
-    	&.emoji-mag:before {
+    	&.emoji-mag::before {
     		content: "\1f50d"
     	}
 
-    	&.emoji-mag_right:before {
+    	&.emoji-mag_right::before {
     		content: "\1f50e"
     	}
 
-    	&.emoji-microscope:before {
+    	&.emoji-microscope::before {
     		content: "\1f52c"
     	}
 
-    	&.emoji-telescope:before {
+    	&.emoji-telescope::before {
     		content: "\1f52d"
     	}
 
-    	&.emoji-satellite_antenna:before {
+    	&.emoji-satellite_antenna::before {
     		content: "\1f4e1"
     	}
 
-    	&.emoji-candle:before {
+    	&.emoji-candle::before {
     		content: "\1f56f"
     	}
 
-    	&.emoji-bulb:before {
+    	&.emoji-bulb::before {
     		content: "\1f4a1"
     	}
 
-    	&.emoji-flashlight:before {
+    	&.emoji-flashlight::before {
     		content: "\1f526"
     	}
 
-    	&.emoji-izakaya_lantern:before {
+    	&.emoji-izakaya_lantern::before {
     		content: "\1f3ee"
     	}
 
-    	&.emoji-notebook_with_decorative_cover:before {
+    	&.emoji-notebook_with_decorative_cover::before {
     		content: "\1f4d4"
     	}
 
-    	&.emoji-closed_book:before {
+    	&.emoji-closed_book::before {
     		content: "\1f4d5"
     	}
 
-    	&.emoji-book:before {
+    	&.emoji-book::before {
     		content: "\1f4d6"
     	}
 
-    	&.emoji-green_book:before {
+    	&.emoji-green_book::before {
     		content: "\1f4d7"
     	}
 
-    	&.emoji-blue_book:before {
+    	&.emoji-blue_book::before {
     		content: "\1f4d8"
     	}
 
-    	&.emoji-orange_book:before {
+    	&.emoji-orange_book::before {
     		content: "\1f4d9"
     	}
 
-    	&.emoji-books:before {
+    	&.emoji-books::before {
     		content: "\1f4da"
     	}
 
-    	&.emoji-notebook:before {
+    	&.emoji-notebook::before {
     		content: "\1f4d3"
     	}
 
-    	&.emoji-ledger:before {
+    	&.emoji-ledger::before {
     		content: "\1f4d2"
     	}
 
-    	&.emoji-page_with_curl:before {
+    	&.emoji-page_with_curl::before {
     		content: "\1f4c3"
     	}
 
-    	&.emoji-scroll:before {
+    	&.emoji-scroll::before {
     		content: "\1f4dc"
     	}
 
-    	&.emoji-page_facing_up:before {
+    	&.emoji-page_facing_up::before {
     		content: "\1f4c4"
     	}
 
-    	&.emoji-newspaper:before {
+    	&.emoji-newspaper::before {
     		content: "\1f4f0"
     	}
 
-    	&.emoji-rolled_up_newspaper:before {
+    	&.emoji-rolled_up_newspaper::before {
     		content: "\1f5de"
     	}
 
-    	&.emoji-bookmark_tabs:before {
+    	&.emoji-bookmark_tabs::before {
     		content: "\1f4d1"
     	}
 
-    	&.emoji-bookmark:before {
+    	&.emoji-bookmark::before {
     		content: "\1f516"
     	}
 
-    	&.emoji-label:before {
+    	&.emoji-label::before {
     		content: "\1f3f7"
     	}
 
-    	&.emoji-moneybag:before {
+    	&.emoji-moneybag::before {
     		content: "\1f4b0"
     	}
 
-    	&.emoji-yen:before {
+    	&.emoji-yen::before {
     		content: "\1f4b4"
     	}
 
-    	&.emoji-dollar:before {
+    	&.emoji-dollar::before {
     		content: "\1f4b5"
     	}
 
-    	&.emoji-euro:before {
+    	&.emoji-euro::before {
     		content: "\1f4b6"
     	}
 
-    	&.emoji-pound:before {
+    	&.emoji-pound::before {
     		content: "\1f4b7"
     	}
 
-    	&.emoji-money_with_wings:before {
+    	&.emoji-money_with_wings::before {
     		content: "\1f4b8"
     	}
 
-    	&.emoji-credit_card:before {
+    	&.emoji-credit_card::before {
     		content: "\1f4b3"
     	}
 
-    	&.emoji-e-mail:before {
+    	&.emoji-e-mail::before {
     		content: "\1f4e7"
     	}
 
-    	&.emoji-incoming_envelope:before {
+    	&.emoji-incoming_envelope::before {
     		content: "\1f4e8"
     	}
 
-    	&.emoji-envelope_with_arrow:before {
+    	&.emoji-envelope_with_arrow::before {
     		content: "\1f4e9"
     	}
 
-    	&.emoji-outbox_tray:before {
+    	&.emoji-outbox_tray::before {
     		content: "\1f4e4"
     	}
 
-    	&.emoji-inbox_tray:before {
+    	&.emoji-inbox_tray::before {
     		content: "\1f4e5"
     	}
 
-    	&.emoji-package:before {
+    	&.emoji-package::before {
     		content: "\1f4e6"
     	}
 
-    	&.emoji-mailbox:before {
+    	&.emoji-mailbox::before {
     		content: "\1f4eb"
     	}
 
-    	&.emoji-mailbox_closed:before {
+    	&.emoji-mailbox_closed::before {
     		content: "\1f4ea"
     	}
 
-    	&.emoji-mailbox_with_mail:before {
+    	&.emoji-mailbox_with_mail::before {
     		content: "\1f4ec"
     	}
 
-    	&.emoji-mailbox_with_no_mail:before {
+    	&.emoji-mailbox_with_no_mail::before {
     		content: "\1f4ed"
     	}
 
-    	&.emoji-postbox:before {
+    	&.emoji-postbox::before {
     		content: "\1f4ee"
     	}
 
-    	&.emoji-ballot_box_with_ballot:before {
+    	&.emoji-ballot_box_with_ballot::before {
     		content: "\1f5f3"
     	}
 
-    	&.emoji-pencil2:before {
+    	&.emoji-pencil2::before {
     		content: "\270f"
     	}
 
-    	&.emoji-black_nib:before {
+    	&.emoji-black_nib::before {
     		content: "\2712"
     	}
 
-    	&.emoji-lower_left_fountain_pen:before {
+    	&.emoji-lower_left_fountain_pen::before {
     		content: "\1f58b"
     	}
 
-    	&.emoji-lower_left_ballpoint_pen:before {
+    	&.emoji-lower_left_ballpoint_pen::before {
     		content: "\1f58a"
     	}
 
-    	&.emoji-lower_left_paintbrush:before {
+    	&.emoji-lower_left_paintbrush::before {
     		content: "\1f58c"
     	}
 
-    	&.emoji-lower_left_crayon:before {
+    	&.emoji-lower_left_crayon::before {
     		content: "\1f58d"
     	}
 
-    	&.emoji-memo:before {
+    	&.emoji-memo::before {
     		content: "\1f4dd"
     	}
 
-    	&.emoji-file_folder:before {
+    	&.emoji-file_folder::before {
     		content: "\1f4c1"
     	}
 
-    	&.emoji-open_file_folder:before {
+    	&.emoji-open_file_folder::before {
     		content: "\1f4c2"
     	}
 
-    	&.emoji-card_index_dividers:before {
+    	&.emoji-card_index_dividers::before {
     		content: "\1f5c2"
     	}
 
-    	&.emoji-date:before {
+    	&.emoji-date::before {
     		content: "\1f4c5"
     	}
 
-    	&.emoji-calendar:before {
+    	&.emoji-calendar::before {
     		content: "\1f4c6"
     	}
 
-    	&.emoji-spiral_note_pad:before {
+    	&.emoji-spiral_note_pad::before {
     		content: "\1f5d2"
     	}
 
-    	&.emoji-spiral_calendar_pad:before {
+    	&.emoji-spiral_calendar_pad::before {
     		content: "\1f5d3"
     	}
 
-    	&.emoji-card_index:before {
+    	&.emoji-card_index::before {
     		content: "\1f4c7"
     	}
 
-    	&.emoji-chart_with_upwards_trend:before {
+    	&.emoji-chart_with_upwards_trend::before {
     		content: "\1f4c8"
     	}
 
-    	&.emoji-chart_with_downwards_trend:before {
+    	&.emoji-chart_with_downwards_trend::before {
     		content: "\1f4c9"
     	}
 
-    	&.emoji-bar_chart:before {
+    	&.emoji-bar_chart::before {
     		content: "\1f4ca"
     	}
 
-    	&.emoji-clipboard:before {
+    	&.emoji-clipboard::before {
     		content: "\1f4cb"
     	}
 
-    	&.emoji-pushpin:before {
+    	&.emoji-pushpin::before {
     		content: "\1f4cc"
     	}
 
-    	&.emoji-round_pushpin:before {
+    	&.emoji-round_pushpin::before {
     		content: "\1f4cd"
     	}
 
-    	&.emoji-paperclip:before {
+    	&.emoji-paperclip::before {
     		content: "\1f4ce"
     	}
 
-    	&.emoji-linked_paperclips:before {
+    	&.emoji-linked_paperclips::before {
     		content: "\1f587"
     	}
 
-    	&.emoji-straight_ruler:before {
+    	&.emoji-straight_ruler::before {
     		content: "\1f4cf"
     	}
 
-    	&.emoji-triangular_ruler:before {
+    	&.emoji-triangular_ruler::before {
     		content: "\1f4d0"
     	}
 
-    	&.emoji-scissors:before {
+    	&.emoji-scissors::before {
     		content: "\2702"
     	}
 
-    	&.emoji-card_file_box:before {
+    	&.emoji-card_file_box::before {
     		content: "\1f5c3"
     	}
 
-    	&.emoji-file_cabinet:before {
+    	&.emoji-file_cabinet::before {
     		content: "\1f5c4"
     	}
 
-    	&.emoji-wastebasket:before {
+    	&.emoji-wastebasket::before {
     		content: "\1f5d1"
     	}
 
-    	&.emoji-lock:before {
+    	&.emoji-lock::before {
     		content: "\1f512"
     	}
 
-    	&.emoji-unlock:before {
+    	&.emoji-unlock::before {
     		content: "\1f513"
     	}
 
-    	&.emoji-lock_with_ink_pen:before {
+    	&.emoji-lock_with_ink_pen::before {
     		content: "\1f50f"
     	}
 
-    	&.emoji-closed_lock_with_key:before {
+    	&.emoji-closed_lock_with_key::before {
     		content: "\1f510"
     	}
 
-    	&.emoji-key:before {
+    	&.emoji-key::before {
     		content: "\1f511"
     	}
 
-    	&.emoji-old_key:before {
+    	&.emoji-old_key::before {
     		content: "\1f5dd"
     	}
 
-    	&.emoji-hammer:before {
+    	&.emoji-hammer::before {
     		content: "\1f528"
     	}
 
-    	&.emoji-pick:before {
+    	&.emoji-pick::before {
     		content: "\26cf"
     	}
 
-    	&.emoji-hammer_and_pick:before {
+    	&.emoji-hammer_and_pick::before {
     		content: "\2692"
     	}
 
-    	&.emoji-hammer_and_wrench:before {
+    	&.emoji-hammer_and_wrench::before {
     		content: "\1f6e0"
     	}
 
-    	&.emoji-dagger_knife:before {
+    	&.emoji-dagger_knife::before {
     		content: "\1f5e1"
     	}
 
-    	&.emoji-crossed_swords:before {
+    	&.emoji-crossed_swords::before {
     		content: "\2694"
     	}
 
-    	&.emoji-gun:before {
+    	&.emoji-gun::before {
     		content: "\1f52b"
     	}
 
-    	&.emoji-shield:before {
+    	&.emoji-shield::before {
     		content: "\1f6e1"
     	}
 
-    	&.emoji-wrench:before {
+    	&.emoji-wrench::before {
     		content: "\1f527"
     	}
 
-    	&.emoji-nut_and_bolt:before {
+    	&.emoji-nut_and_bolt::before {
     		content: "\1f529"
     	}
 
-    	&.emoji-gear:before {
+    	&.emoji-gear::before {
     		content: "\2699"
     	}
 
-    	&.emoji-compression:before {
+    	&.emoji-compression::before {
     		content: "\1f5dc"
     	}
 
-    	&.emoji-alembic:before {
+    	&.emoji-alembic::before {
     		content: "\2697"
     	}
 
-    	&.emoji-scales:before {
+    	&.emoji-scales::before {
     		content: "\2696"
     	}
 
-    	&.emoji-link:before {
+    	&.emoji-link::before {
     		content: "\1f517"
     	}
 
-    	&.emoji-chains:before {
+    	&.emoji-chains::before {
     		content: "\26d3"
     	}
 
-    	&.emoji-syringe:before {
+    	&.emoji-syringe::before {
     		content: "\1f489"
     	}
 
-    	&.emoji-pill:before {
+    	&.emoji-pill::before {
     		content: "\1f48a"
     	}
 
-    	&.emoji-smoking:before {
+    	&.emoji-smoking::before {
     		content: "\1f6ac"
     	}
 
-    	&.emoji-coffin:before {
+    	&.emoji-coffin::before {
     		content: "\26b0"
     	}
 
-    	&.emoji-funeral_urn:before {
+    	&.emoji-funeral_urn::before {
     		content: "\26b1"
     	}
 
-    	&.emoji-moyai:before {
+    	&.emoji-moyai::before {
     		content: "\1f5ff"
     	}
 
-    	&.emoji-oil_drum:before {
+    	&.emoji-oil_drum::before {
     		content: "\1f6e2"
     	}
 
-    	&.emoji-crystal_ball:before {
+    	&.emoji-crystal_ball::before {
     		content: "\1f52e"
     	}
 
-    	&.emoji-triangular_flag_on_post:before {
+    	&.emoji-triangular_flag_on_post::before {
     		content: "\1f6a9"
     	}
 
-    	&.emoji-crossed_flags:before {
+    	&.emoji-crossed_flags::before {
     		content: "\1f38c"
     	}
 
-    	&.emoji-waving_black_flag:before {
+    	&.emoji-waving_black_flag::before {
     		content: "\1f3f4"
     	}
 
-    	&.emoji-waving_white_flag:before {
+    	&.emoji-waving_white_flag::before {
     		content: "\1f3f3"
     	}
     }
