@@ -4,11 +4,14 @@ import { Subscription, BehaviorSubject, Observable } from 'rxjs';
 import { User, ThreadData, ThreadPart, ThreadDataItem } from 'src/app/vo/vo';
 import { ApiService } from 'src/app/api/api.service';
 import { first } from 'rxjs/operators';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { UserService } from 'src/app/api/user.service';
 import { Delta, DeltaOperation } from 'quill';
 import { BusyService } from 'src/app/api/busy.service';
 import { WatchService } from 'src/app/api/watch.service';
+import { RteComponent, RteData } from '../../rte/editor/rte.component';
+import { ContextService } from 'src/app/context.service';
+import { WatchNotificationService } from 'src/app/api/watch-notification.service';
 
 @Component({
   selector: 'app-thread',
@@ -23,6 +26,9 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('scrollframe', { static: false }) scrollFrame: ElementRef;
   @ViewChildren('thread-part') itemElements: QueryList<any>;
+  @ViewChild(RteComponent) rte: RteComponent
+
+  readbyText = ""
 
   asyncThreadData: BehaviorSubject<ThreadData> = new BehaviorSubject<ThreadData>(null)
   threadData: ThreadData
@@ -43,13 +49,21 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
   constructor(
     route: ActivatedRoute,
     watch: WatchService,
+    private context: ContextService,
+    private notifier: WatchNotificationService,
     private api: ApiService,
     private userService: UserService,
     private busy: BusyService,
     private cdr: ChangeDetectorRef) {
 
     this.currentUser = userService.user
-    this.messageControl = new FormControl(null, Validators.minLength(1))
+    this.messageControl = new FormControl(null, (control) => {
+      const data: RteData = control.value
+      if (data && data.length > 0) {
+        return null
+      }
+      return { minLength: 1 }
+    })
     this.sub = this.messageControl.statusChanges.subscribe(value => {
       cdr.detectChanges()
     })
@@ -61,32 +75,94 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     })
     this.sub = watch.$threadPart.subscribe(id => {
       const data = this.threadData
-      if(! data)
+      if (!data)
         return
       const tid = data.thread.id
-      if(tid == watch.thread)
+      if (tid == watch.thread)
         this.updateReplies()
     })
   }
 
+  private notifyUserInThread(newInThread: number[], currentUser: number) {
+    if (!newInThread || !newInThread.length)
+      return
+    
+    newInThread = newInThread.filter(id => id != currentUser)
+    if (!newInThread.length)
+      return
+    const context = this.context
+    let message: string
+    const names = newInThread.map(id => context.findUser(id).name)
+    if (newInThread.length == 1) {
+      message = `${names[0]} lit le message`
+    }
+    else {
+      message = `${names.join(", ")} lisent le message`
+    }
+    this.notifier.open(message)
+  }
+  private usersInThread: number[] = []
+  private updateReadByText() {
+    const context = this.context
+    const currentActive = context.activeThreads[context.threadOpened]
+    if(! currentActive) return
+    const currentUser = context.user.id 
+    const thread = this.threadData.thread
+    const threadUser: number = thread.user_id
+    if (!this.initNotify) {
+      this.notifyUserInThread(currentActive, currentUser)
+    }
+    else {
+      let current = currentActive
+      let newInThread: number[] = []
+      for (const uid of currentActive) {
+        if (current.indexOf(uid) < 0)
+          newInThread.push(uid)
+      }
+      this.notifyUserInThread(newInThread, currentUser)
+    }
+    this.usersInThread = currentActive
+    const readByUsers: number[] = currentActive.slice().filter(id => id != threadUser)
+    const readBy = thread.read_by
+    for (const tpid in readBy) {
+      const tpUsers: number[] = readBy[tpid]
+      for (const uid of tpUsers) {
+        if (uid == threadUser) continue
+        const user = context.findUser(uid)
+        if(! user) {
+          console.log('USER NOT FOUND', uid)
+          continue
+        }
+        if (readByUsers.indexOf(uid) < 0)
+          readByUsers.push(uid)
+      }
+    }
+
+    const userNames: string[] = readByUsers.map(uid => context.findUser(uid).name)
+    if (!userNames.length)
+      userNames.push('personne')
+    const message: string = "Vu par: "
+    this.readbyText = message + userNames.join(', ')
+  }
+
   private updateReplies() {
-    const replies =  this.replies
-    this.api.getThreadData(this.threadData.thread.id).pipe(first()).subscribe(data => {
+    const replies = this.replies
+    this.api.getThreadData(this.threadData.thread.id, this.userService.user.id).pipe(first()).subscribe(data => {
       const newContents = data.contents
       const currentContents = this.threadData.contents
       const k = newContents.length
       let _id: number
-      const findPart = (part: ThreadDataItem) => part.id == _id 
+      const findPart = (part: ThreadDataItem) => part.id == _id
       for (let i = 0; i < k; i++) {
         const reply = newContents[i]
         _id = reply.id
         const r = replies.find(findPart)
-        if(! r) {
-          console.log("new reply")
+        if (!r) {
           reply.user = this.userService.findById(reply.user_id)
           currentContents.push(reply)
           replies.push(reply)
           this.cdr.detectChanges()
+          setTimeout(() => this.scrollToBottom(), 100)
         }
       }
     })
@@ -104,6 +180,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private setupThread(id: number) {
+    this.context.threadOpened = id
     const userService = this.userService
     if (!userService.busy) {
       return this.loadThread(id)
@@ -116,6 +193,8 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private appendThreadPartAsync(contents: ThreadDataItem[], service: UserService) {
     return new Observable<boolean>(obs => {
+      const busy = this.busy
+      busy.open()
       contents = contents.slice()
       const cdr = this.cdr
       const next = () => {
@@ -129,6 +208,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
           })
         }
         else {
+          busy.close()
           obs.next(true)
           obs.complete()
         }
@@ -138,57 +218,76 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   replies: ThreadDataItem[] = []
-
+  private initNotify: boolean = false
   private loadThread(id: number) {
-    this.api.getThreadData(id).pipe(first()).subscribe(data => {
+    this.context.threadOpened = id
+    this.api.getThreadData(id, this.userService.user.id).pipe(first()).subscribe(data => {
       const userService = this.userService
-      data.user = userService.findById(data.user_id)
+      const uid = data.user_id
+      data.user = userService.findById(uid)
+      if (!this.initNotify) {
+        this.sub = this.context.activeThreadReadChange.subscribe(users => {
+          this.updateReadByText()
+          this.initNotify = true
+        })
+      }
       this.threadData = data
+
       this.asyncThreadData.next(data)
       this.cdr.detectChanges()
       this.appendThreadPartAsync(data.contents, userService).pipe(first()).subscribe(done => {
         this.busy.close()
         this.checkScrollHandler()
+        this.updateReadByText()
         this.cdr.detectChanges()
       })
     })
 
   }
 
+  afterExpand() {
+    this.rte.focusEditor()
+    /*
+    this.messageControl.setValue(null)
+    this.messageControl.updateValueAndValidity()
+    this.cdr.detectChanges()
+    */
+  }
   panelCloseHandler() {
     this.panelOpenState = false
     this.cdr.detectChanges()
     if (this.replyFlag) {
       this.replyFlag = false
-      this.scrollToBottom()
-      const data = this.messageControl.value
-      const ops = (data.content as Delta).ops
-      const tp: ThreadPart = {
-        thread_id: this.thread.id,
-        user_id: this.currentUser.id,
-        content: ops
-      }
-      this.api.reply(tp).pipe(first()).subscribe(tp => {
-        this.messageControl.setValue(null)
-        this.replies.push({
-          user_id: this.currentUser.id,
-          user: this.currentUser,
-          id: tp.id,
-          inserts: tp.content as DeltaOperation[]
-        })
-        this.cdr.detectChanges()
-      })
-      this.messageControl.setValue(null)
     }
   }
 
   private replyFlag = false
 
   reply(event: MouseEvent) {
-    //event.stopImmediatePropagation()
-    //event.preventDefault()
-    this.replyFlag = true
+    event.stopImmediatePropagation()
+    event.preventDefault()
 
+    const data = this.messageControl.value
+    const ops = (data.content as Delta).ops
+    const tp: ThreadPart = {
+      thread_id: this.thread.id,
+      user_id: this.currentUser.id,
+      content: ops
+    }
+    this.api.reply(tp).pipe(first()).subscribe(tp => {
+      this.messageControl.setValue(null)
+      this.replies.push({
+        user_id: this.currentUser.id,
+        user: this.currentUser,
+        id: tp.id,
+        inserts: tp.content as DeltaOperation[]
+      })
+      this.cdr.detectChanges()
+      this.rte.focusEditor()
+      setTimeout(() => {
+        this.scrollToBottom()
+      }, 100)
+    })
   }
 
   ngOnInit(): void {
@@ -200,7 +299,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subs = null
   }
 
-  private scrollContainer: any;
+  private scrollContainer: HTMLElement;
   private isNearBottom = false;
 
 

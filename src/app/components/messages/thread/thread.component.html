@@ -1,5 +1,7 @@
 <div class="main" *ngIf="asyncThreadData | async">
     <mat-card class="thread-card" >
+        <span #tooltip="matTooltip" [matTooltip]="readbyText" class="fx-clr accent remove_red_eye svg-icons"
+        (click)="tooltip.show()"></span>
         <mat-card-header class="thread-card-header fx-clr primary">
             <user-preview mat-card-avatar [userId]="threadData.user.id"></user-preview>
             <mat-card-title>{{thread.subject}}</mat-card-title>
@@ -26,7 +28,7 @@
             </mat-card>
         </mat-card-content>
     </mat-card>
-    <mat-expansion-panel class="thread-panel"
+    <mat-expansion-panel class="thread-panel" (afterExpand)="afterExpand()"
         (opened)="panelOpenState = true" (closed)="panelCloseHandler()">
         <mat-expansion-panel-header>
             <mat-panel-title class="fx-clr accent" *ngIf="!panelOpenState">
@@ -37,6 +39,6 @@
             </mat-panel-title>
 
         </mat-expansion-panel-header>
-        <mat-rte [formControl]="messageControl"></mat-rte>
+        <mat-rte #rte [formControl]="messageControl"></mat-rte>
     </mat-expansion-panel>
 </div>

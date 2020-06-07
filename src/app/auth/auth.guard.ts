@@ -4,14 +4,20 @@ import { AuthService } from './auth.service';
 import { DialogService } from '../dialog/dialog.service';
 import { Injectable } from '@angular/core';
 import { UserService } from '../api/user.service';
+import { ApiService } from '../api/api.service';
+import { first } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanActivateChild {
 
+    private initFlag: boolean = true
+
     constructor(
         private authService: AuthService,
+        private api: ApiService,
+        private users: UserService,
         private dialogService: DialogService) { }
     canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         if(childRoute.parent) {
@@ -20,6 +26,14 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         return this.canActivate(childRoute, state)
     }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+        
+        if(this.initFlag) {
+            //return this.init()
+        }
+        return this._activate()
+    }
+
+    private _activate(): Observable<boolean> | boolean {
         const service = this.authService
         if (service.authorized)
             return true
@@ -59,5 +73,23 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         })
     }
 
+    private init() {
+        return new Promise<boolean>((res, rej) => {
+            this.users.getUsers().pipe(first()).subscribe(users=>{
+                let sub = this.api.getThreadCollection().subscribe(collection=>{
+                    if(collection) {
+                        sub.unsubscribe()
+                        const obs = this._activate()
+                        if(obs instanceof Observable) {
+                            sub = obs.subscribe(success=>{
+                                this.initFlag = true
+                                res(success)
+                            })
+                        }
+                    }
+                })
+            })
+        })
+    }
 
 }

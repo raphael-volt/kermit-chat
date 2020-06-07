@@ -1,19 +1,17 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { UrlService } from 'src/app/api/url.service';
-import { isUser } from 'src/app/vo/vo';
 
 @Pipe({
-  name: 'userPicto'
+  name: 'userPicto',
+  pure: false
 })
 export class UserPictoPipe implements PipeTransform {
 
-  constructor(private url: UrlService) {
-
-  }
+  constructor(private url: UrlService) { }
   transform(value: any, ...args: unknown[]): string {
     let picto = NaN
     if (value) {
-      if(typeof value == "object" && 'picto' in value) {
+      if (typeof value == "object" && 'picto' in value) {
         picto = value.picto
       }
       else {

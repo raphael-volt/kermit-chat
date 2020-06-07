@@ -15,7 +15,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatRippleModule } from '@angular/material/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatSnackBarModule} from '@angular/material/snack-bar'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatBadgeModule } from '@angular/material/badge'
+import { MatTooltipModule } from '@angular/material/tooltip'
 
 @NgModule({
 
@@ -35,7 +37,9 @@ import { MatSnackBarModule} from '@angular/material/snack-bar'
         MatButtonToggleModule,
         MatRippleModule,
         MatSidenavModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatBadgeModule,
+        MatTooltipModule
     ],
     exports: [
         MatListModule,
@@ -53,7 +57,9 @@ import { MatSnackBarModule} from '@angular/material/snack-bar'
         MatButtonToggleModule,
         MatRippleModule,
         MatSidenavModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        MatBadgeModule,
+        MatTooltipModule
     ]
 })
 export class MaterialModule { }

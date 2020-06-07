@@ -13,11 +13,10 @@ export class DialogCardComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<DialogCardComponent>) { }
 
   @Input()
-  color: string = "primary"
-
-  @Input()
   title: string
 
+  @Input()
+  isBug: boolean = false
   
   @Input()
   subtitle: string

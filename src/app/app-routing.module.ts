@@ -45,11 +45,17 @@ const routes: NamedRoute[] = [
     component: MembersComponent
   },
   {
+    path: '**',
+    title: "none",
+    redirectTo: 'messages'
+  }
+  /*,
+  {
     path: "emoji",
     title: "RTE debug",
     canActivate: [AuthGuard],
     component: DebugEmojiComponent
-  }
+  }*/
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

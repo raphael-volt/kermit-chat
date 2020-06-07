@@ -38,14 +38,14 @@ export class DialogService {
 
   
   error(...messages: string[] ) {
-    return this.alert("Erreur", "warn", ...messages)
+    return this.alert("Erreur", true, ...messages)
   }
   
-  alert(title:string, color: string, ...messages: string[] ) {
+  alert(title:string, isBug: boolean, ...messages: string[] ) {
     const ref = this.dialog.open(DialogCardComponent, this.config)
     const card: DialogCardComponent = ref.componentInstance
-    card.color = color ? color : "primary"
     card.title = title
+    card.isBug = isBug
     for (const message of messages) {
         card.content = message
     }

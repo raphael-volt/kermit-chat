@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-header>
         <mat-card-title >
-            {{title}}
+            {{title}} <span *ngIf="isBug" class="bug_report svg-icons"></span>
         </mat-card-title>
         <mat-card-subtitle *ngIf="subtitle">
             {{subtitle}}

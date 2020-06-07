@@ -19,6 +19,7 @@ import { first } from 'rxjs/operators';
 })
 export class AccountComponent implements OnDestroy {
 
+  userPreview: User
   user: User
 
   pictoFile: File | string | ArrayBuffer
@@ -46,7 +47,7 @@ export class AccountComponent implements OnDestroy {
     private auth: AuthService,
     formBuilder: FormBuilder) {
 
-    this.user = userService.user
+    this.userPreview = this.user = userService.user
 
     this.setUpFormGroup(formBuilder, userService.user)
   }
@@ -57,15 +58,15 @@ export class AccountComponent implements OnDestroy {
 
   clearChanges() {
     const g = this.formGroup
-    const user = this.user
+    const user = this.userService.findById(this.user.id)
     g.setValue({
       email: user.email,
       name: user.name,
       picto: user.picto
     })
     this.changed = false
-    this.cdr.detectChanges()
     this.pictoView.checkImgSrc(user, true)
+    this.cdr.detectChanges()
   }
   private setUpFormGroup(fb: FormBuilder, user: User) {
     this.pictoValidator = new FormControl(user.picto, control => {
@@ -102,7 +103,7 @@ export class AccountComponent implements OnDestroy {
 
   save() {
     const g = this.formGroup
-    const user: User = this.user
+    const user = this.userService.findById(this.user.id)
     const userChanges: User = { id: user.id }
     for (const k in g.value) {
       if(g.value[k] != user[k])
@@ -110,10 +111,14 @@ export class AccountComponent implements OnDestroy {
     }
     this.userService.updateUser(userChanges).pipe(first()).subscribe(result=>{
       Object.assign(user, result);
+      this.user.picto = result.picto
       if("email" in userChanges) {
         this.auth.saveUser(user)
       }
+      // bugfix change detection
+      this.userPreview = Object.assign({}, user)
       this.clearChanges()
+      this.cdr.detectChanges()
     })
   }
 

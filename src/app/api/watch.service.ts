@@ -4,6 +4,7 @@ import { first } from 'rxjs/operators';
 import { WatchDiff, User, WatchStatus } from '../vo/vo';
 import { WatchNotificationService } from './watch-notification.service';
 import { Subscription } from 'rxjs';
+import { ContextService } from '../context.service';
 
 
 @Injectable({
@@ -22,20 +23,21 @@ export class WatchService {
     thread_part: 0,
     users: []
   }
-  private _members: User[]
 
   findById(id: number): User | undefined {
-    return this._members.find(user => user.id == id)
+    return this.members.find(user => user.id == id)
   }
 
   constructor(
     private api: ApiService,
+    private context: ContextService,
     private notifier: WatchNotificationService) { }
 
-  public currentUser: User
-
-  setMembers(members: User[]) {
-    this._members = members
+  private get currentUser() {
+    return this.context.user
+  }
+  private get members(): User[] {
+    return this.context.users
   }
   run() {
     if (this.timer === null) {
@@ -73,8 +75,10 @@ export class WatchService {
 
   private initWatch() {
     const diff: WatchDiff = this.diff
-    diff.user_id = this.currentUser.id
+    const currentUser = this.currentUser.id
+    diff.user_id = currentUser
     diff.status = 'on'
+    diff.thread_opened = this.context.threadOpened
     this.api.watch(diff).pipe(first()).subscribe(result => {
       diff.thread_user = result.thread_user
       diff.thread = result.thread
@@ -88,7 +92,7 @@ export class WatchService {
   private checkUsersDiff(users: number[]) {
     let _findId: number
     const findUser = id => id == _findId
-    const _members = this._members
+    const _members = this.members
     let change = false
     const current = this.currentUser.id
 
@@ -139,6 +143,7 @@ export class WatchService {
     this.timer = setTimeout(() => {
 
       const diff: WatchDiff = this.diff
+      diff.thread_opened = this.context.threadOpened
       this.api.watch(diff).pipe(first()).subscribe(result => {
         const notifier = this.notifier
         const current_user = this.currentUser.id
@@ -151,7 +156,6 @@ export class WatchService {
           diff.thread = newThreadId
           threadChange = true
         }
-
         if (diff.thread_part != newThreadPartId) {
           diff.thread_part = newThreadPartId
           threadPartChange = true
@@ -159,7 +163,6 @@ export class WatchService {
         if (diff.thread_user != thread_user) {
           diff.thread_user = thread_user
         }
-
         if (threadChange) {
           if (thread_user != current_user)
             notifier.message(this.findById(thread_user))
@@ -173,6 +176,13 @@ export class WatchService {
           }
         }
 
+        /*
+        if (threadPartChange) {
+          if (thread_user != current_user)
+            notifier.reply(this.findById(thread_user))
+          this.$threadPart.emit(newThreadPartId)
+        }
+        */
         if (!this.checkUsersDiff(result.users))
           this.$users.emit(diff.users)
 

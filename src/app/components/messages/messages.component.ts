@@ -6,6 +6,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/api/user.service';
 import { WatchService } from 'src/app/api/watch.service';
+import { ContextService } from 'src/app/context.service';
 
 @Component({
   selector: 'app-messages',
@@ -28,6 +29,7 @@ export class MessagesComponent implements OnInit, AfterViewInit {
     private dialog: DialogService,
     public api: ApiService,
     public userService: UserService,
+    private context: ContextService,
     private cdr: ChangeDetectorRef,
     private router: Router,
     private route: ActivatedRoute,
@@ -38,7 +40,13 @@ export class MessagesComponent implements OnInit, AfterViewInit {
     this.checkNavOpened()
   }
 
+
   private showNavOnIntit: boolean = false
+
+  private findThread(id) {
+    const threads = this.api.threadList.getValue()
+    return threads.find(t=>t.id==id)
+  }
   private checkNavOpened = () => {
 
     if (!this.threadOpen) {
@@ -69,6 +77,7 @@ export class MessagesComponent implements OnInit, AfterViewInit {
   private _navList: ElementRef
 
   openThread(id) {
+    
     this.sideNav.close().then(v => {
       this.router.navigate([id], { relativeTo: this.route })
     })
@@ -80,6 +89,7 @@ export class MessagesComponent implements OnInit, AfterViewInit {
   onDeactivate(event) {
     this.sideNav.open()
     this.threadOpen = false
+    this.context.threadOpened = 0
     this.cdr.detectChanges()
   }
 

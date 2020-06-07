@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { User, isUser } from 'src/app/vo/vo';
-import { ApiService } from 'src/app/api/api.service';
+import { Component, Input, OnChanges, 
+  SimpleChanges, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { User } from 'src/app/vo/vo';
 import { first } from 'rxjs/operators';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { UserService } from 'src/app/api/user.service';
@@ -16,7 +16,7 @@ import { UserService } from 'src/app/api/user.service';
     '[class.small]': 'pictoSize == "small"',
   }
 })
-export class UserPreviewComponent implements OnInit, OnChanges, OnDestroy {
+export class UserPreviewComponent implements OnChanges {
 
   @Input()
   user: User
@@ -37,13 +37,8 @@ export class UserPreviewComponent implements OnInit, OnChanges, OnDestroy {
   showName = false
 
   constructor(private cdr: ChangeDetectorRef, private userService: UserService) { }
-  ngOnDestroy(): void {
-    //throw new Error("Method not implemented.");
-  }
-
-  private getUserFlag = false
+  
   private getUser(id: number) {
-
     this.userService.getUser(id).pipe(first()).subscribe(this.setUser)
   }
 
@@ -53,8 +48,6 @@ export class UserPreviewComponent implements OnInit, OnChanges, OnDestroy {
     this.cdr.detectChanges()
   }
   
-  ngOnInit(): void {
-  }
   ngOnChanges(changes: SimpleChanges): void {
 
     if (changes.user) {
@@ -64,6 +57,7 @@ export class UserPreviewComponent implements OnInit, OnChanges, OnDestroy {
       else {
         this.hasPicto = true
       }
+      this.cdr.detectChanges()
     }
   }
 

@@ -4,6 +4,7 @@ import { CookieService } from "ngx-cookie-service";
 import { map } from "rxjs/operators";
 import { Observable } from 'rxjs';
 import { UserService } from '../api/user.service';
+import { ContextService } from '../context.service';
 interface JPData {
   email?: string
   threadRequest?: number

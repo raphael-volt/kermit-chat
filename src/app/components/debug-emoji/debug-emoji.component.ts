@@ -4,6 +4,7 @@ import { EmojiSelectComponent } from '../mat-emoji/emoji-select/emoji-select.com
 import { FormGroup, FormBuilder, ValidatorFn, AbstractControl, ValidationErrors, Validators, FormControl } from '@angular/forms';
 import { RteData } from "../rte/editor/rte.component";
 import { Subscription } from 'rxjs';
+import { DialogService } from 'src/app/dialog/dialog.service';
 @Component({
   selector: 'app-debug-emoji',
   templateUrl: './debug-emoji.component.html',
@@ -14,8 +15,6 @@ export class DebugEmojiComponent implements OnInit, OnDestroy {
 
 
   svgIcons = [
-    "hash",
-    "path",
     "error",
     "warning",
     "loop",
@@ -31,15 +30,19 @@ export class DebugEmojiComponent implements OnInit, OnDestroy {
     "camera_alt",
     "filter_vintage",
     "panorama",
+    "remove_red_eye",
+    "local_library",
     "location_history",
     "cancel",
     "refresh",
     "person",
     "account_circle",
     "autorenew",
+    "bug_report",
     "cached",
     "settings",
-    "replay_circle_filled"
+    "replay_circle_filled",
+    "emoji_emotions"
   ]
   minLength: number = 3
   contentLength: number = 0
@@ -54,7 +57,8 @@ export class DebugEmojiComponent implements OnInit, OnDestroy {
   contentControl: FormControl
   constructor(private dialog: MatDialog,
     private cdr: ChangeDetectorRef,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    modal: DialogService) {
 
     this.contentControl = new FormControl()
     this.contentControl.setValidators([this.validateDataLength])
@@ -65,6 +69,9 @@ export class DebugEmojiComponent implements OnInit, OnDestroy {
     this.formSub = this.form.valueChanges.subscribe(value => {
       this.cdr.detectChanges()
     })
+
+    modal.error('test')
+    
   }
 
   contentChange(data: RteData) {

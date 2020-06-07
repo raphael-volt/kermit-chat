@@ -1,9 +1,9 @@
 <mat-card class="v-box">
     <div>
         <div class="h-box fx-clr primary" style="align-items: baseline; padding-bottom: 16px;">
-            <user-preview [showName]="true" pictoSize="large" [user]="user"></user-preview>
+            <user-preview [showName]="true" pictoSize="large" [user]="userPreview"></user-preview>
             <span class="flex11"></span>
-            <button class="flex00" mat-raised-button (click)="logout()" color="accent">
+            <button class="flex00 logout-button" mat-raised-button (click)="logout()" color="accent">
                 Me déconnecter
             </button>
 

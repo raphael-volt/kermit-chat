@@ -17,7 +17,7 @@ export class AppComponent {
 
   constructor(private router: Router) { 
     this.routes = routes.filter(route=>{
-      return route.path != ''
+      return route.path != '' && route.title != "none"
     })
   }
 

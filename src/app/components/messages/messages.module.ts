@@ -10,8 +10,8 @@ import { RteModule } from '../rte/rte.module';
 import { MessagesComponent } from './messages.component';
 import { CreateThreadComponent } from './create-thread/create-thread.component';
 import { UserPreviewModule } from '../user-preview/user-preview.module';
-// import { CdkVirtualForOf } from '@angular/cdk/scrolling';
-import {ScrollingModule} from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ThreadReadByBadgeComponent } from './thread/thread-read-by-badge/thread-read-by-badge.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -21,9 +21,9 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     ReactiveFormsModule,
     RteModule,
     UserPreviewModule,
-    ScrollingModule,
+    ScrollingModule
   ],
-  declarations: [MessagesComponent, ThreadComponent, CreateThreadComponent],
+  declarations: [MessagesComponent, ThreadComponent, CreateThreadComponent, ThreadReadByBadgeComponent],
   exports: [MessagesComponent]
 })
 export class MessagesModule { }

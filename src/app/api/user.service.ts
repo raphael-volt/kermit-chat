@@ -5,6 +5,7 @@ import { User } from '../vo/vo';
 import { Subject, Observable, of, Observer } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { WatchService } from './watch.service';
+import { ContextService } from '../context.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +23,12 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private url: UrlService,
+    private context: ContextService,
     private watch: WatchService
   ) { }
 
   signout() {
+    this.context.user = null
     return this.watch.stop()
   }
   getUsers() {
@@ -35,9 +38,6 @@ export class UserService {
         this.http.get<User[]>(this.url.api("user")).pipe(first()).subscribe(users => {
           this._requestFlag = true
           this.users = users
-          this.watch.setMembers(users)
-          this.watch.currentUser = this._user
-          this.watch.run()
           this._busy = false
           this.busyChange.next(false)
         })
@@ -52,19 +52,29 @@ export class UserService {
     return of(this.users)
   }
 
-  private _user: User
   get user(): User {
-    return this._user
+    return this.context.user
   }
 
   signin() {
     return new Observable<boolean>((observer: Observer<boolean>) => {
-      this._user = null
+      this.context.user = null
       const url = this.url.api("auth")
       this.http.get<User>(url).pipe(first()).subscribe(
         user => {
-          this._user = user
-          observer.next(true)
+          const done = (user) => {
+            this.context.user = user
+            this.context.users = this.users
+            this.watch.run()
+            observer.next(true)
+          }
+          if (!this.users) {
+            this.getObservableUser(user.id).pipe(first()).subscribe(value => {
+              done(user)
+            })
+            return this.getUsers()
+          }
+          done(this.findById(user.id))
         },
         error => {
           observer.next(false)
@@ -98,10 +108,11 @@ export class UserService {
     return this.http.put<User>(this.url.api("user", user.id), user)
   }
   updatePicto(data: string) {
-    return this.http.put<User>(this.url.api("user", this._user.id), {
+    const context = this.context
+    return this.http.put<User>(this.url.api("user", context.user.id), {
       picto: data
     }).pipe(map(result => {
-      this._user.picto = result.picto
+      context.user.picto = result.picto
       return true
     }))
   }

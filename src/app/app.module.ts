@@ -12,6 +12,7 @@ import { ApiModule } from './api/api.module';
 import { AuthModule } from './auth/auth.module';
 import { AvatarModule } from './avatar/avatar.module';
 import { ImgScrollerModule } from "./img-scroller/img-scroller.module";
+import { ContextService } from './context.service';
 @NgModule({
   declarations: [
     AppComponent
@@ -29,7 +30,7 @@ import { ImgScrollerModule } from "./img-scroller/img-scroller.module";
     AvatarModule,
     ImgScrollerModule
   ],
-  providers: [],
+  providers: [ContextService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
