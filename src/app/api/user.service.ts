@@ -57,27 +57,19 @@ export class UserService {
   }
 
   signin() {
-    return new Observable<boolean>((observer: Observer<boolean>) => {
-      this.context.user = null
+    return new Observable<User>((observer: Observer<User>) => {
+      console.log('users:sigin')
+      const context = this.context
+      context.user = null
       const url = this.url.api("auth")
+      const done = (user:User|null) => {
+        observer.next(user)
+        observer.complete()
+      }
       this.http.get<User>(url).pipe(first()).subscribe(
-        user => {
-          const done = (user) => {
-            this.context.user = user
-            this.context.users = this.users
-            this.watch.run()
-            observer.next(true)
-          }
-          if (!this.users) {
-            this.getObservableUser(user.id).pipe(first()).subscribe(value => {
-              done(user)
-            })
-            return this.getUsers()
-          }
-          done(this.findById(user.id))
-        },
+        done, 
         error => {
-          observer.next(false)
+          done(null)
         })
     })
   }

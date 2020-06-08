@@ -63,6 +63,7 @@ export class WatchService {
         diff.status = "off"
         diff.users = []
         this.api.watch(diff).pipe(first()).subscribe(result => {
+          console.log("watch:stopped")
           res()
         })
       }
@@ -74,6 +75,7 @@ export class WatchService {
   private firstUserCheck = false
 
   private initWatch() {
+    console.log("watch:running")
     const diff: WatchDiff = this.diff
     const currentUser = this.currentUser.id
     diff.user_id = currentUser

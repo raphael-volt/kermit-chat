@@ -27,18 +27,12 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         
-        if(this.initFlag) {
-            //return this.init()
-        }
-        return this._activate()
-    }
-
-    private _activate(): Observable<boolean> | boolean {
         const service = this.authService
         if (service.authorized)
             return true
         return new Observable<boolean>((observer: Observer<boolean>) => {
             const signin = () => {
+                console.log("signin activate route")
                 observer.next(true)
             }
             const openDialog = () => {
@@ -72,24 +66,4 @@ export class AuthGuard implements CanActivate, CanActivateChild {
             }
         })
     }
-
-    private init() {
-        return new Promise<boolean>((res, rej) => {
-            this.users.getUsers().pipe(first()).subscribe(users=>{
-                let sub = this.api.getThreadCollection().subscribe(collection=>{
-                    if(collection) {
-                        sub.unsubscribe()
-                        const obs = this._activate()
-                        if(obs instanceof Observable) {
-                            sub = obs.subscribe(success=>{
-                                this.initFlag = true
-                                res(success)
-                            })
-                        }
-                    }
-                })
-            })
-        })
-    }
-
 }
