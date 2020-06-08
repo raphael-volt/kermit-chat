@@ -1,5 +1,9 @@
 .mat-card {
-    width: 50vw;
-    //height: 80vh;
-    
+    width: 80vw;
+    max-width: 1048px;
+    max-height: 100vh;
+}
+
+mat-rte.rte-popup {
+    height: 55vh;
 }

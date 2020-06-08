@@ -12,6 +12,8 @@ import { WatchService } from 'src/app/api/watch.service';
 import { RteComponent, RteData } from '../../rte/editor/rte.component';
 import { ContextService } from 'src/app/context.service';
 import { WatchNotificationService } from 'src/app/api/watch-notification.service';
+import { RteDialogComponent } from '../../rte-dialog/rte-dialog.component';
+import { DialogService } from 'src/app/dialog/dialog.service';
 
 @Component({
   selector: 'app-thread',
@@ -54,7 +56,8 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     private api: ApiService,
     private userService: UserService,
     private busy: BusyService,
-    private cdr: ChangeDetectorRef) {
+    private cdr: ChangeDetectorRef,
+    private dialog: DialogService) {
 
     this.currentUser = userService.user
     this.messageControl = new FormControl(null, (control) => {
@@ -86,7 +89,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
   private notifyUserInThread(newInThread: number[], currentUser: number) {
     if (!newInThread || !newInThread.length)
       return
-    
+
     newInThread = newInThread.filter(id => id != currentUser)
     if (!newInThread.length)
       return
@@ -105,8 +108,8 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
   private updateReadByText() {
     const context = this.context
     const currentActive = context.activeThreads[context.threadOpened]
-    if(! currentActive) return
-    const currentUser = context.user.id 
+    if (!currentActive) return
+    const currentUser = context.user.id
     const thread = this.threadData.thread
     const threadUser: number = thread.user_id
     if (!this.initNotify) {
@@ -129,7 +132,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
       for (const uid of tpUsers) {
         if (uid == threadUser) continue
         const user = context.findUser(uid)
-        if(! user) {
+        if (!user) {
           console.log('USER NOT FOUND', uid)
           continue
         }
@@ -264,8 +267,10 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
   private replyFlag = false
 
   reply(event: MouseEvent) {
-    event.stopImmediatePropagation()
-    event.preventDefault()
+    if (event) {
+      event.stopImmediatePropagation()
+      event.preventDefault()
+    }
 
     const data = this.messageControl.value
     const ops = (data.content as Delta).ops
@@ -329,6 +334,18 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     if (this.busy.busy) return
     window.requestAnimationFrame(() => {
       this.isNearBottom = this.isUserNearBottom()
+    })
+  }
+
+  openRtePopup() {
+    const sub = this.dialog.openThreadReply(this.messageControl).subscribe(data => {
+      if (data)
+        this.reply(null)
+      else {
+        this.messageControl.setValue(null)
+        this.messageControl.updateValueAndValidity()
+        this.cdr.detectChanges()
+      }
     })
   }
 

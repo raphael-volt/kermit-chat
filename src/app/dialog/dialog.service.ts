@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { SigninComponent } from './signin/signin.component';
 import { Observable } from 'rxjs';
 import { User, ThreadTree } from '../vo/vo';
 import { CreateThreadComponent } from '../components/messages/create-thread/create-thread.component';
 import { AvatarListComponent } from '../avatar/list/avatar-list.component';
 import { DialogCardComponent } from './dialog-card/dialog-card.component';
+import { RteData } from '../components/rte/editor/rte.component';
+import { RteDialogComponent } from '../components/rte-dialog/rte-dialog.component';
+import { FormControl } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +29,14 @@ export class DialogService {
   }
 
   openThreadEditor(): Observable<ThreadTree> {
-    const ref = this.dialog.open(CreateThreadComponent, this.config)
+    const cfg: MatDialogConfig = {maxWidth: "100vw", maxHeight: "100vh"}
+    const ref = this.dialog.open(CreateThreadComponent, Object.assign(cfg, this.config))
+    return ref.afterClosed()
+  }
+  openThreadReply(control: FormControl): Observable<RteData> {
+    const cfg: MatDialogConfig = {maxWidth: "100vw", maxHeight: "100vh"}
+    const ref = this.dialog.open(RteDialogComponent, Object.assign(cfg, this.config))
+    ref.componentInstance.messageControl = control
     return ref.afterClosed()
   }
 

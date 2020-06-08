@@ -17,6 +17,7 @@ import { UserPreviewModule } from "./user-preview/user-preview.module";
 import { MatEmojiModule } from './mat-emoji/mat-emoji.module';
 import { DebugEmojiComponent } from "./debug-emoji/debug-emoji.component";
 import { SnackBarUserOnComponent } from './snack-bar-user-on/snack-bar-user-on.component';
+import { RteDialogComponent } from './rte-dialog/rte-dialog.component';
 @NgModule({
   declarations: [
     MembersComponent,
@@ -24,7 +25,8 @@ import { SnackBarUserOnComponent } from './snack-bar-user-on/snack-bar-user-on.c
     PictoEditorComponent,
     PictoViewComponent,
     DebugEmojiComponent,
-    SnackBarUserOnComponent],
+    SnackBarUserOnComponent,
+    RteDialogComponent],
   imports: [
     ApiModule, AvatarModule,
     MessagesModule, RteModule,
