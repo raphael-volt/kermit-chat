@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UrlService } from './url.service';
-import { User } from '../vo/vo';
+import { User, ResponseError } from '../vo/vo';
 import { Subject, Observable, of, Observer } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 import { WatchService } from './watch.service';
@@ -57,13 +57,16 @@ export class UserService {
   }
 
   signin() {
-    return new Observable<User>((observer: Observer<User>) => {
+    return new Observable<User>((observer: Observer<User|null>) => {
       console.log('users:sigin')
       const context = this.context
       context.user = null
       const url = this.url.api("auth")
-      const done = (user:User|null) => {
-        observer.next(user)
+      const done = (user:User|ResponseError) => {
+        if('error' in user) {
+          user = null
+        }
+        observer.next(user as any)
         observer.complete()
       }
       this.http.get<User>(url).pipe(first()).subscribe(

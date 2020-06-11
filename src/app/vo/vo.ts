@@ -63,5 +63,12 @@ export interface ThreadData extends ThreadDataItem {
     thread: Thread
     contents: ThreadDataItem[]
 }
-
+export interface ResponseError {
+    error: {
+        url?: string,
+        params: string,
+        code?: number,
+        message?: string
+    }
+}
 export { isUser }

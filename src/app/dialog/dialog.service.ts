@@ -24,46 +24,50 @@ export class DialogService {
   constructor(private dialog: MatDialog) { }
 
   openSignin(): Observable<User> {
-    const ref = this.dialog.open(SigninComponent, this.config)
+    const ref = this.dialog.open(SigninComponent, {
+      disableClose: true,
+      closeOnNavigation: false,
+      autoFocus: true
+    })
     return ref.afterClosed()
   }
 
   openThreadEditor(): Observable<ThreadTree> {
-    const cfg: MatDialogConfig = {maxWidth: "100vw", maxHeight: "100vh"}
+    const cfg: MatDialogConfig = { maxWidth: "100vw", maxHeight: "100vh" }
     const ref = this.dialog.open(CreateThreadComponent, Object.assign(cfg, this.config))
     return ref.afterClosed()
   }
   openThreadReply(control: FormControl): Observable<RteData> {
-    const cfg: MatDialogConfig = {maxWidth: "100vw", maxHeight: "100vh"}
+    const cfg: MatDialogConfig = { maxWidth: "100vw", maxHeight: "100vh" }
     const ref = this.dialog.open(RteDialogComponent, Object.assign(cfg, this.config))
     ref.componentInstance.messageControl = control
     return ref.afterClosed()
   }
 
-  
+
   openAvatarSelector(): Observable<string> {
     const ref = this.dialog.open(AvatarListComponent, this.config)
     return ref.afterClosed()
   }
 
-  
-  error(...messages: string[] ) {
+
+  error(...messages: string[]) {
     return this.alert("Erreur", true, ...messages)
   }
-  
-  alert(title:string, isBug: boolean, ...messages: string[] ) {
+
+  alert(title: string, isBug: boolean, ...messages: string[]) {
     const ref = this.dialog.open(DialogCardComponent, this.config)
     const card: DialogCardComponent = ref.componentInstance
     card.title = title
     card.isBug = isBug
     for (const message of messages) {
-        card.content = message
+      card.content = message
     }
     return ref.afterClosed()
   }
 
-  open(component: any, cfg: MatDialogConfig=null) {
-    if(! cfg)
+  open(component: any, cfg: MatDialogConfig = null) {
+    if (!cfg)
       cfg = this.config
     const ref = this.dialog.open(component, cfg)
     return ref

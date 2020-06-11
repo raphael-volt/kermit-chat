@@ -22,12 +22,18 @@ export class SigninComponent {
     })
   }
 
+  countError: number = 0
   signinError: boolean = false
   send() {
     this.signinError = false
     const user: User = { email: this.form.get("email").value }
     this.authService.signin(user.email).subscribe(done => {
-      this.dialogRef.close(user)
+      if(done)
+        this.dialogRef.close(user)
+      else {
+        this.countError ++
+        this.signinError = true
+      }
     },
       error => {
         this.signinError = true
