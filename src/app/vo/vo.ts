@@ -42,8 +42,10 @@ const isUser = (user: any): user is User => {
 export interface User extends IVO {
     email?: string
     name?: string
-    picto?
+    picto?: number
     status?: WatchStatus
+    notify_by_email?: number
+    allow_sounds?: number
 }
 
 export interface ThreadTree {

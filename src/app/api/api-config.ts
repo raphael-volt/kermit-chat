@@ -25,5 +25,5 @@ const DEV_API_CONFIG: ApiConfig = {
 }
 
 const PROD_API_CONFIG: ApiConfig = Object.assign({}, DEV_API_CONFIG)
-PROD_API_CONFIG.url = "https://jp.ketmie.com"
+PROD_API_CONFIG.url = "https://jp.api.ketmie.com"
 export { DEV_API_CONFIG, PROD_API_CONFIG }

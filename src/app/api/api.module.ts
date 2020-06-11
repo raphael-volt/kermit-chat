@@ -36,7 +36,8 @@ const httpInterceptorProviders = [
     {
       provide: UrlService,
       useFactory: () => {
-        const config = isDevMode() ? DEV_API_CONFIG : PROD_API_CONFIG
+        //const config = isDevMode() ? DEV_API_CONFIG : PROD_API_CONFIG
+        const config = PROD_API_CONFIG
         return new UrlService(config)
       }
     }]

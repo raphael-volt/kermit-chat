@@ -1,5 +1,13 @@
-@import '../../../styles/variables.scss';
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import "~@angular/material/theming";
+// Plus imports for other components in your app.
+$app-primary: mat-palette($mat-blue-grey, 700, 400, 900);
+$app-accent: mat-palette($mat-blue, 800, A200, 900);
+$app-warn: mat-palette($mat-amber, 700,A200, 900);
 
+// Create the theme object (a Sass map containing all of the palettes).
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
 @mixin panel-radius($radius) {
   $radius: add-px($radius);
   border-radius: 0;

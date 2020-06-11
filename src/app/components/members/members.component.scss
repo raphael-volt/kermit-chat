@@ -1,7 +1,58 @@
 :host {
-    align-items    : center;
+    overflow: hidden;
+    flex: 1 1 auto;
+    display        : flex;
+    flex-direction : column;
+    flex-wrap      : wrap;
+    /*
+    justify-content: flex-start;
+    align-content  : stretch;
+    align-items    : stretch;
+    */
+    justify-content: flex-start;
+    align-content: center;
+    align-items: flex-start;
+}
+.members-ctn {
+    overflow: auto;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-start;
+}
+.members-toolbar {
+    order     : 0;
+    flex      : 0 1 auto;
+    align-self: auto;
+}
+.table-scroller {
+    order     : 0;
+    flex      : 1 1 auto;
+    align-self: auto;
+    overflow: auto;
 }
 
+td,
+th {
+    text-align: left;
+    padding   : 12px;
+    border-top: none;
+    border-left: none;;
+    border-right: none;;
+}
+td.icon-td {
+    text-align: center;
+    .delete-button {
+        cursor: pointer;
+        font-size: 20px;
+    }
+}
 .cell-span {
-    margin-left: 24px;
+    margin-right: 16px;
+}
+.cell-centered {
+    text-align: center;;
 }

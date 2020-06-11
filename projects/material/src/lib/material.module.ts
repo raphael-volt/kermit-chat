@@ -18,7 +18,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { MatBadgeModule } from '@angular/material/badge'
 import { MatTooltipModule } from '@angular/material/tooltip'
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle'
 @NgModule({
 
     imports: [
@@ -39,7 +39,8 @@ import { MatTooltipModule } from '@angular/material/tooltip'
         MatSidenavModule,
         MatSnackBarModule,
         MatBadgeModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatSlideToggleModule
     ],
     exports: [
         MatListModule,
@@ -59,7 +60,8 @@ import { MatTooltipModule } from '@angular/material/tooltip'
         MatSidenavModule,
         MatSnackBarModule,
         MatBadgeModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatSlideToggleModule
     ]
 })
 export class MaterialModule { }

@@ -3,31 +3,32 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { User } from 'src/app/vo/vo';
 import { UserService } from 'src/app/api/user.service';
 import { first } from 'rxjs/operators';
-import { WatchService } from 'src/app/api/watch.service';
 
 @Component({
   selector: 'app-members',
   templateUrl: './members.component.html',
   styleUrls: ['./members.component.scss'],
   host: {
-    class: "main-view"
+    class: "members-component"
   }
 })
 export class MembersComponent implements OnInit, OnDestroy {
 
   members: BehaviorSubject<User[]> = new BehaviorSubject(null)
-  displayedColumns: string[] = ['name', 'email', 'status']
+  displayedColumns: string[] = ['name', 'email', 'status', 'action']
   private usersSub: Subscription
 
-  constructor(private userService: UserService) { }
-
-  ngOnInit(): void {
+  constructor(private userService: UserService) { 
 
     if (this.userService.busy) {
       this.userService.getUsers().pipe(first()).subscribe(this.initMembers)
       return
     }
     this.initMembers(this.userService.users)
+  }
+
+  ngOnInit(): void {
+    
   }
 
   private initMembers = (users) => {
@@ -40,5 +41,11 @@ export class MembersComponent implements OnInit, OnDestroy {
       this.usersSub = null
     }
   }
+  deleteUser(user: User) {
 
+  }
+  createUser() {
+
+  }
+  
 }

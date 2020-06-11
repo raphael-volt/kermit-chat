@@ -122,7 +122,8 @@ export class AuthService {
   }
 
   private saveCookie() {
-    this.cookieService.set(this.cookieKey, JSON.stringify(this.jpData), 60)
+    const domain = isDevMode() ? "":""//@TODO
+    this.cookieService.set(this.cookieKey, JSON.stringify(this.jpData), 60, "/", domain, false, "Lax")
   }
 
 }

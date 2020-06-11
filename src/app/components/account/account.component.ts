@@ -8,6 +8,14 @@ import { Subscription } from 'rxjs';
 import { PictoViewComponent } from '../picto-view/picto-view.component';
 import { first } from 'rxjs/operators';
 
+class BoolControl extends FormControl {
+  constructor(formState) {
+    super(formState)
+  }
+  setValue(value, options?) {
+    super.setValue(value ? 1:0, options)
+  }
+}
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -33,13 +41,6 @@ export class AccountComponent implements OnDestroy {
 
   private formSub: Subscription
   private pictoValidator: FormControl
-  avatarData: { type: AvatarType, name: string }[] = [
-    { type: "female", name: "Féminin" },
-    { type: "male", name: "Masculin" },
-    { type: "avataaars", name: "Custom" },
-    { type: "bottts", name: "Robot" },
-    { type: "gridy", name: "Gridy" }
-  ]
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -62,7 +63,9 @@ export class AccountComponent implements OnDestroy {
     g.setValue({
       email: user.email,
       name: user.name,
-      picto: user.picto
+      picto: user.picto,
+      notify_by_email: user.notify_by_email,
+      allow_sounds: user.allow_sounds
     })
     this.changed = false
     this.pictoView.checkImgSrc(user, true)
@@ -76,8 +79,12 @@ export class AccountComponent implements OnDestroy {
     const g = fb.group({
       email: [user.email, [Validators.required, Validators.email]],
       name: [user.name, [Validators.required, Validators.minLength(3)]],
-      picto: this.pictoValidator
+      picto: this.pictoValidator,
+      notify_by_email: new BoolControl(user.notify_by_email),
+      allow_sounds: new BoolControl(user.allow_sounds)
     })
+
+    g.controls.notify_by_email
 
     this.formSub = g.valueChanges.subscribe(o => {
       const u = this.user
@@ -109,6 +116,7 @@ export class AccountComponent implements OnDestroy {
       if(g.value[k] != user[k])
         userChanges[k] = g.value[k]
     }
+    /*
     this.userService.updateUser(userChanges).pipe(first()).subscribe(result=>{
       Object.assign(user, result);
       this.user.picto = result.picto
@@ -120,6 +128,7 @@ export class AccountComponent implements OnDestroy {
       this.clearChanges()
       this.cdr.detectChanges()
     })
+    */
   }
 
   logout() {
