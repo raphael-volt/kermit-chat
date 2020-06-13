@@ -116,19 +116,21 @@ export class AccountComponent implements OnDestroy {
       if(g.value[k] != user[k])
         userChanges[k] = g.value[k]
     }
-    /*
+    
     this.userService.updateUser(userChanges).pipe(first()).subscribe(result=>{
       Object.assign(user, result);
-      this.user.picto = result.picto
       if("email" in userChanges) {
         this.auth.saveUser(user)
+      }
+      if("picto" in result) {
+        this.user.picto = result.picto
       }
       // bugfix change detection
       this.userPreview = Object.assign({}, user)
       this.clearChanges()
       this.cdr.detectChanges()
     })
-    */
+    
   }
 
   logout() {

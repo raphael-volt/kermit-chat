@@ -41,7 +41,7 @@ export class WatchService {
   }
   run() {
     if (this.timer === null) {
-      this.notifier.open(`Bonjour ${this.currentUser.name}`)
+      this.notifier.open(`Bonjour ${this.currentUser.name}`, 'hello')
       const threadList = this.api.threadList
       if (threadList.getValue())
         return this.initWatch()
@@ -63,7 +63,6 @@ export class WatchService {
         diff.status = "off"
         diff.users = []
         this.api.watch(diff).pipe(first()).subscribe(result => {
-          console.log("watch:stopped")
           res()
         })
       }
@@ -75,17 +74,18 @@ export class WatchService {
   private firstUserCheck = false
 
   private initWatch() {
-    console.log("watch:running")
     const diff: WatchDiff = this.diff
     const currentUser = this.currentUser.id
     diff.user_id = currentUser
     diff.status = 'on'
     diff.thread_opened = this.context.threadOpened
     this.api.watch(diff).pipe(first()).subscribe(result => {
+      diff.users_change = result.users_change
       diff.thread_user = result.thread_user
       diff.thread = result.thread
       diff.thread_part = result.thread_part
       diff.status = ""
+      diff.reload = result.reload
       if (!this.checkUsersDiff(result.users))
         this.$users.emit(diff.users)
       this.timerHandler()
@@ -147,6 +147,11 @@ export class WatchService {
       const diff: WatchDiff = this.diff
       diff.thread_opened = this.context.threadOpened
       this.api.watch(diff).pipe(first()).subscribe(result => {
+        if(this.timer == null)
+          return
+        if(result.reload > diff.reload) {
+          return location.reload()
+        }
         const notifier = this.notifier
         const current_user = this.currentUser.id
         const newThreadPartId = result.thread_part
@@ -177,7 +182,10 @@ export class WatchService {
             this.$threadPart.emit(newThreadPartId)
           }
         }
-
+        if(result.users_change > diff.users_change) {
+          diff.users_change = result.users_change
+          this.$usersChange.emit()
+        }
         /*
         if (threadPartChange) {
           if (thread_user != current_user)
@@ -201,6 +209,7 @@ export class WatchService {
   }
 
   users: number[] = []
+  $usersChange: EventEmitter<void> = new EventEmitter()
   $thread: EventEmitter<number> = new EventEmitter()
   $threadPart: EventEmitter<number> = new EventEmitter()
   $users: EventEmitter<number[]> = new EventEmitter()

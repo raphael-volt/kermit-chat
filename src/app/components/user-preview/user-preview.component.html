@@ -1,6 +1,6 @@
 <div class="user-preview">
     <div class="picto-wrapper mat-elevation-z2">
-        <img *ngIf="hasPicto" [src]="user.picto | userPicto" />
+        <img *ngIf="hasPicto" [attr.src]="user.picto | userPicto" />
         <span *ngIf="!hasPicto" class="svg-icons person mat-primary"></span>
     </div>
     <div class="content-wrapper">

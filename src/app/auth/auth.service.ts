@@ -33,6 +33,11 @@ export class AuthService {
     return null
   }
 
+  private _path: string
+  private _domain: string
+  private _secure: boolean
+  private _sameSite: "Lax" | "None" | "Strict"
+  
   constructor(
     private userService: UserService,
     private cookieService: CookieService,
@@ -40,6 +45,11 @@ export class AuthService {
     private watch: WatchService,
     private context: ContextService) {
 
+      const isDev = isDevMode()
+      this._domain = isDev ? "":"jp.ketmie.com"
+      this._path = isDev ? "/":"/"
+      this._secure = ! isDev
+      this._sameSite = isDev ? "Lax":"Strict"
   }
 
 
@@ -59,7 +69,6 @@ export class AuthService {
       const data = this.cookieService.get(this.cookieKey)
       try {
         this.jpData = JSON.parse(data)
-
       } catch (error) {
         this.cookieService.delete(this.cookieKey)
         this.jpData = null
@@ -79,7 +88,6 @@ export class AuthService {
   }
 
   init(): Observable<boolean> {
-    console.log('auth:init')
     return this.signinObservable()
   }
 
@@ -94,6 +102,7 @@ export class AuthService {
           observer.next(false)
           return observer.complete()
         }
+        this.saveCookie()
         this.userService.getUsers().pipe(first()).subscribe(users => {
           context.users = users
           context.user = context.findUser(user.id)
@@ -112,18 +121,21 @@ export class AuthService {
     if (!this.jpData)
       this.jpData = {}
     this.jpData.email = email
-    console.log('auth:signin')
     return this.signinObservable()
   }
 
+  private deleteCookie() {
+    
+    this.cookieService.delete(this.cookieKey, this._path, this._domain, this._secure, this._sameSite)
+
+  }
   logout() {
-    this.cookieService.delete(this.cookieKey)
+    this.deleteCookie()
     location.reload()
   }
 
   private saveCookie() {
-    const domain = isDevMode() ? "":""//@TODO
-    this.cookieService.set(this.cookieKey, JSON.stringify(this.jpData), 60, "/", domain, false, "Lax")
+    this.cookieService.set(this.cookieKey, JSON.stringify(this.jpData), 60, this._path, this._domain, this._secure, this._sameSite)
   }
 
 }

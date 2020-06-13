@@ -31,8 +31,10 @@ export class AddHeaderInterceptor implements HttpInterceptor {
         return next.handle(clonedRequest).pipe(
             map((response: HttpResponse<any>) => {
                 if (response.type > 0 && showBuzy) {
-                    if(this.authService.authorized && "error" in response.body) {
-                        this.registerError(response.body)
+                    if (this.authService.authorized) {
+                        const body = response.body
+                        if (body != null && typeof body == "object" && "error" in body)
+                            this.registerError(body)
                     }
                     this.buzy.close()
                 }

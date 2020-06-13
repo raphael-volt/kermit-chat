@@ -9,7 +9,14 @@ import { DialogCardComponent } from './dialog-card/dialog-card.component';
 import { RteData } from '../components/rte/editor/rte.component';
 import { RteDialogComponent } from '../components/rte-dialog/rte-dialog.component';
 import { FormControl } from '@angular/forms';
-
+/*
+[{"insert":"(","attributes":null},
+{"insert":"jardin-partage@ketmie.com","attributes":{"color":"#0066cc"}},{"insert":")","attributes":null},
+{"insert":{"rteemoji":"emoji-joy"},"attributes":{"size":"24px"}},
+{"insert":" ","attributes":{"size":"24px"}},
+{"insert":{"rteemoji":"emoji-eyes"},"attributes":{"size":"24px"}},{"insert":")\n","attributes":null}
+]
+*/
 @Injectable({
   providedIn: 'root'
 })

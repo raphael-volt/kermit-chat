@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ChangeDetectorRef, ChangeDetectionStrategy } 
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MatDialogRef } from '@angular/material/dialog';
+import { RteData } from '../rte/editor/rte.component';
 
 @Component({
   selector: 'app-rte-dialog',
@@ -17,6 +18,7 @@ export class RteDialogComponent implements OnInit {
   @Input()
   set messageControl(value: FormControl) {
     this._formControl = value
+
     if (value) {
       this._formSub = value.statusChanges.subscribe(_ => {
         this.cdr.detectChanges()

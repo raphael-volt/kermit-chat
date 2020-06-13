@@ -141,7 +141,7 @@ export class RteComponent implements ControlValueAccessor, MatFormFieldControl<R
         if (!data)
             data = new RteData()
         this._value = data
-        if(this.quill) {
+        if(this.quill) { // not working
             this.quill.setContents(data.content)
         }
         this.stateChanges.next();
@@ -204,12 +204,16 @@ export class RteComponent implements ControlValueAccessor, MatFormFieldControl<R
         this.quill = quill
         quill.on('text-change', this.textChangeHandler)
         this.textChangeHandler(null)
+        /*
+        if(this.ngControl) {
+            this.value = this.ngControl.value
+        }
+        */
+        if(this._value)
+            quill.setContents(this._value.content)
         if (this._focusFlag) {
             this._focusFlag = false
             this.focused = true
-            if(this._value)
-                quill.setContents(this._value.content)
-            
             quill.focus()
             this.checkErrorState()
         }

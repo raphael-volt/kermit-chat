@@ -28,7 +28,9 @@ export class WatchNotificationDirective implements OnDestroy {
     if(! this.context.user.allow_sounds)
       return
     if(_type == this._type) {
-      this.audio.play()
+      this.audio.play().catch(error=>{
+        console.log(error)
+      })
     }
   }
   ngOnDestroy(): void {

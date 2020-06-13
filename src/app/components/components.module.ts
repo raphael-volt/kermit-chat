@@ -18,6 +18,8 @@ import { MatEmojiModule } from './mat-emoji/mat-emoji.module';
 import { DebugEmojiComponent } from "./debug-emoji/debug-emoji.component";
 import { SnackBarUserOnComponent } from './snack-bar-user-on/snack-bar-user-on.component';
 import { RteDialogComponent } from './rte-dialog/rte-dialog.component';
+import { CreateUserComponent } from './members/create-user/create-user.component';
+
 @NgModule({
   declarations: [
     MembersComponent,
@@ -26,16 +28,18 @@ import { RteDialogComponent } from './rte-dialog/rte-dialog.component';
     PictoViewComponent,
     DebugEmojiComponent,
     SnackBarUserOnComponent,
-    RteDialogComponent],
+    RteDialogComponent,
+    CreateUserComponent],
   imports: [
     ApiModule, AvatarModule,
     MessagesModule, RteModule,
     UserPreviewModule, MatEmojiModule,
-    CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, ImgScrollerModule,
+    CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, ImgScrollerModule
   ],
   exports: [
     MessagesModule, MembersComponent, AccountComponent,
-    PictoViewComponent, PictoEditorComponent, DebugEmojiComponent, SnackBarUserOnComponent
+    PictoViewComponent, PictoEditorComponent, DebugEmojiComponent, SnackBarUserOnComponent,
+    CreateUserComponent
   ]
 })
 export class ComponentsModule { }

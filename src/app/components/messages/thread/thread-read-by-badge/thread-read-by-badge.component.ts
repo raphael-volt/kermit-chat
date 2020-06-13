@@ -16,7 +16,7 @@ export class ThreadReadByBadgeComponent implements OnDestroy {
 
   constructor(private users: ContextService, private api: ApiService, private cdr: ChangeDetectorRef) { 
     this.sub = api.threadChange.subscribe(thread=>{
-      if(this._thread == thread) {
+      if(this._thread.id == thread.id) {
         this.thread = thread
         this.cdr.detectChanges()
       }

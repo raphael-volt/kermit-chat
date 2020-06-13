@@ -38,8 +38,8 @@ export class ApiService {
       for (const i of result.contents) {
         ops.push(...i.inserts)
       }
-      this.setThreadReadBy(id)
       this.replaceImage(...ops)
+      this.setThreadReadBy(id)
 
       return result
     }))
@@ -64,18 +64,20 @@ export class ApiService {
   private threadReadByFlag = false
   private setThreadReadBy(id, threads = null) {
     if (!threads)
-      threads = this.threadList.getValue()
+    threads = this.threadList.getValue()
     if (!threads) {
+      console.log('API', 'setThreadReadBy threads not loaded')
       this.threadReadById = id
       this.threadReadByFlag = true
       return
     }
     const thread = this.findThread(id, threads)
     const rb = thread.read_by
-    const uid = thread.user_id
+    const uid = this.context.user.id//thread.user_id
     let change = false
     for (const k in rb) {
       if (!rb[k]) {
+        change = true
         rb[k] = [uid]
       }
       if (rb[k].indexOf(uid) < 0) {
@@ -87,7 +89,7 @@ export class ApiService {
       this.threadChange.next(thread)
     }
   }
-
+  
   private replaceImage(...ops: DeltaOperation[]) {
     const url = this.url
     for (const op of ops) {
@@ -97,7 +99,7 @@ export class ApiService {
     }
     return ops
   }
-
+  
   reply(value: ThreadPart) {
     return this.http.post<ThreadPart>(
       this.url.api("thread_part"),
@@ -119,6 +121,9 @@ export class ApiService {
       value.content = this.replaceImage(...result.content as DeltaOperation[])
       return value
     }))
+  }
+  addUser(value: User) {
+    return this.http.post(this.url.api("user"), value)
   }
   addTread(value: ThreadTree): Observable<Thread> {
     return this.http.post<ThreadTree>(
@@ -186,6 +191,7 @@ export class ApiService {
   private checkActiveThread(diff: WatchDiff) {
     if (!diff.active_threads) return
     const context = this.context
+    if(!context.user) return
     const actveThread: number = context.threadOpened
     const previous = context.activeThreads
     const current = diff.active_threads
@@ -250,6 +256,7 @@ export class ApiService {
     return this.http.get<Thread[]>(this.getPath("thread")).pipe(map(collection => {
       if (this.threadReadByFlag) {
         this.setThreadReadBy(this.threadReadById, collection)
+        this.threadReadByFlag = false
       }
       this.sortThreads(collection)
       this.threadList.next(collection)

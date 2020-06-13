@@ -12,7 +12,6 @@ import { WatchService } from 'src/app/api/watch.service';
 import { RteComponent, RteData } from '../../rte/editor/rte.component';
 import { ContextService } from 'src/app/context.service';
 import { WatchNotificationService } from 'src/app/api/watch-notification.service';
-import { RteDialogComponent } from '../../rte-dialog/rte-dialog.component';
 import { DialogService } from 'src/app/dialog/dialog.service';
 
 @Component({
@@ -30,7 +29,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChildren('thread-part') itemElements: QueryList<any>;
   @ViewChild(RteComponent) rte: RteComponent
 
-  readbyText = ""
+  readbyText = "Vu par: moi"
 
   asyncThreadData: BehaviorSubject<ThreadData> = new BehaviorSubject<ThreadData>(null)
   threadData: ThreadData
@@ -70,6 +69,9 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     this.sub = this.messageControl.statusChanges.subscribe(value => {
       cdr.detectChanges()
     })
+    this.sub = userService.usersChange.subscribe(()=>{
+      cdr.detectChanges()
+    })
 
     this.sub = route.paramMap.subscribe(map => {
       if (map.has('id')) {
@@ -102,13 +104,19 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     else {
       message = `${names.join(", ")} lisent le message`
     }
-    this.notifier.open(message)
+    this.notifier.open(message, 'message')
   }
   private usersInThread: number[] = []
   private updateReadByText() {
     const context = this.context
     const currentActive = context.activeThreads[context.threadOpened]
-    if (!currentActive) return
+    if (!currentActive) {
+      setTimeout(()=>{
+        this.updateReadByText()
+      }, 1000)
+      return
+
+    }
     const currentUser = context.user.id
     const thread = this.threadData.thread
     const threadUser: number = thread.user_id
@@ -125,12 +133,12 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
       this.notifyUserInThread(newInThread, currentUser)
     }
     this.usersInThread = currentActive
-    const readByUsers: number[] = currentActive.slice().filter(id => id != threadUser)
+    const readByUsers: number[] = currentActive.slice().filter(id => id != currentUser)
     const readBy = thread.read_by
     for (const tpid in readBy) {
       const tpUsers: number[] = readBy[tpid]
       for (const uid of tpUsers) {
-        if (uid == threadUser) continue
+        if (uid == currentUser) continue
         const user = context.findUser(uid)
         if (!user) {
           console.log('USER NOT FOUND', uid)
@@ -142,8 +150,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     const userNames: string[] = readByUsers.map(uid => context.findUser(uid).name)
-    if (!userNames.length)
-      userNames.push('personne')
+    userNames.unshift('moi')
     const message: string = "Vu par: "
     this.readbyText = message + userNames.join(', ')
   }
@@ -164,6 +171,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
           reply.user = this.userService.findById(reply.user_id)
           currentContents.push(reply)
           replies.push(reply)
+          this.updateReadByText()
           this.cdr.detectChanges()
           setTimeout(() => this.scrollToBottom(), 100)
         }
@@ -338,6 +346,10 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   openRtePopup() {
+    this.messageControl.setValue(null)
+    this.messageControl.updateValueAndValidity()
+    this.cdr.detectChanges()
+
     const sub = this.dialog.openThreadReply(this.messageControl).subscribe(data => {
       if (data)
         this.reply(null)

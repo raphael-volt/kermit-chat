@@ -1,8 +1,18 @@
 .thread-card {
     position: relative;
-    .remove_red_eye {
+    .tooltip {
         position: absolute;
         right: 16px;
-        font-size: 32px;
+        top: 20px;
+        min-width: 36px;
+        width: 36px;
+        border-radius: 50%;
+        padding: 0;
     }
+    .remove_red_eye {
+        font-size: 28px;
+    }
+}
+mat-panel-title button {
+    margin-right: 16px;
 }

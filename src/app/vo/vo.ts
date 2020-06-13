@@ -5,9 +5,11 @@ export type UserStatus = {
     id: number
 }
 export type WatchDiff = {
-    user_id?: number,
-    thread_opened?: number,
-    active_threads?: {[threadId:number]: number[]},
+    reload?: number
+    users_change?: number
+    user_id?: number
+    thread_opened?: number
+    active_threads?: {[threadId:number]: number[]}
     status: WatchStatus
     thread_user?: number
     thread: number

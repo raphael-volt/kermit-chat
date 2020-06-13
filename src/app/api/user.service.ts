@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UrlService } from './url.service';
 import { User, ResponseError } from '../vo/vo';
@@ -12,7 +12,11 @@ import { ContextService } from '../context.service';
 })
 export class UserService {
 
-  users: User[]
+  get users(): User[] {
+    return this.context.users
+  }
+
+  usersChange: EventEmitter<void> = new EventEmitter() 
 
   busyChange: Subject<boolean> = new Subject()
   private _busy = true
@@ -25,7 +29,15 @@ export class UserService {
     private url: UrlService,
     private context: ContextService,
     private watch: WatchService
-  ) { }
+  ) { 
+    watch.$usersChange.subscribe(()=>{
+      this.http.get<User[]>(this.url.api("user")).pipe(first()).subscribe(users => {
+        this.context.users = users
+        this.context.user = this.context.findUser(this.context.user.id)
+        this.usersChange.emit()
+      })
+    })
+  }
 
   signout() {
     this.context.user = null
@@ -37,7 +49,7 @@ export class UserService {
         this._requestFlag = true
         this.http.get<User[]>(this.url.api("user")).pipe(first()).subscribe(users => {
           this._requestFlag = true
-          this.users = users
+          this.context.users = users
           this._busy = false
           this.busyChange.next(false)
         })
@@ -58,7 +70,6 @@ export class UserService {
 
   signin() {
     return new Observable<User>((observer: Observer<User|null>) => {
-      console.log('users:sigin')
       const context = this.context
       context.user = null
       const url = this.url.api("auth")
@@ -96,12 +107,13 @@ export class UserService {
   findById(id: number): User | undefined {
     if (this._busy)
       return undefined
-    return this.users.find(user => user.id == id)
+    return this.context.findUser(id)
   }
 
   updateUser(user: User) {
     return this.http.put<User>(this.url.api("user", user.id), user)
   }
+
   updatePicto(data: string) {
     const context = this.context
     return this.http.put<User>(this.url.api("user", context.user.id), {
@@ -110,5 +122,15 @@ export class UserService {
       context.user.picto = result.picto
       return true
     }))
+  }
+
+  /**
+   * This will delete all the threads and replies this user has created.
+   * All the logged users should synchronize the model to prevent errors. 
+   * @param user 
+   */
+  deleteUser(user: User) {
+    const reload = () => location.reload()
+    this.http.delete(this.url.api("user", user.id)).pipe(first()).subscribe(reload, reload)
   }
 }

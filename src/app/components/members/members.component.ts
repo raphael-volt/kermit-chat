@@ -3,6 +3,8 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { User } from 'src/app/vo/vo';
 import { UserService } from 'src/app/api/user.service';
 import { first } from 'rxjs/operators';
+import { DialogService } from 'src/app/dialog/dialog.service';
+import { CreateUserComponent } from './create-user/create-user.component';
 
 @Component({
   selector: 'app-members',
@@ -18,7 +20,7 @@ export class MembersComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['name', 'email', 'status', 'action']
   private usersSub: Subscription
 
-  constructor(private userService: UserService) { 
+  constructor(private userService: UserService, private dialog: DialogService) { 
 
     if (this.userService.busy) {
       this.userService.getUsers().pipe(first()).subscribe(this.initMembers)
@@ -42,10 +44,16 @@ export class MembersComponent implements OnInit, OnDestroy {
     }
   }
   deleteUser(user: User) {
-
+    this.userService.deleteUser(user)
   }
   createUser() {
-
+    this.dialog.open(CreateUserComponent, {
+      disableClose: true,
+      closeOnNavigation: false,
+      autoFocus: true
+    }).afterClosed().subscribe(user=>{
+      location.reload()
+    })
   }
   
 }

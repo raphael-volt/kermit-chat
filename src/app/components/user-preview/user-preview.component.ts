@@ -1,9 +1,10 @@
 import { Component, Input, OnChanges, 
-  SimpleChanges, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+  SimpleChanges, ChangeDetectionStrategy, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { User } from 'src/app/vo/vo';
 import { first } from 'rxjs/operators';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { UserService } from 'src/app/api/user.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'user-preview',
@@ -16,7 +17,7 @@ import { UserService } from 'src/app/api/user.service';
     '[class.small]': 'pictoSize == "small"',
   }
 })
-export class UserPreviewComponent implements OnChanges {
+export class UserPreviewComponent implements OnChanges, OnDestroy {
 
   @Input()
   user: User
@@ -36,7 +37,15 @@ export class UserPreviewComponent implements OnChanges {
   @Input()
   showName = false
 
-  constructor(private cdr: ChangeDetectorRef, private userService: UserService) { }
+  private userChangeSub: Subscription
+  constructor(private cdr: ChangeDetectorRef, private userService: UserService) { 
+    this.userChangeSub = userService.usersChange.subscribe(()=>{
+      this.cdr.detectChanges()
+    })
+  }
+  ngOnDestroy(): void {
+    this.userChangeSub.unsubscribe() 
+  }
   
   private getUser(id: number) {
     this.userService.getUser(id).pipe(first()).subscribe(this.setUser)
