@@ -12,7 +12,7 @@ export interface NamedRoute extends Route {
 }
 
 const routes: NamedRoute[] = [
-  
+
   {
     path: '',
     title: "default",
@@ -45,17 +45,16 @@ const routes: NamedRoute[] = [
     component: MembersComponent
   },
   {
-    path: '**',
-    title: "none",
-    redirectTo: 'messages'
-  }
-  /*,
-  {
     path: "emoji",
     title: "RTE debug",
     canActivate: [AuthGuard],
     component: DebugEmojiComponent
-  }*/
+  },
+  {
+    path: '**',
+    title: "none",
+    redirectTo: 'messages'
+  }
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

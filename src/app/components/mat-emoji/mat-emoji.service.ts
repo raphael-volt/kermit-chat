@@ -14,13 +14,13 @@ export class MatEmojiService {
   getCategories() {
     return categories.slice()
   }
-  
+
   getEmojiList(emojiType: EmojiType): EmojiList {
     const map = emojiMap
     if (map[emojiType] === undefined)
-        return null
+      return null
 
     return map[emojiType]
-}
+  }
 
 }

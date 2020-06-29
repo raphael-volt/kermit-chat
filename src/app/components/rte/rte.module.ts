@@ -12,13 +12,13 @@ import { RTEEmojiToolbar } from '../mat-emoji/quill/emoji-toolbar';
 Quill.register('modules/imageResize', ImageResize)
 Quill.register('formats/rteemoji', RTEEmojiBlot)
 Quill.register('modules/rteemoji', RTEEmojiToolbar)
+/* 
 const Size = Quill.import('attributors/style/size');
 Size.whitelist = ['10px', '14px', '18px', '24px', '32px']
 Quill.register(Size, true)
+*/
 
-const quillModules: QuillModules = {
-  imageResize: {},
-  rteemoji: {},
+const h = {
   toolbar: {
     handlers: {
       /**
@@ -40,15 +40,22 @@ const quillModules: QuillModules = {
           this.quill.format('link', false);
         }
       }
-    },
+
+    }
+  }
+}
+const quillModules: QuillModules = {
+  imageResize: {},
+  rteemoji: {},
+  toolbar: {
     container: [
       ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-      [{ 'header': 1 }, { 'header': 2 }, { 'header': 2 }],               // custom button values
+      [{ 'header': 1 }, { 'header': 2 }],               // custom button values
       [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
 
-      [{ 'size': ['10px', false, '18px', '24px', '32px'] }, { 'align': [] }, { 'color': [] }, 'clean'],  // custom dropdown
+      [{ 'size': ['small', false, 'large', 'huge'] }, { 'align': [] }, { 'color': [] }, 'clean'],  // custom dropdown
 
-      ['link', 'image', 'rteemoji']                         // link and image, video
+      ['image', 'rteemoji']                         // link and image, video
     ]
   }
 }

@@ -6,7 +6,7 @@ import {
   ChangeDetectorRef, AfterViewInit,
   OnDestroy
 } from '@angular/core';
-import { Emoji, EmojiList, EmojiType } from '../core/emoji';
+import { EmojiList, EmojiType } from '../core/emoji';
 import { MatEmojiService } from '../mat-emoji.service';
 import { MatEmojiDirective } from '../mat-emoji.directtive';
 import { Subscription } from 'rxjs';
@@ -47,7 +47,7 @@ export class EmojiListComponent implements OnDestroy, AfterViewInit {
   emojiDirectiveList: QueryList<MatEmojiDirective>
 
   @Output()
-  emojiClick: EventEmitter<Emoji> = new EventEmitter()
+  emojiClick: EventEmitter<string> = new EventEmitter()
 
   @Output()
   sizeChange: EventEmitter<[number, number]> = new EventEmitter()

@@ -1,7 +1,6 @@
 import Quill from 'quill'
 import { EmojiSelectComponent } from '../emoji-select/emoji-select.component';
 import { first } from "rxjs/operators";
-import { Emoji } from '../core/emoji';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -14,11 +13,11 @@ export class RTEEmojiToolbar extends Module {
     static DEFAULTS = {
         buttonIcon: '<svg viewbox="0 0 18 18"><circle class="ql-fill" cx="7" cy="7" r="1"></circle><circle class="ql-fill" cx="11" cy="7" r="1"></circle><path class="ql-stroke" d="M7,10a2,2,0,0,0,4,0H7Z"></path><circle class="ql-stroke" cx="9" cy="9" r="6"></circle></svg>'
     }
-    
+
     private backdropSub: Subscription
     private emojiSub: Subscription
     private quill: Quill
-    private range: {index: number}
+    private range: { index: number, length: number }
     private format: any
     get container(): HTMLDivElement {
         return this.quill['container']
@@ -35,30 +34,44 @@ export class RTEEmojiToolbar extends Module {
                 emojiBtns.item(i).innerHTML = options.buttonIcon
             }
         }
+        quill.keyboard.addBinding({
+            key: 'E',
+            ctrlKey: true
+          } as any, (range) => {
+                this.openPopup()
+        })
     }
 
 
-    private close = (emoji: Emoji = null) => {
+    private close = (emoji: string = null) => {
         const quill = this.quill
         if (emoji) {
             const range = this.range
-            quill.insertEmbed(range.index, 'rteemoji', emoji.name)
             const format = this.format
+            console.log('range', range)
+            quill.insertEmbed(range.index, 'rteemoji', emoji)
             const index = range.index
             for (const key in format) {
-                quill.formatText(index, 1, key, format[key])
+                if(key == "size")
+                    quill.formatText(index, 1, key, format[key])
             }
-            quill.setSelection(index + 1, 0)
+            quill.setSelection(range.index+1, 0)
         }
+        quill.focus()
         this.backdropSub.unsubscribe()
         this.emojiSub.unsubscribe()
-        quill.focus()
     }
-    
-    private openPopup = (flag: boolean) => {
+
+    private blurHandler = () => {
+        this.quill.focus()
+    }
+
+    private openPopup = (flag: boolean|undefined=undefined) => {
+        console.log("emoji-toolbar.openPopup", flag)
         const quill = this.quill
         quill.focus()
-        const range = quill.getSelection()
+        const range = quill.getSelection(true)
+
         this.format = quill.getFormat(range)
         const bounds = quill.getBounds(range.index)
         this.range = range
@@ -80,7 +93,7 @@ export class RTEEmojiToolbar extends Module {
                 top: p.y + 'px',
             })
         })
-        this.backdropSub = ref.backdropClick().subscribe(()=>{
+        this.backdropSub = ref.backdropClick().subscribe(() => {
             this.close()
         })
         this.emojiSub = popup.emojiClick.subscribe(emoji => {
@@ -98,11 +111,11 @@ export class RTEEmojiToolbar extends Module {
         const outletH = outletBounds.height
         const x = position.x
         const y = position.y
-        
+
         if (popupW + x > outletW) {
             if (x - popupW > 0)
                 position.x = x - popupW
-            else 
+            else
                 position.x = 0
         }
 
@@ -112,7 +125,7 @@ export class RTEEmojiToolbar extends Module {
             else
                 position.y = y - popupH
         }
-        
+
         position.x += outletBounds.left
         position.y += outletBounds.top
         return position

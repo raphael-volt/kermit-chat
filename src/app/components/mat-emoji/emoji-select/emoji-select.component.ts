@@ -2,7 +2,7 @@
 import { Component, AfterViewInit, QueryList, ElementRef, ViewChildren, ViewChild, Output, EventEmitter } from '@angular/core'
 import { ListSliderDirective, SlideDirection } from './list-slider.directive'
 import { EmojiListComponent } from '../emoji-list/emoji-list.component'
-import { EmojiCategory, Emoji } from '../core/emoji'
+import { EmojiCategory } from '../core/emoji'
 import { MatEmojiService } from '../mat-emoji.service'
 
 
@@ -17,7 +17,7 @@ import { MatEmojiService } from '../mat-emoji.service'
 export class EmojiSelectComponent implements AfterViewInit {
 
   @Output()
-  emojiClick: EventEmitter<Emoji> = new EventEmitter()
+  emojiClick: EventEmitter<string> = new EventEmitter()
   
   @Output()
   viewInit: EventEmitter<DOMRect> = new EventEmitter()

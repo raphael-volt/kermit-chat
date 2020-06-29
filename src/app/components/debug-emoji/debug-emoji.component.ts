@@ -49,34 +49,58 @@ export class DebugEmojiComponent implements OnInit, OnDestroy {
   private validateDataLength: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
     if (!control.value) return null
     let value = control.value.length
-    console.log('validateDataLength', value)
+    //console.log('validateDataLength', value)
     return value < this.minLength ? { 'contentLength': { 'min': this.minLength, 'actual': value } } : null
   }
+  content = {}
   private formSub: Subscription
   form: FormGroup
   contentControl: FormControl
+
+  model = [
+    { insert: 'Hello ' },
+    { insert: 'World!', attributes: { bold: true } },
+    { insert: '\n' }
+  ]
   constructor(private dialog: MatDialog,
     private cdr: ChangeDetectorRef,
     private formBuilder: FormBuilder,
     modal: DialogService) {
 
-    this.contentControl = new FormControl()
-    this.contentControl.setValidators([this.validateDataLength])
+    this.contentControl = new FormControl([
+      { insert: 'Hello ' },
+      { insert: 'World!', attributes: { bold: true } },
+      { insert: '\n' }
+    ],
+      (control) => {
+        console.log(control.value)
+        return null
+      })
+    //this.contentControl.setValidators([this.validateDataLength])
     this.form = this.formBuilder.group({
-      content: this.contentControl,
+      /*content: [[
+        { insert: 'Hello ' },
+        { insert: 'World!', attributes: { bold: true } },
+        { insert: '\n' }
+      ], [(control=>{
+        console.log(control.value)
+        return null
+      })]],
+      content: new FormControl('validation fail'),
+     */
       subject: [null, [Validators.required]]
     })
     this.formSub = this.form.valueChanges.subscribe(value => {
       this.cdr.detectChanges()
     })
 
-    modal.error('test')
-    
+
   }
 
   contentChange(data: RteData) {
     this.contentLength = data.length
     this.form.updateValueAndValidity()
+    this.content = this.form.value
     this.cdr.detectChanges()
   }
   ngOnInit(): void {

@@ -83,11 +83,18 @@ $emoji-margin     : 4px;
 @mixin emoji-theme($class: "fem", $font-familly: "color-emoji") {
 
     @font-face {
-        font-family: $font-familly;
-        src        : local("Apple Color Emoji"),
-            local("Segoe UI Emoji"),
-            local("Segoe UI Symbol"),
-            local("Noto Color Emoji");
+        font-family   : "emoji-font";
+        font-style    : normal;
+        font-weight   : normal;
+        font-variant  : normal;
+        text-transform: none;
+        
+        src: local("apple color emoji"),
+        local("segoe ui emoji"),
+        local("notocoloremoji"),
+        local("segoe ui symbol"),
+        local("android emoji"),
+        local("emojisymbols");
     }
 
     .#{$class} {
@@ -97,8 +104,6 @@ $emoji-margin     : 4px;
         font-variant  : normal;
         text-transform: none;
         font-size     : 1em;
-        
-        @include emoji-list();
     }
     
     .emoji-list {
@@ -112,10 +117,7 @@ $emoji-margin     : 4px;
             width         : $emoji-size;
             box-sizing    : content-box;
             cursor        : pointer;
-            &:before {
-                font-size : .85em;
-                text-align: left;
-            }
+            font-size : .85em;
         }
     }
 }

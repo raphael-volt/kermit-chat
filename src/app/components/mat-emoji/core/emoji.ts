@@ -1,13 +1,9 @@
-export type Emoji = {
-    name: string
-    order: number
-}
 
 export type EmojiMap = {
-    [name: string]: EmojiList
+    [name: string]: string[]
 }
 
-export type EmojiList = Emoji[]
+export type EmojiList = string[]
 
 export type EmojiType = 'p' | 'n' | 'd' | 's' | 'a' | 't' | 'o'
 

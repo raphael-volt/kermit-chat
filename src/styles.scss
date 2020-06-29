@@ -94,8 +94,7 @@ $ctn-max-width :1080px;
 
 $config: mat-typography-config();
 
-@import "./quill.scss";
-@include quill-theme(mat-font-family($config), $app-theme);
+
 
 @include list-item-active($app-theme);
 @include avatar-theme($app-theme);

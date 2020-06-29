@@ -12,17 +12,17 @@ export class MatEmojiDirective {
 
     @Input()
     set matEmoji(value: string) {
-        if (typeof value != "string") return
-        const cl = this.emojiClass
-        if (cl.length > 1 && cl[1] == value) return
-        cl[1] = value
+        if (typeof value === "string")
+            this._element.innerText = value
     }
-
     get host(): HTMLElement {
-        return this._hostRef.nativeElement
+        return this._element
     }
+    private _element: HTMLElement
     constructor(
-        private _hostRef: ElementRef
-    ) { }
+        ref: ElementRef<HTMLElement>
+    ) { 
+        this._element = ref.nativeElement
+    }
 
 }
