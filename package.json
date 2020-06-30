@@ -30,6 +30,7 @@
     "@dicebear/avatars-gridy-sprites": "^4.0.8",
     "@dicebear/avatars-jdenticon-sprites": "^4.1.0",
     "@dicebear/avatars-male-sprites": "^4.0.8",
+    "classlist.js": "^1.1.20150312",
     "core-js": "^3.6.5",
     "ngx-cookie-service": "^3.0.4",
     "ngx-quill": "^11.0.0",
@@ -38,6 +39,7 @@
     "quill-image-resize-module": "^3.0.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "web-animations-js": "^2.3.2",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
