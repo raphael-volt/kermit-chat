@@ -12,6 +12,8 @@ import { CreateThreadComponent } from './create-thread/create-thread.component';
 import { UserPreviewModule } from '../user-preview/user-preview.module';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ThreadReadByBadgeComponent } from './thread/thread-read-by-badge/thread-read-by-badge.component';
+import { MatRteModule } from 'mat-rte';
+import { ReplyDialogComponent } from './reply-dialog/reply-dialog.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -21,9 +23,10 @@ import { ThreadReadByBadgeComponent } from './thread/thread-read-by-badge/thread
     ReactiveFormsModule,
     RteModule,
     UserPreviewModule,
-    ScrollingModule
+    ScrollingModule,
+    MatRteModule
   ],
-  declarations: [MessagesComponent, ThreadComponent, CreateThreadComponent, ThreadReadByBadgeComponent],
-  exports: [MessagesComponent]
+  declarations: [MessagesComponent, ThreadComponent, CreateThreadComponent, ThreadReadByBadgeComponent, ReplyDialogComponent],
+  exports: [MessagesComponent, ReplyDialogComponent]
 })
 export class MessagesModule { }

@@ -60,7 +60,7 @@ export class MessagesComponent implements OnInit, AfterViewInit {
     if (this.showNavOnIntit) {
       this.showNavOnIntit = false
       this.sideNav.open()
-      //this.createThread()
+      this.createThread()
     }
   }
   ngOnInit(): void {

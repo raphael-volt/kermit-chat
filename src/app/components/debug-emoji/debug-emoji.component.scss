@@ -1,0 +1,73 @@
+:host {
+    flex           : 1 1 auto;
+    display        : flex;
+    flex-direction : column;
+    flex-wrap      : nowrap;
+    justify-content: flex-start;
+    align-content  : flex-start;
+    align-items    : stretch;
+    padding        : 32px;
+    overflow       : hidden;
+}
+
+mat-card {
+    order          : 0;
+    flex           : 1 1 auto;
+    align-self     : auto;
+    display        : flex;
+    flex-direction : column;
+    flex-wrap      : nowrap;
+    justify-content: flex-start;
+    align-content  : flex-start;
+    align-items    : stretch;
+    overflow       : hidden;
+}
+
+mat-card-header,
+mat-card-footer {
+    order     : 0;
+    flex      : 0 1 auto;
+    align-self: auto;
+}
+
+mat-card-content {
+    flex: 1 1 auto;
+    display        : flex;
+    flex-direction : row;
+    flex-wrap      : nowrap;
+    justify-content: flex-start;
+    align-content  : flex-start;
+    align-items    : stretch;
+    overflow       : hidden;
+
+    .col {
+        order          : 0;
+        flex           : 0 1 auto;
+        align-self     : stretch;
+        display        : flex;
+        flex-direction : column;
+        flex-wrap      : nowrap;
+        justify-content: flex-start;
+        align-content  : flex-start;
+        align-items    : stretch;
+        overflow       : hidden;
+        &.preview {
+            flex           : 1 1 auto;
+            padding: 16px;
+        }
+    }
+}
+/*
+mat-card-content {
+    order          : 0;
+    flex           : 1 1 auto;
+    align-self     : auto;
+    display        : flex;
+    flex-direction : column;
+    flex-wrap      : nowrap;
+    justify-content: flex-start;
+    align-content  : flex-start;
+    align-items    : stretch;
+    overflow       : hidden;
+}
+*/

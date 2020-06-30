@@ -4,15 +4,16 @@ import { Subscription, BehaviorSubject, Observable } from 'rxjs';
 import { User, ThreadData, ThreadPart, ThreadDataItem } from 'src/app/vo/vo';
 import { ApiService } from 'src/app/api/api.service';
 import { first } from 'rxjs/operators';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/api/user.service';
-import { Delta, DeltaOperation } from 'quill';
+import { DeltaOperation } from 'quill';
 import { BusyService } from 'src/app/api/busy.service';
 import { WatchService } from 'src/app/api/watch.service';
-import { RteComponent, RteData } from '../../rte/editor/rte.component';
 import { ContextService } from 'src/app/context.service';
 import { WatchNotificationService } from 'src/app/api/watch-notification.service';
 import { DialogService } from 'src/app/dialog/dialog.service';
+import { rteValidatorFn, MatRteComponent } from 'mat-rte';
+import { MatExpansionPanel } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-thread',
@@ -27,7 +28,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('scrollframe', { static: false }) scrollFrame: ElementRef;
   @ViewChildren('thread-part') itemElements: QueryList<any>;
-  @ViewChild(RteComponent) rte: RteComponent
+  @ViewChild(MatRteComponent) rte: MatRteComponent
 
   readbyText = "Vu par: moi"
 
@@ -59,17 +60,11 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     private dialog: DialogService) {
 
     this.currentUser = userService.user
-    this.messageControl = new FormControl(null, (control) => {
-      const data: RteData = control.value
-      if (data && data.length > 0) {
-        return null
-      }
-      return { minLength: 1 }
-    })
+    this.messageControl = new FormControl(null, rteValidatorFn(3))
     this.sub = this.messageControl.statusChanges.subscribe(value => {
       cdr.detectChanges()
     })
-    this.sub = userService.usersChange.subscribe(()=>{
+    this.sub = userService.usersChange.subscribe(() => {
       cdr.detectChanges()
     })
 
@@ -106,12 +101,12 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     this.notifier.open(message, 'message')
   }
-  private usersInThread: number[] = []
+  usersInThread: number[] = []
   private updateReadByText() {
     const context = this.context
     const currentActive = context.activeThreads[context.threadOpened]
     if (!currentActive) {
-      setTimeout(()=>{
+      setTimeout(() => {
         this.updateReadByText()
       }, 1000)
       return
@@ -204,6 +199,15 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private appendThreadPartAsync(contents: ThreadDataItem[], service: UserService) {
     return new Observable<boolean>(obs => {
+      /*
+      for (const i of contents) {
+        i.user = service.findById(i.user_id)
+        this.replies.push(i)
+        obs.next(true)
+        obs.complete()
+      }
+      */
+
       const busy = this.busy
       busy.open()
       contents = contents.slice()
@@ -211,10 +215,14 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
       const next = () => {
         if (contents.length) {
           window.requestAnimationFrame(() => {
-            const data = contents.shift()
-            data.user = service.findById(data.user_id)
-            this.replies.push(data)
-            cdr.detectChanges()
+            for (let i = 0; i < 5; i++) {
+              const data = contents.shift()
+              data.user = service.findById(data.user_id)
+              this.replies.push(data)
+              if(!contents.length)
+                break  
+            }
+            this.cdr.detectChanges()
             next()
           })
         }
@@ -258,11 +266,6 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
 
   afterExpand() {
     this.rte.focusEditor()
-    /*
-    this.messageControl.setValue(null)
-    this.messageControl.updateValueAndValidity()
-    this.cdr.detectChanges()
-    */
   }
   panelCloseHandler() {
     this.panelOpenState = false
@@ -281,7 +284,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     const data = this.messageControl.value
-    const ops = (data.content as Delta).ops
+    const ops = data.ops
     const tp: ThreadPart = {
       thread_id: this.thread.id,
       user_id: this.currentUser.id,
@@ -313,8 +316,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private scrollContainer: HTMLElement;
-  private isNearBottom = false;
-
+  private isNearBottom = false
 
   private onItemElementsChanged(): void {
     if (this.busy.busy) return
@@ -345,18 +347,21 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     })
   }
 
-  openRtePopup() {
-    this.messageControl.setValue(null)
-    this.messageControl.updateValueAndValidity()
-    this.cdr.detectChanges()
+  @ViewChild(MatExpansionPanel)
+  threadPanel: MatExpansionPanel
 
-    const sub = this.dialog.openThreadReply(this.messageControl).subscribe(data => {
-      if (data)
+  openRtePopup() {
+    const messCtrl = this.messageControl
+    let currentVal = messCtrl.value
+    const ctrl: FormControl = new FormControl(currentVal, [Validators.required, rteValidatorFn(3)])
+    const sub = this.dialog.openThreadReply(ctrl).subscribe(data => {
+      sub.unsubscribe()
+      if (data) {
+        messCtrl.setValue(data.value)
         this.reply(null)
+      }
       else {
-        this.messageControl.setValue(null)
-        this.messageControl.updateValueAndValidity()
-        this.cdr.detectChanges()
+        this.threadPanel.open()
       }
     })
   }

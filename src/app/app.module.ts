@@ -13,6 +13,8 @@ import { AuthModule } from './auth/auth.module';
 import { AvatarModule } from './avatar/avatar.module';
 import { ImgScrollerModule } from "./img-scroller/img-scroller.module";
 import { ContextService } from './context.service';
+import { MatAvatarsModule } from 'mat-avatars';
+import { MatRteModule } from 'mat-rte';
 @NgModule({
   declarations: [
     AppComponent
@@ -28,7 +30,22 @@ import { ContextService } from './context.service';
     ApiModule,
     AuthModule,
     AvatarModule,
-    ImgScrollerModule
+    ImgScrollerModule,
+    MatAvatarsModule.forRoot(),
+    MatRteModule.forRoot({
+      emoji: {
+        sheetSize: 64
+      },
+      quill: {
+        toolbarSizes: [
+            { size: "14px", name: "normal" },
+            { size: "21px", name: "moyen 1" },
+            { size: "28px", name: "moyen 2" },
+            { size: "38px", name: "grand" },
+            { size: "48px", name: "XXL" }
+        ]
+    }
+    }),
   ],
   providers: [ContextService],
   bootstrap: [AppComponent]

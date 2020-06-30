@@ -1,0 +1,17 @@
+<mat-form-field appearance="standard" class="fx-col fx1">
+    <mat-label>Réponse</mat-label>
+    <div mat-rte [required]="true" [formControl]="contentControl" (sendShortcut)="send()"></div>
+    <mat-error *ngIf="contentControl.invalid">
+        <span *ngIf="contentControl.errors.required">
+            Message est requis
+        </span>
+        <span *ngIf="contentControl.errors.minLength">
+            Message trop court ({{contentControl.errors.minLength.value}}/{{contentControl.errors.minLength.min}})
+        </span>
+    </mat-error>
+</mat-form-field>
+<div class="fx0 button-bar">
+    <button color="accent" class="icon-ctn" mat-raised-button 
+    [disabled]="contentControl.invalid" (click)="send()">Envoyer <span class="svg-icons reply"></span></button>
+    <button (click)="cancel()" mat-raised-button color="warn">Annuller</button>
+</div>

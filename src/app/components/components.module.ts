@@ -19,7 +19,8 @@ import { DebugEmojiComponent } from "./debug-emoji/debug-emoji.component";
 import { SnackBarUserOnComponent } from './snack-bar-user-on/snack-bar-user-on.component';
 import { RteDialogComponent } from './rte-dialog/rte-dialog.component';
 import { CreateUserComponent } from './members/create-user/create-user.component';
-
+import { MatRteModule } from "mat-rte";
+import { MatAvatarsModule } from "mat-avatars";
 @NgModule({
   declarations: [
     MembersComponent,
@@ -34,7 +35,8 @@ import { CreateUserComponent } from './members/create-user/create-user.component
     ApiModule, AvatarModule,
     MessagesModule, RteModule,
     UserPreviewModule, MatEmojiModule,
-    CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, ImgScrollerModule
+    CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, ImgScrollerModule,
+    MatAvatarsModule, MatRteModule
   ],
   exports: [
     MessagesModule, MembersComponent, AccountComponent,

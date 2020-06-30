@@ -7,3 +7,17 @@
 mat-rte.rte-popup {
     height: 55vh;
 }
+/*
+.mat-form-field.mat-form-field-invalid .mat-form-field-label 
+*/
+.rte-form-filed {
+    
+}
+.mat-form-field-label.rte-label {
+    display: inline-block!important;
+    position: unset!important;
+    //color: rgba(0, 0, 0, 0.54);
+    transform-origin:0 0;
+    transform: scale(0.75) perspective(100px) translateZ(0.001px);
+    -ms-transform: scale(0.75);
+}

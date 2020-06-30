@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { routes } from "./app-routing.module";
 import { Routes, Route, Router, ActivationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { MatAvatarsService } from 'mat-avatars';
 
 @Component({
   selector: 'app-root',
@@ -15,16 +16,19 @@ export class AppComponent {
 
   private routerSub: Subscription
 
-  constructor(private router: Router) { 
+  constructor(private router: Router, private avtService: MatAvatarsService) { 
     this.routes = routes.filter(route=>{
       return route.path != '' && route.title != "none"
     })
   }
 
+  private worker: Worker
+
   ngOnInit(): void {
     this.routerSub = this.router.events.subscribe(this.handleRouteActivation)
   }
   ngOnDestroy() {
+    this.worker.terminate()
     if (this.routerSub)
       this.routerSub.unsubscribe()
   }

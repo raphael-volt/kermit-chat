@@ -30,6 +30,7 @@
             "styles": [
               "node_modules/quill/dist/quill.core.css",
               "node_modules/quill/dist/quill.snow.css",
+              "node_modules/@ctrl/ngx-emoji-mart/picker.css",
               "src/styles.scss"
             ],
             "scripts": [
@@ -169,38 +170,78 @@
         }
       }
     },
-    "qrte": {
+    "mat-rte": {
       "projectType": "library",
-      "root": "projects/qrte",
-      "sourceRoot": "projects/qrte/src",
-      "prefix": "lib",
+      "root": "projects/mat-rte",
+      "sourceRoot": "projects/mat-rte/src",
+      "prefix": "rte",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "projects/qrte/tsconfig.lib.json",
-            "project": "projects/qrte/ng-package.json"
+            "tsConfig": "projects/mat-rte/tsconfig.lib.json",
+            "project": "projects/mat-rte/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/qrte/tsconfig.lib.prod.json"
+              "tsConfig": "projects/mat-rte/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/qrte/src/test.ts",
-            "tsConfig": "projects/qrte/tsconfig.spec.json",
-            "karmaConfig": "projects/qrte/karma.conf.js"
+            "main": "projects/mat-rte/src/test.ts",
+            "tsConfig": "projects/mat-rte/tsconfig.spec.json",
+            "karmaConfig": "projects/mat-rte/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/qrte/tsconfig.lib.json",
-              "projects/qrte/tsconfig.spec.json"
+              "projects/mat-rte/tsconfig.lib.json",
+              "projects/mat-rte/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "mat-avatars": {
+      "projectType": "library",
+      "root": "projects/mat-avatars",
+      "sourceRoot": "projects/mat-avatars/src",
+      "prefix": "avt",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/mat-avatars/tsconfig.lib.json",
+            "project": "projects/mat-avatars/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/mat-avatars/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/mat-avatars/src/test.ts",
+            "tsConfig": "projects/mat-avatars/tsconfig.spec.json",
+            "karmaConfig": "projects/mat-avatars/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/mat-avatars/tsconfig.lib.json",
+              "projects/mat-avatars/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

@@ -1,20 +1,24 @@
 import {
-  Component, OnInit, AfterViewInit,
-  OnDestroy, Input, ChangeDetectionStrategy,
+  Component, OnInit, OnDestroy,
+  Input, ChangeDetectionStrategy,
   ChangeDetectorRef
 } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { ThreadTree } from 'src/app/vo/vo';
 import { Subscription } from 'rxjs';
+import { rteValidatorFn } from 'mat-rte';
 
 @Component({
   selector: 'app-create-thread',
   templateUrl: './create-thread.component.html',
   styleUrls: ['./create-thread.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    'class': 'fx1 fx-col'
+  }
 })
-export class CreateThreadComponent implements OnInit, OnDestroy, AfterViewInit {
+export class CreateThreadComponent implements OnInit, OnDestroy {
 
   private requireValiator = Validators.required
   @Input()
@@ -22,18 +26,19 @@ export class CreateThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     this.setMinLength(value, true)
   }
   setMinLength(value: number, detect = true) {
-    this.contentValidator.setValidators([this.requireValiator, Validators.minLength(value)])
-    this.subjectValidator.setValidators([this.requireValiator, Validators.minLength(value)])
+    this.contentControl.setValidators([this.requireValiator, rteValidatorFn(value)])
+    this.subjectControl.setValidators([this.requireValiator, Validators.minLength(value)])
     if (detect) {
-      this.contentValidator.updateValueAndValidity()
-      this.subjectValidator.updateValueAndValidity()
+      this.contentControl.updateValueAndValidity()
+      this.subjectControl.updateValueAndValidity()
       this.cdr.detectChanges()
     }
   }
 
+
   form: FormGroup
-  contentValidator: FormControl
-  subjectValidator: FormControl
+  contentControl: FormControl
+  subjectControl: FormControl
 
   private formSub: Subscription
 
@@ -42,50 +47,25 @@ export class CreateThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     private dialogRef: MatDialogRef<CreateThreadComponent>,
     private formBuilder: FormBuilder) {
 
-    this.contentValidator = new FormControl(null)
-    this.subjectValidator = new FormControl(null)
-    this.setMinLength(4, false)
+    this.contentControl = new FormControl(null)
+    this.subjectControl = new FormControl(null)
+    this.setMinLength(5, false)
     this.form = this.formBuilder.group({
-      subject: this.subjectValidator,
-      content: this.contentValidator
+      subject: this.subjectControl,
+      content: this.contentControl
     })
     this.formSub = this.form.valueChanges.subscribe(value => {
       this.cdr.detectChanges()
     })
   }
+  sendShortcut() {
+    if (this.form.valid) {
+      this.send()
+    }
+  }
   ngOnDestroy(): void {
 
     this.formSub.unsubscribe()
-  }
-  ngAfterViewInit(): void {
-    /*
-    const d = new Date()
-    const t = d.getHours() + ":" + d.getMinutes() +':'+ d.getSeconds()
-    const tree: ThreadTree = {
-      thread: { 
-        subject: `Hook[${t}]` 
-      }, 
-      inserts: [
-        { "insert": "Contents\n" }
-      ]
-    }
-    setTimeout(()=>{
-      this.dialogRef.close(tree)
-    }, 1000)
-    */
-  }
-
-  contentChange() {
-    this.form.updateValueAndValidity()
-    this.cdr.detectChanges()
-  }
-  contentValidatorError() {
-    const error = this.contentValidator.errors
-    if (error.required)
-      return 'Message est requis.'
-    if (error.minlength)
-      return `Message trop court (${error.minlength.actualLength}/${error.minlength.requiredLength})`
-    return 'VALID'
   }
 
   ngOnInit(): void {
@@ -99,9 +79,9 @@ export class CreateThreadComponent implements OnInit, OnDestroy, AfterViewInit {
   send() {
     const tree: ThreadTree = {
       thread: {
-        subject: this.subjectValidator.value
+        subject: this.subjectControl.value
       },
-      inserts: this.contentValidator.value.content.ops
+      inserts: this.contentControl.value.ops
     }
     this.dialogRef.close(tree)
   }

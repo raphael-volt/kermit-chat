@@ -15,7 +15,9 @@
             <mat-card class="thread-part thread-owner">
                 <!--owner message -->
                 <mat-card-content>
-                    <rte-view [content]="threadData.inserts"></rte-view>
+                    <div [matRteView]="threadData.inserts"></div>
+                    <!-- 
+                    <rte-view [content]="threadData.inserts"></rte-view> -->
                 </mat-card-content>
             </mat-card>
             <!--message replies -->
@@ -24,12 +26,13 @@
                 <mat-card-content>
                     <user-preview class="primary" *ngIf="content.user_id != thread.user_id" showName="true"
                         pictoSize="small" [userId]="content.user_id"></user-preview>
-                    <rte-view [content]="content.inserts"></rte-view>
+                    <div [matRteView]="content.inserts"></div>
+                    <!-- <rte-view [content]="content.inserts"></rte-view> -->
                 </mat-card-content>
             </mat-card>
         </mat-card-content>
     </mat-card>
-    <mat-expansion-panel class="thread-panel" (afterExpand)="afterExpand()"
+    <mat-expansion-panel #threadPanel class="thread-panel" (afterExpand)="afterExpand()"
         (opened)="panelOpenState = true" (closed)="panelCloseHandler()">
         <mat-expansion-panel-header>
             <mat-panel-title class="fx-clr accent" *ngIf="!panelOpenState">
@@ -41,6 +44,7 @@
             </mat-panel-title>
 
         </mat-expansion-panel-header>
-        <mat-rte #rte [formControl]="messageControl"></mat-rte>
+        <div style="height: 33vh;" mat-rte #rte [formControl]="messageControl"></div>
+
     </mat-expansion-panel>
 </div>

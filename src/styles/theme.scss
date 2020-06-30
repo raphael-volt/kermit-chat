@@ -1,123 +1,144 @@
-@import "icons.scss";
-@import "emoji.scss";
+@mixin fx-col() {
+    display        : flex;
+    flex-direction : column;
+    flex-wrap      : nowrap;
+    justify-content: stretch;
+    align-content  : flex-start;
+    align-items    : stretch;
+}
 
-$emoji-size       : 1em;
-$emoji-margin     : 4px;
+@mixin fx-rec() {
+    flex        : 1 1 auto;
+    //align-self: stretch;
+    @include fx-col();
+}
 
-@mixin icon-theme($class: "fec", $line-height: 1em, $font-familly: "emoji-categories") {
-    $hash: unique-id();
-    $path: 'styles/fonts';
+.button-bar {
+    display        : flex;
+    flex-direction : row;
+    flex-wrap      : nowrap;
+    justify-content: flex-start;
+    align-content  : flex-start;
+    align-items    : flex-start;
+    padding        : 16px;
 
-    @font-face {
-        font-family: '#{$font-familly}';
-        src        : url('#{$path}/#{$font-familly}.eot?#{$hash}');
-        src        : url('#{$path}/#{$font-familly}.eot?#{$hash}#iefix') format('embedded-opentype'),
-        url('#{$path}/#{$font-familly}.ttf?#{$hash}') format('truetype'),
-        url('#{$path}/#{$font-familly}.woff?#{$hash}') format('woff'),
-        url('#{$path}/#{$font-familly}.svg?#{$hash}##{$font-familly}') format('svg');
-        font-weight : normal;
-        font-style  : normal;
-        font-display: block;
+    >*,
+    >button {
+        order       : 0;
+        flex        : 0 1 auto;
+        align-self  : auto;
+        margin-right: 16px;
     }
 
-    $ec-emoji     : "\e900";
-    $ec-eco       : "\e901";
-    $ec-restaurant: "\e902";
-    $ec-favorite  : "\e903";
-    $ec-sports    : "\e904";
-    $ec-bike      : "\e905";
-    $ec-objects   : "\e906";
+    >*.fill {
+        flex: 1 1 auto;
+    }
+}
 
-    .#{$class} {
-        font-family   : $font-familly;
-        line-height   : $line-height;
-        font-style    : normal;
-        font-weight   : normal;
-        font-variant  : normal;
-        text-transform: none;
+.fx-col {
+    @include fx-col();
+}
 
-        &.ec-emoji {
-            &:before {
-                content: $ec-emoji;
+.fx0 {
+    flex: 0 1 auto;
+}
+
+.fx1 {
+    flex: 1 1 auto;
+}
+
+.mat-form-field.fx-col,
+.mat-dialog-content.fx-col {
+    display: flex !important;
+}
+
+.fx-stretch {
+    @include fx-col();
+
+    .mat-dialog-container {
+        flex: 1 1 auto;
+        @include fx-col();
+    }
+}
+
+@mixin fix-mat-ff() {
+    padding   : 0 !important;
+    margin    : 0 !important;
+    width     : auto !important;
+    height    : auto !important;
+    box-sizing: border-box;
+}
+
+// enable flexible mat-form-field to stretch mat-rte component
+.mat-form-field.fx-col.fx1 {
+    @include fix-mat-ff();
+    @include fx-rec();
+    overflow: hidden;
+
+    .mat-form-field-wrapper {
+        padding: 0 !important;
+        flex   : 1 1 auto;
+        @include fx-col();
+        overflow: hidden;
+
+        .mat-form-field-flex {
+            @include fx-rec();
+            overflow: hidden;
+
+            .mat-form-field-infix {
+                width : auto !important;
+                border: none;
+                flex  : 1 1 auto;
+                @include fx-col();
+                overflow: hidden;
+                position: relative;
+
+                .mat-form-field-label-wrapper {
+                    padding-top   : 1em;
+                    padding-bottom: .3em;
+                    width         : auto !important;
+                    height        : auto !important;
+                    box-sizing    : border-box;
+                    position      : unset !important;
+                    flex          : 0 1 auto;
+                    order         : 0;
+
+                    .mat-form-field-label {
+                        position : unset !important;
+                        transform: translateY(-2px) scale(.75);
+                    }
+                }
+
+                .mat-rte {
+                    flex         : 1 1 auto;
+                    order        : 1;
+                    position     : unset;
+                    margin-bottom: 20px;
+                }
+
+                .mat-form-field-underline,
+                .mat-form-field-subscript-wrapper {
+                    flex    : 0 1 auto;
+                    position: unset;
+
+                }
             }
         }
 
-        &.ec-eco {
-            &:before {
-                content: $ec-eco;
-            }
-        }
-
-        &.ec-restaurant {
-            &:before {
-                content: $ec-restaurant;
-            }
-        }
-
-        &.ec-favorite {
-            &:before {
-                content: $ec-favorite;
-            }
-        }
-
-        &.ec-sports {
-            &:before {
-                content: $ec-sports;
-            }
-        }
-
-        &.ec-bike {
-            &:before {
-                content: $ec-bike;
-            }
-        }
-
-        &.ec-objects {
-            &:before {
-                content: $ec-objects;
-            }
+        >* {
+            flex: 0 1 auto;
         }
     }
 }
 
-@mixin emoji-theme($class: "fem", $font-familly: "color-emoji") {
-
-    @font-face {
-        font-family   : "emoji-font";
-        font-style    : normal;
-        font-weight   : normal;
-        font-variant  : normal;
-        text-transform: none;
-        
-        src: local("apple color emoji"),
-        local("segoe ui emoji"),
-        local("notocoloremoji"),
-        local("segoe ui symbol"),
-        local("android emoji"),
-        local("emojisymbols");
-    }
-
-    .#{$class} {
-        font-family   : $font-familly;
-        font-style    : normal;
-        font-weight   : normal;
-        font-variant  : normal;
-        text-transform: none;
-        font-size     : 1em;
-    }
-    
-    .emoji-list {
-        .#{$class} {
-            font-size     : 1em;
-            line-height   : 1em;
-            display       : inline-block;
-            padding       : 0;
-            margin        : $emoji-margin;
-            vertical-align: middle;
-            width         : $emoji-size;
-            box-sizing    : content-box;
-            cursor        : pointer;
-            font-size : .85em;
-        }
-    }
+.flex-col {
+    box-sizing     : border-box;
+    display        : flex;
+    flex-direction : column;
+    flex-wrap      : nowrap;
+    justify-content: flex-start;
+    align-content  : stretch;
+    align-items    : stretch;
 }
+
+@import 'mat-dialog.scss';
