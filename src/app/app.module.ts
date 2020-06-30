@@ -10,7 +10,6 @@ import { DialogModule } from './dialog/dialog.module';
 import { MaterialModule } from 'material';
 import { ApiModule } from './api/api.module';
 import { AuthModule } from './auth/auth.module';
-import { AvatarModule } from './avatar/avatar.module';
 import { ImgScrollerModule } from "./img-scroller/img-scroller.module";
 import { ContextService } from './context.service';
 import { MatAvatarsModule } from 'mat-avatars';
@@ -29,7 +28,6 @@ import { MatRteModule } from 'mat-rte';
     MaterialModule,
     ApiModule,
     AuthModule,
-    AvatarModule,
     ImgScrollerModule,
     MatAvatarsModule.forRoot(),
     MatRteModule.forRoot({

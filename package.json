@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prod": "ngh ld && ng b material --prod && ng b mat-rte --prod && ng b mat-avatars --prod"
   },
   "private": true,
   "dependencies": {

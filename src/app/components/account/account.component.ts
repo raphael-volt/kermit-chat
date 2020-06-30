@@ -1,6 +1,5 @@
 import { Component, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { User } from 'src/app/vo/vo';
-import { AvatarType } from 'src/app/avatar/avatar.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { UserService } from 'src/app/api/user.service';
 import { AuthService } from 'src/app/auth/auth.service';

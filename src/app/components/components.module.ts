@@ -6,9 +6,7 @@ import { MaterialModule } from 'material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MessagesModule } from './messages/messages.module';
-import { AvatarModule } from "../avatar/avatar.module";
 
-import { RteModule } from './rte/rte.module';
 import { ApiModule } from '../api/api.module';
 import { PictoEditorComponent } from './picto-editor/picto-editor.component';
 import { PictoViewComponent } from './picto-view/picto-view.component';
@@ -17,7 +15,6 @@ import { UserPreviewModule } from "./user-preview/user-preview.module";
 import { MatEmojiModule } from './mat-emoji/mat-emoji.module';
 import { DebugEmojiComponent } from "./debug-emoji/debug-emoji.component";
 import { SnackBarUserOnComponent } from './snack-bar-user-on/snack-bar-user-on.component';
-import { RteDialogComponent } from './rte-dialog/rte-dialog.component';
 import { CreateUserComponent } from './members/create-user/create-user.component';
 import { MatRteModule } from "mat-rte";
 import { MatAvatarsModule } from "mat-avatars";
@@ -29,11 +26,10 @@ import { MatAvatarsModule } from "mat-avatars";
     PictoViewComponent,
     DebugEmojiComponent,
     SnackBarUserOnComponent,
-    RteDialogComponent,
     CreateUserComponent],
   imports: [
-    ApiModule, AvatarModule,
-    MessagesModule, RteModule,
+    ApiModule,
+    MessagesModule,
     UserPreviewModule, MatEmojiModule,
     CommonModule, MaterialModule, FormsModule, ReactiveFormsModule, ImgScrollerModule,
     MatAvatarsModule, MatRteModule

@@ -9,7 +9,6 @@ import { SigninComponent } from './signin/signin.component';
 import { DialogService } from './dialog.service';
 import { MaterialModule } from 'material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AvatarModule } from '../avatar/avatar.module';
 import { DialogCardComponent } from './dialog-card/dialog-card.component';
 import { ImgScrollerModule } from '../img-scroller/img-scroller.module';
 
@@ -24,7 +23,6 @@ import { ImgScrollerModule } from '../img-scroller/img-scroller.module';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    AvatarModule,
     ImgScrollerModule
   ],
   exports: [

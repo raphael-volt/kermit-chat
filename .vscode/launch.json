@@ -36,14 +36,14 @@
             "request": "launch",
             "url": "http://localhost:9876/debug.html",
             "sourceMaps": true,
-            "webRoot": "${workspaceFolder}",
-            "runtimeExecutable": "/snap/bin/chromium",
+            "webRoot": "${workspaceFolder}/kermit-chat",
+            //"runtimeExecutable": "/snap/bin/chromium",
             // Remote port is set in karma.conf.js 
             // customLaunchers.ChromeDebug.flags: ['--remote-debugging-port=9333']
             "port": 9333,
             // Should fix missing break points
             "pathMapping": {
-                "/_karma_webpack_": "${workspaceFolder}"
+                "/_karma_webpack_": "${webRoot}"
             }
         }
     ]

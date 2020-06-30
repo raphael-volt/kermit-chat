@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SigninComponent } from './signin/signin.component';
 import { Observable } from 'rxjs';
 import { User, ThreadTree } from '../vo/vo';
 import { CreateThreadComponent } from '../components/messages/create-thread/create-thread.component';
-import { AvatarListComponent } from '../avatar/list/avatar-list.component';
 import { DialogCardComponent } from './dialog-card/dialog-card.component';
 import { FormControl } from '@angular/forms';
 import { ReplyDialogComponent } from '../components/messages/reply-dialog/reply-dialog.component';
