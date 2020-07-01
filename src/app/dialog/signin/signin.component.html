@@ -1,22 +1,3 @@
-<!--
-
-    <dialog-panel>
-        <panel-header>Me connecter</panel-header>
-        <panel-content>
-            <form [formGroup]="form" fxLayoutGap="12" fxLayout="column" fxLayoutAlign="start start">
-                <mat-form-field>
-                    <mat-label>Mon email</mat-label>
-                    <input matInput formControlName="email" required>
-                    <mat-error *ngIf="!form.controls.email?.valid">Cet email n'est pas valide</mat-error>
-                </mat-form-field>
-            </form>
-        </panel-content>
-        <panel-footer>
-            <footer-spacer></footer-spacer>
-            <button [disabled]="!form.valid" (click)="send()" mat-raised-button color="primary">Envoyer</button>
-        </panel-footer>
-    </dialog-panel>
--->
 <h2 mat-dialog-title>Me connecter</h2>
 <mat-dialog-content>
     <p *ngIf="signinError" class="fx-clr warn">Utilisateur inconnue {{countError}}</p>
