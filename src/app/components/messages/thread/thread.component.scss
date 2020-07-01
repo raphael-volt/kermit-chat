@@ -1,21 +1,22 @@
 .thread-card {
-    position: relative;
     .tooltip {
-        position: absolute;
-        right: 16px;
-        top: 20px;
-        min-width: 36px;
-        width: 36px;
+        min-width    : 36px;
+        width        : 36px;
+        height       : 36px;
         border-radius: 50%;
-        padding: 0;
+        padding      : 0;
     }
+
     .remove_red_eye {
         font-size: 28px;
     }
 }
-.divider>user-preview {
-    margin: 16px;
-}
-mat-panel-title button {
-    margin-right: 16px;
+
+.divider {
+    overflow: hidden;
+    align-items: center;
+    padding-right: 16px;
+    >user-preview {
+        margin: 16px;
+    }
 }

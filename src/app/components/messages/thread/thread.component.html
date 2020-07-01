@@ -1,12 +1,14 @@
 <div class="main" *ngIf="asyncThreadData | async">
-    <mat-card class="thread-card" >
-        <button class="tooltip" #tooltip="matTooltip" (click)="tooltip.show()" [matTooltip]="readbyText" color="accent" mat-raised-button>
-            <span class="remove_red_eye svg-icons"></span>
-        </button>
-        <mat-card-content class="divider">
-            <user-preview class="fx-clr primary" 
-            mat-card-title pictoSize="large" [userId]="threadData.user.id" 
-            [showName]="true">| {{thread.subject}}</user-preview>
+    <mat-card class="thread-card">
+        <mat-card-content>
+            <div class="divider fx-row">
+                <user-preview class="fx-clr primary fx1" mat-card-title pictoSize="large" [userId]="threadData.user.id"
+                    [showName]="true">| {{thread.subject}}</user-preview>
+                <button class="tooltip fx0" #tooltip="matTooltip" (click)="tooltip.show()" [matTooltip]="readbyText"
+                    color="accent" mat-raised-button>
+                    <span class="remove_red_eye svg-icons"></span>
+                </button>
+            </div>
             <mat-divider></mat-divider>
         </mat-card-content>
         <mat-card-content class="thread-scroller" (scroll)="scrolled($event)" #scrollframe>
@@ -34,8 +36,10 @@
                 Répondre
             </mat-panel-title>
             <mat-panel-title *ngIf="panelOpenState">
-                <button color="accent" class="icon-ctn" mat-raised-button [disabled]="messageControl.invalid" (click)="reply($event)">Envoyer <span class="svg-icons reply"></span></button>
-                <button color="accent" mat-raised-button (click)="openRtePopup()">Éditeur plus grand <span class="svg-icons reply"></span></button>
+                <button color="accent" class="icon-ctn" mat-raised-button [disabled]="messageControl.invalid"
+                    (click)="reply($event)">Envoyer <span class="svg-icons reply"></span></button>
+                <button color="accent" mat-raised-button (click)="openRtePopup()">Éditeur plus grand <span
+                        class="svg-icons reply"></span></button>
             </mat-panel-title>
         </mat-expansion-panel-header>
         <div style="height: 33vh;" mat-rte #rte (sendShortcut)="reply()" [formControl]="messageControl"></div>

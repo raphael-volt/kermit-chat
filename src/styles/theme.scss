@@ -6,6 +6,21 @@
     align-content  : flex-start;
     align-items    : stretch;
 }
+@mixin fx-row() {
+    display        : flex;
+    flex-direction : row;
+    flex-wrap      : nowrap;
+    justify-content: stretch;
+    align-content  : flex-start;
+    
+    >.fx0 {
+        flex: 0 1 auto;
+    }
+    >.fx1 {
+        flex: 1 1 auto;
+    }
+    
+}
 
 @mixin fx-rec() {
     flex        : 1 1 auto;
@@ -38,7 +53,9 @@
 .fx-col {
     @include fx-col();
 }
-
+.fx-row {
+    @include fx-row();
+}
 .fx0 {
     flex: 0 1 auto;
 }
