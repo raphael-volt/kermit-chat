@@ -1,5 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
-import Quill from 'quill';
+import { Injectable, Inject, Injector, NgZone } from '@angular/core';
 import { MatImageResizeModule } from './mat-image/mat-image-resize';
 import { MatDialog } from '@angular/material/dialog';
 import { QuillEmojiMartToolbar } from './quill-emoji-mart/quill/emoji-toolbar';
@@ -9,6 +8,19 @@ import { Overlay } from '@angular/cdk/overlay';
 import { EMOJI_OPTIONS } from "./quill-emoji-mart/quill/emoji.module";
 import { MAT_RTE_CONFIG_TOKEN, MatRteConfig, DEFAULT_MAT_RTE_CONFIG } from './mart-emoji.config';
 import { DomSanitizer } from '@angular/platform-browser';
+import Quill from 'quill';
+
+import { DOWNLOAD } from './quill';
+import { DownloadBlot } from "./quill-download/download.blot";
+import { DownloadModule } from "./quill-download/download.module";
+import { DownloadService } from './quill-download/download.service';
+const Link = Quill.import("formats/link")
+/*
+ Type 
+ 'import("/home/raphael/projects/kermit/kermit-chat/dist/mat-rte/lib/quill-download/download.service").DownloadService' 
+ is not assignable to type 
+ 'import("/home/raphael/projects/kermit/kermit-chat/projects/mat-rte/src/lib/quill-download/download.service").DownloadService'.
+ */
 const checkConfig = (config) => {
   if (config) {
     let cfg = DEFAULT_MAT_RTE_CONFIG
@@ -35,7 +47,10 @@ export class QuillService {
     @Inject(MAT_RTE_CONFIG_TOKEN) public rteConfig: MatRteConfig,
     public dialog: MatDialog,
     public emoji: EmojiService,
+    public download: DownloadService,
     public overlay: Overlay,
+    public injector: Injector,
+    public zone: NgZone,
     private sanitizer: DomSanitizer) {
     EMOJI_OPTIONS.emoji = emoji
     EMOJI_OPTIONS.overlay = overlay
@@ -56,14 +71,15 @@ export class QuillService {
     return sanitize ? this.sanitizer.bypassSecurityTrustHtml(html) : html
   }
 
-
-
+  downloadUrlFn: (id: number) => string
 
   private initQuill() {
     Quill.debug("error")
     const Block = Quill.import('blots/block')
     Block.tagName = 'div'
     Quill.register(Block)
+    Quill.register(`modules/${DOWNLOAD}`, DownloadModule)
+    Quill.register(`formats/${DOWNLOAD}`, DownloadBlot)
     Quill.register('formats/rteemoji', QuillEmojiMartBlot)
     Quill.register('modules/rteemoji', QuillEmojiMartToolbar)
     Quill.register('modules/matImageResize', MatImageResizeModule)
@@ -80,17 +96,27 @@ export class QuillService {
         toolbar: false,
         rteemoji: {
           emoji: this.emoji
-        }
+        },
+        download: {}
       }
     })
   }
   getEditorInstance(toolbar: HTMLElement, editor: HTMLElement, placeHolder: string = "message"): any {
     const dialog = this.dialog
     const overlay = this.overlay
+    const download = this.download
+    const injector = this.injector
     const quill = new Quill(editor, {
       theme: 'snow',
-      placeHolder: placeHolder,
+      placeholder: placeHolder,
       modules: {
+        download: {
+          editable: true,
+          overlay,
+          download,
+          injector,
+          zone: this.zone
+        },
         rteemoji: {
           emoji: this.emoji,
           overlay,
@@ -102,21 +128,17 @@ export class QuillService {
         toolbar: {
           container: toolbar,
           handlers: {
-            link: function link(value) {
-              const quill = this.quill
-              if (value === true) {
-                let range = quill.getSelection();
-                if (range == null || range.length == 0) return;
-                let preview = quill.getText(range.index);
-                if (/^\S+@\S+\.\S+$/.test(preview) && preview.indexOf('mailto:') !== 0) {
-                  preview = 'mailto:' + preview;
-                }
-                let tooltip = quill.theme.tooltip;
-                tooltip.boundsContainer = tooltip.quill.root
-                tooltip.edit()
-                tooltip.textbox.setAttribute('placeholder', '');
+            link(value) {
+              if (value) {
+                const range = this.quill.getSelection();
+                if (range == null || range.length === 0) return;
+                let preview = this.quill.getText(range);
+                const { tooltip } = this.quill.theme;
+                tooltip.boundsContainer = this.quill.root
+                tooltip.edit('link', preview);
+                setTimeout(() => tooltip.textbox.setAttribute('placeholder', "...url"))
               } else {
-                quill.format('link', false);
+                this.quill.format('link', false);
               }
             }
 

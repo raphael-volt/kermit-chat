@@ -2,40 +2,41 @@
   $hash: unique-id();
   $path: 'styles/fonts';
 
-  $error               : "\e900";
-  $warning             : "\e901";
-  $loop                : "\e902";
-  $volume_off          : "\e903";
-  $volume_up           : "\e904";
-  $email               : "\e905";
-  $add_circle          : "\e906";
-  $remove_circle       : "\e907";
-  $reply               : "\e908";
-  $send                : "\e909";
-  $insert_photo        : "\e90a";
-  $attachment          : "\e90b";
-  $camera_alt          : "\e90c";
-  $filter_vintage      : "\e90d";
-  $panorama            : "\e90e";
-  $remove_red_eye      : "\e919";
-  $local_library       : "\e91a";
-  $location_history    : "\e90f";
-  $cancel              : "\e910";
-  $refresh             : "\e911";
-  $person              : "\e912";
-  $account_circle      : "\e913";
-  $autorenew           : "\e914";
-  $bug_report          : "\e91b";
-  $cached              : "\e915";
-  $settings            : "\e916";
-  $replay_circle_filled: "\e918";
-  $emoji_emotions      : "\e917";
+  $error                  : "\e900";
+  $warning                : "\e901";
+  $loop                   : "\e902";
+  $volume_off             : "\e903";
+  $volume_up              : "\e904";
+  $email                  : "\e905";
+  $add_circle             : "\e906";
+  $remove_circle          : "\e907";
+  $reply                  : "\e908";
+  $send                   : "\e909";
+  $insert_photo           : "\e90a";
+  $attachment             : "\e90b";
+  $file_download          : "\e91c";
+  $camera_alt             : "\e90c";
+  $filter_vintage         : "\e90d";
+  $panorama               : "\e90e";
+  $remove_red_eye         : "\e919";
+  $location_history       : "\e90f";
+  $zoom_out_map           : "\e920";
+  $cancel                 : "\e910";
+  $refresh                : "\e911";
+  $person                 : "\e912";
+  $account_circle         : "\e913";
+  $autorenew              : "\e914";
+  $bug_report             : "\e91b";
+  $cached                 : "\e915";
+  $settings               : "\e916";
+  $indeterminate_check_box: "\e923";
+  $replay_circle_filled   : "\e918";
+  $emoji_emotions         : "\e917";
+
 
   @font-face {
     font-family: '#{$font-family}';
-    src        : url('#{$path}/#{$font-family}.eot?#{$hash}');
-    src        : url('#{$path}/#{$font-family}.eot?#{$hash}#iefix') format('embedded-opentype'),
-    url('#{$path}/#{$font-family}.ttf?#{$hash}') format('truetype'),
+    src        : url('#{$path}/#{$font-family}.ttf?#{$hash}') format('truetype'),
     url('#{$path}/#{$font-family}.woff?#{$hash}') format('woff'),
     url('#{$path}/#{$font-family}.svg?#{$hash}##{$font-family}') format('svg');
     font-weight : normal;
@@ -44,14 +45,13 @@
   }
 
   .#{$icons-class} {
-    font-family            : '#{$font-family}' !important;
-    font-style             : normal;
-    font-weight            : normal;
-    font-variant           : normal;
-    text-transform         : none;
-    line-height            : 1em;
-    vertical-align         : -2px;
-    /* Better Font Rendering =========== */
+    font-family   : '#{$font-family}' !important;
+    font-style    : normal;
+    font-weight   : normal;
+    font-variant  : normal;
+    text-transform: none;
+    line-height   : 1;
+
     -webkit-font-smoothing : antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -128,6 +128,12 @@
     }
   }
 
+  .file_download {
+    &:before {
+      content: $file_download;
+    }
+  }
+
   .camera_alt {
     &:before {
       content: $camera_alt;
@@ -152,15 +158,15 @@
     }
   }
 
-  .local_library {
-    &:before {
-      content: $local_library;
-    }
-  }
-
   .location_history {
     &:before {
       content: $location_history;
+    }
+  }
+
+  .zoom_out_map {
+    &:before {
+      content: $zoom_out_map;
     }
   }
 
@@ -212,6 +218,12 @@
     }
   }
 
+  .indeterminate_check_box {
+    &:before {
+      content: $indeterminate_check_box;
+    }
+  }
+
   .replay_circle_filled {
     &:before {
       content: $replay_circle_filled;
@@ -224,7 +236,15 @@
     }
   }
 
+  // quill download button
+  .file_download.label-wrapper {
+    &:before {
+      content: none;
+    }
 
-
-
+    &:after {
+      font-family: $font-family;
+      content    : "\00a0#{unquote($file_download)}";
+    }
+  }
 }

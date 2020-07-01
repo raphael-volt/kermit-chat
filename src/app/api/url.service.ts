@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiConfig } from './api-config';
+import { QuillService } from 'mat-rte';
 
 export type PathPart = string|number
 export type PathParts = PathPart[]
@@ -17,7 +18,11 @@ export class UrlService {
     return this._config
   }
 
-  constructor(private _config: ApiConfig) { }
+  constructor(
+    private _config: ApiConfig,
+    public quillService: QuillService) { 
+      quillService.downloadUrlFn = id => this.download(id)
+    }
 
   path(...parts: PathParts) {
     return [this._config.url, ...parts].join("/")
@@ -30,8 +35,8 @@ export class UrlService {
     return this.path(this._config.routes.images+ `?id=${id}`)
   }
   
-  download(...parts: PathParts) {
-    return this.path(this._config.routes.downloads, ...parts)
+  download(id: string|number) {
+    return this.path(this._config.routes.downloads+ `?id=${id}`)
   }
 
 }
