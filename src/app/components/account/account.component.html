@@ -1,17 +1,13 @@
 <mat-card class="v-box">
     <div>
-        <div class="h-box fx-clr primary" style="align-items: baseline; padding-bottom: 16px;">
+        <div class="h-box fx-clr primary" style="overflow: visible; align-items: baseline; padding-bottom: 16px;">
             <user-preview [showName]="true" pictoSize="large" [user]="userPreview"></user-preview>
             <span class="flex11"></span>
-            <button class="flex00 logout-button" mat-raised-button (click)="logout()" color="accent">
-                Me déconnecter
-            </button>
-
         </div>
         <mat-divider></mat-divider>
     </div>
     <mat-card-content class="ctn-marginY">
-        <div class="h-box gap16">
+        <div class="h-box" style="justify-content: space-around;">
             <picto-view [user]="user" (imgChange)="imgChange($event)"></picto-view>
             <form [formGroup]="formGroup" class="h-box gap16">
                 <div class="v-box gap16 form-ctn">
@@ -43,12 +39,14 @@
     </mat-card-content>
     <mat-divider></mat-divider>
     <mat-card-footer>
-        <div class="h-box ctn-padding">
+        <div class="h-box ctn-padding gap16">
             <button (click)="save()" [disabled]="!changed || !formGroup.valid" mat-raised-button
                 color="accent">Enregistrer</button>
-            <span class="flex11"></span>
             <button [disabled]="!changed" mat-raised-button (click)="clearChanges()" color="warn">Annuller les
                 changements</button>
+            <button mat-raised-button (click)="logout()" color="accent">
+                Me déconnecter
+            </button>
         </div>
     </mat-card-footer>
 </mat-card>
