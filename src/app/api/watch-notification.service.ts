@@ -12,7 +12,7 @@ class PendingNotification {
     public type: NotificationType,
     public message: string,
     public data?: any,
-    public config?: any
+    public config?: MatSnackBarConfig
   ) { }
 }
 @Injectable({
@@ -28,12 +28,12 @@ export class WatchNotificationService {
   private pendingNotifications: PendingNotification[] = []
 
   private config: MatSnackBarConfig = {
-    duration: 4000,
-    verticalPosition: "top"
+    duration: 3000,
+    verticalPosition: "top",
+    horizontalPosition:"right"
   }
   constructor(
     private snackBar: MatSnackBar) {
-
   }
 
 
