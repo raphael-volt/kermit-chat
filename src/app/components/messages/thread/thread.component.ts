@@ -277,12 +277,13 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private replyFlag = false
 
-  reply(event: MouseEvent) {
+  reply(event?: MouseEvent) {
     if (event) {
       event.stopImmediatePropagation()
       event.preventDefault()
     }
-
+    if(! this.messageControl.valid)
+      return
     const data = this.messageControl.value
     const ops = data.ops
     const tp: ThreadPart = {

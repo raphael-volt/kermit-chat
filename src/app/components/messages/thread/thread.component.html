@@ -3,12 +3,10 @@
         <button class="tooltip" #tooltip="matTooltip" (click)="tooltip.show()" [matTooltip]="readbyText" color="accent" mat-raised-button>
             <span class="remove_red_eye svg-icons"></span>
         </button>
-        <mat-card-header class="thread-card-header fx-clr primary">
-            <user-preview mat-card-avatar [userId]="threadData.user.id"></user-preview>
-            <mat-card-title>{{thread.subject}}</mat-card-title>
-            <mat-card-subtitle>{{threadData.user.name}}</mat-card-subtitle>
-        </mat-card-header>
         <mat-card-content class="divider">
+            <user-preview class="fx-clr primary" 
+            mat-card-title pictoSize="large" [userId]="threadData.user.id" 
+            [showName]="true">| {{thread.subject}}</user-preview>
             <mat-divider></mat-divider>
         </mat-card-content>
         <mat-card-content class="thread-scroller" (scroll)="scrolled($event)" #scrollframe>
@@ -16,18 +14,16 @@
                 <!--owner message -->
                 <mat-card-content>
                     <div [matRteView]="threadData.inserts"></div>
-                    <!-- 
-                    <rte-view [content]="threadData.inserts"></rte-view> -->
                 </mat-card-content>
             </mat-card>
             <!--message replies -->
             <mat-card class="thread-part" *ngFor="let content of replies"
                 [class.thread-owner]="content.user_id == thread.user_id">
                 <mat-card-content>
-                    <user-preview class="primary" *ngIf="content.user_id != thread.user_id" showName="true"
-                        pictoSize="small" [userId]="content.user_id"></user-preview>
+                    <!-- <user-preview class="primary" *ngIf="content.user_id != thread.user_id" showName="true" -->
+                    <user-preview class="primary" showName="true"
+                        pictoSize="medium" [userId]="content.user_id"></user-preview>
                     <div [matRteView]="content.inserts"></div>
-                    <!-- <rte-view [content]="content.inserts"></rte-view> -->
                 </mat-card-content>
             </mat-card>
         </mat-card-content>
@@ -44,7 +40,7 @@
             </mat-panel-title>
 
         </mat-expansion-panel-header>
-        <div style="height: 33vh;" mat-rte #rte [formControl]="messageControl"></div>
+        <div style="height: 33vh;" mat-rte #rte (sendShortcut)="reply()" [formControl]="messageControl"></div>
 
     </mat-expansion-panel>
 </div>
