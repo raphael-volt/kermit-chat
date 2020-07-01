@@ -199,15 +199,6 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private appendThreadPartAsync(contents: ThreadDataItem[], service: UserService) {
     return new Observable<boolean>(obs => {
-      /*
-      for (const i of contents) {
-        i.user = service.findById(i.user_id)
-        this.replies.push(i)
-        obs.next(true)
-        obs.complete()
-      }
-      */
-
       const busy = this.busy
       busy.open()
       contents = contents.slice()

@@ -20,8 +20,7 @@
             <mat-card class="thread-part" *ngFor="let content of replies"
                 [class.thread-owner]="content.user_id == thread.user_id">
                 <mat-card-content>
-                    <!-- <user-preview class="primary" *ngIf="content.user_id != thread.user_id" showName="true" -->
-                    <user-preview class="primary" showName="true"
+                    <user-preview class="primary" *ngIf="content.user_id != thread.user_id" showName="true"
                         pictoSize="medium" [userId]="content.user_id"></user-preview>
                     <div [matRteView]="content.inserts"></div>
                 </mat-card-content>
@@ -38,9 +37,7 @@
                 <button color="accent" class="icon-ctn" mat-raised-button [disabled]="messageControl.invalid" (click)="reply($event)">Envoyer <span class="svg-icons reply"></span></button>
                 <button color="accent" mat-raised-button (click)="openRtePopup()">Éditeur plus grand <span class="svg-icons reply"></span></button>
             </mat-panel-title>
-
         </mat-expansion-panel-header>
         <div style="height: 33vh;" mat-rte #rte (sendShortcut)="reply()" [formControl]="messageControl"></div>
-
     </mat-expansion-panel>
 </div>

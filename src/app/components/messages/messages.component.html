@@ -5,7 +5,7 @@
             <div class="v-box scroller ctn-padding flex01 gap16 mat-elevation-z2">
                 <div *ngFor="let thread of api.threadList | async" (click)="openThread(thread.id)" matRipple
                     class="flex10 h-box thread-preview fx-clr primary mat-elevation-z2">
-                    <user-preview [showName]="true" class="flex11" [userId]="thread.user_id"><h3> | {{ thread.subject }}</h3></user-preview>
+                    <user-preview pictoSize="medium" [showName]="true" class="flex11" [userId]="thread.user_id">| {{ thread.subject }}</user-preview>
                     <thread-read-by-badge class="flex01" [thread]="thread"></thread-read-by-badge>
                 </div>
             </div>
