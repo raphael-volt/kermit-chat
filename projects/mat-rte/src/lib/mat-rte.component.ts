@@ -71,12 +71,11 @@ export class MatRteComponent implements OnDestroy, AfterViewInit, ControlValueAc
     })
     this._focusSub = _focusMonitor.monitor(_elementRef, true).subscribe(origin => {
       this.focused = !!origin;
-      //if (this.focused)
-      //this.focusEditor()
       this.stateChanges.next()
     })
-    /*
-    */
+  }
+  attach_fileClick() {
+      console.log('MatRteComponent.attach_fileClick')
   }
   private static _ID = 0
   stateChanges: Subject<void> = new Subject<void>();
@@ -101,7 +100,6 @@ export class MatRteComponent implements OnDestroy, AfterViewInit, ControlValueAc
   set focused(value: boolean) {
     if (this._focused == value) return
     this._focused = value
-    console.log('rte/focus', value)
   }
   empty: boolean;
   shouldLabelFloat: boolean = true;
@@ -116,10 +114,7 @@ export class MatRteComponent implements OnDestroy, AfterViewInit, ControlValueAc
     this.describedBy = ids.join(' ');
   }
   onContainerClick(event: MouseEvent): void {
-    /*
-    if (this.quill)
-      this.quill.focus()
-      */
+    
   }
   ngOnDestroy(): void {
     this.quill.off('text-change', this.contentChangeHandler)

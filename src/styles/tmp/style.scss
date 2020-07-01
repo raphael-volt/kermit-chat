@@ -1,0 +1,174 @@
+@import "variables";
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?4rbahq') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?4rbahq') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?4rbahq##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.svg-icons {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.error {
+  &:before {
+    content: $error; 
+  }
+}
+.warning {
+  &:before {
+    content: $warning; 
+  }
+}
+.loop {
+  &:before {
+    content: $loop; 
+  }
+}
+.volume_off {
+  &:before {
+    content: $volume_off; 
+  }
+}
+.volume_up {
+  &:before {
+    content: $volume_up; 
+  }
+}
+.email {
+  &:before {
+    content: $email; 
+  }
+}
+.add_circle {
+  &:before {
+    content: $add_circle; 
+  }
+}
+.remove_circle {
+  &:before {
+    content: $remove_circle; 
+  }
+}
+.reply {
+  &:before {
+    content: $reply; 
+  }
+}
+.send {
+  &:before {
+    content: $send; 
+  }
+}
+.insert_photo {
+  &:before {
+    content: $insert_photo; 
+  }
+}
+.attachment {
+  &:before {
+    content: $attachment; 
+  }
+}
+.file_download {
+  &:before {
+    content: $file_download; 
+  }
+}
+.camera_alt {
+  &:before {
+    content: $camera_alt; 
+  }
+}
+.filter_vintage {
+  &:before {
+    content: $filter_vintage; 
+  }
+}
+.panorama {
+  &:before {
+    content: $panorama; 
+  }
+}
+.remove_red_eye {
+  &:before {
+    content: $remove_red_eye; 
+  }
+}
+.local_library {
+  &:before {
+    content: $local_library; 
+  }
+}
+.location_history {
+  &:before {
+    content: $location_history; 
+  }
+}
+.cancel {
+  &:before {
+    content: $cancel; 
+  }
+}
+.refresh {
+  &:before {
+    content: $refresh; 
+  }
+}
+.person {
+  &:before {
+    content: $person; 
+  }
+}
+.account_circle {
+  &:before {
+    content: $account_circle; 
+  }
+}
+.autorenew {
+  &:before {
+    content: $autorenew; 
+  }
+}
+.bug_report {
+  &:before {
+    content: $bug_report; 
+  }
+}
+.cached {
+  &:before {
+    content: $cached; 
+  }
+}
+.settings {
+  &:before {
+    content: $settings; 
+  }
+}
+.replay_circle_filled {
+  &:before {
+    content: $replay_circle_filled; 
+  }
+}
+.emoji_emotions {
+  &:before {
+    content: $emoji_emotions; 
+  }
+}
+

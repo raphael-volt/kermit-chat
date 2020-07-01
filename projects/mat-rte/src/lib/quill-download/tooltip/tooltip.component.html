@@ -1,0 +1,11 @@
+<div class="tooltip-main fx-col">
+    <input #file type="file" (change)="fileChange($event)">
+    <span #wrapper class="fx0 label-editor mat-raised-button mat-button-base mat-accent"
+        (click)="checkFocus($event)">
+        <span #textField contenteditable="true" class="text-field" 
+            (input)="inputHandler($event)"></span>
+        <span (mousedown)="triggerClick($event)" matTooltip="modifier le fichier" matTooltipPosition="right"
+            #downloadIcon class="svg-icons file_download"></span>
+    </span>
+    <span (click)="delete()" [class.active]="viewInitialized" class="delete-button fx-clr warn">supprimer</span>
+</div>

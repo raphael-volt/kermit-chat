@@ -12,15 +12,22 @@ export type MatRteConfig = {
     }
     quill?: {
         toolbarSizes: ToolbarSizeList
+    },
+    download?: {
+        downloadFileFn?: (id: number) => string
     }
 }
 
 export const DEFAULT_MAT_RTE_CONFIG: MatRteConfig = {
+
     emoji: {
         sheetSize: 32,
         backgroundImageFn: (set: string, sheetSize: number): string => {
             return `/emoji-apple-${sheetSize}.png`
         }
+    },
+    download: {
+
     },
     quill: {
         toolbarSizes: [

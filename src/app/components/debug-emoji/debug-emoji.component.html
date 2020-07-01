@@ -4,6 +4,30 @@
     </mat-card-header>
     <mat-card-content [formGroup]="form">
         <div class="col">
+            <p>
+                <a href="#" (click)="createPortal($event)" class="mat-focus-indicator mat-raised-button mat-button-base mat-accent">
+                    Quill no-wrapper <span class="svg-icons file_download"></span>
+                </a>
+            </p>
+            <p>
+                <span contenteditable="true" 
+                (input)= "editableInput($event)"
+                value="content editable"
+                ></span>
+            </p>
+            <!-- <p><a href="#">Default link</a></p>
+                <ql-download-tooltip></ql-download-tooltip>
+            <p>
+                <a href="#" class="mat-focus-indicator mat-raised-button mat-button-base mat-accent">
+                    <span class="mat-button-wrapper">Quill button <span class="svg-icons file_download"></span></span>
+                </a>
+            </p>
+            <p>
+            </p>
+            <p>
+                <a mat-raised-button color="accent" href="#">Mat button <span
+                        class="svg-icons file_download"></span></a>
+            </p> -->
 
             <mat-form-field appearance="standard">
 
@@ -34,7 +58,8 @@
             </mat-form-field>
         </div>
         <div class="col preview">
-            <div [matRteView]="model"></div>
+            <pre>{{model|json}}</pre>
+            <!-- <div [matRteView]="model"></div> -->
         </div>
     </mat-card-content>
     <mat-card-footer>

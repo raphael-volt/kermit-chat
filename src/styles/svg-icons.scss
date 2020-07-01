@@ -14,6 +14,7 @@
   $send                : "\e909";
   $insert_photo        : "\e90a";
   $attachment          : "\e90b";
+  $file_download       : "\e91c";
   $camera_alt          : "\e90c";
   $filter_vintage      : "\e90d";
   $panorama            : "\e90e";
@@ -31,11 +32,10 @@
   $replay_circle_filled: "\e918";
   $emoji_emotions      : "\e917";
 
+
   @font-face {
     font-family: '#{$font-family}';
-    src        : url('#{$path}/#{$font-family}.eot?#{$hash}');
-    src        : url('#{$path}/#{$font-family}.eot?#{$hash}#iefix') format('embedded-opentype'),
-    url('#{$path}/#{$font-family}.ttf?#{$hash}') format('truetype'),
+    src        : url('#{$path}/#{$font-family}.ttf?#{$hash}') format('truetype'),
     url('#{$path}/#{$font-family}.woff?#{$hash}') format('woff'),
     url('#{$path}/#{$font-family}.svg?#{$hash}##{$font-family}') format('svg');
     font-weight : normal;
@@ -44,14 +44,13 @@
   }
 
   .#{$icons-class} {
-    font-family            : '#{$font-family}' !important;
-    font-style             : normal;
-    font-weight            : normal;
-    font-variant           : normal;
-    text-transform         : none;
-    line-height            : 1em;
-    vertical-align         : -2px;
-    /* Better Font Rendering =========== */
+    font-family   : '#{$font-family}' !important;
+    font-style    : normal;
+    font-weight   : normal;
+    font-variant  : normal;
+    text-transform: none;
+    line-height   : 1;
+
     -webkit-font-smoothing : antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -127,6 +126,13 @@
       content: $attachment;
     }
   }
+
+  .file_download {
+    &:before {
+      content: $file_download;
+    }
+  }
+
 
   .camera_alt {
     &:before {
@@ -224,7 +230,15 @@
     }
   }
 
+  // quill download button
+  .file_download.label-wrapper {
+    &:before {
+      content: none;
+    }
 
-
-
+    &:after {
+      font-family: $font-family;
+      content    : "\00a0#{unquote($file_download)}";
+    }
+  }
 }

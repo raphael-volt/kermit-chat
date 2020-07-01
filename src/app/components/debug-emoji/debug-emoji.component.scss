@@ -54,6 +54,7 @@ mat-card-content {
         &.preview {
             flex           : 1 1 auto;
             padding: 16px;
+            overflow: auto;
         }
     }
 }

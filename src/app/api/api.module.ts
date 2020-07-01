@@ -13,6 +13,7 @@ import { UserService } from './user.service';
 import { WatchService } from './watch.service';
 import { WatchNotificationDirective } from './watch-notification.directive';
 import { WatchNotificationService } from './watch-notification.service';
+import { MatRteModule, QuillService } from 'mat-rte';
 
 const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: AddHeaderInterceptor, multi: true }
@@ -23,7 +24,8 @@ const httpInterceptorProviders = [
   imports: [
     CommonModule,
     AuthModule,
-    HttpClientModule
+    HttpClientModule,
+    MatRteModule
   ],
   exports: [ImagePipe, WatchNotificationDirective],
   providers: [
@@ -35,10 +37,11 @@ const httpInterceptorProviders = [
     httpInterceptorProviders,
     {
       provide: UrlService,
-      useFactory: () => {
+      deps: [QuillService],
+      useFactory: (quill: QuillService) => {
         const config = isDevMode() ? DEV_API_CONFIG : PROD_API_CONFIG
         //const config = PROD_API_CONFIG
-        return new UrlService(config)
+        return new UrlService(config, quill)
       }
     }]
 })

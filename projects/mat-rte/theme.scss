@@ -34,7 +34,14 @@
         vertical-align: text-bottom;
     }
 }
-
+@mixin download-theme() {
+    .ql-editor{
+        .ql-download {
+            display: inline-block;
+            margin: 1px 0;
+        }
+    }
+}
 @mixin mat-rte-theme($font-family, $sheet-size) {
     
     .ql-container,
@@ -114,4 +121,5 @@
         }
     }
     @include emoji-theme($sheet-size);
+    @include download-theme();
 }
