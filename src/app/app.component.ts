@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, isDevMode } from '@angular/core';
 import { routes } from "./app-routing.module";
 import { Routes, Route, Router, ActivationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -17,7 +17,10 @@ export class AppComponent {
   private routerSub: Subscription
 
   constructor(private router: Router, private avtService: MatAvatarsService) { 
+    const isDev = isDevMode()
     this.routes = routes.filter(route=>{
+      if(! isDev && route.path == "emoji")
+        return false 
       return route.path != '' && route.title != "none"
     })
   }
