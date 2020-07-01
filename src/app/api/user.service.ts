@@ -74,7 +74,7 @@ export class UserService {
       context.user = null
       const url = this.url.api("auth")
       const done = (user:User|ResponseError) => {
-        if('error' in user) {
+        if(! user || 'error' in user) {
           user = null
         }
         observer.next(user as any)
