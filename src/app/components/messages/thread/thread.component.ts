@@ -148,6 +148,7 @@ export class ThreadComponent implements OnInit, OnDestroy, AfterViewInit {
     userNames.unshift('moi')
     const message: string = "Vu par: "
     this.readbyText = message + userNames.join(', ')
+    // console.log("this.readbyText", this.readbyText)
   }
 
   private updateReplies() {
