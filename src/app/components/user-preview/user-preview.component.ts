@@ -6,6 +6,8 @@ import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { UserService } from 'src/app/api/user.service';
 import { Subscription } from 'rxjs';
 
+const PREVIEW_SIZES = [52, 48, 22]
+export type PreviewSizeLabels = "large"|"medium"|"small"
 @Component({
   selector: 'user-preview',
   templateUrl: './user-preview.component.html',
@@ -15,6 +17,7 @@ import { Subscription } from 'rxjs';
     'class': 'user-preview fx-clr',
     '[class.large]': 'pictoSize == "large"',
     '[class.small]': 'pictoSize == "small"',
+    '[class.medium]': 'pictoSize == "medium"',
   }
 })
 export class UserPreviewComponent implements OnChanges, OnDestroy {
@@ -30,8 +33,9 @@ export class UserPreviewComponent implements OnChanges, OnDestroy {
   }
 
   @Input()
-  pictoSize = "large"
+  pictoSize: PreviewSizeLabels = "small"
 
+  avatarSize: number = PREVIEW_SIZES[2]
   hasPicto = false
 
   @Input()
@@ -59,6 +63,22 @@ export class UserPreviewComponent implements OnChanges, OnDestroy {
   
   ngOnChanges(changes: SimpleChanges): void {
 
+    let detect = false
+    if (changes.pictoSize) { 
+      let label: PreviewSizeLabels = changes.pictoSize.currentValue
+      let size = PREVIEW_SIZES[2]
+      switch (label) {
+        case "large":
+          size = PREVIEW_SIZES[0]
+          break;
+          
+        case "medium":
+          size = PREVIEW_SIZES[1]
+          break;
+      }
+      this.avatarSize = size
+      detect = true
+    }
     if (changes.user) {
       const user = changes.user.currentValue as User
       if (!user || !user.picto)
@@ -66,8 +86,9 @@ export class UserPreviewComponent implements OnChanges, OnDestroy {
       else {
         this.hasPicto = true
       }
-      this.cdr.detectChanges()
+      detect = true
     }
+    if(detect) this.cdr.detectChanges()
   }
 
 }

@@ -1,10 +1,14 @@
-<div class="user-preview">
-    <div class="picto-wrapper mat-elevation-z2">
-        <img *ngIf="hasPicto" [attr.src]="user.picto | userPicto" />
-        <span *ngIf="!hasPicto" class="svg-icons person mat-primary"></span>
-    </div>
+<div style="overflow: visible;" class="user-preview">
+    <span *ngIf="hasPicto" class="picto-wrapper mat-elevation-z2" matAvatar [avatarCircle]="true"
+        [avatarSize]="avatarSize" [avatarSrc]="user.picto | userPicto"></span>
+    <svg *ngIf="!hasPicto" class="person  mat-elevation-z2" [attr.width]="avatarSize" [attr.height]="avatarSize"
+        preserveAspectRatio="none" viewBox="0 0 768 768">
+        <use x="134" y="134" width="500" height="500" xlink:href="#person"></use>
+    </svg>
     <div class="content-wrapper">
-        <h3 *ngIf="showName && user">{{user.name}}</h3>
-        <ng-content></ng-content>
+        <h2 class="name-wrapper" *ngIf="showName && user">{{user.name}}</h2>
+        <div class="text-wrapper">
+            <ng-content></ng-content>
+        </div>
     </div>
 </div>

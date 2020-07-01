@@ -3,11 +3,13 @@ import { UserPreviewComponent } from './user-preview.component';
 import { UserPictoPipe } from './user-picto.pipe';
 import { MaterialModule } from 'material';
 import { CommonModule } from '@angular/common';
+import { MatAvatarsModule } from "mat-avatars";
 
 @NgModule({
     imports: [
         CommonModule,
-        MaterialModule
+        MaterialModule,
+        MatAvatarsModule
     ],
     declarations: [
         UserPreviewComponent,

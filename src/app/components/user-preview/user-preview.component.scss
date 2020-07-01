@@ -1,5 +1,12 @@
-$size      : 44px;
-$size-small: 28px;
+$size-large : 32px;
+$size-medium: 22px;
+$size-small : 18px;
+
+@mixin wrapper-size($size) {
+    font-size: $size;
+
+    
+}
 
 :host {
     padding: 0;
@@ -13,30 +20,6 @@ $size-small: 28px;
         align-items    : center;
     }
 
-    .picto-wrapper {
-        background     : none;
-        border-radius  : 50%;
-        flex           : 0 1 auto;
-        display        : inline-flex;
-        display        : flex;
-        flex-direction : row;
-        flex-wrap      : nowrap;
-        justify-content: center;
-        align-content  : flex-start;
-        align-items    : center;
-        padding        : 0;
-        margin         : 0 4px;
-        font-size      : $size;
-        width          : $size;
-        height         : $size;
-
-        >* {
-            order     : 0;
-            flex      : 0 0 auto;
-            align-self: auto;
-        }
-    }
-
     .content-wrapper {
         display        : flex;
         flex-direction : row;
@@ -44,47 +27,42 @@ $size-small: 28px;
         justify-content: flex-start;
         align-content  : flex-start;
         align-items    : baseline;
+        
+        .name-wrapper {
+            font-size: 1em !important;
+            padding-right: .3em;
+        }
+        .text-wrapper {
+            display: inline-flex;
+            font-size: .75em !important;
+            font-weight: 400;
+        }
     }
 
-    .svg-icons,
-    img {
-        clip-path: circle(50% at center);
+    .person {
+        border-radius: 50%;
     }
 
-    img {
-        max-width : $size;
-        max-height: $size;
-    }
-
-    .svg-icons {
-        font-size: 80%;
-    }
-
-    h3 {
-        margin   : 0;
-        padding  : 0;
-        font-size: 22px;
+    .name-wrapper {
+        margin : 0;
+        padding: 0 0 0 6px;
     }
 
     &.small {
-
-        .content-wrapper,
-        .picto-wrapper {
+        .content-wrapper {
             font-size: $size-small;
         }
-
-        .picto-wrapper {
-            width : $size-small;
-            height: $size-small;
+    }
+    
+    &.medium {
+        .content-wrapper {
+            font-size: $size-medium;
         }
-
-        img {
-            max-width : $size-small;
-            max-height: $size-small;
-        }
-
-        h3 {
-            font-size: 16px;
+    }
+    
+    &.large {
+        .content-wrapper {
+            font-size: $size-large;
         }
     }
 }
