@@ -6,102 +6,33 @@
   <div class="table-scroller ctn-margin-top mat-elevation-z2">
 
     <table mat-table [dataSource]="members">
-      
+
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Nom</th>
         <td mat-cell *matCellDef="let element"><span class="cell-span">{{element.name}}</span></td>
       </ng-container>
-      
+
       <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef>Email</th>
         <td mat-cell *matCellDef="let element"><span>{{element.email}}</span></td>
       </ng-container>
-      
+
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef>En ligne</th>
         <td mat-cell *matCellDef="let element" class="cell-centered">
-          <span *ngIf="element.status == 'on'" class="fem emoji-heavy_check_mark"></span>
+          <span *ngIf="element.status == 'on'" [emojiSize]="18" martEmoji="frog"></span>
         </td>
       </ng-container>
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let element">
-          <button color="accent" *ngIf="element.status != 'on'" mat-button (click)="deleteUser(element)">Supprimer</button>
+          <button color="accent" *ngIf="element.status != 'on'" mat-button
+            (click)="deleteUser(element)">Supprimer</button>
         </td>
       </ng-container>
-      
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
 </div>
-<!--
- <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-  
-<div class="members-ctn ctn-padding">
-
-  <div class="members-toolbar">
-    <button mat-raised-button color="accent">Ajouter un membre</button>
-  </div>
-  <div class="table-scroller ctn-margin-top mat-elevation-z2">
-
-    <table>
-      <thead>
-        <tr>
-          <th class="mat-border mat-body-2 brd">Nom</th>
-          <th class="mat-border mat-body-2">Email</th>
-          <th class="mat-border mat-body-2">En ligne</th>
-          <th class="mat-border mat-body-2"></th>
-        </tr>
-      </thead>
-      <thead>
-        <tr *ngFor="let m of members | async">
-          <td class="mat-border mat-body-1">{{m.name}} {{m.status}}</td>
-          <td class="mat-border mat-body-1">{{m.email}}</td>
-          <td class="mat-border mat-body-1 icon-td">
-            <span *ngIf="m.status == 'on'" class="cell-span fem emoji-heavy_check_mark"></span>
-          </td>
-          <td class="mat-border mat-body-1 icon-td">
-            <button color="accent" *ngIf="m.status != 'on'" mat-button>Supprimer</button>
-          </td>
-        </tr>
-      </thead>
-    </table>
-  </div>
-</div>
--->
-<!--
-  
-  <div class="flex-scroller align-items-center">
-    <mat-card class="flex-card"  *ngIf="members | async">
-      <mat-card-content>
-        
-        <table mat-table [dataSource]="members">
-          
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef>Nom</th>
-            <td mat-cell *matCellDef="let element"><span>{{element.name}} [{{element.id}}]</span></td>
-        </ng-container>
-        
-        <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef>Email</th>
-          <td mat-cell *matCellDef="let element"><span class="cell-span">{{element.email}}</span></td>
-        </ng-container>
-        
-        <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef>En ligne</th>
-          <td mat-cell *matCellDef="let element">
-            <span *ngIf="element.status == 'on'" class="cell-span fem emoji-heavy_check_mark"></span>
-            <span *ngIf="element.status != 'on'" class="cell-span fem emoji-x"></span>
-          </td>
-        </ng-container>
-        
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </mat-card-content>
-  </mat-card>
-</div>
--->

@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>
+    <span martEmoji="warning"></span> Supprimer un membre</h2>
+<mat-dialog-content>
+    <p>Tous ses messages vont être supprimés</p>
+    <p> et il ne pourra plus accéder au site.</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button (click)="ref.close(true)" color="accent" mat-raised-button>Oui</button>
+    <button (click)="ref.close()" color="primary" mat-raised-button>Abandonner</button>
+</mat-dialog-actions>
