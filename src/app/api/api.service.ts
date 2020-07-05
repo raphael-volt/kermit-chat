@@ -1,12 +1,13 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { Thread, ThreadPart, ThreadData, ThreadTree, WatchDiff, User } from '../vo/vo';
-import { map, first } from 'rxjs/operators';
+import { map, first, catchError, finalize } from 'rxjs/operators';
 import { UrlService } from './url.service';
 import { DeltaOperation } from 'quill';
 import { ContextService } from '../context.service';
 import { WatchNotificationService } from './watch-notification.service';
+import { findImages, findDownloads } from 'mat-rte';
 @Injectable({
   providedIn: 'root'
 })
@@ -38,7 +39,7 @@ export class ApiService {
       for (const i of result.contents) {
         ops.push(...i.inserts)
       }
-      this.replaceImage(...ops)
+      this.replaceFiles(...ops)
       this.setThreadReadBy(id)
 
       return result
@@ -64,9 +65,8 @@ export class ApiService {
   private threadReadByFlag = false
   private setThreadReadBy(id, threads = null) {
     if (!threads)
-    threads = this.threadList.getValue()
+      threads = this.threadList.getValue()
     if (!threads) {
-      console.log('API', 'setThreadReadBy threads not loaded')
       this.threadReadById = id
       this.threadReadByFlag = true
       return
@@ -89,58 +89,130 @@ export class ApiService {
       this.threadChange.next(thread)
     }
   }
-  
-  private replaceImage(...ops: DeltaOperation[]) {
+
+  private replaceFiles(...ops: DeltaOperation[]) {
+    this.replaceDownloads(ops)
+    this.replaceImages(ops)
+    return ops
+  }
+
+  private replaceImages(ops: DeltaOperation[]) {
     const url = this.url
-    for (const op of ops) {
-      if (typeof op.insert == "object" && "image" in op.insert) {
-        op.insert.image = url.image(op.insert.image)
-      }
+    const imgs = findImages(ops)
+    for (const op of imgs) {
+      op.insert.image = url.image(op.insert.image)
     }
     return ops
   }
-  
-  reply(value: ThreadPart) {
-    return this.http.post<ThreadPart>(
-      this.url.api("thread_part"),
-      value
-    ).pipe(map(result => {
-      const id = result.id
-      value.id = id
-      const l = this.threadList.getValue()
-      const thread = this.findThread(value.thread_id, l)
-      if (thread) {
-        thread.last_part = id
-        if (!thread.read_by[id])
-          thread.read_by[id] = []
-        if (thread.read_by[id].indexOf(value.user_id) < 0)
-          thread.read_by[id].push(value.user_id)
-        this.sortThreads(l)
-        this.threadChange.next(thread)
+
+
+  private replaceDownloads(ops: DeltaOperation[]) {
+    const url = this.url
+    const downloads = findDownloads(ops)
+    for (const op of downloads) {
+      op.insert.download.url = url.download(op.insert.download.file.id)
+    }
+    return ops
+  }
+
+  private beforeSendOperations(operations: DeltaOperation[]) {
+    return new Promise<number>((resolve, reject) => {
+      let bytesTotal: number = 0
+      const images = findImages(operations)
+      const downloads = findDownloads(operations)
+      for (const img of images) {
+        bytesTotal += img.insert.image.length
       }
-      value.content = this.replaceImage(...result.content as DeltaOperation[])
-      return value
-    }))
+
+      const quillService = this.url.quillService
+      const download = quillService.download
+      let sub: Subscription
+      const done = () => {
+        if (sub && !sub.closed)
+          sub.unsubscribe()
+        if (isNaN(bytesTotal))
+          return reject("download file not found error")
+        resolve(bytesTotal)
+      }
+      if (downloads.length) {
+
+        sub = download.setFilesData(operations).subscribe(
+          bytes => {
+            bytesTotal += bytes
+          },
+          err => {
+            bytesTotal = NaN
+            done()
+          },
+          done
+        )
+      }
+      else
+        done()
+    })
+  }
+  addTread(value: ThreadTree): Observable<Thread> {
+    return new Observable<ThreadPart>(obs => {
+      this.beforeSendOperations(value.inserts)
+        .then(bytes => {
+          this.http.post<ThreadTree>(
+            this.getPath("thread"),
+            value
+          ).pipe(first()).subscribe(data => {
+            const thread = data.thread
+            const rb = {}
+            rb[thread.last_part] = [value.thread.user_id]
+            thread.read_by = rb
+            const l = this.threadList.getValue()
+            l.unshift(thread)
+            value.thread = thread
+            this.threadList.next(l)
+            obs.next(thread)
+          })
+        })
+    })
+  }
+
+  reply(value: ThreadPart) {
+    return new Observable<ThreadPart>(obs => {
+      this.beforeSendOperations(value.content as DeltaOperation[])
+        .then(bytes => {
+          console.log("content size", bytes)
+          this.http.post<ThreadPart>(
+            this.url.api("thread_part"),
+            value
+          ).
+            pipe(first()).subscribe(
+              result => {
+                const id = result.id
+                value.id = id
+                const l = this.threadList.getValue()
+                const thread = this.findThread(value.thread_id, l)
+                if (thread) {
+                  thread.last_part = id
+                  if (!thread.read_by[id])
+                    thread.read_by[id] = []
+                  if (thread.read_by[id].indexOf(value.user_id) < 0)
+                    thread.read_by[id].push(value.user_id)
+                  this.sortThreads(l)
+                  this.threadChange.next(thread)
+                }
+                value.content = this.replaceFiles(...result.content as DeltaOperation[])
+                obs.next(value)
+              },
+              obs.error,
+              obs.complete)
+        })
+        .catch(err => {
+          obs.error(err)
+        })
+    })
   }
   addUser(value: User) {
     return this.http.post(this.url.api("user"), value)
   }
-  addTread(value: ThreadTree): Observable<Thread> {
-    return this.http.post<ThreadTree>(
-      this.getPath("thread"),
-      value
-    ).pipe(map((data: any) => {
-      const thread = data.thread
-      const rb = {}
-      rb[thread.last_part] = [value.thread.user_id]
-      thread.read_by = rb
-
-      const l = this.threadList.getValue()
-      l.unshift(thread)
-      this.threadList.next(l)
-      return thread
-    }))
-  }
+  
+  
 
   refreshThreads(desc: boolean) {
     const l = this.threadList.getValue()
@@ -191,7 +263,7 @@ export class ApiService {
   private checkActiveThread(diff: WatchDiff) {
     if (!diff.active_threads) return
     const context = this.context
-    if(!context.user) return
+    if (!context.user) return
     const actveThread: number = context.threadOpened
     const previous = context.activeThreads
     const current = diff.active_threads

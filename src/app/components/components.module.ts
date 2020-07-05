@@ -12,7 +12,7 @@ import { PictoEditorComponent } from './picto-editor/picto-editor.component';
 import { PictoViewComponent } from './picto-view/picto-view.component';
 import { ImgScrollerModule } from '../img-scroller/img-scroller.module';
 import { UserPreviewModule } from "./user-preview/user-preview.module";
-import { DebugEmojiComponent } from "./debug-emoji/debug-emoji.component";
+import { DebugRteComponent, CDKDataDialog } from "./debug-rte/debug-rte.component";
 import { SnackBarUserOnComponent } from './snack-bar-user-on/snack-bar-user-on.component';
 import { CreateUserComponent } from './members/create-user/create-user.component';
 import { MatRteModule } from "mat-rte";
@@ -24,10 +24,11 @@ import { PromptDeleteUserComponent } from './members/prompt-delete-user/prompt-d
     AccountComponent,
     PictoEditorComponent,
     PictoViewComponent,
-    DebugEmojiComponent,
     SnackBarUserOnComponent,
     CreateUserComponent,
-    PromptDeleteUserComponent],
+    PromptDeleteUserComponent,
+    DebugRteComponent, CDKDataDialog
+  ],
   imports: [
     ApiModule,
     MessagesModule,
@@ -37,8 +38,10 @@ import { PromptDeleteUserComponent } from './members/prompt-delete-user/prompt-d
   ],
   exports: [
     MessagesModule, MembersComponent, AccountComponent,
-    PictoViewComponent, PictoEditorComponent, DebugEmojiComponent, SnackBarUserOnComponent,
-    CreateUserComponent
+    PictoViewComponent, PictoEditorComponent, 
+    SnackBarUserOnComponent,
+    CreateUserComponent,
+    DebugRteComponent, CDKDataDialog
   ]
 })
 export class ComponentsModule { }

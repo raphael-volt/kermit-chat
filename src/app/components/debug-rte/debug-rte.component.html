@@ -1,0 +1,83 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Mat RTE</mat-card-title>
+    </mat-card-header>
+    <mat-card-content [formGroup]="form">
+        <div class="col">
+<<<<<<< HEAD:src/app/components/debug-emoji/debug-emoji.component.html
+            <p>
+                <a href="#" (click)="createPortal($event)" class="mat-focus-indicator mat-raised-button mat-button-base mat-accent">
+                    Quill no-wrapper <span class="svg-icons file_download"></span>
+                </a>
+            </p>
+            <p>
+                <span contenteditable="true" 
+                (input)= "editableInput($event)"
+                value="content editable"
+                ></span>
+            </p>
+            <!-- <p><a href="#">Default link</a></p>
+                <ql-download-tooltip></ql-download-tooltip>
+            <p>
+                <a href="#" class="mat-focus-indicator mat-raised-button mat-button-base mat-accent">
+                    <span class="mat-button-wrapper">Quill button <span class="svg-icons file_download"></span></span>
+                </a>
+            </p>
+            <p>
+            </p>
+            <p>
+                <a mat-raised-button color="accent" href="#">Mat button <span
+                        class="svg-icons file_download"></span></a>
+            </p> -->
+
+=======
+>>>>>>> develop:src/app/components/debug-rte/debug-rte.component.html
+            <mat-form-field appearance="standard">
+                <mat-label>Objet</mat-label>
+                <input autocomplete="off" matInput required formControlName="subject">
+                <mat-error *ngIf="subjectControl.invalid">
+                    <span *ngIf="subjectControl.errors.required">
+                        Objet est requis
+                    </span>
+                    <span *ngIf="subjectControl.errors.minlength">
+                        Objet trop court
+                        ({{subjectControl.errors.minlength.actualLength}}/{{subjectControl.errors.minlength.requiredLength}})
+                    </span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="standard" class="fx-col fx1">
+                <mat-label>Message</mat-label>
+                <div mat-rte [required]="true" formControlName="content" (sendShortcut)="send()"></div>
+                <mat-error *ngIf="contentControl.invalid">
+                    <span *ngIf="contentControl.errors.required">
+                        Message est requis
+                    </span>
+                    <span *ngIf="contentControl.errors.minLength">
+                        Message trop court
+                        ({{contentControl.errors.minLength.value}}/{{contentControl.errors.minLength.min}})
+                    </span>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col preview">
+<<<<<<< HEAD:src/app/components/debug-emoji/debug-emoji.component.html
+            <pre>{{model|json}}</pre>
+            <!-- <div [matRteView]="model"></div> -->
+=======
+            <mat-tab-group mat-align-tabs="start" [selectedIndex]="selectedIndex">
+                <mat-tab label="JSON">
+                    <pre>{{model|json}}</pre>
+                </mat-tab>
+                <mat-tab label="Preview">
+                    <div *ngIf="preview" [matRteView]="preview"></div>
+                </mat-tab>
+              </mat-tab-group>
+>>>>>>> develop:src/app/components/debug-rte/debug-rte.component.html
+        </div>
+    </mat-card-content>
+    <mat-card-footer>
+        <mat-toolbar>
+            <button mat-raised-button [disabled]="form.invalid" (click)="send()" color="accent">OK</button>
+        </mat-toolbar>
+    </mat-card-footer>
+</mat-card>

@@ -1,8 +1,8 @@
 @import './styles/variables.scss';
 
-$divider-color: mat-color(map-get($app-theme, foreground), divider); 
-$config: mat-typography-config();
-$font-family: unquote(map-get($config, font-family));
+$divider-color: mat-color(map-get($app-theme, foreground), divider);
+$config       : mat-typography-config();
+$font-family  : unquote(map-get($config, font-family));
 
 @include angular-material-theme($app-theme);
 $ctn-padding   : 16px;
@@ -46,6 +46,13 @@ $ctn-max-width :1080px;
 @import '../projects/mat-rte/theme.scss';
 @include mat-rte-theme($font-family, 64);
 
+.ql-editor {
+  .ql-download {
+    .label-wrapper {
+      pointer-events: none;
+    }
+  }
+}
 
 @include list-item-active($app-theme);
 

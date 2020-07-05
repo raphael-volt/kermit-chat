@@ -18,6 +18,11 @@ import { MartEmojiDirective } from './quill-emoji-mart/mart-emoji.directive';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { EmojiPickerService } from './quill-emoji-mart/emoji-picker.service';
 import { MAT_RTE_CONFIG_TOKEN, DEFAULT_MAT_RTE_CONFIG, MatRteConfig } from './mart-emoji.config';
+import { QLDownloadTooltip } from './quill-download/tooltip/tooltip.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { PortalModule } from '@angular/cdk/portal';
+import { QuillService } from './quill.service';
+import { DownloadService } from './quill-download/download.service';
 
 @NgModule({
   declarations: [
@@ -25,10 +30,12 @@ import { MAT_RTE_CONFIG_TOKEN, DEFAULT_MAT_RTE_CONFIG, MatRteConfig } from './ma
     MatRteViewDirective,
     ImageResizeComponent,
     EmojiDialogPickerComponent, EmojiPickerComponent,
-    MartEmojiDirective
+    MartEmojiDirective,
+    QLDownloadTooltip
   ],
   imports: [
     OverlayModule,
+    PortalModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -36,13 +43,14 @@ import { MAT_RTE_CONFIG_TOKEN, DEFAULT_MAT_RTE_CONFIG, MatRteConfig } from './ma
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    PickerModule
+    PickerModule,
+    MatTooltipModule
   ],
-  providers: [EmojiPickerService],
+  providers: [EmojiPickerService, QuillService, DownloadService],
   exports: [
     MatRteComponent, MatRteViewDirective,
     EmojiDialogPickerComponent, EmojiPickerComponent,
-    MartEmojiDirective
+    MartEmojiDirective, QLDownloadTooltip
   ]
 })
 export class MatRteModule {

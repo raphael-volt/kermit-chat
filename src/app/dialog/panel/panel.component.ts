@@ -61,10 +61,8 @@ export class PanelComponent implements AfterViewInit, AfterContentInit, OnDestro
   constructor() { }
 
   ngAfterContentInit() {
-    console.log('ngAfterContentInit', this.closeButton)
     if (this.closeButton) {
       this.clickSubscription = this.closeButton.close.subscribe(() => {
-        console.log('close internal')
         this.close.next()
       })
     }

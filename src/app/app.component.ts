@@ -19,8 +19,8 @@ export class AppComponent {
   constructor(private router: Router, private avtService: MatAvatarsService) { 
     const isDev = isDevMode()
     this.routes = routes.filter(route=>{
-      if(! isDev && route.path == "emoji")
-        return false 
+      if(!isDev && route.path == "debug-rte")
+        return false
       return route.path != '' && route.title != "none"
     })
   }

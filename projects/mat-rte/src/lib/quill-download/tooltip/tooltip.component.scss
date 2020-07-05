@@ -1,0 +1,69 @@
+.tooltip-main {
+    background-color: white;
+    box-sizing: content-box;
+    input[type="file"] {
+        display: none;
+    }
+
+    align-items    : flex-start;
+    justify-content: flex-start;
+    align-content  : flex-start;
+    position       : relative;
+
+    .delete-button {
+        font-weight     : 500;
+        font-size       : 14px;
+        cursor          : pointer;
+        transform-origin: top left;
+        opacity         : 0;
+        transform       : translateY(-80%);
+        pointer-events  : none;
+
+        &.active {
+            pointer-events: all;
+            transform     : translateY(0%);
+            opacity       : 1;
+            transition    : all 380ms ease-out;
+        }
+    }
+}
+
+.label-editor {
+    cursor  : text;
+    position: relative;
+
+    .remove_circle {
+        position: absolute;
+        left    : -.5em;
+        top     : -.5em;
+    }
+
+    //ql-picker-label[data-value=large]::before,
+    .text-field {
+        display    : inline-block;
+        outline    : none;
+        color      : inherit;
+        box-sizing : border-box;
+        border     : none;
+        line-height: 1.25em;
+
+        &:not(:empty):focus {
+            border-bottom: 1px solid currentColor;
+        }
+
+        &:empty:after {
+            content   : '\00a0';
+            font-style: italic;
+        }
+
+        &:empty:not(:focus):before {
+            opacity: .8;
+            content: attr(data-placeholder);
+        }
+    }
+
+    .svg-icons {
+        margin-left: .5em;
+        cursor     : pointer;
+    }
+}
