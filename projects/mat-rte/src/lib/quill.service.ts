@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Injectable, Inject, Injector } from '@angular/core';
+=======
+import { Injectable, Inject, Injector, NgZone } from '@angular/core';
+>>>>>>> develop
 import { MatImageResizeModule } from './mat-image/mat-image-resize';
 import { MatDialog } from '@angular/material/dialog';
 import { QuillEmojiMartToolbar } from './quill-emoji-mart/quill/emoji-toolbar';
@@ -15,7 +19,16 @@ import { DownloadBlot } from "./quill-download/download.blot";
 import { DownloadModule } from "./quill-download/download.module";
 import { DownloadService } from './quill-download/download.service';
 const Link = Quill.import("formats/link")
+<<<<<<< HEAD
 
+=======
+/*
+ Type 
+ 'import("/home/raphael/projects/kermit/kermit-chat/dist/mat-rte/lib/quill-download/download.service").DownloadService' 
+ is not assignable to type 
+ 'import("/home/raphael/projects/kermit/kermit-chat/projects/mat-rte/src/lib/quill-download/download.service").DownloadService'.
+ */
+>>>>>>> develop
 const checkConfig = (config) => {
   if (config) {
     let cfg = DEFAULT_MAT_RTE_CONFIG
@@ -48,7 +61,11 @@ export class QuillService {
     public download: DownloadService,
     public overlay: Overlay,
     public injector: Injector,
+<<<<<<< HEAD
     public sso: ScrollStrategyOptions,
+=======
+    public zone: NgZone,
+>>>>>>> develop
     private sanitizer: DomSanitizer) {
     EMOJI_OPTIONS.emoji = emoji
     EMOJI_OPTIONS.overlay = overlay
@@ -69,6 +86,7 @@ export class QuillService {
     return sanitize ? this.sanitizer.bypassSecurityTrustHtml(html) : html
   }
 
+<<<<<<< HEAD
   clearDownloadMap(id: number = NaN) {
     if(isNaN(id))
       id = this._downloadFileMapId
@@ -79,17 +97,23 @@ export class QuillService {
   downloadUrlFn: (id: number) => string
 
 
+=======
+  downloadUrlFn: (id: number) => string
+>>>>>>> develop
 
   private initQuill() {
     Quill.debug("error")
     const Block = Quill.import('blots/block')
     Block.tagName = 'div'
     Quill.register(Block)
+<<<<<<< HEAD
     //const attach_file = AttachFileBlot.blotName
     
     //Quill.register(`formats/${attach_file}`, AttachFileBlot)
     //Quill.register(`modules/${attach_file}`, AttachFileModule)
 
+=======
+>>>>>>> develop
     Quill.register(`modules/${DOWNLOAD}`, DownloadModule)
     Quill.register(`formats/${DOWNLOAD}`, DownloadBlot)
     Quill.register('formats/rteemoji', QuillEmojiMartBlot)
@@ -118,26 +142,37 @@ export class QuillService {
     const overlay = this.overlay
     const download = this.download
     const injector = this.injector
+<<<<<<< HEAD
     let mapId = this._downloadFileMapId
     if(! isNaN(mapId)) {
       download.clearMap(mapId)
     }
     this._downloadFileMapId = download.createMap()
+=======
+>>>>>>> develop
     const quill = new Quill(editor, {
       theme: 'snow',
       placeholder: placeHolder,
       modules: {
+<<<<<<< HEAD
         // attachfile: {
         //   editor: true,
         //   fileMap: {}
         // },
         download: { 
+=======
+        download: {
+>>>>>>> develop
           editable: true,
           overlay,
           download,
           injector,
+<<<<<<< HEAD
           dialog,
           sso: this.sso
+=======
+          zone: this.zone
+>>>>>>> develop
         },
         rteemoji: {
           emoji: this.emoji,

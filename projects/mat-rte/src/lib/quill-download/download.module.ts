@@ -1,31 +1,50 @@
 
 import Quill, { RangeStatic } from 'quill'
 import { DownloadBlot } from './download.blot';
+<<<<<<< HEAD
 import { DownloadData, DOWNLOAD, DOWNLOAD_TOOLTIP_DATA, QLCaretPosition, DownloadTooltipData, DownloadConfig } from '../quill';
+=======
+import { DownloadData, DOWNLOAD, DOWNLOAD_TOOLTIP_DATA, QLCaretPosition, DownloadTooltipData, DownloadConfig, findDownloads } from '../quill';
+>>>>>>> develop
 import { Subscription } from 'rxjs';
 import { OverlayRef, OverlayConfig } from '@angular/cdk/overlay';
 import { QLDownloadTooltip } from './tooltip/tooltip.component';
 import { ComponentPortal, PortalInjector } from '@angular/cdk/portal';
 import { dialogTransparentConfig } from '../dialog-transparent-config';
 import { ElementRef } from '@angular/core';
+<<<<<<< HEAD
 import { DialogPosition } from '@angular/material/dialog';
+=======
+import { FileMap } from './download.service';
+>>>>>>> develop
 
 const Module = Quill.import('core/module')
 
 export class DownloadModule extends Module {
 
+<<<<<<< HEAD
     private fileMapId: number
+=======
+    private fileMap: FileMap = {}
+>>>>>>> develop
     private selectedText: string
     private currentRange: RangeStatic
 
     private _portal: ComponentPortal<QLDownloadTooltip>
     private _overlayRef: OverlayRef
+<<<<<<< HEAD
+=======
+    private setTextFlag: boolean = false
+>>>>>>> develop
 
     constructor(private quill: Quill, private options: DownloadConfig) {
         super(quill, options)
         if (options.editable === true) {
             options.scrollable = quill['container']
+<<<<<<< HEAD
             this.fileMapId = options.download.createMap()
+=======
+>>>>>>> develop
             const toolbar = quill.getModule('toolbar')
             toolbar.addHandler(DOWNLOAD, this.toolbarHandler)
             quill.keyboard.addBinding({
@@ -38,6 +57,28 @@ export class DownloadModule extends Module {
                 this.range = null
             })
             quill.on('selection-change', this.selectionChange)
+<<<<<<< HEAD
+=======
+            quill.on('text-change', (...args) => {
+                if (this.setTextFlag) return
+                const srv = this.options.download
+                const map = this.fileMap
+                const ids = srv.getFileIds(map)
+                if (ids) {
+                    const ops = quill.getContents().ops
+                    const contents = findDownloads(ops)
+                    for (const op of contents) {
+                        const i = ids.indexOf(op.insert.download.file.id)
+                        if (i > -1)
+                            ids.splice(i, 1)
+                    }
+                    for (const id of ids) {
+                        delete map[id]
+                        srv.unregisterFile(id)
+                    }
+                }
+            })
+>>>>>>> develop
             quill.root.addEventListener('click', (event) => {
                 const e = event.target
 
@@ -82,6 +123,7 @@ export class DownloadModule extends Module {
             if (!label || !label.length) {
                 label = file.name
             }
+<<<<<<< HEAD
 
             const service = this.options.download
             const data: DownloadData = {
@@ -89,6 +131,18 @@ export class DownloadModule extends Module {
                 file: {
                     name: file.name,
                     id: service.registerFile(file, this.fileMapId),
+=======
+            const map = this.fileMap
+            const service = this.options.download
+            const id = service.registerFile(file)
+            map[id] = file
+
+            const data: DownloadData = {
+                label,
+                file: {
+                    id: id,
+                    name: file.name,
+>>>>>>> develop
                     size: file.size,
                     mime: file.type,
                     ext: file.name.split(".").pop()
@@ -96,18 +150,27 @@ export class DownloadModule extends Module {
             }
             const quill = this.quill
             const range = this.currentRange
+<<<<<<< HEAD
+=======
+            this.setTextFlag = true
+>>>>>>> develop
             if (range.length) {
                 quill.deleteText(range.index, range.length, "user")
             }
             quill.insertEmbed(range.index, DOWNLOAD, data)
             quill.focus()
             quill.setSelection(range.index + 1, 0)
+<<<<<<< HEAD
+=======
+            setTimeout(() => this.setTextFlag = false)
+>>>>>>> develop
         })
     }
 
     private selectionChange = (range: RangeStatic, oldRange: RangeStatic, source) => {
         if (range == null) return;
         if (range.length === 0 && source === "user") {
+<<<<<<< HEAD
             const [blot, offset] = this.quill.scroll['descendant'](
                 DownloadBlot,
                 range.index
@@ -120,17 +183,34 @@ export class DownloadModule extends Module {
                 let dir: QLCaretPosition
                 if (oldRange)
                     dir = oldRange.index < range.index ? "left" : "right"
+=======
+            let [blot, offset] = this.quill.scroll['descendant'](
+                DownloadBlot,
+                range.index
+            )
+            if (blot) {
+                const db: DownloadBlot = blot as DownloadBlot
+                this.currentRange = { index: range.index, length: blot.length() };
+
+                let dir: QLCaretPosition = "left"
+                if (oldRange) {
+                    dir = oldRange.index < range.index ? "left" : "right"
+                }
+>>>>>>> develop
                 this.show(DownloadBlot.value(db.domNode), blot.domNode, dir)
                 return;
             }
         } else {
             this.currentRange = null
         }
+<<<<<<< HEAD
         this.hide()
     }
 
     private hide() {
 
+=======
+>>>>>>> develop
     }
 
     private subs: Subscription[] = []
@@ -144,6 +224,7 @@ export class DownloadModule extends Module {
         }
         this.subs.length = 0
     }
+<<<<<<< HEAD
     private show(data: DownloadData, element: HTMLElement, position: QLCaretPosition = "right") {
         const index = this.currentRange.index
         const length = this.currentRange.length
@@ -293,6 +374,56 @@ export class DownloadModule extends Module {
     }
     private save() {
 
+=======
+
+    private show(data: DownloadData, element: HTMLElement, position: QLCaretPosition = "right") {
+        this.options.zone.run(() => {
+            const _overlayRef = this.getOverlay()
+            if (_overlayRef.hasAttached())
+                return
+            const quill = this.quill
+            const range = this.currentRange
+            const index = range.index
+
+            _overlayRef.updatePositionStrategy(this.getScrollStrategy(element))
+            this._portal = new ComponentPortal(QLDownloadTooltip, null, this.createInjector({
+                data: data,
+                position: position
+            }))
+            const _ref = _overlayRef.attach(this._portal)
+            const instance = _ref.instance
+            const closeOverlay = () => {
+                this.unsubscribe()
+                _overlayRef.detach()
+                quill.setSelection(range.index, 0, "api")
+            }
+            this.sub = instance.change.subscribe((value: DownloadData) => {
+                quill.formatText(range, DOWNLOAD, value, "api")
+                _overlayRef.updatePosition()
+            })
+
+            this.sub = instance.close.subscribe((value: DownloadTooltipData) => {
+                if (value) {
+                    if(value.file) {
+                        value.data.file.id = this.options.download.registerFile(value.file)
+                        this.fileMap[value.data.file.id] = value.file
+                    }
+                    if (value.position == "right")
+                        range.index = index + 1
+                }
+                else {
+                    quill.deleteText(range.index, range.length, "user")
+                }
+                closeOverlay()
+            })
+            this.sub = _overlayRef.backdropClick().subscribe(_ => {
+                range.index = index + 1
+                closeOverlay()
+            })
+
+            _overlayRef.updatePosition()
+        })
+>>>>>>> develop
     }
 
     createInjector(data: DownloadTooltipData): PortalInjector {
@@ -313,7 +444,10 @@ export class DownloadModule extends Module {
             }
             this._overlayRef = this.options.overlay.create(cfg)
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
         return this._overlayRef
     }
 

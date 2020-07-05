@@ -35,11 +35,11 @@
             <mat-panel-title class="fx-clr accent" *ngIf="!panelOpenState">
                 Répondre
             </mat-panel-title>
-            <mat-panel-title *ngIf="panelOpenState">
-                <button color="accent" class="icon-ctn" mat-raised-button [disabled]="messageControl.invalid"
-                    (click)="reply($event)">Envoyer <span class="svg-icons reply"></span></button>
-                <button color="accent" mat-raised-button (click)="openRtePopup()">Éditeur plus grand <span
-                        class="svg-icons reply"></span></button>
+            <mat-panel-title *ngIf="panelOpenState" class="reply-panel-header">
+                <button class="icon-ctn fx0" color="accent" mat-raised-button [disabled]="messageControl.invalid"
+                (click)="reply($event)">Envoyer <span class="svg-icons reply"></span></button>
+                <span class="fx1"></span>
+                <span class="svg-icons zoom_out_map" (click)="openRtePopup()"></span>
             </mat-panel-title>
         </mat-expansion-panel-header>
         <div style="height: 33vh;" mat-rte #rte (sendShortcut)="reply()" [formControl]="messageControl"></div>

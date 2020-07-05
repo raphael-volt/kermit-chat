@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiConfig } from './api-config';
-import { QuillService } from 'projects/mat-rte/src/lib/quill.service';
+import { QuillService } from 'mat-rte';
 
 export type PathPart = string|number
 export type PathParts = PathPart[]

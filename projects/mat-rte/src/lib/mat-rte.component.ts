@@ -73,10 +73,14 @@ export class MatRteComponent implements OnDestroy, AfterViewInit, ControlValueAc
       this.focused = !!origin;
       this.stateChanges.next()
     })
+<<<<<<< HEAD
   }
   attach_fileClick() {
       console.log('MatRteComponent.attach_fileClick')
+=======
+>>>>>>> develop
   }
+  
   private static _ID = 0
   stateChanges: Subject<void> = new Subject<void>();
   id: string

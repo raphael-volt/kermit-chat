@@ -1,14 +1,21 @@
 import { Injectable } from "@angular/core";
 import { DeltaOperation } from 'quill';
 import { Observable } from 'rxjs';
+<<<<<<< HEAD
 import { DownloadData, DOWNLOAD } from "../quill";
 type FileMap = { [id: number]: File }
 type FileMapCollection = { [id: number]: FileMap }
+=======
+import { DownloadData, DOWNLOAD, findDownloads } from "../quill";
+export type FileMap = { [id: number]: File }
+
+>>>>>>> develop
 @Injectable({
     providedIn: 'root'
 })
 export class DownloadService {
 
+<<<<<<< HEAD
     private mapId: number = 0
     private fileId: number = 0
     private fileMapCollection: FileMapCollection = {}
@@ -28,11 +35,19 @@ export class DownloadService {
         const map = this.fileMapCollection[mapId]
         if (!map)
             return undefined
+=======
+    private fileId: number = 0
+    private fileMap: FileMap = {}
+
+    registerFile(file: File) {
+        const map = this.fileMap
+>>>>>>> develop
         const id = this.fileId++
         map[id] = file
         return id
     }
 
+<<<<<<< HEAD
     getFile(id: number, mapId: number) {
         const map = this.fileMapCollection[mapId]
         if (!map)
@@ -46,6 +61,27 @@ export class DownloadService {
             return undefined
         if (id in map)
             delete map[id]
+=======
+    getFile(id: number) {
+        return this.fileMap[id]
+    }
+
+    unregisterFile(id: number) {
+        const map = this.fileMap
+        if (id in map) {
+            delete map[id]
+        }
+    }
+
+    getFileIds(map: FileMap=null) {
+        if(! map)
+            map = this.fileMap
+        const ids: number[] = []
+        for (const key in map) {
+            ids.push(+key)
+        }
+        return ids
+>>>>>>> develop
     }
 
     getFileData(file: File): Promise<string> {
@@ -57,6 +93,7 @@ export class DownloadService {
         })
     }
 
+<<<<<<< HEAD
     findFile(id: number): File {
         const collection = this.fileMapCollection
         for (const mapId in collection) {
@@ -86,6 +123,23 @@ export class DownloadService {
                     return obs.error('file not found')
                 this.getFileData(file).then(data => {
                     this.unregisterFile(id, mapId)
+=======
+    setFilesData(operations: DeltaOperation[]): Observable<number> {
+        return new Observable<number>(obs => {
+            const map = this.fileMap
+            const items = findDownloads(operations)
+            const next = () => {
+                if (!items.length) {
+                    return obs.complete()
+                }
+                const op: DownloadData = items.shift().insert.download
+                const id = op.file.id
+                const file = this.getFile(id)
+                if (!file)
+                    return obs.error('file not found')
+                this.getFileData(file).then(data => {
+                    this.unregisterFile(id)
+>>>>>>> develop
                     op.file.data = data
                     obs.next(file.size)
                     next()

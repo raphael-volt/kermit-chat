@@ -1,26 +1,23 @@
 import {
   Component, Input, EventEmitter,
   ViewChild, ElementRef, AfterViewInit,
-  Output, Inject, OnDestroy
+  Output, Inject, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
-import { DownloadData, QLCaretPosition, DownloadTooltipData } from '../../quill';
-import { DownloadService } from '../download.service';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { removeRange, isDirectionKey, getCarretPosition, isLeftKey, prevent, isRightKey, isReturnCode, paste, moveCaret } from './content-editor.utils';
+import { DownloadData, QLCaretPosition, DownloadTooltipData, DOWNLOAD_TOOLTIP_DATA } from '../../quill';
+import { removeRange, isDirectionKey, getCarretPosition, isLeftKey, prevent, isRightKey, isReturnCode, paste, moveCaret, focus } from './content-editor.utils';
 
 @Component({
   selector: 'ql-download-tooltip',
   templateUrl: './tooltip.component.html',
-  styleUrls: ['./tooltip.component.scss']
+  styleUrls: ['./tooltip.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QLDownloadTooltip implements AfterViewInit, OnDestroy {
 
   @Output()
-  change: EventEmitter<DownloadData> = new EventEmitter()
+  change: EventEmitter<DownloadData> = new EventEmitter<DownloadData>()
   @Output()
-  close: EventEmitter<DownloadData> = new EventEmitter()
-  @Output()
-  selectOut: EventEmitter<QLCaretPosition> = new EventEmitter<QLCaretPosition>()
+  close: EventEmitter<DownloadTooltipData> = new EventEmitter<DownloadTooltipData>()
 
   @ViewChild("file")
   inputRef: ElementRef<HTMLInputElement>
@@ -33,10 +30,8 @@ export class QLDownloadTooltip implements AfterViewInit, OnDestroy {
   }
   @Input()
   placeholder: string = "mon fichier"
+  inputText: string
   
-  private get fileMapId() {
-    return this.dialoData.mapId
-  }
   private get downloadData() {
     return this.dialoData.data
   }
@@ -46,12 +41,11 @@ export class QLDownloadTooltip implements AfterViewInit, OnDestroy {
   }
 
   viewInitialized = false
-  
+
   constructor(
-    @Inject(MAT_DIALOG_DATA) public dialoData: DownloadTooltipData,
-    private dialoRef: MatDialogRef<QLDownloadTooltip>,
-    private download: DownloadService) {
-    this.initLabel()
+    @Inject(DOWNLOAD_TOOLTIP_DATA) public dialoData: DownloadTooltipData,
+    private cdr: ChangeDetectorRef) {
+    this.inputText = this.initLabel()
   }
 
 
@@ -73,61 +67,19 @@ export class QLDownloadTooltip implements AfterViewInit, OnDestroy {
 
   }
 
+  private carretPosition: number
   triggerClick(event: MouseEvent) {
+    moveCaret(this.textField, this.carretPosition)
     this.inputRef.nativeElement.click()
-    event.stopPropagation()
     event.preventDefault()
-  }
-
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.viewInitialized = true
-    })
-    const tf = this.textField
-    tf.innerText = this.downloadData.label
-    tf.addEventListener('keydown', this.keydownHandler)
-    tf.addEventListener('paste', this.pasteHandler)
-    this.setCarretPosition(this.dialoData.position)
-    tf.dataset.placeholder = this.placeholder
-  }
-  ngOnDestroy(): void {
-    const tf = this.textField
-    tf.removeEventListener('keydown', this.keydownHandler)
-    tf.removeEventListener('paste', this.pasteHandler)
-  }
-  inputHandler(event?: InputEvent) {
-    if (event)
-      event.stopImmediatePropagation()
-    this.dataLabel = this.textField.innerText
-  }
-
-  private selectOutHandler(position: QLCaretPosition) {
-    const data = this.dialoData
-    data.position = position
-    removeRange()
-    this.dialoRef.close(data)
-  }
-
-  private enterHandler(currentText: string) {
-    removeRange()
-    this.dialoData.position = "right"
-    this.dialoRef.close(this.dialoData)
-
-  }
-
-
-  checkFocus(event: MouseEvent) {
-    if (event.target === this.wrapperRef.nativeElement) {
-      this.textField.focus()
-    }
   }
 
   fileChange(event: Event) {
     const i = event.target as HTMLInputElement
     const file = i.files[0]
+    this.dialoData.file = file
     this.dialoData.data.file = {
       name: file.name,
-      id: this.download.registerFile(file, this.fileMapId),
       size: file.size,
       mime: file.type,
       ext: file.name.split(".").pop()
@@ -135,8 +87,59 @@ export class QLDownloadTooltip implements AfterViewInit, OnDestroy {
     this.notify()
   }
 
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.viewInitialized = true
+      this.setCarretPosition(this.dialoData.position)
+      this.cdr.detectChanges()
+    })
+    const tf = this.textField
+    tf.dataset.placeholder = this.placeholder
+    tf.addEventListener('keydown', this.keydownHandler)
+    tf.addEventListener('paste', this.pasteHandler)
+    document.addEventListener('selectionchange', this.selectionChangeHandler)
+  }
+  private selectionChangeHandler = (event) => {
+    const sel = document.getSelection()
+    const r = sel.getRangeAt(0)
+    this.carretPosition = r.startOffset
+  }
+  ngOnDestroy(): void {
+    const tf = this.textField
+    tf.removeEventListener('keydown', this.keydownHandler)
+    tf.removeEventListener('paste', this.pasteHandler)
+    document.removeEventListener('selectionchange', this.selectionChangeHandler)
+  }
+  inputHandler(event?: InputEvent) {
+    this.carretPosition = getCarretPosition()
+    this.dataLabel = this.textField.innerText
+    this.notify()
+  }
+
+  private selectOutHandler(position: QLCaretPosition) {
+    const data = this.dialoData
+    data.position = position
+    removeRange()
+    this.close.next(data)
+    this.cdr.detectChanges()
+  }
+
+  private enterHandler(currentText: string) {
+    removeRange()
+    this.dialoData.position = "right"
+    this.close.next(this.dialoData)
+
+  }
+
+
+  checkFocus(event: MouseEvent) {
+    if (event.target === this.wrapperRef.nativeElement) {
+      focus(this.textField)
+    }
+  }
+
   delete() {
-    this.dialoRef.close(null)
+    this.close.next(null)
   }
 
   private notify() {
@@ -156,13 +159,14 @@ export class QLDownloadTooltip implements AfterViewInit, OnDestroy {
         index = max
     }
     moveCaret(tf, index)
+    this.carretPosition = index
   }
 
   private keydownHandler = (event: KeyboardEvent) => {
     const current = event.keyCode
     const text = this.textField.innerText
     if (isDirectionKey(current)) {
-      const position = getCarretPosition()
+      const position = this.carretPosition
       if (position == 0 && isLeftKey(current)) {
         prevent(event)
         this.selectOutHandler("left")

@@ -2,6 +2,7 @@
   $hash: unique-id();
   $path: 'styles/fonts';
 
+<<<<<<< HEAD
   $error               : "\e900";
   $warning             : "\e901";
   $loop                : "\e902";
@@ -31,6 +32,39 @@
   $settings            : "\e916";
   $replay_circle_filled: "\e918";
   $emoji_emotions      : "\e917";
+=======
+  $error                  : "\e900";
+  $warning                : "\e901";
+  $loop                   : "\e902";
+  $volume_off             : "\e903";
+  $volume_up              : "\e904";
+  $email                  : "\e905";
+  $add_circle             : "\e906";
+  $remove_circle          : "\e907";
+  $reply                  : "\e908";
+  $send                   : "\e909";
+  $insert_photo           : "\e90a";
+  $attachment             : "\e90b";
+  $file_download          : "\e91c";
+  $camera_alt             : "\e90c";
+  $filter_vintage         : "\e90d";
+  $panorama               : "\e90e";
+  $remove_red_eye         : "\e919";
+  $location_history       : "\e90f";
+  $zoom_out_map           : "\e920";
+  $cancel                 : "\e910";
+  $refresh                : "\e911";
+  $person                 : "\e912";
+  $account_circle         : "\e913";
+  $autorenew              : "\e914";
+  $bug_report             : "\e91b";
+  $cached                 : "\e915";
+  $settings               : "\e916";
+  $indeterminate_check_box: "\e923";
+  $replay_circle_filled   : "\e918";
+  $emoji_emotions         : "\e917";
+
+>>>>>>> develop
 
 
   @font-face {
@@ -133,7 +167,10 @@
     }
   }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
   .camera_alt {
     &:before {
       content: $camera_alt;
@@ -158,15 +195,15 @@
     }
   }
 
-  .local_library {
-    &:before {
-      content: $local_library;
-    }
-  }
-
   .location_history {
     &:before {
       content: $location_history;
+    }
+  }
+
+  .zoom_out_map {
+    &:before {
+      content: $zoom_out_map;
     }
   }
 
@@ -215,6 +252,12 @@
   .settings {
     &:before {
       content: $settings;
+    }
+  }
+
+  .indeterminate_check_box {
+    &:before {
+      content: $indeterminate_check_box;
     }
   }
 

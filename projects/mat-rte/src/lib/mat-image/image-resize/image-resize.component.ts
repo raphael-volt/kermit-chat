@@ -39,7 +39,6 @@ class ImageSizeValidator extends FormControl {
     }
     else
       error.nan = true
-    console.log(error)
     return error
   }
 }

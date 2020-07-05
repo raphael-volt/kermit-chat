@@ -44,10 +44,17 @@ const setData = (node: HTMLElement, data: DownloadData, wrapper: HTMLElement = n
     setFileData(node, data.file)
 }
 const setFileData = (node: HTMLElement, file: DownloadData['file']) => {
+<<<<<<< HEAD
     if (file) {
         node.dataset.file = JSON.stringify(file)
     }
     else delete node.dataset.file
+=======
+    if (file)
+        node.dataset.file = JSON.stringify(file)
+    else
+        delete node.dataset.file
+>>>>>>> develop
 }
 
 export class DownloadBlot extends Embed {
@@ -65,6 +72,7 @@ export class DownloadBlot extends Embed {
     static formats(node: HTMLElement) {
         return false
     }
+<<<<<<< HEAD
     
     static value(node: HTMLElement): DownloadData {
         /*return {
@@ -72,6 +80,10 @@ export class DownloadBlot extends Embed {
             label: getLabel(node)
             return DownloadBlot.formats(node)
         }*/
+=======
+
+    static value(node: HTMLElement): DownloadData {
+>>>>>>> develop
         const formats: DownloadData = {}
         if (node.hasAttribute('href'))
             formats.url = node.getAttribute('href')
@@ -98,6 +110,7 @@ export class DownloadBlot extends Embed {
             wrapper.innerText = value
     }
     formatAt(i, l, name, value: DownloadData) {
+<<<<<<< HEAD
         for (const key in value) {
             this.format(key, value[key])
         }
@@ -105,6 +118,15 @@ export class DownloadBlot extends Embed {
     format(name, value) {
         if (DD_KEYS_LIST.indexOf(name) > -1) {
             console.log(this.id, "DownloadBlot format", name, value)
+=======
+        if (name == DOWNLOAD && value)
+            for (const key in value) {
+                this.format(key, value[key])
+            }
+    }
+    format(name, value) {
+        if (DD_KEYS_LIST.indexOf(name) > -1) {
+>>>>>>> develop
             const node = this.domNode
             const k: string = name
             switch (k) {
@@ -128,9 +150,14 @@ export class DownloadBlot extends Embed {
                 default:
                     break;
             }
+<<<<<<< HEAD
         } else {
             //super.format(name, value);
         }
     }
 
+=======
+        }
+    }
+>>>>>>> develop
 }
