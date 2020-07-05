@@ -1,12 +1,7 @@
 import { ValidatorFn } from '@angular/forms';
 import { DeltaOperation } from 'quill';
-<<<<<<< HEAD
-import { InjectionToken, Injector } from '@angular/core';
-import { Overlay, ScrollStrategyOptions } from '@angular/cdk/overlay';
-=======
 import { InjectionToken, Injector, NgZone } from '@angular/core';
 import { Overlay } from '@angular/cdk/overlay';
->>>>>>> develop
 import { DownloadService } from './quill-download/download.service';
 import { MatDialog } from '@angular/material/dialog';
 export interface DownloadConfig {
@@ -16,16 +11,6 @@ export interface DownloadConfig {
     injector: Injector
     scrollable?: HTMLElement
     dialog: MatDialog
-<<<<<<< HEAD
-    sso: ScrollStrategyOptions
-}
-export const DOWNLOAD: string = "download"
-export const IMAGE: string = "image"
-export type DOBase<T> = {
-    insert: T
-}
-export type ImgData = { image: string }
-=======
     zone: NgZone
 }
 
@@ -60,7 +45,6 @@ export type DOBase<T> = {
 }
 
 export type ImgData = string
->>>>>>> develop
 export type DownloadData = {
     url?: string
     label?: string
@@ -75,26 +59,13 @@ export type DownloadData = {
 }
 export type QLCaretPosition = number | "left" | "right"
 export type DownloadTooltipData = {
-<<<<<<< HEAD
-    data: DownloadData
-    position: QLCaretPosition
-    mapId:number
-=======
     file?: File
     data: DownloadData
     position: QLCaretPosition
->>>>>>> develop
 }
 export const DOWNLOAD_TOOLTIP_DATA = new InjectionToken<DownloadTooltipData>('DOWNLOAD_TOOLTIP_DATA');
 export type DOImage = DOBase<ImgData>
 export type DODownload = DOBase<DownloadData>
-<<<<<<< HEAD
-export const isDOImage = (op: DeltaOperation): op is DOImage => {
-    return op.insert == "object" && IMAGE in op.insert
-}
-export const isDODownload = (op: DeltaOperation): op is DODownload => {
-    return op.insert == "object" && DOWNLOAD in op.insert
-=======
 
 export const isInsertObject = (insert: any): insert is object => {
     return (typeof insert == "object")
@@ -112,7 +83,6 @@ export const isDOImage = (op: DeltaOperation): op is DOImage => {
 }
 export const isDODownload = (op: DeltaOperation): op is DODownload => {
     return isInsertOf<DODownload>(op, DOWNLOAD)
->>>>>>> develop
 }
 
 export const findImages = (operations: DeltaOperation[]): DOImage[] => {

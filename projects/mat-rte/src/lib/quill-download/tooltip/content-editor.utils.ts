@@ -12,12 +12,6 @@ export const getCarretPosition = () => {
     return getRange()[0]
 
 }
-<<<<<<< HEAD
-export const moveCaret = (node: HTMLElement, index: number = -1) => {
-    const textNode = node.firstChild
-    const length = node.innerText.length
-    node.focus()
-=======
 
 export const focus = (node: HTMLElement) => {
     node.focus()
@@ -26,7 +20,6 @@ export const moveCaret = (node: HTMLElement, index: number = -1) => {
     const textNode = node.firstChild
     const length = node.innerText.length
     //node.focus()
->>>>>>> develop
     if (!length)
         return
     if (index > length)
@@ -35,10 +28,7 @@ export const moveCaret = (node: HTMLElement, index: number = -1) => {
     const range = document.createRange()
     range.setStart(textNode, caret)
     range.setEnd(textNode, caret)
-<<<<<<< HEAD
-=======
     range.collapse(true)
->>>>>>> develop
     removeRange().addRange(range)
 }
 export const removeRange = ()=>{

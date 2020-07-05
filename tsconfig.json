@@ -20,13 +20,22 @@
     "outDir": "./dist/out-tsc",
     "paths": {
       "mat-avatars": [
-        "projects/mat-avatars/src/public-api"
+        "dist/mat-avatars"
+      ],
+      "mat-avatars/*": [
+        "dist/mat-avatars/*"
       ],
       "mat-rte": [
-        "projects/mat-rte/src/public-api"
+        "dist/mat-rte"
+      ],
+      "mat-rte/*": [
+        "dist/mat-rte/*"
       ],
       "material": [
-        "projects/material/src/public-api"
+        "dist/material"
+      ],
+      "material/*": [
+        "dist/material/*"
       ]
     },
     "sourceMap": true,

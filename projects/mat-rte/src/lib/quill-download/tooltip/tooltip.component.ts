@@ -4,7 +4,7 @@ import {
   Output, Inject, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 import { DownloadData, QLCaretPosition, DownloadTooltipData, DOWNLOAD_TOOLTIP_DATA } from '../../quill';
-import { removeRange, isDirectionKey, getCarretPosition, isLeftKey, prevent, isRightKey, isReturnCode, paste, moveCaret, focus } from './content-editor.utils';
+import { removeRange, isDirectionKey, getCarretPosition, isLeftKey, prevent, isRightKey, isReturnCode, paste, moveCaret } from './content-editor.utils';
 
 @Component({
   selector: 'ql-download-tooltip',
@@ -134,7 +134,7 @@ export class QLDownloadTooltip implements AfterViewInit, OnDestroy {
 
   checkFocus(event: MouseEvent) {
     if (event.target === this.wrapperRef.nativeElement) {
-      focus(this.textField)
+      this.textField.focus()
     }
   }
 

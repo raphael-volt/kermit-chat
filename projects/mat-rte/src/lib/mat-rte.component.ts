@@ -8,7 +8,6 @@ import { QuillService } from './quill.service';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { Subject, Subscription } from 'rxjs';
 import { FocusMonitor } from '@angular/cdk/a11y';
-import { element } from 'protractor';
 
 @Component({
   selector: 'div[mat-rte]',
@@ -73,12 +72,6 @@ export class MatRteComponent implements OnDestroy, AfterViewInit, ControlValueAc
       this.focused = !!origin;
       this.stateChanges.next()
     })
-<<<<<<< HEAD
-  }
-  attach_fileClick() {
-      console.log('MatRteComponent.attach_fileClick')
-=======
->>>>>>> develop
   }
   
   private static _ID = 0

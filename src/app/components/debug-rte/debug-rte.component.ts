@@ -208,7 +208,7 @@ export class DebugRteComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit(): void {
-    setTimeout(()=>this.send(), 1000)
+    //setTimeout(()=>this.send(), 1000)
   }
 
   ngOnDestroy(): void {
