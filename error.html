@@ -1,22 +1,28 @@
 <br />
-<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
-<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined variable: ext in /var/www/html/src/services/FileService.php on line <i>308</i></th></tr>
-<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
-<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
-<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0055</td><td bgcolor='#eeeeec' align='right'>394296</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/api/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.0058</td><td bgcolor='#eeeeec' align='right'>398152</td><td bgcolor='#eeeeec'>src\services\RequestService->handle(  )</td><td title='/var/www/html/api/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>11</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>0.0707</td><td bgcolor='#eeeeec' align='right'>7515744</td><td bgcolor='#eeeeec'>src\services\RequestService->threadPartRequest( ??? )</td><td title='/var/www/html/src/services/RequestService.php' bgcolor='#eeeeec'>.../RequestService.php<b>:</b>159</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>0.0713</td><td bgcolor='#eeeeec' align='right'>7518696</td><td bgcolor='#eeeeec'>src\services\FileService->saveImage( ???, ??? )</td><td title='/var/www/html/src/services/RequestService.php' bgcolor='#eeeeec'>.../RequestService.php<b>:</b>417</td></tr>
-</table></font>
+<b>Warning</b>:  First parameter must either be an object or the name of an existing class in <b>/home/ketmie/jp.api/src/services/WatchService.php</b> on line <b>87</b><br />
 <br />
-<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
-<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: Cannot modify header information - headers already sent by (output started at /var/www/html/src/services/FileService.php:308) in /var/www/html/src/core/http/HTTPMethods.php on line <i>53</i></th></tr>
-<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
-<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
-<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0055</td><td bgcolor='#eeeeec' align='right'>394296</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/api/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>0</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>77.9847</td><td bgcolor='#eeeeec' align='right'>549264</td><td bgcolor='#eeeeec'>src\services\RequestService->getResponse(  )</td><td title='/var/www/html/api/index.php' bgcolor='#eeeeec'>.../index.php<b>:</b>12</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>77.9847</td><td bgcolor='#eeeeec' align='right'>549264</td><td bgcolor='#eeeeec'>src\services\RequestService->setResponseCode( ??? )</td><td title='/var/www/html/src/services/RequestService.php' bgcolor='#eeeeec'>.../RequestService.php<b>:</b>474</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>77.9847</td><td bgcolor='#eeeeec' align='right'>549264</td><td bgcolor='#eeeeec'>src\core\http\HTTPMethods::setResponseCode( ???, ??? )</td><td title='/var/www/html/src/services/RequestService.php' bgcolor='#eeeeec'>.../RequestService.php<b>:</b>459</td></tr>
-<tr><td bgcolor='#eeeeec' align='center'>5</td><td bgcolor='#eeeeec' align='center'>77.9847</td><td bgcolor='#eeeeec' align='right'>549304</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.header' target='_new'>header</a>
-( ??? )</td><td title='/var/www/html/src/core/http/HTTPMethods.php' bgcolor='#eeeeec'>.../HTTPMethods.php<b>:</b>53</td></tr>
-</table></font>
+<b>Warning</b>:  Creating default object from empty value in <b>/home/ketmie/jp.api/src/services/WatchService.php</b> on line <b>88</b><br />
+<br />
+<b>Notice</b>:  Trying to get property 'users' of non-object in <b>/home/ketmie/jp.api/src/services/WatchService.php</b> on line <b>122</b><br />
+<br />
+<b>Warning</b>:  Invalid argument supplied for foreach() in <b>/home/ketmie/jp.api/src/services/WatchService.php</b> on line <b>127</b><br />
+<br />
+<b>Warning</b>:  Creating default object from empty value in <b>/home/ketmie/jp.api/src/services/WatchService.php</b> on line <b>135</b><br />
+<br />
+<b>Notice</b>:  Undefined property: stdClass::$thread in <b>/home/ketmie/jp.api/src/services/WatchService.php</b> on line <b>202</b><br />
+<br />
+<b>Notice</b>:  Undefined property: stdClass::$thread_part in <b>/home/ketmie/jp.api/src/services/WatchService.php</b> on line <b>202</b><br />
+<br />
+<b>Notice</b>:  Undefined property: stdClass::$thread_user in <b>/home/ketmie/jp.api/src/services/WatchService.php</b> on line <b>202</b><br />
+<br />
+<b>Notice</b>:  Undefined property: stdClass::$users_change in <b>/home/ketmie/jp.api/src/services/WatchService.php</b> on line <b>202</b><br />
+{
+    "thread": null,
+    "thread_part": null,
+    "thread_user": null,
+    "users_change": null,
+    "users": [
+        74
+    ],
+    "active_threads": {}
+}

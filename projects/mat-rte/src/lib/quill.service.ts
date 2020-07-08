@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { QuillEmojiMartToolbar } from './quill-emoji-mart/quill/emoji-toolbar';
 import { QuillEmojiMartBlot } from './quill-emoji-mart/quill/emoji-blot';
 import { EmojiService } from '@ctrl/ngx-emoji-mart/ngx-emoji';
-import { Overlay, ScrollStrategyOptions } from '@angular/cdk/overlay';
+import { Overlay } from '@angular/cdk/overlay';
 import { EMOJI_OPTIONS } from "./quill-emoji-mart/quill/emoji.module";
 import { MAT_RTE_CONFIG_TOKEN, MatRteConfig, DEFAULT_MAT_RTE_CONFIG } from './mart-emoji.config';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -91,6 +91,11 @@ export class QuillService {
     Quill.register(Size, true)
   }
 
+  private backgroundImageFn = ()=>{
+    const e = this.rteConfig.emoji
+    return e.backgroundImageFn(e.set, e.sheetSize) 
+  }
+
   getViewInstance(element: HTMLElement) {
     return new Quill(element, {
       theme: 'snow',
@@ -98,7 +103,8 @@ export class QuillService {
       modules: {
         toolbar: false,
         rteemoji: {
-          emoji: this.emoji
+          emoji: this.emoji,
+          backgroundImageFn: this.backgroundImageFn
         },
         download: {}
       }
@@ -123,7 +129,8 @@ export class QuillService {
         rteemoji: {
           emoji: this.emoji,
           overlay,
-          editor
+          editor,
+          backgroundImageFn: this.backgroundImageFn
         },
         matImageResize: {
           dialog: dialog

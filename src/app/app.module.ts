@@ -32,7 +32,8 @@ import { MatRteModule } from 'mat-rte';
     MatAvatarsModule.forRoot(),
     MatRteModule.forRoot({
       emoji: {
-        sheetSize: 64
+        sheetSize: 64,
+        set: "apple"
       },
       quill: {
         toolbarSizes: [

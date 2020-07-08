@@ -1,38 +1,44 @@
 <div #toolbar class="toolbar">
     <span class="ql-formats">
-        <button class="ql-header" value="1"></button>
-        <button class="ql-header" value="2"></button>
-        <select class="ql-size">
-            <option selected>normal</option>
-            <option *ngFor="let s of sizes" [value]="s.size">{{s.name}}</option>
-        </select>
-        <select class="ql-color"></select>
+        <button class="ql-header" matTooltip="Titre" matTooltipPosition="above" value="1"></button>
+        <button class="ql-header" matTooltip="Sous titre" matTooltipPosition="above" value="2"></button>
+        <span class="ql-select-wrapper" matTooltip="Taille du text" matTooltipPosition="above">
+            <select class="ql-size">
+                <option selected>normal</option>
+                <option *ngFor="let s of sizes" [value]="s.size">{{s.name}}</option>
+            </select>
+        </span>
+        <span class="ql-select-wrapper" matTooltip="Couleur du text" matTooltipPosition="above">
+            <select class="ql-color"></select>
+        </span>
     </span>
     <span class="ql-formats">
-        <button class="ql-bold"></button>
-        <button class="ql-italic"></button>
-        <button class="ql-underline"></button>
-        <button class="ql-strike"></button>
-        <button class="ql-clean"></button>
+        <button class="ql-bold" matTooltip="Gras" matTooltipPosition="above"></button>
+        <button class="ql-italic" matTooltip="Italique" matTooltipPosition="above"></button>
+        <button class="ql-underline" matTooltip="Sous-ligné" matTooltipPosition="above"></button>
+        <button class="ql-strike" matTooltip="Baré" matTooltipPosition="above"></button>
+        <button class="ql-clean" matTooltip="Supprimer la mise en forme" matTooltipPosition="above"></button>
     </span>
     <span class="ql-formats">
-        <button class="ql-list" value="ordered"></button>
-        <button class="ql-list" value="bullet"></button>
-        <button class="ql-indent" value="-1"></button>
-        <button class="ql-indent" value="+1"></button>
-        <select class="ql-align"></select>
+        <button class="ql-list" value="ordered" matTooltip="Liste numérotée" matTooltipPosition="above"></button>
+        <button class="ql-list" value="bullet" matTooltip="Liste à puce" matTooltipPosition="above"></button>
+        <button class="ql-indent" value="+1" matTooltip="Retrait +" matTooltipPosition="above"></button>
+        <button class="ql-indent" value="-1" matTooltip="Retrait -" matTooltipPosition="above"></button>
+        <span class="ql-select-wrapper" matTooltip="Alignement" matTooltipPosition="above">
+            <select class="ql-align"></select>
+        </span>
     </span>
     <span class="ql-formats">
-        <button class="ql-download">
+        <button class="ql-download" matTooltip="Insérer une pièce jointe" matTooltipPosition="above">
             <svg width="14" height="14" viewBox="0 0 768 768">
                 <path class="ql-fill"
                     d="M68.76 677.025h630.479v90.975h-630.479v-90.975zM699.24 270.81l-315.24 315.24-315.24-315.24h179.835v-270.81h270.81v270.81h179.835z" />
             </svg>
         </button>
-        <button class="ql-link"></button>
-        <button class="ql-image"></button>
-        <button class="ql-video"></button>
-        <button class="ql-rteemoji fix-hidden">
+        <button class="ql-link" matTooltip="Insérer un lien" matTooltipPosition="above"></button>
+        <button class="ql-image" matTooltip="Insérer une image" matTooltipPosition="above"></button>
+        <button class="ql-video" matTooltip="Insérer une vidéo" matTooltipPosition="above"></button>
+        <button class="ql-rteemoji fix-hidden" matTooltip="Insérer un emoji" matTooltipPosition="above">
             <svg viewbox="0 0 18 18">
                 <circle class="ql-fill" cx="7" cy="7" r="1"></circle>
                 <circle class="ql-fill" cx="11" cy="7" r="1"></circle>

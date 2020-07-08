@@ -157,5 +157,13 @@
     align-content  : stretch;
     align-items    : stretch;
 }
-
+// force emoji images ???
+/*
+.rte-emoji-64 {
+    background-image: url('assets/emoji-apple-64.png');
+}
+.rte-emoji-32 {
+    background-image: url('assets/emoji-apple-32.png');
+}
+*/
 @import 'mat-dialog.scss';

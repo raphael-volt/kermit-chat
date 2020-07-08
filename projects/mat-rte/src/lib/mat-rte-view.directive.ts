@@ -4,7 +4,7 @@ import { QuillService } from './quill.service';
 @Directive({
   selector: 'div[matRteView]',
   host: {
-    class: "rte-view ql-editor"
+    class: "rte-view ql-editor ql-snow"
   } 
 })
 export class MatRteViewDirective {

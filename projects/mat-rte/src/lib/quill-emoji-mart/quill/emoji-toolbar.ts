@@ -30,6 +30,7 @@ export class QuillEmojiMartToolbar extends Module {
 
     constructor(public quill: any, private options: QuillEmojiMartOptions) {
         super(quill, options)
+        this.backgroundImage = this.options.backgroundImageFn()
         if (options.overlay) {
 
             const toolbar = quill.getModule('toolbar')
@@ -114,6 +115,7 @@ export class QuillEmojiMartToolbar extends Module {
         })
     }
 
+    private backgroundImage
     private close = (emoji: EmojiData = null): void => {
 
         if (this.bgSub)
@@ -129,9 +131,10 @@ export class QuillEmojiMartToolbar extends Module {
         quill.focus()
         const range = this.range
         const index = range.index
+        
         if (emoji) {
             const format = this.format
-            quill.insertEmbed(range.index, 'rteemoji', getBlotData(emoji))
+            quill.insertEmbed(range.index, 'rteemoji', getBlotData(emoji, this.backgroundImage))
             quill.setSelection(index, 1, "api")
             for (const k in format)
                 quill.format(k, format[k])

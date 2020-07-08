@@ -8,6 +8,7 @@ export type ToolbarSizeList = ToolbarSize[]
 export type MatRteConfig = {
     emoji?: {
         sheetSize: number
+        set: "apple"
         backgroundImageFn?: (set: string, sheetSize: number) => string
     }
     quill?: {
@@ -22,8 +23,9 @@ export const DEFAULT_MAT_RTE_CONFIG: MatRteConfig = {
 
     emoji: {
         sheetSize: 32,
+        set: "apple",
         backgroundImageFn: (set: string, sheetSize: number): string => {
-            return `/emoji-apple-${sheetSize}.png`
+            return `assets/emoji-apple-${sheetSize}.png`
         }
     },
     download: {

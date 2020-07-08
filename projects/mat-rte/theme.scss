@@ -19,7 +19,6 @@
         max-width       : 64px;
         max-height      : 64px;
         display         : inline-block;
-        background-image: url('assets/emoji-apple-#{$sheet-size}.png');
         background-size : 5700% 5700%;
         color           : rgba(0, 0, 0, 0);
         $em             : 1.2em;
@@ -111,6 +110,9 @@
             order     : 0;
             flex      : 0 1 auto;
             align-self: auto;
+            .ql-select-wrapper {
+                display: inline-block;
+            }
         }
 
         .editor {

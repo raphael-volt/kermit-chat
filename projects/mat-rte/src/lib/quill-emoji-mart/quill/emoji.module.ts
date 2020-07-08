@@ -11,14 +11,16 @@ export type QuillEmojiMartOptions = {
     emoji?: EmojiService
     overlay?: Overlay
     editor?: HTMLElement
+    backgroundImageFn?: ()=>string
 }
 
 export const EMOJI_OPTIONS: QuillEmojiMartOptions = {}
-export const getBlotData = (emoji: EmojiData): BlotData => {
+export const getBlotData = (emoji: EmojiData, backgroundImage: string): BlotData => {
     return {
         sheetX: emoji.sheet[0],
         sheetY: emoji.sheet[1],
-        emoji: emoji.id
+        emoji: emoji.id,
+        background: backgroundImage
     }
 }
 export const isEmojiElement = (value: HTMLElement) => {
@@ -28,7 +30,8 @@ export const getSpanData = (span: HTMLElement): BlotData => {
     return {
         sheetX: +span.dataset.sheetX,
         sheetY: +span.dataset.sheetY,
-        emoji: span.dataset.emoji
+        emoji: span.dataset.emoji,
+        background: span.dataset.background
     }
 }
 export type SheetSize = 16 | 20 | 32 | 64
@@ -59,7 +62,8 @@ export const getBlotStyles = (data: BlotData, service?: EmojiService) => {
 export type BlotData = {
     sheetX: number,
     sheetY: number,
-    emoji: string
+    emoji: string,
+    background: string
 }
 const getSpritePosition = (sheetX: number, sheetY: number, sheetColumns: number = 57) => {
     const multiply = 100 / (sheetColumns - 1);
@@ -69,5 +73,6 @@ export const setElementStyles = (
     element: HTMLElement,
     data: BlotData): void => {
     element.style.backgroundPosition = getSpritePosition(data.sheetX, data.sheetY)
+    element.style.backgroundImage = `url('${data.background}')`
 }
 
